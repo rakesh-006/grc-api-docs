@@ -13,7 +13,7 @@
     }
   },
   "schemes": ["http"],
-  "host": "http://ec2-3-110-209-222.ap-south-1.compute.amazonaws.com:3500/api",
+  "host": "ec2-3-110-209-222.ap-south-1.compute.amazonaws.com:3500",
   "basePath": "/api",
   "paths": {
     "/hotel": {
