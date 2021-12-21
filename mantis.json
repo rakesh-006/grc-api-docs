@@ -40,7 +40,7 @@
     }
   ],
   "paths": {
-    "/api/rest/projects/": {
+    "/api/rest/projects": {
       "get": {
         "tags": [
           "Projects"
