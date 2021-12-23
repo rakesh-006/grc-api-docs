@@ -1,0 +1,765 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "description": "This is a simple example NodeJS API project to demonstrate Swagger Documentation",
+    "version": "1.0.0",
+    "title": "Asset API",
+    "contact": {
+      "email": "abc@gmail.com"
+    },
+    "license": {
+      "name": "Apache 2.0",
+      "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+    }
+  },
+  "schemes": [
+    "http"
+  ],
+  "host": "192.168.0.154:3500",
+  "basePath": "/api",
+  "paths": {
+      "/asset": {
+          "get": {
+            "summary": "Get all the asset",
+            "description": "Get all the asset",
+            "produces": [
+              "application/json"
+            ],
+            "operationId": "getassets",
+            "parameters": [],
+            "responses": {
+              "200": {
+                "description": "successful operation",
+                "schema": {
+                  "type": "object",
+                  "items": {
+                      "$ref": "#/definitions/asset"
+                    }
+                }
+              }
+            }
+          },
+          "post": {
+            "summary": "Save the asset",
+            "description": "Save the asset",
+            "operationId": "postasset",
+            "produces": [
+              "application/json"
+            ],
+            "consumes": [
+              "application/json"
+            ],
+            "parameters": [
+              {
+                "in": "body",
+                "name": "body",
+                "description": "asset object",
+                "required": true,
+                "schema": {
+                    "$ref": "#/definitions/asset"
+                  }  
+                  
+                
+              }
+            ],
+            "responses": {
+              "200": {
+                "description": "successful operation",
+                "schema": {
+                  "type": "object",
+                  "items": {
+                      "$ref": "#/definitions/asset"
+                    }
+                }
+              }
+            }
+          }
+        },
+        "/asset/{id}": {
+          "put": {
+            "summary": "Update the asset",
+            "description": "Update the asset",
+            "operationId": "updateasset",
+            "produces": [
+              "application/json"
+            ],
+            "parameters": [
+              {
+                "name": "id",
+                "in": "path",
+                "description": "asset id that needs to be deleted",
+                "required": true,
+                "type": "string"
+              },
+              {
+                "in": "body",
+                "name": "body",
+                "description": "asset object",
+                "required": true,
+                "schema": {
+                  "type": "object",
+                  "items": {
+                      "$ref": "#/definitions/asset"
+                    }
+                }
+              }
+            ],
+            "responses": {
+              "200": {
+                "description": "successful operation",
+                "schema": {
+                  "type": "object",
+                  "items": {
+                      "$ref": "#/definitions/asset"
+                    }
+                }
+              }
+            }
+          },
+          "delete": {
+            "summary": "Delete the asset",
+            "description": "Delete the asset",
+            "operationId": "deleteasset",
+            "produces": [
+              "application/json"
+            ],
+            "parameters": [
+              {
+                "name": "id",
+                "in": "path",
+                "description": "asset id that needs to be deleted",
+                "required": true,
+                "type": "string"
+              }
+            ],
+            "responses": {
+              "200": {
+                "description": "successful operation",
+                "schema": {
+                  "type": "object",
+                  "items": {
+                      "$ref": "#/definitions/asset"
+                    }
+                }
+              }
+            }
+          }
+        },
+        "/category": {
+          "get": {
+            "summary": "Get all the category",
+            "description": "Get all the category",
+            "produces": [
+              "application/json"
+            ],
+            "operationId": "getcategorys",
+            "parameters": [],
+            "responses": {
+              "200": {
+                "description": "successful operation",
+                "schema": {
+                  "type": "object",
+                  "items": {
+                      "$ref": "#/definitions/category"
+                    }
+                }
+              }
+            }
+          },
+          "post": {
+            "summary": "Save the category",
+            "description": "Save the category",
+            "operationId": "postcategory",
+            "produces": [
+              "application/json"
+            ],
+            "consumes": [
+              "application/json"
+            ],
+            "parameters": [
+              {
+                "in": "body",
+                "name": "body",
+                "description": "category object",
+                "required": true,
+                "schema": {
+                    "$ref": "#/definitions/category"
+                  }  
+                  
+                
+              }
+            ],
+            "responses": {
+              "200": {
+                "description": "successful operation",
+                "schema": {
+                  "type": "object",
+                  "items": {
+                      "$ref": "#/definitions/category"
+                    }
+                }
+              }
+            }
+          }
+        },
+        "/category/{id}": {
+          "put": {
+            "summary": "Update the category",
+            "description": "Update the category",
+            "operationId": "updatecategory",
+            "produces": [
+              "application/json"
+            ],
+            "parameters": [
+              {
+                "name": "id",
+                "in": "path",
+                "description": "category id that needs to be deleted",
+                "required": true,
+                "type": "string"
+              },
+              {
+                "in": "body",
+                "name": "body",
+                "description": "category object",
+                "required": true,
+                "schema": {
+                  "type": "object",
+                  "items": {
+                      "$ref": "#/definitions/category"
+                    }
+                }
+              }
+            ],
+            "responses": {
+              "200": {
+                "description": "successful operation",
+                "schema": {
+                  "type": "object",
+                  "items": {
+                      "$ref": "#/definitions/category"
+                    }
+                }
+              }
+            }
+          },
+          "delete": {
+            "summary": "Delete the category",
+            "description": "Delete the category",
+            "operationId": "deletecategory",
+            "produces": [
+              "application/json"
+            ],
+            "parameters": [
+              {
+                "name": "id",
+                "in": "path",
+                "description": "category id that needs to be deleted",
+                "required": true,
+                "type": "string"
+              }
+            ],
+            "responses": {
+              "200": {
+                "description": "successful operation",
+                "schema": {
+                  "type": "object",
+                  "items": {
+                      "$ref": "#/definitions/category"
+                    }
+                }
+              }
+            }
+          }
+        },
+        "/subcategory": {
+          "get": {
+            "summary": "Get all the subcategory",
+            "description": "Get all the subcategory",
+            "produces": [
+              "application/json"
+            ],
+            "operationId": "getsubcategorys",
+            "parameters": [],
+            "responses": {
+              "200": {
+                "description": "successful operation",
+                "schema": {
+                  "type": "object",
+                  "items": {
+                      "$ref": "#/definitions/subcategory"
+                    }
+                }
+              }
+            }
+          },
+          "post": {
+            "summary": "Save the subcategory",
+            "description": "Save the subcategory",
+            "operationId": "postsubcategory",
+            "produces": [
+              "application/json"
+            ],
+            "consumes": [
+              "application/json"
+            ],
+            "parameters": [
+              {
+                "in": "body",
+                "name": "body",
+                "description": "subcategory object",
+                "required": true,
+                "schema": {
+                    "$ref": "#/definitions/subcategory"
+                  }  
+                  
+                
+              }
+            ],
+            "responses": {
+              "200": {
+                "description": "successful operation",
+                "schema": {
+                  "type": "object",
+                  "items": {
+                      "$ref": "#/definitions/subcategory"
+                    }
+                }
+              }
+            }
+          }
+        },
+        "/subcategory/{id}": {
+          "put": {
+            "summary": "Update the subcategory",
+            "description": "Update the subcategory",
+            "operationId": "updatesubcategory",
+            "produces": [
+              "application/json"
+            ],
+            "parameters": [
+              {
+                "name": "id",
+                "in": "path",
+                "description": "subcategory id that needs to be deleted",
+                "required": true,
+                "type": "string"
+              },
+              {
+                "in": "body",
+                "name": "body",
+                "description": "subcategory object",
+                "required": true,
+                "schema": {
+                  "type": "object",
+                  "items": {
+                      "$ref": "#/definitions/subcategory"
+                    }
+                }
+              }
+            ],
+            "responses": {
+              "200": {
+                "description": "successful operation",
+                "schema": {
+                  "type": "object",
+                  "items": {
+                      "$ref": "#/definitions/subcategory"
+                    }
+                }
+              }
+            }
+          },
+          "delete": {
+            "summary": "Delete the subcategory",
+            "description": "Delete the subcategory",
+            "operationId": "deletesubcategory",
+            "produces": [
+              "application/json"
+            ],
+            "parameters": [
+              {
+                "name": "id",
+                "in": "path",
+                "description": "subcategory id that needs to be deleted",
+                "required": true,
+                "type": "string"
+              }
+            ],
+            "responses": {
+              "200": {
+                "description": "successful operation",
+                "schema": {
+                  "type": "object",
+                  "items": {
+                      "$ref": "#/definitions/subcategory"
+                    }
+                }
+              }
+            }
+          }
+        },
+        "/person": {
+          "get": {
+            "summary": "Get all the person",
+            "description": "Get all the person",
+            "produces": [
+              "application/json"
+            ],
+            "operationId": "getpersons",
+            "parameters": [],
+            "responses": {
+              "200": {
+                "description": "successful operation",
+                "schema": {
+                  "type": "object",
+                  "items": {
+                      "$ref": "#/definitions/person"
+                    }
+                }
+              }
+            }
+          },
+          "post": {
+            "summary": "Save the person",
+            "description": "Save the person",
+            "operationId": "postperson",
+            "produces": [
+              "application/json"
+            ],
+            "consumes": [
+              "application/json"
+            ],
+            "parameters": [
+              {
+                "in": "body",
+                "name": "body",
+                "description": "person object",
+                "required": true,
+                "schema": {
+                    "$ref": "#/definitions/person"
+                  }  
+                  
+                
+              }
+            ],
+            "responses": {
+              "200": {
+                "description": "successful operation",
+                "schema": {
+                  "type": "object",
+                  "items": {
+                      "$ref": "#/definitions/person"
+                    }
+                }
+              }
+            }
+          }
+        },
+        "/person/{id}": {
+          "put": {
+            "summary": "Update the person",
+            "description": "Update the person",
+            "operationId": "updateperson",
+            "produces": [
+              "application/json"
+            ],
+            "parameters": [
+              {
+                "name": "id",
+                "in": "path",
+                "description": "person id that needs to be deleted",
+                "required": true,
+                "type": "string"
+              },
+              {
+                "in": "body",
+                "name": "body",
+                "description": "person object",
+                "required": true,
+                "schema": {
+                  "type": "object",
+                  "items": {
+                      "$ref": "#/definitions/person"
+                    }
+                }
+              }
+            ],
+            "responses": {
+              "200": {
+                "description": "successful operation",
+                "schema": {
+                  "type": "object",
+                  "items": {
+                      "$ref": "#/definitions/person"
+                    }
+                }
+              }
+            }
+          },
+          "delete": {
+            "summary": "Delete the person",
+            "description": "Delete the person",
+            "operationId": "deleteperson",
+            "produces": [
+              "application/json"
+            ],
+            "parameters": [
+              {
+                "name": "id",
+                "in": "path",
+                "description": "person id that needs to be deleted",
+                "required": true,
+                "type": "string"
+              }
+            ],
+            "responses": {
+              "200": {
+                "description": "successful operation",
+                "schema": {
+                  "type": "object",
+                  "items": {
+                      "$ref": "#/definitions/person"
+                    }
+                }
+              }
+            }
+          }
+        },
+        "/assetperson": {
+          "get": {
+            "summary": "Get all the assetperson",
+            "description": "Get all the assetperson",
+            "produces": [
+              "application/json"
+            ],
+            "operationId": "getassetpersons",
+            "parameters": [],
+            "responses": {
+              "200": {
+                "description": "successful operation",
+                "schema": {
+                  "type": "object",
+                  "items": {
+                      "$ref": "#/definitions/assetperson"
+                    }
+                }
+              }
+            }
+          },
+          "post": {
+            "summary": "Save the assetperson",
+            "description": "Save the assetperson",
+            "operationId": "postassetperson",
+            "produces": [
+              "application/json"
+            ],
+            "consumes": [
+              "application/json"
+            ],
+            "parameters": [
+              {
+                "in": "body",
+                "name": "body",
+                "description": "assetperson object",
+                "required": true,
+                "schema": {
+                    "$ref": "#/definitions/assetperson"
+                  }  
+                  
+                
+              }
+            ],
+            "responses": {
+              "200": {
+                "description": "successful operation",
+                "schema": {
+                  "type": "object",
+                  "items": {
+                      "$ref": "#/definitions/assetperson"
+                    }
+                }
+              }
+            }
+          }
+        },
+        "/assetperson/{id}": {
+          "put": {
+            "summary": "Update the assetperson",
+            "description": "Update the assetperson",
+            "operationId": "updateassetperson",
+            "produces": [
+              "application/json"
+            ],
+            "parameters": [
+              {
+                "name": "id",
+                "in": "path",
+                "description": "assetperson id that needs to be deleted",
+                "required": true,
+                "type": "string"
+              },
+              {
+                "in": "body",
+                "name": "body",
+                "description": "assetperson object",
+                "required": true,
+                "schema": {
+                  "type": "object",
+                  "items": {
+                      "$ref": "#/definitions/assetperson"
+                    }
+                }
+              }
+            ],
+            "responses": {
+              "200": {
+                "description": "successful operation",
+                "schema": {
+                  "type": "object",
+                  "items": {
+                      "$ref": "#/definitions/assetperson"
+                    }
+                }
+              }
+            }
+          },
+          "delete": {
+            "summary": "Delete the assetperson",
+            "description": "Delete the assetperson",
+            "operationId": "deleteassetperson",
+            "produces": [
+              "application/json"
+            ],
+            "parameters": [
+              {
+                "name": "id",
+                "in": "path",
+                "description": "assetperson id that needs to be deleted",
+                "required": true,
+                "type": "string"
+              }
+            ],
+            "responses": {
+              "200": {
+                "description": "successful operation",
+                "schema": {
+                  "type": "object",
+                  "items": {
+                      "$ref": "#/definitions/assetperson"
+                    }
+                }
+              }
+            }
+          }
+        }
+
+  },
+  "definitions": {
+    "todosResponse": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer"
+        },
+        "hotel": {
+          "type": "string"
+        },
+        "assignee": {
+          "type": "string"
+        },
+        "status": {
+          "type": "string"
+        }
+      }
+    },
+    "asset": {
+      "type": "object",
+      "properties": {
+        "asset_id": {
+          "type": "number"
+        },
+        "asset_name": {
+          "type": "string"
+        },
+        "asset_status": {
+          "type": "string"
+        },
+        "category_id": {
+          "type": "number"
+        },
+        "subcategory_id": {
+          "type": "number"
+        }
+      }
+    },
+    "category":{
+      "type": "object",
+      "properties": {
+        "category_id": {
+          "type": "string"
+        },
+        "category_name": {
+          "type": "string"
+        }
+      }
+    },
+    "subcategory":{
+      "type": "object",
+      "properties": {
+        "sub_catagory_id": {
+          "type": "number"
+        },
+        "sub_catagory_name": {
+          "type": "string"
+        },
+        "category_id": {
+          "type": "number"
+        }
+      }
+    },
+    "person":{
+      "type": "object",
+      "properties": {
+        "person_id": {
+          "type": "number"
+        },
+        "person_name": {
+          "type": "string"
+        },
+        "person_status": {
+          "type": "string"
+        },
+        "person_email": {
+          "type": "string"
+        },
+        "person_desc": {
+          "type": "string"
+        },
+        "person_role": {
+          "type": "string"
+        }
+      }
+    },
+    "assetperson":{
+      "type": "object",
+      "properties": {
+        "asset_person_id": {
+          "type": "number"
+        },
+        "asset_id": {
+          "type": "number"
+        },
+        "from_date": {
+          "type": "string"
+        },
+        "to_date": {
+          "type": "string"
+        },
+        "date": {
+          "type": "date"
+        }
+      }
+    }
+  }
+}
