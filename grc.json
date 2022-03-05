@@ -11,6 +11,10 @@
 "url": "http://www.apache.org/licenses/LICENSE-2.0"
 }
 },
+  "schemes":[
+"https",
+"http"
+],
 "host": "15.207.21.136:8088",
 "basePath": "/",
 "tags": [
