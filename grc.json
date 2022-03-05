@@ -16,7 +16,7 @@
 "http"
 ],
 "host": "15.207.21.136:8088",
-"basePath": "/",
+"basePath": "",
 "tags": [
 {
 "name": "authentication-controller",
