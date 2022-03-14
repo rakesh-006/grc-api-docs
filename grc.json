@@ -370,6 +370,44 @@
 }
 }
 },
+"/api/v1/organization/{orgId}/summary": {
+"get": {
+"tags": [
+"organization-controller"
+],
+"summary": "getOrganizationSummaryByOrgId",
+"operationId": "getOrganizationSummaryByOrgIdUsingGET",
+"produces": [
+"*/*"
+],
+"parameters": [
+{
+"name": "orgId",
+"in": "path",
+"description": "orgId",
+"required": true,
+"type": "string"
+}
+],
+"responses": {
+"200": {
+"description": "OK",
+"schema": {
+"$ref": "#/definitions/ApiResponse"
+}
+},
+"401": {
+"description": "Unauthorized"
+},
+"403": {
+"description": "Forbidden"
+},
+"404": {
+"description": "Not Found"
+}
+}
+}
+},
 "/api/v1/organizations": {
 "get": {
 "tags": [
@@ -1042,6 +1080,10 @@
 "items": {
 "$ref": "#/definitions/Address"
 }
+},
+"createdId": {
+"type": "integer",
+"format": "int64"
 },
 "description": {
 "type": "string"
