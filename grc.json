@@ -679,6 +679,50 @@
 }
 },
 "/api/v1/role": {
+"get": {
+"tags": [
+"authorization-controller"
+],
+"summary": "getRoleById",
+"operationId": "getRoleByIdUsingGET",
+"produces": [
+"*/*"
+],
+"parameters": [
+{
+"name": "orgId",
+"in": "query",
+"description": "orgId",
+"required": true,
+"type": "string"
+},
+{
+"name": "roleId",
+"in": "query",
+"description": "roleId",
+"required": true,
+"type": "integer",
+"format": "int64"
+}
+],
+"responses": {
+"200": {
+"description": "OK",
+"schema": {
+"$ref": "#/definitions/ApiResponse"
+}
+},
+"401": {
+"description": "Unauthorized"
+},
+"403": {
+"description": "Forbidden"
+},
+"404": {
+"description": "Not Found"
+}
+}
+},
 "post": {
 "tags": [
 "authorization-controller"
@@ -699,6 +743,96 @@
 "required": true,
 "schema": {
 "$ref": "#/definitions/RoleDTO"
+}
+}
+],
+"responses": {
+"200": {
+"description": "OK",
+"schema": {
+"$ref": "#/definitions/ApiResponse"
+}
+},
+"201": {
+"description": "Created"
+},
+"401": {
+"description": "Unauthorized"
+},
+"403": {
+"description": "Forbidden"
+},
+"404": {
+"description": "Not Found"
+}
+}
+}
+},
+"/api/v1/rolePermission": {
+"get": {
+"tags": [
+"authorization-controller"
+],
+"summary": "getRolePermissionByRoleId",
+"operationId": "getRolePermissionByRoleIdUsingGET",
+"produces": [
+"*/*"
+],
+"parameters": [
+{
+"name": "orgId",
+"in": "query",
+"description": "orgId",
+"required": true,
+"type": "string"
+},
+{
+"name": "roleId",
+"in": "query",
+"description": "roleId",
+"required": true,
+"type": "integer",
+"format": "int64"
+}
+],
+"responses": {
+"200": {
+"description": "OK",
+"schema": {
+"$ref": "#/definitions/ApiResponse"
+}
+},
+"401": {
+"description": "Unauthorized"
+},
+"403": {
+"description": "Forbidden"
+},
+"404": {
+"description": "Not Found"
+}
+}
+},
+"post": {
+"tags": [
+"authorization-controller"
+],
+"summary": "createRolePermission",
+"operationId": "createRolePermissionUsingPOST",
+"consumes": [
+"application/json"
+],
+"produces": [
+"*/*"
+],
+"parameters": [
+{
+"in": "body",
+"name": "rolePermDTO",
+"description": "rolePermDTO",
+"required": true,
+"schema": {
+"$ref": "#/definitions/RolePermissionDTO"
 }
 }
 ],
@@ -800,21 +934,70 @@
 }
 }
 },
-"/error": {
-"get": {
+"/api/v1/userRole": {
+"post": {
 "tags": [
-"basic-error-controller"
+"authorization-controller"
 ],
-"summary": "errorHtml",
-"operationId": "errorHtmlUsingGET",
+"summary": "createUserRole",
+"operationId": "createUserRoleUsingPOST",
+"consumes": [
+"application/json"
+],
 "produces": [
-"text/html"
+"*/*"
+],
+"parameters": [
+{
+"in": "body",
+"name": "userRoleDTO",
+"description": "userRoleDTO",
+"required": true,
+"schema": {
+"$ref": "#/definitions/UserRoleDTO"
+}
+}
 ],
 "responses": {
 "200": {
 "description": "OK",
 "schema": {
-"$ref": "#/definitions/ModelAndView"
+"$ref": "#/definitions/ApiResponse"
+}
+},
+"201": {
+"description": "Created"
+},
+"401": {
+"description": "Unauthorized"
+},
+"403": {
+"description": "Forbidden"
+},
+"404": {
+"description": "Not Found"
+}
+}
+}
+},
+"/error": {
+"get": {
+"tags": [
+"basic-error-controller"
+],
+"summary": "error",
+"operationId": "errorUsingGET",
+"produces": [
+"*/*"
+],
+"responses": {
+"200": {
+"description": "OK",
+"schema": {
+"type": "object",
+"additionalProperties": {
+"type": "object"
+}
 }
 },
 "401": {
@@ -832,19 +1015,22 @@
 "tags": [
 "basic-error-controller"
 ],
-"summary": "errorHtml",
-"operationId": "errorHtmlUsingHEAD",
+"summary": "error",
+"operationId": "errorUsingHEAD",
 "consumes": [
 "application/json"
 ],
 "produces": [
-"text/html"
+"*/*"
 ],
 "responses": {
 "200": {
 "description": "OK",
 "schema": {
-"$ref": "#/definitions/ModelAndView"
+"type": "object",
+"additionalProperties": {
+"type": "object"
+}
 }
 },
 "204": {
@@ -862,19 +1048,22 @@
 "tags": [
 "basic-error-controller"
 ],
-"summary": "errorHtml",
-"operationId": "errorHtmlUsingPOST",
+"summary": "error",
+"operationId": "errorUsingPOST",
 "consumes": [
 "application/json"
 ],
 "produces": [
-"text/html"
+"*/*"
 ],
 "responses": {
 "200": {
 "description": "OK",
 "schema": {
-"$ref": "#/definitions/ModelAndView"
+"type": "object",
+"additionalProperties": {
+"type": "object"
+}
 }
 },
 "201": {
@@ -895,19 +1084,22 @@
 "tags": [
 "basic-error-controller"
 ],
-"summary": "errorHtml",
-"operationId": "errorHtmlUsingPUT",
+"summary": "error",
+"operationId": "errorUsingPUT",
 "consumes": [
 "application/json"
 ],
 "produces": [
-"text/html"
+"*/*"
 ],
 "responses": {
 "200": {
 "description": "OK",
 "schema": {
-"$ref": "#/definitions/ModelAndView"
+"type": "object",
+"additionalProperties": {
+"type": "object"
+}
 }
 },
 "201": {
@@ -928,16 +1120,19 @@
 "tags": [
 "basic-error-controller"
 ],
-"summary": "errorHtml",
-"operationId": "errorHtmlUsingDELETE",
+"summary": "error",
+"operationId": "errorUsingDELETE",
 "produces": [
-"text/html"
+"*/*"
 ],
 "responses": {
 "200": {
 "description": "OK",
 "schema": {
-"$ref": "#/definitions/ModelAndView"
+"type": "object",
+"additionalProperties": {
+"type": "object"
+}
 }
 },
 "204": {
@@ -955,19 +1150,22 @@
 "tags": [
 "basic-error-controller"
 ],
-"summary": "errorHtml",
-"operationId": "errorHtmlUsingOPTIONS",
+"summary": "error",
+"operationId": "errorUsingOPTIONS",
 "consumes": [
 "application/json"
 ],
 "produces": [
-"text/html"
+"*/*"
 ],
 "responses": {
 "200": {
 "description": "OK",
 "schema": {
-"$ref": "#/definitions/ModelAndView"
+"type": "object",
+"additionalProperties": {
+"type": "object"
+}
 }
 },
 "204": {
@@ -985,19 +1183,22 @@
 "tags": [
 "basic-error-controller"
 ],
-"summary": "errorHtml",
-"operationId": "errorHtmlUsingPATCH",
+"summary": "error",
+"operationId": "errorUsingPATCH",
 "consumes": [
 "application/json"
 ],
 "produces": [
-"text/html"
+"*/*"
 ],
 "responses": {
 "200": {
 "description": "OK",
 "schema": {
-"$ref": "#/definitions/ModelAndView"
+"type": "object",
+"additionalProperties": {
+"type": "object"
+}
 }
 },
 "204": {
@@ -1239,6 +1440,20 @@
 },
 "title": "OrganizationDTO"
 },
+"PermissionBitmap": {
+"type": "object",
+"properties": {
+"permBitmap": {
+"type": "integer",
+"format": "int32"
+},
+"permId": {
+"type": "integer",
+"format": "int64"
+}
+},
+"title": "PermissionBitmap"
+},
 "Phone": {
 "type": "object",
 "properties": {
@@ -1313,6 +1528,25 @@
 },
 "title": "RoleDTO"
 },
+"RolePermissionDTO": {
+"type": "object",
+"properties": {
+"orgId": {
+"type": "string"
+},
+"permissions": {
+"type": "array",
+"items": {
+"$ref": "#/definitions/PermissionBitmap"
+}
+},
+"roleId": {
+"type": "integer",
+"format": "int64"
+}
+},
+"title": "RolePermissionDTO"
+},
 "UserDTO": {
 "type": "object",
 "properties": {
@@ -1344,6 +1578,23 @@
 }
 },
 "title": "UserDTO"
+},
+"UserRoleDTO": {
+"type": "object",
+"properties": {
+"orgId": {
+"type": "string"
+},
+"roleId": {
+"type": "integer",
+"format": "int64"
+},
+"userId": {
+"type": "integer",
+"format": "int64"
+}
+},
+"title": "UserRoleDTO"
 },
 "View": {
 "type": "object",
