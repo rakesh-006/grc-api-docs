@@ -935,6 +935,50 @@
 }
 },
 "/api/v1/userRole": {
+"get": {
+"tags": [
+"authorization-controller"
+],
+"summary": "getUserRoleByUserId",
+"operationId": "getUserRoleByUserIdUsingGET",
+"produces": [
+"*/*"
+],
+"parameters": [
+{
+"name": "orgId",
+"in": "query",
+"description": "orgId",
+"required": true,
+"type": "string"
+},
+{
+"name": "userId",
+"in": "query",
+"description": "userId",
+"required": true,
+"type": "integer",
+"format": "int64"
+}
+],
+"responses": {
+"200": {
+"description": "OK",
+"schema": {
+"$ref": "#/definitions/ApiResponse"
+}
+},
+"401": {
+"description": "Unauthorized"
+},
+"403": {
+"description": "Forbidden"
+},
+"404": {
+"description": "Not Found"
+}
+}
+},
 "post": {
 "tags": [
 "authorization-controller"
@@ -985,19 +1029,16 @@
 "tags": [
 "basic-error-controller"
 ],
-"summary": "error",
-"operationId": "errorUsingGET",
+"summary": "errorHtml",
+"operationId": "errorHtmlUsingGET",
 "produces": [
-"*/*"
+"text/html"
 ],
 "responses": {
 "200": {
 "description": "OK",
 "schema": {
-"type": "object",
-"additionalProperties": {
-"type": "object"
-}
+"$ref": "#/definitions/ModelAndView"
 }
 },
 "401": {
@@ -1015,22 +1056,19 @@
 "tags": [
 "basic-error-controller"
 ],
-"summary": "error",
-"operationId": "errorUsingHEAD",
+"summary": "errorHtml",
+"operationId": "errorHtmlUsingHEAD",
 "consumes": [
 "application/json"
 ],
 "produces": [
-"*/*"
+"text/html"
 ],
 "responses": {
 "200": {
 "description": "OK",
 "schema": {
-"type": "object",
-"additionalProperties": {
-"type": "object"
-}
+"$ref": "#/definitions/ModelAndView"
 }
 },
 "204": {
@@ -1048,22 +1086,19 @@
 "tags": [
 "basic-error-controller"
 ],
-"summary": "error",
-"operationId": "errorUsingPOST",
+"summary": "errorHtml",
+"operationId": "errorHtmlUsingPOST",
 "consumes": [
 "application/json"
 ],
 "produces": [
-"*/*"
+"text/html"
 ],
 "responses": {
 "200": {
 "description": "OK",
 "schema": {
-"type": "object",
-"additionalProperties": {
-"type": "object"
-}
+"$ref": "#/definitions/ModelAndView"
 }
 },
 "201": {
@@ -1084,22 +1119,19 @@
 "tags": [
 "basic-error-controller"
 ],
-"summary": "error",
-"operationId": "errorUsingPUT",
+"summary": "errorHtml",
+"operationId": "errorHtmlUsingPUT",
 "consumes": [
 "application/json"
 ],
 "produces": [
-"*/*"
+"text/html"
 ],
 "responses": {
 "200": {
 "description": "OK",
 "schema": {
-"type": "object",
-"additionalProperties": {
-"type": "object"
-}
+"$ref": "#/definitions/ModelAndView"
 }
 },
 "201": {
@@ -1120,19 +1152,16 @@
 "tags": [
 "basic-error-controller"
 ],
-"summary": "error",
-"operationId": "errorUsingDELETE",
+"summary": "errorHtml",
+"operationId": "errorHtmlUsingDELETE",
 "produces": [
-"*/*"
+"text/html"
 ],
 "responses": {
 "200": {
 "description": "OK",
 "schema": {
-"type": "object",
-"additionalProperties": {
-"type": "object"
-}
+"$ref": "#/definitions/ModelAndView"
 }
 },
 "204": {
@@ -1150,22 +1179,19 @@
 "tags": [
 "basic-error-controller"
 ],
-"summary": "error",
-"operationId": "errorUsingOPTIONS",
+"summary": "errorHtml",
+"operationId": "errorHtmlUsingOPTIONS",
 "consumes": [
 "application/json"
 ],
 "produces": [
-"*/*"
+"text/html"
 ],
 "responses": {
 "200": {
 "description": "OK",
 "schema": {
-"type": "object",
-"additionalProperties": {
-"type": "object"
-}
+"$ref": "#/definitions/ModelAndView"
 }
 },
 "204": {
@@ -1183,22 +1209,19 @@
 "tags": [
 "basic-error-controller"
 ],
-"summary": "error",
-"operationId": "errorUsingPATCH",
+"summary": "errorHtml",
+"operationId": "errorHtmlUsingPATCH",
 "consumes": [
 "application/json"
 ],
 "produces": [
-"*/*"
+"text/html"
 ],
 "responses": {
 "200": {
 "description": "OK",
 "schema": {
-"type": "object",
-"additionalProperties": {
-"type": "object"
-}
+"$ref": "#/definitions/ModelAndView"
 }
 },
 "204": {
