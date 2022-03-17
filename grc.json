@@ -31,6 +31,10 @@
 "description": "Common Controller"
 },
 {
+"name": "department-controller",
+"description": "Department Controller"
+},
+{
 "name": "organization-controller",
 "description": "Organization Controller"
 },
@@ -49,6 +53,178 @@
 "operationId": "getCountriesUsingGET",
 "produces": [
 "*/*"
+],
+"responses": {
+"200": {
+"description": "OK",
+"schema": {
+"$ref": "#/definitions/ApiResponse"
+}
+},
+"401": {
+"description": "Unauthorized"
+},
+"403": {
+"description": "Forbidden"
+},
+"404": {
+"description": "Not Found"
+}
+}
+}
+},
+"/api/v1/department": {
+"get": {
+"tags": [
+"department-controller"
+],
+"summary": "getDepartmentById",
+"operationId": "getDepartmentByIdUsingGET",
+"produces": [
+"*/*"
+],
+"parameters": [
+{
+"name": "deptId",
+"in": "query",
+"description": "deptId",
+"required": true,
+"type": "integer",
+"format": "int64"
+},
+{
+"name": "orgId",
+"in": "query",
+"description": "orgId",
+"required": true,
+"type": "string"
+}
+],
+"responses": {
+"200": {
+"description": "OK",
+"schema": {
+"$ref": "#/definitions/ApiResponse"
+}
+},
+"401": {
+"description": "Unauthorized"
+},
+"403": {
+"description": "Forbidden"
+},
+"404": {
+"description": "Not Found"
+}
+}
+},
+"post": {
+"tags": [
+"department-controller"
+],
+"summary": "createDepartment",
+"operationId": "createDepartmentUsingPOST",
+"consumes": [
+"application/json"
+],
+"produces": [
+"*/*"
+],
+"parameters": [
+{
+"in": "body",
+"name": "departmentDTO",
+"description": "departmentDTO",
+"required": true,
+"schema": {
+"$ref": "#/definitions/DepartmentDTO"
+}
+}
+],
+"responses": {
+"200": {
+"description": "OK",
+"schema": {
+"$ref": "#/definitions/ApiResponse"
+}
+},
+"201": {
+"description": "Created"
+},
+"401": {
+"description": "Unauthorized"
+},
+"403": {
+"description": "Forbidden"
+},
+"404": {
+"description": "Not Found"
+}
+}
+},
+"delete": {
+"tags": [
+"department-controller"
+],
+"summary": "deleteDepartmentById",
+"operationId": "deleteDepartmentByIdUsingDELETE",
+"produces": [
+"*/*"
+],
+"parameters": [
+{
+"name": "deptId",
+"in": "query",
+"description": "deptId",
+"required": true,
+"type": "integer",
+"format": "int64"
+},
+{
+"name": "orgId",
+"in": "query",
+"description": "orgId",
+"required": true,
+"type": "string"
+}
+],
+"responses": {
+"200": {
+"description": "OK",
+"schema": {
+"$ref": "#/definitions/ApiResponse"
+}
+},
+"204": {
+"description": "No Content"
+},
+"401": {
+"description": "Unauthorized"
+},
+"403": {
+"description": "Forbidden"
+}
+}
+}
+},
+"/api/v1/departments": {
+"get": {
+"tags": [
+"department-controller"
+],
+"summary": "getDepartment",
+"operationId": "getDepartmentUsingGET",
+"produces": [
+"*/*"
+],
+"parameters": [
+{
+"name": "orgId",
+"in": "query",
+"description": "orgId",
+"required": true,
+"type": "string"
+}
 ],
 "responses": {
 "200": {
@@ -235,6 +411,44 @@
 }
 }
 },
+"/api/v1/organization/isAvailable": {
+"get": {
+"tags": [
+"organization-controller"
+],
+"summary": "isOrganizationValid",
+"operationId": "isOrganizationValidUsingGET",
+"produces": [
+"*/*"
+],
+"parameters": [
+{
+"name": "orgId",
+"in": "query",
+"description": "orgId",
+"required": true,
+"type": "string"
+}
+],
+"responses": {
+"200": {
+"description": "OK",
+"schema": {
+"$ref": "#/definitions/ApiResponse"
+}
+},
+"401": {
+"description": "Unauthorized"
+},
+"403": {
+"description": "Forbidden"
+},
+"404": {
+"description": "Not Found"
+}
+}
+}
+},
 "/api/v1/organization/summary": {
 "get": {
 "tags": [
@@ -337,6 +551,13 @@
 "required": true,
 "type": "integer",
 "format": "int64"
+},
+{
+"name": "orgId",
+"in": "query",
+"description": "orgId",
+"required": true,
+"type": "string"
 }
 ],
 "responses": {
@@ -1310,6 +1531,24 @@
 },
 "title": "AuthenticationRequest"
 },
+"DepartmentDTO": {
+"type": "object",
+"properties": {
+"code": {
+"type": "string"
+},
+"description": {
+"type": "string"
+},
+"name": {
+"type": "string"
+},
+"orgId": {
+"type": "string"
+}
+},
+"title": "DepartmentDTO"
+},
 "MessageResponse": {
 "type": "object",
 "properties": {
@@ -1505,6 +1744,12 @@
 "properties": {
 "newToken": {
 "type": "string"
+},
+"orgType": {
+"type": "string"
+},
+"permissions": {
+"type": "object"
 },
 "refreshToken": {
 "type": "string"
