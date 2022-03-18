@@ -680,6 +680,35 @@
 }
 }
 },
+"/api/v1/organizations/list": {
+"get": {
+"tags": [
+"organization-controller"
+],
+"summary": "getOrganizationsList",
+"operationId": "getOrganizationsListUsingGET",
+"produces": [
+"*/*"
+],
+"responses": {
+"200": {
+"description": "OK",
+"schema": {
+"$ref": "#/definitions/ApiResponse"
+}
+},
+"401": {
+"description": "Unauthorized"
+},
+"403": {
+"description": "Forbidden"
+},
+"404": {
+"description": "Not Found"
+}
+}
+}
+},
 "/api/v1/permissions": {
 "get": {
 "tags": [
@@ -1155,6 +1184,96 @@
 }
 }
 },
+"/api/v1/userDepartment": {
+"get": {
+"tags": [
+"department-controller"
+],
+"summary": "getUserDepartment",
+"operationId": "getUserDepartmentUsingGET",
+"produces": [
+"*/*"
+],
+"parameters": [
+{
+"name": "orgId",
+"in": "query",
+"description": "orgId",
+"required": true,
+"type": "string"
+},
+{
+"name": "userId",
+"in": "query",
+"description": "userId",
+"required": true,
+"type": "integer",
+"format": "int64"
+}
+],
+"responses": {
+"200": {
+"description": "OK",
+"schema": {
+"$ref": "#/definitions/ApiResponse"
+}
+},
+"401": {
+"description": "Unauthorized"
+},
+"403": {
+"description": "Forbidden"
+},
+"404": {
+"description": "Not Found"
+}
+}
+},
+"post": {
+"tags": [
+"department-controller"
+],
+"summary": "createUserDepartment",
+"operationId": "createUserDepartmentUsingPOST",
+"consumes": [
+"application/json"
+],
+"produces": [
+"*/*"
+],
+"parameters": [
+{
+"in": "body",
+"name": "userDepartmentDTO",
+"description": "userDepartmentDTO",
+"required": true,
+"schema": {
+"$ref": "#/definitions/UserDepartmentDTO"
+}
+}
+],
+"responses": {
+"200": {
+"description": "OK",
+"schema": {
+"$ref": "#/definitions/ApiResponse"
+}
+},
+"201": {
+"description": "Created"
+},
+"401": {
+"description": "Unauthorized"
+},
+"403": {
+"description": "Forbidden"
+},
+"404": {
+"description": "Not Found"
+}
+}
+}
+},
 "/api/v1/userRole": {
 "get": {
 "tags": [
@@ -1250,16 +1369,19 @@
 "tags": [
 "basic-error-controller"
 ],
-"summary": "errorHtml",
-"operationId": "errorHtmlUsingGET",
+"summary": "error",
+"operationId": "errorUsingGET",
 "produces": [
-"text/html"
+"*/*"
 ],
 "responses": {
 "200": {
 "description": "OK",
 "schema": {
-"$ref": "#/definitions/ModelAndView"
+"type": "object",
+"additionalProperties": {
+"type": "object"
+}
 }
 },
 "401": {
@@ -1277,19 +1399,22 @@
 "tags": [
 "basic-error-controller"
 ],
-"summary": "errorHtml",
-"operationId": "errorHtmlUsingHEAD",
+"summary": "error",
+"operationId": "errorUsingHEAD",
 "consumes": [
 "application/json"
 ],
 "produces": [
-"text/html"
+"*/*"
 ],
 "responses": {
 "200": {
 "description": "OK",
 "schema": {
-"$ref": "#/definitions/ModelAndView"
+"type": "object",
+"additionalProperties": {
+"type": "object"
+}
 }
 },
 "204": {
@@ -1307,19 +1432,22 @@
 "tags": [
 "basic-error-controller"
 ],
-"summary": "errorHtml",
-"operationId": "errorHtmlUsingPOST",
+"summary": "error",
+"operationId": "errorUsingPOST",
 "consumes": [
 "application/json"
 ],
 "produces": [
-"text/html"
+"*/*"
 ],
 "responses": {
 "200": {
 "description": "OK",
 "schema": {
-"$ref": "#/definitions/ModelAndView"
+"type": "object",
+"additionalProperties": {
+"type": "object"
+}
 }
 },
 "201": {
@@ -1340,19 +1468,22 @@
 "tags": [
 "basic-error-controller"
 ],
-"summary": "errorHtml",
-"operationId": "errorHtmlUsingPUT",
+"summary": "error",
+"operationId": "errorUsingPUT",
 "consumes": [
 "application/json"
 ],
 "produces": [
-"text/html"
+"*/*"
 ],
 "responses": {
 "200": {
 "description": "OK",
 "schema": {
-"$ref": "#/definitions/ModelAndView"
+"type": "object",
+"additionalProperties": {
+"type": "object"
+}
 }
 },
 "201": {
@@ -1373,16 +1504,19 @@
 "tags": [
 "basic-error-controller"
 ],
-"summary": "errorHtml",
-"operationId": "errorHtmlUsingDELETE",
+"summary": "error",
+"operationId": "errorUsingDELETE",
 "produces": [
-"text/html"
+"*/*"
 ],
 "responses": {
 "200": {
 "description": "OK",
 "schema": {
-"$ref": "#/definitions/ModelAndView"
+"type": "object",
+"additionalProperties": {
+"type": "object"
+}
 }
 },
 "204": {
@@ -1400,19 +1534,22 @@
 "tags": [
 "basic-error-controller"
 ],
-"summary": "errorHtml",
-"operationId": "errorHtmlUsingOPTIONS",
+"summary": "error",
+"operationId": "errorUsingOPTIONS",
 "consumes": [
 "application/json"
 ],
 "produces": [
-"text/html"
+"*/*"
 ],
 "responses": {
 "200": {
 "description": "OK",
 "schema": {
-"$ref": "#/definitions/ModelAndView"
+"type": "object",
+"additionalProperties": {
+"type": "object"
+}
 }
 },
 "204": {
@@ -1430,19 +1567,22 @@
 "tags": [
 "basic-error-controller"
 ],
-"summary": "errorHtml",
-"operationId": "errorHtmlUsingPATCH",
+"summary": "error",
+"operationId": "errorUsingPATCH",
 "consumes": [
 "application/json"
 ],
 "produces": [
-"text/html"
+"*/*"
 ],
 "responses": {
 "200": {
 "description": "OK",
 "schema": {
-"$ref": "#/definitions/ModelAndView"
+"type": "object",
+"additionalProperties": {
+"type": "object"
+}
 }
 },
 "204": {
@@ -1468,9 +1608,15 @@
 "addressLine2": {
 "type": "string"
 },
+"addressRefCode": {
+"type": "string"
+},
 "addressRefId": {
 "type": "integer",
 "format": "int64"
+},
+"addressRefName": {
+"type": "string"
 },
 "city": {
 "type": "string"
@@ -1664,18 +1810,18 @@
 "OrganizationDTO": {
 "type": "object",
 "properties": {
-"addresses": {
+"addressList": {
 "type": "array",
 "items": {
 "$ref": "#/definitions/Address"
 }
 },
-"createdId": {
-"type": "integer",
-"format": "int64"
-},
 "description": {
 "type": "string"
+},
+"id": {
+"type": "integer",
+"format": "int64"
 },
 "orgId": {
 "type": "string"
@@ -1683,9 +1829,15 @@
 "orgName": {
 "type": "string"
 },
+"orgRefCode": {
+"type": "string"
+},
 "orgRefId": {
 "type": "integer",
 "format": "int64"
+},
+"orgRefName": {
+"type": "string"
 },
 "orgShortName": {
 "type": "string"
@@ -1732,7 +1884,17 @@
 "phoneNumber": {
 "type": "string"
 },
+"phoneRefCode": {
+"type": "string"
+},
 "phoneRefId": {
+"type": "integer",
+"format": "int64"
+},
+"phoneRefName": {
+"type": "string"
+},
+"userId": {
 "type": "integer",
 "format": "int64"
 }
@@ -1825,6 +1987,9 @@
 "type": "integer",
 "format": "int64"
 },
+"genderRefName": {
+"type": "string"
+},
 "lastName": {
 "type": "string"
 },
@@ -1834,18 +1999,72 @@
 "orgId": {
 "type": "string"
 },
-"password": {
-"type": "string"
+"statusRefId": {
+"type": "integer",
+"format": "int64"
 },
 "titleRefId": {
 "type": "integer",
 "format": "int64"
+},
+"userPhones": {
+"type": "array",
+"items": {
+"$ref": "#/definitions/UserPhone"
+}
 },
 "username": {
 "type": "string"
 }
 },
 "title": "UserDTO"
+},
+"UserDepartmentDTO": {
+"type": "object",
+"properties": {
+"deptId": {
+"type": "integer",
+"format": "int64"
+},
+"orgId": {
+"type": "string"
+},
+"userId": {
+"type": "integer",
+"format": "int64"
+}
+},
+"title": "UserDepartmentDTO"
+},
+"UserPhone": {
+"type": "object",
+"properties": {
+"id": {
+"type": "integer",
+"format": "int64"
+},
+"orgId": {
+"type": "string"
+},
+"phoneCode": {
+"type": "string"
+},
+"phoneNumber": {
+"type": "string"
+},
+"phoneRefId": {
+"type": "integer",
+"format": "int64"
+},
+"phoneRefName": {
+"type": "string"
+},
+"userId": {
+"type": "integer",
+"format": "int64"
+}
+},
+"title": "UserPhone"
 },
 "UserRoleDTO": {
 "type": "object",
