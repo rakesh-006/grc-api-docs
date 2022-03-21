@@ -1,37 +1,2436 @@
 {
 "swagger": "2.0",
-"info": {6 items},
+"info": {
+"description": "Api Documentation",
+"version": "1.0",
+"title": "Api Documentation",
+"termsOfService": "urn:tos",
+"contact": {},
+"license": {
+"name": "Apache 2.0",
+"url": "http://www.apache.org/licenses/LICENSE-2.0"
+}
+},
 "host": "15.207.21.136:8088",
 "basePath": "/",
-"tags": [7 items],
-"paths": {
-"/api/v1/countries": {1 item},
-"/api/v1/department": {3 items},
-"/api/v1/departments": {1 item},
-"/api/v1/login": {1 item},
-"/api/v1/logout": {1 item},
-"/api/v1/organization": {2 items},
-"/api/v1/organization/isAvailable": {1 item},
-"/api/v1/organization/logo": {2 items},
-"/api/v1/organization/summary": {1 item},
-"/api/v1/organization/user": {2 items},
-"/api/v1/organization/user/resend/invitation": {1 item},
-"/api/v1/organization/users": {1 item},
-"/api/v1/organizations": {1 item},
-"/api/v1/organizations/list": {1 item},
-"/api/v1/permissions": {1 item},
-"/api/v1/referenceLibrary": {1 item},
-"/api/v1/refreshToken": {1 item},
-"/api/v1/reset": {1 item},
-"/api/v1/reset/password": {1 item},
-"/api/v1/role": {2 items},
-"/api/v1/rolePermission": {2 items},
-"/api/v1/roles": {1 item},
-"/api/v1/states": {1 item},
-"/api/v1/user/{id}/profilePic": {2 items},
-"/api/v1/userDepartment": {2 items},
-"/api/v1/userRole": {2 items},
-"/error": {7 items}
+"tags": [
+{
+"name": "authentication-controller",
+"description": "Authentication Controller"
 },
-"definitions": {19 items}
+{
+"name": "authorization-controller",
+"description": "Authorization Controller"
+},
+{
+"name": "basic-error-controller",
+"description": "Basic Error Controller"
+},
+{
+"name": "common-controller",
+"description": "Common Controller"
+},
+{
+"name": "department-controller",
+"description": "Department Controller"
+},
+{
+"name": "organization-controller",
+"description": "Organization Controller"
+},
+{
+"name": "user-controller",
+"description": "User Controller"
+}
+],
+"paths": {
+"/api/v1/countries": {
+"get": {
+"tags": [
+"common-controller"
+],
+"summary": "getCountries",
+"operationId": "getCountriesUsingGET",
+"produces": [
+"*/*"
+],
+"responses": {
+"200": {
+"description": "OK",
+"schema": {
+"$ref": "#/definitions/ApiResponse"
+}
+},
+"401": {
+"description": "Unauthorized"
+},
+"403": {
+"description": "Forbidden"
+},
+"404": {
+"description": "Not Found"
+}
+}
+}
+},
+"/api/v1/department": {
+"get": {
+"tags": [
+"department-controller"
+],
+"summary": "getDepartmentById",
+"operationId": "getDepartmentByIdUsingGET",
+"produces": [
+"*/*"
+],
+"parameters": [
+{
+"name": "deptId",
+"in": "query",
+"description": "deptId",
+"required": true,
+"type": "integer",
+"format": "int64"
+},
+{
+"name": "orgId",
+"in": "query",
+"description": "orgId",
+"required": true,
+"type": "string"
+}
+],
+"responses": {
+"200": {
+"description": "OK",
+"schema": {
+"$ref": "#/definitions/ApiResponse"
+}
+},
+"401": {
+"description": "Unauthorized"
+},
+"403": {
+"description": "Forbidden"
+},
+"404": {
+"description": "Not Found"
+}
+}
+},
+"post": {
+"tags": [
+"department-controller"
+],
+"summary": "createDepartment",
+"operationId": "createDepartmentUsingPOST",
+"consumes": [
+"application/json"
+],
+"produces": [
+"*/*"
+],
+"parameters": [
+{
+"in": "body",
+"name": "departmentDTO",
+"description": "departmentDTO",
+"required": true,
+"schema": {
+"$ref": "#/definitions/DepartmentDTO"
+}
+}
+],
+"responses": {
+"200": {
+"description": "OK",
+"schema": {
+"$ref": "#/definitions/ApiResponse"
+}
+},
+"201": {
+"description": "Created"
+},
+"401": {
+"description": "Unauthorized"
+},
+"403": {
+"description": "Forbidden"
+},
+"404": {
+"description": "Not Found"
+}
+}
+},
+"delete": {
+"tags": [
+"department-controller"
+],
+"summary": "deleteDepartmentById",
+"operationId": "deleteDepartmentByIdUsingDELETE",
+"produces": [
+"*/*"
+],
+"parameters": [
+{
+"name": "deptId",
+"in": "query",
+"description": "deptId",
+"required": true,
+"type": "integer",
+"format": "int64"
+},
+{
+"name": "orgId",
+"in": "query",
+"description": "orgId",
+"required": true,
+"type": "string"
+}
+],
+"responses": {
+"200": {
+"description": "OK",
+"schema": {
+"$ref": "#/definitions/ApiResponse"
+}
+},
+"204": {
+"description": "No Content"
+},
+"401": {
+"description": "Unauthorized"
+},
+"403": {
+"description": "Forbidden"
+}
+}
+}
+},
+"/api/v1/departments": {
+"get": {
+"tags": [
+"department-controller"
+],
+"summary": "getDepartment",
+"operationId": "getDepartmentUsingGET",
+"produces": [
+"*/*"
+],
+"parameters": [
+{
+"name": "orgId",
+"in": "query",
+"description": "orgId",
+"required": true,
+"type": "string"
+}
+],
+"responses": {
+"200": {
+"description": "OK",
+"schema": {
+"$ref": "#/definitions/ApiResponse"
+}
+},
+"401": {
+"description": "Unauthorized"
+},
+"403": {
+"description": "Forbidden"
+},
+"404": {
+"description": "Not Found"
+}
+}
+}
+},
+"/api/v1/login": {
+"post": {
+"tags": [
+"authentication-controller"
+],
+"summary": "login",
+"operationId": "loginUsingPOST",
+"consumes": [
+"application/json"
+],
+"produces": [
+"*/*"
+],
+"parameters": [
+{
+"in": "body",
+"name": "authenticationRequest",
+"description": "authenticationRequest",
+"required": true,
+"schema": {
+"$ref": "#/definitions/AuthenticationRequest"
+}
+}
+],
+"responses": {
+"200": {
+"description": "OK",
+"schema": {
+"$ref": "#/definitions/ApiResponse"
+}
+},
+"201": {
+"description": "Created"
+},
+"401": {
+"description": "Unauthorized"
+},
+"403": {
+"description": "Forbidden"
+},
+"404": {
+"description": "Not Found"
+}
+}
+}
+},
+"/api/v1/logout": {
+"get": {
+"tags": [
+"authentication-controller"
+],
+"summary": "logout",
+"operationId": "logoutUsingGET",
+"produces": [
+"*/*"
+],
+"parameters": [
+{
+"name": "username",
+"in": "query",
+"description": "username",
+"required": true,
+"type": "string"
+}
+],
+"responses": {
+"200": {
+"description": "OK",
+"schema": {
+"$ref": "#/definitions/ApiResponse"
+}
+},
+"401": {
+"description": "Unauthorized"
+},
+"403": {
+"description": "Forbidden"
+},
+"404": {
+"description": "Not Found"
+}
+}
+}
+},
+"/api/v1/organization": {
+"get": {
+"tags": [
+"organization-controller"
+],
+"summary": "getOrganization",
+"operationId": "getOrganizationUsingGET",
+"produces": [
+"*/*"
+],
+"parameters": [
+{
+"name": "orgId",
+"in": "query",
+"description": "orgId",
+"required": true,
+"type": "string"
+}
+],
+"responses": {
+"200": {
+"description": "OK",
+"schema": {
+"$ref": "#/definitions/ApiResponse"
+}
+},
+"401": {
+"description": "Unauthorized"
+},
+"403": {
+"description": "Forbidden"
+},
+"404": {
+"description": "Not Found"
+}
+}
+},
+"post": {
+"tags": [
+"organization-controller"
+],
+"summary": "createOrganization",
+"operationId": "createOrganizationUsingPOST",
+"consumes": [
+"application/json"
+],
+"produces": [
+"*/*"
+],
+"parameters": [
+{
+"in": "body",
+"name": "organizationDTO",
+"description": "organizationDTO",
+"required": true,
+"schema": {
+"$ref": "#/definitions/OrganizationDTO"
+}
+}
+],
+"responses": {
+"200": {
+"description": "OK",
+"schema": {
+"$ref": "#/definitions/ApiResponse"
+}
+},
+"201": {
+"description": "Created"
+},
+"401": {
+"description": "Unauthorized"
+},
+"403": {
+"description": "Forbidden"
+},
+"404": {
+"description": "Not Found"
+}
+}
+}
+},
+"/api/v1/organization/isAvailable": {
+"get": {
+"tags": [
+"organization-controller"
+],
+"summary": "isOrganizationValid",
+"operationId": "isOrganizationValidUsingGET",
+"produces": [
+"*/*"
+],
+"parameters": [
+{
+"name": "orgId",
+"in": "query",
+"description": "orgId",
+"required": true,
+"type": "string"
+}
+],
+"responses": {
+"200": {
+"description": "OK",
+"schema": {
+"$ref": "#/definitions/ApiResponse"
+}
+},
+"401": {
+"description": "Unauthorized"
+},
+"403": {
+"description": "Forbidden"
+},
+"404": {
+"description": "Not Found"
+}
+}
+}
+},
+"/api/v1/organization/logo": {
+"get": {
+"tags": [
+"organization-controller"
+],
+"summary": "getOrgLogoByOrgId",
+"operationId": "getOrgLogoByOrgIdUsingGET",
+"produces": [
+"*/*"
+],
+"parameters": [
+{
+"name": "orgId",
+"in": "query",
+"description": "orgId",
+"required": true,
+"type": "string"
+}
+],
+"responses": {
+"200": {
+"description": "OK",
+"schema": {
+"$ref": "#/definitions/ResponseEntity"
+}
+},
+"401": {
+"description": "Unauthorized"
+},
+"403": {
+"description": "Forbidden"
+},
+"404": {
+"description": "Not Found"
+}
+}
+},
+"post": {
+"tags": [
+"organization-controller"
+],
+"summary": "uploadOrgLogo",
+"operationId": "uploadOrgLogoUsingPOST",
+"consumes": [
+"multipart/form-data"
+],
+"produces": [
+"*/*"
+],
+"parameters": [
+{
+"in": "body",
+"name": "logo",
+"description": "logo",
+"required": true,
+"schema": {
+"type": "string",
+"format": "binary"
+}
+},
+{
+"name": "orgId",
+"in": "query",
+"description": "orgId",
+"required": true,
+"type": "string"
+}
+],
+"responses": {
+"200": {
+"description": "OK",
+"schema": {
+"$ref": "#/definitions/ApiResponse"
+}
+},
+"201": {
+"description": "Created"
+},
+"401": {
+"description": "Unauthorized"
+},
+"403": {
+"description": "Forbidden"
+},
+"404": {
+"description": "Not Found"
+}
+}
+}
+},
+"/api/v1/organization/summary": {
+"get": {
+"tags": [
+"organization-controller"
+],
+"summary": "getOrganizationSummaryByOrgId",
+"operationId": "getOrganizationSummaryByOrgIdUsingGET",
+"produces": [
+"*/*"
+],
+"parameters": [
+{
+"name": "orgId",
+"in": "query",
+"description": "orgId",
+"required": true,
+"type": "string"
+}
+],
+"responses": {
+"200": {
+"description": "OK",
+"schema": {
+"$ref": "#/definitions/ApiResponse"
+}
+},
+"401": {
+"description": "Unauthorized"
+},
+"403": {
+"description": "Forbidden"
+},
+"404": {
+"description": "Not Found"
+}
+}
+}
+},
+"/api/v1/organization/user": {
+"get": {
+"tags": [
+"user-controller"
+],
+"summary": "getUserById",
+"operationId": "getUserByIdUsingGET",
+"produces": [
+"*/*"
+],
+"parameters": [
+{
+"name": "id",
+"in": "query",
+"description": "id",
+"required": true,
+"type": "integer",
+"format": "int64"
+},
+{
+"name": "orgId",
+"in": "query",
+"description": "orgId",
+"required": true,
+"type": "string"
+}
+],
+"responses": {
+"200": {
+"description": "OK",
+"schema": {
+"$ref": "#/definitions/ApiResponse"
+}
+},
+"401": {
+"description": "Unauthorized"
+},
+"403": {
+"description": "Forbidden"
+},
+"404": {
+"description": "Not Found"
+}
+}
+},
+"post": {
+"tags": [
+"user-controller"
+],
+"summary": "createUserForOrganization",
+"operationId": "createUserForOrganizationUsingPOST",
+"consumes": [
+"application/json"
+],
+"produces": [
+"*/*"
+],
+"parameters": [
+{
+"in": "body",
+"name": "userDTO",
+"description": "userDTO",
+"required": true,
+"schema": {
+"$ref": "#/definitions/UserDTO"
+}
+}
+],
+"responses": {
+"200": {
+"description": "OK",
+"schema": {
+"$ref": "#/definitions/ApiResponse"
+}
+},
+"201": {
+"description": "Created"
+},
+"401": {
+"description": "Unauthorized"
+},
+"403": {
+"description": "Forbidden"
+},
+"404": {
+"description": "Not Found"
+}
+}
+}
+},
+"/api/v1/organization/user/resend/invitation": {
+"get": {
+"tags": [
+"user-controller"
+],
+"summary": "reSendInvitationEmail",
+"operationId": "reSendInvitationEmailUsingGET",
+"produces": [
+"*/*"
+],
+"parameters": [
+{
+"name": "orgId",
+"in": "query",
+"description": "orgId",
+"required": true,
+"type": "string"
+},
+{
+"name": "userId",
+"in": "query",
+"description": "userId",
+"required": true,
+"type": "integer",
+"format": "int64"
+}
+],
+"responses": {
+"200": {
+"description": "OK",
+"schema": {
+"$ref": "#/definitions/ApiResponse"
+}
+},
+"401": {
+"description": "Unauthorized"
+},
+"403": {
+"description": "Forbidden"
+},
+"404": {
+"description": "Not Found"
+}
+}
+}
+},
+"/api/v1/organization/users": {
+"get": {
+"tags": [
+"user-controller"
+],
+"summary": "getUsers",
+"operationId": "getUsersUsingGET",
+"produces": [
+"*/*"
+],
+"parameters": [
+{
+"name": "orgId",
+"in": "query",
+"description": "orgId",
+"required": true,
+"type": "string"
+},
+{
+"name": "pageNumber",
+"in": "query",
+"description": "pageNumber",
+"required": true,
+"type": "integer",
+"format": "int32"
+},
+{
+"name": "pageSize",
+"in": "query",
+"description": "pageSize",
+"required": true,
+"type": "integer",
+"format": "int32"
+}
+],
+"responses": {
+"200": {
+"description": "OK",
+"schema": {
+"$ref": "#/definitions/ApiResponse"
+}
+},
+"401": {
+"description": "Unauthorized"
+},
+"403": {
+"description": "Forbidden"
+},
+"404": {
+"description": "Not Found"
+}
+}
+}
+},
+"/api/v1/organizations": {
+"get": {
+"tags": [
+"organization-controller"
+],
+"summary": "getOrganizations",
+"operationId": "getOrganizationsUsingGET",
+"produces": [
+"*/*"
+],
+"parameters": [
+{
+"name": "pageNumber",
+"in": "query",
+"description": "pageNumber",
+"required": true,
+"type": "integer",
+"format": "int32"
+},
+{
+"name": "pageSize",
+"in": "query",
+"description": "pageSize",
+"required": true,
+"type": "integer",
+"format": "int32"
+}
+],
+"responses": {
+"200": {
+"description": "OK",
+"schema": {
+"$ref": "#/definitions/ApiResponse"
+}
+},
+"401": {
+"description": "Unauthorized"
+},
+"403": {
+"description": "Forbidden"
+},
+"404": {
+"description": "Not Found"
+}
+}
+}
+},
+"/api/v1/organizations/list": {
+"get": {
+"tags": [
+"organization-controller"
+],
+"summary": "getOrganizationsList",
+"operationId": "getOrganizationsListUsingGET",
+"produces": [
+"*/*"
+],
+"responses": {
+"200": {
+"description": "OK",
+"schema": {
+"$ref": "#/definitions/ApiResponse"
+}
+},
+"401": {
+"description": "Unauthorized"
+},
+"403": {
+"description": "Forbidden"
+},
+"404": {
+"description": "Not Found"
+}
+}
+}
+},
+"/api/v1/permissions": {
+"get": {
+"tags": [
+"authorization-controller"
+],
+"summary": "getPermissions",
+"operationId": "getPermissionsUsingGET",
+"produces": [
+"*/*"
+],
+"parameters": [
+{
+"name": "orgId",
+"in": "query",
+"description": "orgId",
+"required": true,
+"type": "string"
+}
+],
+"responses": {
+"200": {
+"description": "OK",
+"schema": {
+"$ref": "#/definitions/ApiResponse"
+}
+},
+"401": {
+"description": "Unauthorized"
+},
+"403": {
+"description": "Forbidden"
+},
+"404": {
+"description": "Not Found"
+}
+}
+}
+},
+"/api/v1/referenceLibrary": {
+"get": {
+"tags": [
+"common-controller"
+],
+"summary": "getGroupValuesByGroupCode",
+"operationId": "getGroupValuesByGroupCodeUsingGET",
+"produces": [
+"*/*"
+],
+"parameters": [
+{
+"name": "groupCode",
+"in": "query",
+"description": "groupCode",
+"required": true,
+"type": "string"
+}
+],
+"responses": {
+"200": {
+"description": "OK",
+"schema": {
+"$ref": "#/definitions/ApiResponse"
+}
+},
+"401": {
+"description": "Unauthorized"
+},
+"403": {
+"description": "Forbidden"
+},
+"404": {
+"description": "Not Found"
+}
+}
+}
+},
+"/api/v1/refreshToken": {
+"post": {
+"tags": [
+"authentication-controller"
+],
+"summary": "getTokenByRefreshToken",
+"operationId": "getTokenByRefreshTokenUsingPOST",
+"consumes": [
+"application/json"
+],
+"produces": [
+"*/*"
+],
+"parameters": [
+{
+"in": "body",
+"name": "refreshToken",
+"description": "refreshToken",
+"required": true,
+"schema": {
+"$ref": "#/definitions/RefreshTokenDTO"
+}
+}
+],
+"responses": {
+"200": {
+"description": "OK",
+"schema": {
+"$ref": "#/definitions/ApiResponse"
+}
+},
+"201": {
+"description": "Created"
+},
+"401": {
+"description": "Unauthorized"
+},
+"403": {
+"description": "Forbidden"
+},
+"404": {
+"description": "Not Found"
+}
+}
+}
+},
+"/api/v1/reset": {
+"post": {
+"tags": [
+"user-controller"
+],
+"summary": "generateResetPasswordLink",
+"operationId": "generateResetPasswordLinkUsingPOST",
+"consumes": [
+"application/json"
+],
+"produces": [
+"*/*"
+],
+"parameters": [
+{
+"name": "orgId",
+"in": "query",
+"description": "orgId",
+"required": true,
+"type": "string"
+},
+{
+"name": "username",
+"in": "query",
+"description": "username",
+"required": true,
+"type": "string"
+}
+],
+"responses": {
+"200": {
+"description": "OK",
+"schema": {
+"$ref": "#/definitions/ApiResponse"
+}
+},
+"201": {
+"description": "Created"
+},
+"401": {
+"description": "Unauthorized"
+},
+"403": {
+"description": "Forbidden"
+},
+"404": {
+"description": "Not Found"
+}
+}
+}
+},
+"/api/v1/reset/password": {
+"post": {
+"tags": [
+"user-controller"
+],
+"summary": "resetPassword",
+"operationId": "resetPasswordUsingPOST",
+"consumes": [
+"application/json"
+],
+"produces": [
+"*/*"
+],
+"parameters": [
+{
+"in": "body",
+"name": "resetPasswordDTO",
+"description": "resetPasswordDTO",
+"required": true,
+"schema": {
+"$ref": "#/definitions/ResetPasswordDTO"
+}
+}
+],
+"responses": {
+"200": {
+"description": "OK",
+"schema": {
+"$ref": "#/definitions/ApiResponse"
+}
+},
+"201": {
+"description": "Created"
+},
+"401": {
+"description": "Unauthorized"
+},
+"403": {
+"description": "Forbidden"
+},
+"404": {
+"description": "Not Found"
+}
+}
+}
+},
+"/api/v1/role": {
+"get": {
+"tags": [
+"authorization-controller"
+],
+"summary": "getRoleById",
+"operationId": "getRoleByIdUsingGET",
+"produces": [
+"*/*"
+],
+"parameters": [
+{
+"name": "orgId",
+"in": "query",
+"description": "orgId",
+"required": true,
+"type": "string"
+},
+{
+"name": "roleId",
+"in": "query",
+"description": "roleId",
+"required": true,
+"type": "integer",
+"format": "int64"
+}
+],
+"responses": {
+"200": {
+"description": "OK",
+"schema": {
+"$ref": "#/definitions/ApiResponse"
+}
+},
+"401": {
+"description": "Unauthorized"
+},
+"403": {
+"description": "Forbidden"
+},
+"404": {
+"description": "Not Found"
+}
+}
+},
+"post": {
+"tags": [
+"authorization-controller"
+],
+"summary": "createRole",
+"operationId": "createRoleUsingPOST",
+"consumes": [
+"application/json"
+],
+"produces": [
+"*/*"
+],
+"parameters": [
+{
+"in": "body",
+"name": "roleDTO",
+"description": "roleDTO",
+"required": true,
+"schema": {
+"$ref": "#/definitions/RoleDTO"
+}
+}
+],
+"responses": {
+"200": {
+"description": "OK",
+"schema": {
+"$ref": "#/definitions/ApiResponse"
+}
+},
+"201": {
+"description": "Created"
+},
+"401": {
+"description": "Unauthorized"
+},
+"403": {
+"description": "Forbidden"
+},
+"404": {
+"description": "Not Found"
+}
+}
+}
+},
+"/api/v1/rolePermission": {
+"get": {
+"tags": [
+"authorization-controller"
+],
+"summary": "getRolePermissionByRoleId",
+"operationId": "getRolePermissionByRoleIdUsingGET",
+"produces": [
+"*/*"
+],
+"parameters": [
+{
+"name": "orgId",
+"in": "query",
+"description": "orgId",
+"required": true,
+"type": "string"
+},
+{
+"name": "roleId",
+"in": "query",
+"description": "roleId",
+"required": true,
+"type": "integer",
+"format": "int64"
+}
+],
+"responses": {
+"200": {
+"description": "OK",
+"schema": {
+"$ref": "#/definitions/ApiResponse"
+}
+},
+"401": {
+"description": "Unauthorized"
+},
+"403": {
+"description": "Forbidden"
+},
+"404": {
+"description": "Not Found"
+}
+}
+},
+"post": {
+"tags": [
+"authorization-controller"
+],
+"summary": "createRolePermission",
+"operationId": "createRolePermissionUsingPOST",
+"consumes": [
+"application/json"
+],
+"produces": [
+"*/*"
+],
+"parameters": [
+{
+"in": "body",
+"name": "rolePermDTO",
+"description": "rolePermDTO",
+"required": true,
+"schema": {
+"$ref": "#/definitions/RolePermissionDTO"
+}
+}
+],
+"responses": {
+"200": {
+"description": "OK",
+"schema": {
+"$ref": "#/definitions/ApiResponse"
+}
+},
+"201": {
+"description": "Created"
+},
+"401": {
+"description": "Unauthorized"
+},
+"403": {
+"description": "Forbidden"
+},
+"404": {
+"description": "Not Found"
+}
+}
+}
+},
+"/api/v1/roles": {
+"get": {
+"tags": [
+"authorization-controller"
+],
+"summary": "getRoles",
+"operationId": "getRolesUsingGET",
+"produces": [
+"*/*"
+],
+"parameters": [
+{
+"name": "orgId",
+"in": "query",
+"description": "orgId",
+"required": true,
+"type": "string"
+}
+],
+"responses": {
+"200": {
+"description": "OK",
+"schema": {
+"$ref": "#/definitions/ApiResponse"
+}
+},
+"401": {
+"description": "Unauthorized"
+},
+"403": {
+"description": "Forbidden"
+},
+"404": {
+"description": "Not Found"
+}
+}
+}
+},
+"/api/v1/states": {
+"get": {
+"tags": [
+"common-controller"
+],
+"summary": "getStatesByCountryCode",
+"operationId": "getStatesByCountryCodeUsingGET",
+"produces": [
+"*/*"
+],
+"parameters": [
+{
+"name": "countryCode",
+"in": "query",
+"description": "countryCode",
+"required": true,
+"type": "string"
+}
+],
+"responses": {
+"200": {
+"description": "OK",
+"schema": {
+"$ref": "#/definitions/ApiResponse"
+}
+},
+"401": {
+"description": "Unauthorized"
+},
+"403": {
+"description": "Forbidden"
+},
+"404": {
+"description": "Not Found"
+}
+}
+}
+},
+"/api/v1/user/{id}/profilePic": {
+"get": {
+"tags": [
+"user-controller"
+],
+"summary": "getProfilePicByUserId",
+"operationId": "getProfilePicByUserIdUsingGET",
+"produces": [
+"*/*"
+],
+"parameters": [
+{
+"name": "id",
+"in": "path",
+"description": "id",
+"required": true,
+"type": "integer",
+"format": "int64"
+},
+{
+"name": "orgId",
+"in": "query",
+"description": "orgId",
+"required": true,
+"type": "string"
+}
+],
+"responses": {
+"200": {
+"description": "OK",
+"schema": {
+"$ref": "#/definitions/ResponseEntity"
+}
+},
+"401": {
+"description": "Unauthorized"
+},
+"403": {
+"description": "Forbidden"
+},
+"404": {
+"description": "Not Found"
+}
+}
+},
+"post": {
+"tags": [
+"user-controller"
+],
+"summary": "uploadProfilePic",
+"operationId": "uploadProfilePicUsingPOST",
+"consumes": [
+"multipart/form-data"
+],
+"produces": [
+"*/*"
+],
+"parameters": [
+{
+"name": "id",
+"in": "path",
+"description": "id",
+"required": true,
+"type": "integer",
+"format": "int64"
+},
+{
+"name": "orgId",
+"in": "query",
+"description": "orgId",
+"required": true,
+"type": "string"
+},
+{
+"in": "body",
+"name": "profilePic",
+"description": "profilePic",
+"required": true,
+"schema": {
+"type": "string",
+"format": "binary"
+}
+}
+],
+"responses": {
+"200": {
+"description": "OK",
+"schema": {
+"$ref": "#/definitions/ApiResponse"
+}
+},
+"201": {
+"description": "Created"
+},
+"401": {
+"description": "Unauthorized"
+},
+"403": {
+"description": "Forbidden"
+},
+"404": {
+"description": "Not Found"
+}
+}
+}
+},
+"/api/v1/userDepartment": {
+"get": {
+"tags": [
+"department-controller"
+],
+"summary": "getUserDepartment",
+"operationId": "getUserDepartmentUsingGET",
+"produces": [
+"*/*"
+],
+"parameters": [
+{
+"name": "orgId",
+"in": "query",
+"description": "orgId",
+"required": true,
+"type": "string"
+},
+{
+"name": "userId",
+"in": "query",
+"description": "userId",
+"required": true,
+"type": "integer",
+"format": "int64"
+}
+],
+"responses": {
+"200": {
+"description": "OK",
+"schema": {
+"$ref": "#/definitions/ApiResponse"
+}
+},
+"401": {
+"description": "Unauthorized"
+},
+"403": {
+"description": "Forbidden"
+},
+"404": {
+"description": "Not Found"
+}
+}
+},
+"post": {
+"tags": [
+"department-controller"
+],
+"summary": "createUserDepartment",
+"operationId": "createUserDepartmentUsingPOST",
+"consumes": [
+"application/json"
+],
+"produces": [
+"*/*"
+],
+"parameters": [
+{
+"in": "body",
+"name": "userDepartmentDTO",
+"description": "userDepartmentDTO",
+"required": true,
+"schema": {
+"$ref": "#/definitions/UserDepartmentDTO"
+}
+}
+],
+"responses": {
+"200": {
+"description": "OK",
+"schema": {
+"$ref": "#/definitions/ApiResponse"
+}
+},
+"201": {
+"description": "Created"
+},
+"401": {
+"description": "Unauthorized"
+},
+"403": {
+"description": "Forbidden"
+},
+"404": {
+"description": "Not Found"
+}
+}
+}
+},
+"/api/v1/userRole": {
+"get": {
+"tags": [
+"authorization-controller"
+],
+"summary": "getUserRoleByUserId",
+"operationId": "getUserRoleByUserIdUsingGET",
+"produces": [
+"*/*"
+],
+"parameters": [
+{
+"name": "orgId",
+"in": "query",
+"description": "orgId",
+"required": true,
+"type": "string"
+},
+{
+"name": "userId",
+"in": "query",
+"description": "userId",
+"required": true,
+"type": "integer",
+"format": "int64"
+}
+],
+"responses": {
+"200": {
+"description": "OK",
+"schema": {
+"$ref": "#/definitions/ApiResponse"
+}
+},
+"401": {
+"description": "Unauthorized"
+},
+"403": {
+"description": "Forbidden"
+},
+"404": {
+"description": "Not Found"
+}
+}
+},
+"post": {
+"tags": [
+"authorization-controller"
+],
+"summary": "createUserRole",
+"operationId": "createUserRoleUsingPOST",
+"consumes": [
+"application/json"
+],
+"produces": [
+"*/*"
+],
+"parameters": [
+{
+"in": "body",
+"name": "userRoleDTO",
+"description": "userRoleDTO",
+"required": true,
+"schema": {
+"$ref": "#/definitions/UserRoleDTO"
+}
+}
+],
+"responses": {
+"200": {
+"description": "OK",
+"schema": {
+"$ref": "#/definitions/ApiResponse"
+}
+},
+"201": {
+"description": "Created"
+},
+"401": {
+"description": "Unauthorized"
+},
+"403": {
+"description": "Forbidden"
+},
+"404": {
+"description": "Not Found"
+}
+}
+}
+},
+"/error": {
+"get": {
+"tags": [
+"basic-error-controller"
+],
+"summary": "errorHtml",
+"operationId": "errorHtmlUsingGET",
+"produces": [
+"text/html"
+],
+"responses": {
+"200": {
+"description": "OK",
+"schema": {
+"$ref": "#/definitions/ModelAndView"
+}
+},
+"401": {
+"description": "Unauthorized"
+},
+"403": {
+"description": "Forbidden"
+},
+"404": {
+"description": "Not Found"
+}
+}
+},
+"head": {
+"tags": [
+"basic-error-controller"
+],
+"summary": "errorHtml",
+"operationId": "errorHtmlUsingHEAD",
+"consumes": [
+"application/json"
+],
+"produces": [
+"text/html"
+],
+"responses": {
+"200": {
+"description": "OK",
+"schema": {
+"$ref": "#/definitions/ModelAndView"
+}
+},
+"204": {
+"description": "No Content"
+},
+"401": {
+"description": "Unauthorized"
+},
+"403": {
+"description": "Forbidden"
+}
+}
+},
+"post": {
+"tags": [
+"basic-error-controller"
+],
+"summary": "errorHtml",
+"operationId": "errorHtmlUsingPOST",
+"consumes": [
+"application/json"
+],
+"produces": [
+"text/html"
+],
+"responses": {
+"200": {
+"description": "OK",
+"schema": {
+"$ref": "#/definitions/ModelAndView"
+}
+},
+"201": {
+"description": "Created"
+},
+"401": {
+"description": "Unauthorized"
+},
+"403": {
+"description": "Forbidden"
+},
+"404": {
+"description": "Not Found"
+}
+}
+},
+"put": {
+"tags": [
+"basic-error-controller"
+],
+"summary": "errorHtml",
+"operationId": "errorHtmlUsingPUT",
+"consumes": [
+"application/json"
+],
+"produces": [
+"text/html"
+],
+"responses": {
+"200": {
+"description": "OK",
+"schema": {
+"$ref": "#/definitions/ModelAndView"
+}
+},
+"201": {
+"description": "Created"
+},
+"401": {
+"description": "Unauthorized"
+},
+"403": {
+"description": "Forbidden"
+},
+"404": {
+"description": "Not Found"
+}
+}
+},
+"delete": {
+"tags": [
+"basic-error-controller"
+],
+"summary": "errorHtml",
+"operationId": "errorHtmlUsingDELETE",
+"produces": [
+"text/html"
+],
+"responses": {
+"200": {
+"description": "OK",
+"schema": {
+"$ref": "#/definitions/ModelAndView"
+}
+},
+"204": {
+"description": "No Content"
+},
+"401": {
+"description": "Unauthorized"
+},
+"403": {
+"description": "Forbidden"
+}
+}
+},
+"options": {
+"tags": [
+"basic-error-controller"
+],
+"summary": "errorHtml",
+"operationId": "errorHtmlUsingOPTIONS",
+"consumes": [
+"application/json"
+],
+"produces": [
+"text/html"
+],
+"responses": {
+"200": {
+"description": "OK",
+"schema": {
+"$ref": "#/definitions/ModelAndView"
+}
+},
+"204": {
+"description": "No Content"
+},
+"401": {
+"description": "Unauthorized"
+},
+"403": {
+"description": "Forbidden"
+}
+}
+},
+"patch": {
+"tags": [
+"basic-error-controller"
+],
+"summary": "errorHtml",
+"operationId": "errorHtmlUsingPATCH",
+"consumes": [
+"application/json"
+],
+"produces": [
+"text/html"
+],
+"responses": {
+"200": {
+"description": "OK",
+"schema": {
+"$ref": "#/definitions/ModelAndView"
+}
+},
+"204": {
+"description": "No Content"
+},
+"401": {
+"description": "Unauthorized"
+},
+"403": {
+"description": "Forbidden"
+}
+}
+}
+}
+},
+"definitions": {
+"Address": {
+"type": "object",
+"properties": {
+"addressLine1": {
+"type": "string"
+},
+"addressLine2": {
+"type": "string"
+},
+"addressRefCode": {
+"type": "string"
+},
+"addressRefId": {
+"type": "integer",
+"format": "int64"
+},
+"addressRefName": {
+"type": "string"
+},
+"city": {
+"type": "string"
+},
+"country": {
+"type": "string"
+},
+"countryName": {
+"type": "string"
+},
+"id": {
+"type": "integer",
+"format": "int64"
+},
+"orgId": {
+"type": "string"
+},
+"postalCode": {
+"type": "string"
+},
+"state": {
+"type": "string"
+},
+"stateName": {
+"type": "string"
+}
+},
+"title": "Address"
+},
+"ApiResponse": {
+"type": "object",
+"properties": {
+"data": {
+"type": "object"
+},
+"errors": {
+"type": "array",
+"items": {
+"$ref": "#/definitions/MessageResponse"
+}
+},
+"message": {
+"$ref": "#/definitions/MessageResponse"
+},
+"status": {
+"type": "integer",
+"format": "int32"
+}
+},
+"title": "ApiResponse"
+},
+"AuthenticationRequest": {
+"type": "object",
+"properties": {
+"orgId": {
+"type": "string"
+},
+"password": {
+"type": "string"
+},
+"username": {
+"type": "string"
+}
+},
+"title": "AuthenticationRequest"
+},
+"DepartmentDTO": {
+"type": "object",
+"properties": {
+"code": {
+"type": "string"
+},
+"description": {
+"type": "string"
+},
+"name": {
+"type": "string"
+},
+"orgId": {
+"type": "string"
+}
+},
+"title": "DepartmentDTO"
+},
+"MessageResponse": {
+"type": "object",
+"properties": {
+"code": {
+"type": "string"
+},
+"message": {
+"type": "string"
+}
+},
+"title": "MessageResponse"
+},
+"ModelAndView": {
+"type": "object",
+"properties": {
+"empty": {
+"type": "boolean"
+},
+"model": {
+"type": "object"
+},
+"modelMap": {
+"type": "object",
+"additionalProperties": {
+"type": "object"
+}
+},
+"reference": {
+"type": "boolean"
+},
+"status": {
+"type": "string",
+"enum": [
+"ACCEPTED",
+"ALREADY_REPORTED",
+"BAD_GATEWAY",
+"BAD_REQUEST",
+"BANDWIDTH_LIMIT_EXCEEDED",
+"CHECKPOINT",
+"CONFLICT",
+"CONTINUE",
+"CREATED",
+"DESTINATION_LOCKED",
+"EXPECTATION_FAILED",
+"FAILED_DEPENDENCY",
+"FORBIDDEN",
+"FOUND",
+"GATEWAY_TIMEOUT",
+"GONE",
+"HTTP_VERSION_NOT_SUPPORTED",
+"IM_USED",
+"INSUFFICIENT_SPACE_ON_RESOURCE",
+"INSUFFICIENT_STORAGE",
+"INTERNAL_SERVER_ERROR",
+"I_AM_A_TEAPOT",
+"LENGTH_REQUIRED",
+"LOCKED",
+"LOOP_DETECTED",
+"METHOD_FAILURE",
+"METHOD_NOT_ALLOWED",
+"MOVED_PERMANENTLY",
+"MOVED_TEMPORARILY",
+"MULTIPLE_CHOICES",
+"MULTI_STATUS",
+"NETWORK_AUTHENTICATION_REQUIRED",
+"NON_AUTHORITATIVE_INFORMATION",
+"NOT_ACCEPTABLE",
+"NOT_EXTENDED",
+"NOT_FOUND",
+"NOT_IMPLEMENTED",
+"NOT_MODIFIED",
+"NO_CONTENT",
+"OK",
+"PARTIAL_CONTENT",
+"PAYLOAD_TOO_LARGE",
+"PAYMENT_REQUIRED",
+"PERMANENT_REDIRECT",
+"PRECONDITION_FAILED",
+"PRECONDITION_REQUIRED",
+"PROCESSING",
+"PROXY_AUTHENTICATION_REQUIRED",
+"REQUESTED_RANGE_NOT_SATISFIABLE",
+"REQUEST_ENTITY_TOO_LARGE",
+"REQUEST_HEADER_FIELDS_TOO_LARGE",
+"REQUEST_TIMEOUT",
+"REQUEST_URI_TOO_LONG",
+"RESET_CONTENT",
+"SEE_OTHER",
+"SERVICE_UNAVAILABLE",
+"SWITCHING_PROTOCOLS",
+"TEMPORARY_REDIRECT",
+"TOO_EARLY",
+"TOO_MANY_REQUESTS",
+"UNAUTHORIZED",
+"UNAVAILABLE_FOR_LEGAL_REASONS",
+"UNPROCESSABLE_ENTITY",
+"UNSUPPORTED_MEDIA_TYPE",
+"UPGRADE_REQUIRED",
+"URI_TOO_LONG",
+"USE_PROXY",
+"VARIANT_ALSO_NEGOTIATES"
+]
+},
+"view": {
+"$ref": "#/definitions/View"
+},
+"viewName": {
+"type": "string"
+}
+},
+"title": "ModelAndView"
+},
+"OrganizationDTO": {
+"type": "object",
+"properties": {
+"addressList": {
+"type": "array",
+"items": {
+"$ref": "#/definitions/Address"
+}
+},
+"description": {
+"type": "string"
+},
+"id": {
+"type": "integer",
+"format": "int64"
+},
+"orgId": {
+"type": "string"
+},
+"orgName": {
+"type": "string"
+},
+"orgRefCode": {
+"type": "string"
+},
+"orgRefId": {
+"type": "integer",
+"format": "int64"
+},
+"orgRefName": {
+"type": "string"
+},
+"orgShortName": {
+"type": "string"
+},
+"orgStatusRefCode": {
+"type": "string"
+},
+"orgStatusRefId": {
+"type": "integer",
+"format": "int64"
+},
+"orgStatusRefName": {
+"type": "string"
+},
+"phoneList": {
+"type": "array",
+"items": {
+"$ref": "#/definitions/Phone"
+}
+},
+"website": {
+"type": "string"
+}
+},
+"title": "OrganizationDTO"
+},
+"PermissionBitmap": {
+"type": "object",
+"properties": {
+"permBitmap": {
+"type": "integer",
+"format": "int32"
+},
+"permId": {
+"type": "integer",
+"format": "int64"
+}
+},
+"title": "PermissionBitmap"
+},
+"Phone": {
+"type": "object",
+"properties": {
+"id": {
+"type": "integer",
+"format": "int64"
+},
+"orgId": {
+"type": "string"
+},
+"phoneCode": {
+"type": "string"
+},
+"phoneNumber": {
+"type": "string"
+},
+"phoneRefCode": {
+"type": "string"
+},
+"phoneRefId": {
+"type": "integer",
+"format": "int64"
+},
+"phoneRefName": {
+"type": "string"
+},
+"userId": {
+"type": "integer",
+"format": "int64"
+}
+},
+"title": "Phone"
+},
+"RefreshTokenDTO": {
+"type": "object",
+"properties": {
+"newToken": {
+"type": "string"
+},
+"orgType": {
+"type": "string"
+},
+"permissions": {
+"type": "object"
+},
+"refreshToken": {
+"type": "string"
+}
+},
+"title": "RefreshTokenDTO"
+},
+"ResetPasswordDTO": {
+"type": "object",
+"properties": {
+"orgId": {
+"type": "string"
+},
+"password": {
+"type": "string"
+},
+"rePassword": {
+"type": "string"
+},
+"username": {
+"type": "string"
+},
+"validationToken": {
+"type": "string"
+}
+},
+"title": "ResetPasswordDTO"
+},
+"ResponseEntity": {
+"type": "object",
+"properties": {
+"body": {
+"type": "object"
+},
+"statusCode": {
+"type": "string",
+"enum": [
+"ACCEPTED",
+"ALREADY_REPORTED",
+"BAD_GATEWAY",
+"BAD_REQUEST",
+"BANDWIDTH_LIMIT_EXCEEDED",
+"CHECKPOINT",
+"CONFLICT",
+"CONTINUE",
+"CREATED",
+"DESTINATION_LOCKED",
+"EXPECTATION_FAILED",
+"FAILED_DEPENDENCY",
+"FORBIDDEN",
+"FOUND",
+"GATEWAY_TIMEOUT",
+"GONE",
+"HTTP_VERSION_NOT_SUPPORTED",
+"IM_USED",
+"INSUFFICIENT_SPACE_ON_RESOURCE",
+"INSUFFICIENT_STORAGE",
+"INTERNAL_SERVER_ERROR",
+"I_AM_A_TEAPOT",
+"LENGTH_REQUIRED",
+"LOCKED",
+"LOOP_DETECTED",
+"METHOD_FAILURE",
+"METHOD_NOT_ALLOWED",
+"MOVED_PERMANENTLY",
+"MOVED_TEMPORARILY",
+"MULTIPLE_CHOICES",
+"MULTI_STATUS",
+"NETWORK_AUTHENTICATION_REQUIRED",
+"NON_AUTHORITATIVE_INFORMATION",
+"NOT_ACCEPTABLE",
+"NOT_EXTENDED",
+"NOT_FOUND",
+"NOT_IMPLEMENTED",
+"NOT_MODIFIED",
+"NO_CONTENT",
+"OK",
+"PARTIAL_CONTENT",
+"PAYLOAD_TOO_LARGE",
+"PAYMENT_REQUIRED",
+"PERMANENT_REDIRECT",
+"PRECONDITION_FAILED",
+"PRECONDITION_REQUIRED",
+"PROCESSING",
+"PROXY_AUTHENTICATION_REQUIRED",
+"REQUESTED_RANGE_NOT_SATISFIABLE",
+"REQUEST_ENTITY_TOO_LARGE",
+"REQUEST_HEADER_FIELDS_TOO_LARGE",
+"REQUEST_TIMEOUT",
+"REQUEST_URI_TOO_LONG",
+"RESET_CONTENT",
+"SEE_OTHER",
+"SERVICE_UNAVAILABLE",
+"SWITCHING_PROTOCOLS",
+"TEMPORARY_REDIRECT",
+"TOO_EARLY",
+"TOO_MANY_REQUESTS",
+"UNAUTHORIZED",
+"UNAVAILABLE_FOR_LEGAL_REASONS",
+"UNPROCESSABLE_ENTITY",
+"UNSUPPORTED_MEDIA_TYPE",
+"UPGRADE_REQUIRED",
+"URI_TOO_LONG",
+"USE_PROXY",
+"VARIANT_ALSO_NEGOTIATES"
+]
+},
+"statusCodeValue": {
+"type": "integer",
+"format": "int32"
+}
+},
+"title": "ResponseEntity"
+},
+"RoleDTO": {
+"type": "object",
+"properties": {
+"code": {
+"type": "string"
+},
+"description": {
+"type": "string"
+},
+"name": {
+"type": "string"
+},
+"orgId": {
+"type": "string"
+}
+},
+"title": "RoleDTO"
+},
+"RolePermissionDTO": {
+"type": "object",
+"properties": {
+"orgId": {
+"type": "string"
+},
+"permissions": {
+"type": "array",
+"items": {
+"$ref": "#/definitions/PermissionBitmap"
+}
+},
+"roleId": {
+"type": "integer",
+"format": "int64"
+}
+},
+"title": "RolePermissionDTO"
+},
+"UserDTO": {
+"type": "object",
+"properties": {
+"firstName": {
+"type": "string"
+},
+"genderRefCode": {
+"type": "string"
+},
+"genderRefId": {
+"type": "integer",
+"format": "int64"
+},
+"genderRefName": {
+"type": "string"
+},
+"id": {
+"type": "integer",
+"format": "int64"
+},
+"lastName": {
+"type": "string"
+},
+"middleName": {
+"type": "string"
+},
+"orgId": {
+"type": "string"
+},
+"statusRefCode": {
+"type": "string"
+},
+"statusRefId": {
+"type": "integer",
+"format": "int64"
+},
+"statusRefName": {
+"type": "string"
+},
+"titleRefCode": {
+"type": "string"
+},
+"titleRefId": {
+"type": "integer",
+"format": "int64"
+},
+"titleRefName": {
+"type": "string"
+},
+"userPhones": {
+"type": "array",
+"items": {
+"$ref": "#/definitions/UserPhone"
+}
+},
+"username": {
+"type": "string"
+}
+},
+"title": "UserDTO"
+},
+"UserDepartmentDTO": {
+"type": "object",
+"properties": {
+"deptId": {
+"type": "integer",
+"format": "int64"
+},
+"orgId": {
+"type": "string"
+},
+"userId": {
+"type": "integer",
+"format": "int64"
+}
+},
+"title": "UserDepartmentDTO"
+},
+"UserPhone": {
+"type": "object",
+"properties": {
+"id": {
+"type": "integer",
+"format": "int64"
+},
+"orgId": {
+"type": "string"
+},
+"phoneCode": {
+"type": "string"
+},
+"phoneNumber": {
+"type": "string"
+},
+"phoneRefId": {
+"type": "integer",
+"format": "int64"
+},
+"phoneRefName": {
+"type": "string"
+},
+"userId": {
+"type": "integer",
+"format": "int64"
+}
+},
+"title": "UserPhone"
+},
+"UserRoleDTO": {
+"type": "object",
+"properties": {
+"orgId": {
+"type": "string"
+},
+"roleId": {
+"type": "integer",
+"format": "int64"
+},
+"userId": {
+"type": "integer",
+"format": "int64"
+}
+},
+"title": "UserRoleDTO"
+},
+"View": {
+"type": "object",
+"properties": {
+"contentType": {
+"type": "string"
+}
+},
+"title": "View"
+}
+}
 }
