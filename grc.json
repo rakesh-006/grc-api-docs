@@ -449,6 +449,96 @@
 }
 }
 },
+"/api/v1/organization/logo": {
+"get": {
+"tags": [
+"organization-controller"
+],
+"summary": "getOrgLogoByOrgId",
+"operationId": "getOrgLogoByOrgIdUsingGET",
+"produces": [
+"*/*"
+],
+"parameters": [
+{
+"name": "orgId",
+"in": "query",
+"description": "orgId",
+"required": true,
+"type": "string"
+}
+],
+"responses": {
+"200": {
+"description": "OK",
+"schema": {
+"$ref": "#/definitions/ResponseEntity"
+}
+},
+"401": {
+"description": "Unauthorized"
+},
+"403": {
+"description": "Forbidden"
+},
+"404": {
+"description": "Not Found"
+}
+}
+},
+"post": {
+"tags": [
+"organization-controller"
+],
+"summary": "uploadOrgLogo",
+"operationId": "uploadOrgLogoUsingPOST",
+"consumes": [
+"multipart/form-data"
+],
+"produces": [
+"*/*"
+],
+"parameters": [
+{
+"in": "body",
+"name": "logo",
+"description": "logo",
+"required": true,
+"schema": {
+"type": "string",
+"format": "binary"
+}
+},
+{
+"name": "orgId",
+"in": "query",
+"description": "orgId",
+"required": true,
+"type": "string"
+}
+],
+"responses": {
+"200": {
+"description": "OK",
+"schema": {
+"$ref": "#/definitions/ApiResponse"
+}
+},
+"201": {
+"description": "Created"
+},
+"401": {
+"description": "Unauthorized"
+},
+"403": {
+"description": "Forbidden"
+},
+"404": {
+"description": "Not Found"
+}
+}
+}
+},
 "/api/v1/organization/summary": {
 "get": {
 "tags": [
@@ -577,6 +667,52 @@
 }
 }
 },
+"/api/v1/organization/user/resend/invitation": {
+"get": {
+"tags": [
+"user-controller"
+],
+"summary": "reSendInvitationEmail",
+"operationId": "reSendInvitationEmailUsingGET",
+"produces": [
+"*/*"
+],
+"parameters": [
+{
+"name": "orgId",
+"in": "query",
+"description": "orgId",
+"required": true,
+"type": "string"
+},
+{
+"name": "userId",
+"in": "query",
+"description": "userId",
+"required": true,
+"type": "integer",
+"format": "int64"
+}
+],
+"responses": {
+"200": {
+"description": "OK",
+"schema": {
+"$ref": "#/definitions/ApiResponse"
+}
+},
+"401": {
+"description": "Unauthorized"
+},
+"403": {
+"description": "Forbidden"
+},
+"404": {
+"description": "Not Found"
+}
+}
+}
+},
 "/api/v1/organization/users": {
 "get": {
 "tags": [
@@ -643,20 +779,13 @@
 ],
 "parameters": [
 {
-"name": "pageNumber",
-"in": "query",
-"description": "pageNumber",
+"in": "body",
+"name": "paginationRequestDTO",
+"description": "paginationRequestDTO",
 "required": true,
-"type": "integer",
-"format": "int32"
-},
-{
-"name": "pageSize",
-"in": "query",
-"description": "pageSize",
-"required": true,
-"type": "integer",
-"format": "int32"
+"schema": {
+"$ref": "#/definitions/PaginationRequestDTO"
+}
 }
 ],
 "responses": {
@@ -1182,6 +1311,112 @@
 }
 }
 },
+"/api/v1/user/{id}/profilePic": {
+"get": {
+"tags": [
+"user-controller"
+],
+"summary": "getProfilePicByUserId",
+"operationId": "getProfilePicByUserIdUsingGET",
+"produces": [
+"*/*"
+],
+"parameters": [
+{
+"name": "id",
+"in": "path",
+"description": "id",
+"required": true,
+"type": "integer",
+"format": "int64"
+},
+{
+"name": "orgId",
+"in": "query",
+"description": "orgId",
+"required": true,
+"type": "string"
+}
+],
+"responses": {
+"200": {
+"description": "OK",
+"schema": {
+"$ref": "#/definitions/ResponseEntity"
+}
+},
+"401": {
+"description": "Unauthorized"
+},
+"403": {
+"description": "Forbidden"
+},
+"404": {
+"description": "Not Found"
+}
+}
+},
+"post": {
+"tags": [
+"user-controller"
+],
+"summary": "uploadProfilePic",
+"operationId": "uploadProfilePicUsingPOST",
+"consumes": [
+"multipart/form-data"
+],
+"produces": [
+"*/*"
+],
+"parameters": [
+{
+"name": "id",
+"in": "path",
+"description": "id",
+"required": true,
+"type": "integer",
+"format": "int64"
+},
+{
+"name": "orgId",
+"in": "query",
+"description": "orgId",
+"required": true,
+"type": "string"
+},
+{
+"in": "body",
+"name": "profilePic",
+"description": "profilePic",
+"required": true,
+"schema": {
+"type": "string",
+"format": "binary"
+}
+}
+],
+"responses": {
+"200": {
+"description": "OK",
+"schema": {
+"$ref": "#/definitions/ApiResponse"
+}
+},
+"201": {
+"description": "Created"
+},
+"401": {
+"description": "Unauthorized"
+},
+"403": {
+"description": "Forbidden"
+},
+"404": {
+"description": "Not Found"
+}
+}
+}
+},
 "/api/v1/userDepartment": {
 "get": {
 "tags": [
@@ -1367,16 +1602,19 @@
 "tags": [
 "basic-error-controller"
 ],
-"summary": "errorHtml",
-"operationId": "errorHtmlUsingGET",
+"summary": "error",
+"operationId": "errorUsingGET",
 "produces": [
-"text/html"
+"*/*"
 ],
 "responses": {
 "200": {
 "description": "OK",
 "schema": {
-"$ref": "#/definitions/ModelAndView"
+"type": "object",
+"additionalProperties": {
+"type": "object"
+}
 }
 },
 "401": {
@@ -1394,19 +1632,22 @@
 "tags": [
 "basic-error-controller"
 ],
-"summary": "errorHtml",
-"operationId": "errorHtmlUsingHEAD",
+"summary": "error",
+"operationId": "errorUsingHEAD",
 "consumes": [
 "application/json"
 ],
 "produces": [
-"text/html"
+"*/*"
 ],
 "responses": {
 "200": {
 "description": "OK",
 "schema": {
-"$ref": "#/definitions/ModelAndView"
+"type": "object",
+"additionalProperties": {
+"type": "object"
+}
 }
 },
 "204": {
@@ -1424,19 +1665,22 @@
 "tags": [
 "basic-error-controller"
 ],
-"summary": "errorHtml",
-"operationId": "errorHtmlUsingPOST",
+"summary": "error",
+"operationId": "errorUsingPOST",
 "consumes": [
 "application/json"
 ],
 "produces": [
-"text/html"
+"*/*"
 ],
 "responses": {
 "200": {
 "description": "OK",
 "schema": {
-"$ref": "#/definitions/ModelAndView"
+"type": "object",
+"additionalProperties": {
+"type": "object"
+}
 }
 },
 "201": {
@@ -1457,19 +1701,22 @@
 "tags": [
 "basic-error-controller"
 ],
-"summary": "errorHtml",
-"operationId": "errorHtmlUsingPUT",
+"summary": "error",
+"operationId": "errorUsingPUT",
 "consumes": [
 "application/json"
 ],
 "produces": [
-"text/html"
+"*/*"
 ],
 "responses": {
 "200": {
 "description": "OK",
 "schema": {
-"$ref": "#/definitions/ModelAndView"
+"type": "object",
+"additionalProperties": {
+"type": "object"
+}
 }
 },
 "201": {
@@ -1490,16 +1737,19 @@
 "tags": [
 "basic-error-controller"
 ],
-"summary": "errorHtml",
-"operationId": "errorHtmlUsingDELETE",
+"summary": "error",
+"operationId": "errorUsingDELETE",
 "produces": [
-"text/html"
+"*/*"
 ],
 "responses": {
 "200": {
 "description": "OK",
 "schema": {
-"$ref": "#/definitions/ModelAndView"
+"type": "object",
+"additionalProperties": {
+"type": "object"
+}
 }
 },
 "204": {
@@ -1517,19 +1767,22 @@
 "tags": [
 "basic-error-controller"
 ],
-"summary": "errorHtml",
-"operationId": "errorHtmlUsingOPTIONS",
+"summary": "error",
+"operationId": "errorUsingOPTIONS",
 "consumes": [
 "application/json"
 ],
 "produces": [
-"text/html"
+"*/*"
 ],
 "responses": {
 "200": {
 "description": "OK",
 "schema": {
-"$ref": "#/definitions/ModelAndView"
+"type": "object",
+"additionalProperties": {
+"type": "object"
+}
 }
 },
 "204": {
@@ -1547,19 +1800,22 @@
 "tags": [
 "basic-error-controller"
 ],
-"summary": "errorHtml",
-"operationId": "errorHtmlUsingPATCH",
+"summary": "error",
+"operationId": "errorUsingPATCH",
 "consumes": [
 "application/json"
 ],
 "produces": [
-"text/html"
+"*/*"
 ],
 "responses": {
 "200": {
 "description": "OK",
 "schema": {
-"$ref": "#/definitions/ModelAndView"
+"type": "object",
+"additionalProperties": {
+"type": "object"
+}
 }
 },
 "204": {
@@ -1601,6 +1857,9 @@
 "country": {
 "type": "string"
 },
+"countryName": {
+"type": "string"
+},
 "id": {
 "type": "integer",
 "format": "int64"
@@ -1612,6 +1871,9 @@
 "type": "string"
 },
 "state": {
+"type": "string"
+},
+"stateName": {
 "type": "string"
 }
 },
@@ -1800,6 +2062,13 @@
 "type": "integer",
 "format": "int64"
 },
+"logo": {
+"type": "string"
+},
+"logoId": {
+"type": "integer",
+"format": "int64"
+},
 "orgId": {
 "type": "string"
 },
@@ -1819,6 +2088,16 @@
 "orgShortName": {
 "type": "string"
 },
+"orgStatusRefCode": {
+"type": "string"
+},
+"orgStatusRefId": {
+"type": "integer",
+"format": "int64"
+},
+"orgStatusRefName": {
+"type": "string"
+},
 "phoneList": {
 "type": "array",
 "items": {
@@ -1830,6 +2109,32 @@
 }
 },
 "title": "OrganizationDTO"
+},
+"PaginationRequestDTO": {
+"type": "object",
+"properties": {
+"filter": {
+"type": "string"
+},
+"pageNumber": {
+"type": "integer",
+"format": "int32"
+},
+"pageSize": {
+"type": "integer",
+"format": "int32"
+},
+"search": {
+"type": "string"
+},
+"sortDirection": {
+"type": "string"
+},
+"sortField": {
+"type": "string"
+}
+},
+"title": "PaginationRequestDTO"
 },
 "PermissionBitmap": {
 "type": "object",
@@ -1917,6 +2222,92 @@
 },
 "title": "ResetPasswordDTO"
 },
+"ResponseEntity": {
+"type": "object",
+"properties": {
+"body": {
+"type": "object"
+},
+"statusCode": {
+"type": "string",
+"enum": [
+"ACCEPTED",
+"ALREADY_REPORTED",
+"BAD_GATEWAY",
+"BAD_REQUEST",
+"BANDWIDTH_LIMIT_EXCEEDED",
+"CHECKPOINT",
+"CONFLICT",
+"CONTINUE",
+"CREATED",
+"DESTINATION_LOCKED",
+"EXPECTATION_FAILED",
+"FAILED_DEPENDENCY",
+"FORBIDDEN",
+"FOUND",
+"GATEWAY_TIMEOUT",
+"GONE",
+"HTTP_VERSION_NOT_SUPPORTED",
+"IM_USED",
+"INSUFFICIENT_SPACE_ON_RESOURCE",
+"INSUFFICIENT_STORAGE",
+"INTERNAL_SERVER_ERROR",
+"I_AM_A_TEAPOT",
+"LENGTH_REQUIRED",
+"LOCKED",
+"LOOP_DETECTED",
+"METHOD_FAILURE",
+"METHOD_NOT_ALLOWED",
+"MOVED_PERMANENTLY",
+"MOVED_TEMPORARILY",
+"MULTIPLE_CHOICES",
+"MULTI_STATUS",
+"NETWORK_AUTHENTICATION_REQUIRED",
+"NON_AUTHORITATIVE_INFORMATION",
+"NOT_ACCEPTABLE",
+"NOT_EXTENDED",
+"NOT_FOUND",
+"NOT_IMPLEMENTED",
+"NOT_MODIFIED",
+"NO_CONTENT",
+"OK",
+"PARTIAL_CONTENT",
+"PAYLOAD_TOO_LARGE",
+"PAYMENT_REQUIRED",
+"PERMANENT_REDIRECT",
+"PRECONDITION_FAILED",
+"PRECONDITION_REQUIRED",
+"PROCESSING",
+"PROXY_AUTHENTICATION_REQUIRED",
+"REQUESTED_RANGE_NOT_SATISFIABLE",
+"REQUEST_ENTITY_TOO_LARGE",
+"REQUEST_HEADER_FIELDS_TOO_LARGE",
+"REQUEST_TIMEOUT",
+"REQUEST_URI_TOO_LONG",
+"RESET_CONTENT",
+"SEE_OTHER",
+"SERVICE_UNAVAILABLE",
+"SWITCHING_PROTOCOLS",
+"TEMPORARY_REDIRECT",
+"TOO_EARLY",
+"TOO_MANY_REQUESTS",
+"UNAUTHORIZED",
+"UNAVAILABLE_FOR_LEGAL_REASONS",
+"UNPROCESSABLE_ENTITY",
+"UNSUPPORTED_MEDIA_TYPE",
+"UPGRADE_REQUIRED",
+"URI_TOO_LONG",
+"USE_PROXY",
+"VARIANT_ALSO_NEGOTIATES"
+]
+},
+"statusCodeValue": {
+"type": "integer",
+"format": "int32"
+}
+},
+"title": "ResponseEntity"
+},
 "RoleDTO": {
 "type": "object",
 "properties": {
@@ -1956,6 +2347,10 @@
 },
 "UserDTO": {
 "type": "object",
+"required": [
+"genderRefId",
+"titleRefId"
+],
 "properties": {
 "firstName": {
 "type": "string"
@@ -1981,6 +2376,13 @@
 "type": "string"
 },
 "orgId": {
+"type": "string"
+},
+"profileId": {
+"type": "integer",
+"format": "int64"
+},
+"profilePic": {
 "type": "string"
 },
 "statusRefCode": {
