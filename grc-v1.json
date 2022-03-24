@@ -779,20 +779,13 @@
 ],
 "parameters": [
 {
-"name": "pageNumber",
-"in": "query",
-"description": "pageNumber",
+"in": "body",
+"name": "paginationRequestDTO",
+"description": "paginationRequestDTO",
 "required": true,
-"type": "integer",
-"format": "int32"
-},
-{
-"name": "pageSize",
-"in": "query",
-"description": "pageSize",
-"required": true,
-"type": "integer",
-"format": "int32"
+"schema": {
+"$ref": "#/definitions/PaginationRequestDTO"
+}
 }
 ],
 "responses": {
@@ -1609,16 +1602,19 @@
 "tags": [
 "basic-error-controller"
 ],
-"summary": "errorHtml",
-"operationId": "errorHtmlUsingGET",
+"summary": "error",
+"operationId": "errorUsingGET",
 "produces": [
-"text/html"
+"*/*"
 ],
 "responses": {
 "200": {
 "description": "OK",
 "schema": {
-"$ref": "#/definitions/ModelAndView"
+"type": "object",
+"additionalProperties": {
+"type": "object"
+}
 }
 },
 "401": {
@@ -1636,19 +1632,22 @@
 "tags": [
 "basic-error-controller"
 ],
-"summary": "errorHtml",
-"operationId": "errorHtmlUsingHEAD",
+"summary": "error",
+"operationId": "errorUsingHEAD",
 "consumes": [
 "application/json"
 ],
 "produces": [
-"text/html"
+"*/*"
 ],
 "responses": {
 "200": {
 "description": "OK",
 "schema": {
-"$ref": "#/definitions/ModelAndView"
+"type": "object",
+"additionalProperties": {
+"type": "object"
+}
 }
 },
 "204": {
@@ -1666,19 +1665,22 @@
 "tags": [
 "basic-error-controller"
 ],
-"summary": "errorHtml",
-"operationId": "errorHtmlUsingPOST",
+"summary": "error",
+"operationId": "errorUsingPOST",
 "consumes": [
 "application/json"
 ],
 "produces": [
-"text/html"
+"*/*"
 ],
 "responses": {
 "200": {
 "description": "OK",
 "schema": {
-"$ref": "#/definitions/ModelAndView"
+"type": "object",
+"additionalProperties": {
+"type": "object"
+}
 }
 },
 "201": {
@@ -1699,19 +1701,22 @@
 "tags": [
 "basic-error-controller"
 ],
-"summary": "errorHtml",
-"operationId": "errorHtmlUsingPUT",
+"summary": "error",
+"operationId": "errorUsingPUT",
 "consumes": [
 "application/json"
 ],
 "produces": [
-"text/html"
+"*/*"
 ],
 "responses": {
 "200": {
 "description": "OK",
 "schema": {
-"$ref": "#/definitions/ModelAndView"
+"type": "object",
+"additionalProperties": {
+"type": "object"
+}
 }
 },
 "201": {
@@ -1732,16 +1737,19 @@
 "tags": [
 "basic-error-controller"
 ],
-"summary": "errorHtml",
-"operationId": "errorHtmlUsingDELETE",
+"summary": "error",
+"operationId": "errorUsingDELETE",
 "produces": [
-"text/html"
+"*/*"
 ],
 "responses": {
 "200": {
 "description": "OK",
 "schema": {
-"$ref": "#/definitions/ModelAndView"
+"type": "object",
+"additionalProperties": {
+"type": "object"
+}
 }
 },
 "204": {
@@ -1759,19 +1767,22 @@
 "tags": [
 "basic-error-controller"
 ],
-"summary": "errorHtml",
-"operationId": "errorHtmlUsingOPTIONS",
+"summary": "error",
+"operationId": "errorUsingOPTIONS",
 "consumes": [
 "application/json"
 ],
 "produces": [
-"text/html"
+"*/*"
 ],
 "responses": {
 "200": {
 "description": "OK",
 "schema": {
-"$ref": "#/definitions/ModelAndView"
+"type": "object",
+"additionalProperties": {
+"type": "object"
+}
 }
 },
 "204": {
@@ -1789,19 +1800,22 @@
 "tags": [
 "basic-error-controller"
 ],
-"summary": "errorHtml",
-"operationId": "errorHtmlUsingPATCH",
+"summary": "error",
+"operationId": "errorUsingPATCH",
 "consumes": [
 "application/json"
 ],
 "produces": [
-"text/html"
+"*/*"
 ],
 "responses": {
 "200": {
 "description": "OK",
 "schema": {
-"$ref": "#/definitions/ModelAndView"
+"type": "object",
+"additionalProperties": {
+"type": "object"
+}
 }
 },
 "204": {
@@ -2048,6 +2062,13 @@
 "type": "integer",
 "format": "int64"
 },
+"logo": {
+"type": "string"
+},
+"logoId": {
+"type": "integer",
+"format": "int64"
+},
 "orgId": {
 "type": "string"
 },
@@ -2088,6 +2109,32 @@
 }
 },
 "title": "OrganizationDTO"
+},
+"PaginationRequestDTO": {
+"type": "object",
+"properties": {
+"filter": {
+"type": "string"
+},
+"pageNumber": {
+"type": "integer",
+"format": "int32"
+},
+"pageSize": {
+"type": "integer",
+"format": "int32"
+},
+"search": {
+"type": "string"
+},
+"sortDirection": {
+"type": "string"
+},
+"sortField": {
+"type": "string"
+}
+},
+"title": "PaginationRequestDTO"
 },
 "PermissionBitmap": {
 "type": "object",
@@ -2300,6 +2347,10 @@
 },
 "UserDTO": {
 "type": "object",
+"required": [
+"genderRefId",
+"titleRefId"
+],
 "properties": {
 "firstName": {
 "type": "string"
@@ -2325,6 +2376,13 @@
 "type": "string"
 },
 "orgId": {
+"type": "string"
+},
+"profileId": {
+"type": "integer",
+"format": "int64"
+},
+"profilePic": {
 "type": "string"
 },
 "statusRefCode": {
