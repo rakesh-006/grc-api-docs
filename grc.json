@@ -31,6 +31,10 @@
 "description": "Common Controller"
 },
 {
+"name": "common-risk-controller",
+"description": "Common Risk Controller"
+},
+{
 "name": "department-controller",
 "description": "Department Controller"
 },
@@ -214,6 +218,346 @@
 ],
 "summary": "getDepartment",
 "operationId": "getDepartmentUsingGET",
+"produces": [
+"*/*"
+],
+"parameters": [
+{
+"name": "orgId",
+"in": "query",
+"description": "orgId",
+"required": true,
+"type": "string"
+}
+],
+"responses": {
+"200": {
+"description": "OK",
+"schema": {
+"$ref": "#/definitions/ApiResponse"
+}
+},
+"401": {
+"description": "Unauthorized"
+},
+"403": {
+"description": "Forbidden"
+},
+"404": {
+"description": "Not Found"
+}
+}
+}
+},
+"/api/v1/domain": {
+"get": {
+"tags": [
+"common-risk-controller"
+],
+"summary": "getDomain",
+"operationId": "getDomainUsingGET",
+"produces": [
+"*/*"
+],
+"parameters": [
+{
+"name": "id",
+"in": "query",
+"description": "id",
+"required": true,
+"type": "integer",
+"format": "int64"
+},
+{
+"name": "orgId",
+"in": "query",
+"description": "orgId",
+"required": true,
+"type": "string"
+}
+],
+"responses": {
+"200": {
+"description": "OK",
+"schema": {
+"$ref": "#/definitions/ApiResponse"
+}
+},
+"401": {
+"description": "Unauthorized"
+},
+"403": {
+"description": "Forbidden"
+},
+"404": {
+"description": "Not Found"
+}
+}
+},
+"post": {
+"tags": [
+"common-risk-controller"
+],
+"summary": "createDomain",
+"operationId": "createDomainUsingPOST",
+"consumes": [
+"application/json"
+],
+"produces": [
+"*/*"
+],
+"parameters": [
+{
+"in": "body",
+"name": "domainDTO",
+"description": "domainDTO",
+"required": true,
+"schema": {
+"$ref": "#/definitions/DomainDTO"
+}
+}
+],
+"responses": {
+"200": {
+"description": "OK",
+"schema": {
+"$ref": "#/definitions/ApiResponse"
+}
+},
+"201": {
+"description": "Created"
+},
+"401": {
+"description": "Unauthorized"
+},
+"403": {
+"description": "Forbidden"
+},
+"404": {
+"description": "Not Found"
+}
+}
+},
+"delete": {
+"tags": [
+"common-risk-controller"
+],
+"summary": "deleteDomain",
+"operationId": "deleteDomainUsingDELETE",
+"produces": [
+"*/*"
+],
+"parameters": [
+{
+"name": "domainId",
+"in": "query",
+"description": "domainId",
+"required": true,
+"type": "integer",
+"format": "int64"
+},
+{
+"name": "orgId",
+"in": "query",
+"description": "orgId",
+"required": true,
+"type": "string"
+}
+],
+"responses": {
+"200": {
+"description": "OK",
+"schema": {
+"$ref": "#/definitions/ApiResponse"
+}
+},
+"204": {
+"description": "No Content"
+},
+"401": {
+"description": "Unauthorized"
+},
+"403": {
+"description": "Forbidden"
+}
+}
+}
+},
+"/api/v1/domains": {
+"get": {
+"tags": [
+"common-risk-controller"
+],
+"summary": "getAllDomain",
+"operationId": "getAllDomainUsingGET",
+"produces": [
+"*/*"
+],
+"parameters": [
+{
+"name": "orgId",
+"in": "query",
+"description": "orgId",
+"required": true,
+"type": "string"
+}
+],
+"responses": {
+"200": {
+"description": "OK",
+"schema": {
+"$ref": "#/definitions/ApiResponse"
+}
+},
+"401": {
+"description": "Unauthorized"
+},
+"403": {
+"description": "Forbidden"
+},
+"404": {
+"description": "Not Found"
+}
+}
+}
+},
+"/api/v1/impact": {
+"get": {
+"tags": [
+"common-risk-controller"
+],
+"summary": "getImpact",
+"operationId": "getImpactUsingGET",
+"produces": [
+"*/*"
+],
+"parameters": [
+{
+"name": "id",
+"in": "query",
+"description": "id",
+"required": true,
+"type": "integer",
+"format": "int64"
+},
+{
+"name": "orgId",
+"in": "query",
+"description": "orgId",
+"required": true,
+"type": "string"
+}
+],
+"responses": {
+"200": {
+"description": "OK",
+"schema": {
+"$ref": "#/definitions/ApiResponse"
+}
+},
+"401": {
+"description": "Unauthorized"
+},
+"403": {
+"description": "Forbidden"
+},
+"404": {
+"description": "Not Found"
+}
+}
+}
+},
+"/api/v1/impacts": {
+"get": {
+"tags": [
+"common-risk-controller"
+],
+"summary": "getAllImpact",
+"operationId": "getAllImpactUsingGET",
+"produces": [
+"*/*"
+],
+"parameters": [
+{
+"name": "orgId",
+"in": "query",
+"description": "orgId",
+"required": true,
+"type": "string"
+}
+],
+"responses": {
+"200": {
+"description": "OK",
+"schema": {
+"$ref": "#/definitions/ApiResponse"
+}
+},
+"401": {
+"description": "Unauthorized"
+},
+"403": {
+"description": "Forbidden"
+},
+"404": {
+"description": "Not Found"
+}
+}
+}
+},
+"/api/v1/likelyhood": {
+"get": {
+"tags": [
+"common-risk-controller"
+],
+"summary": "getLikelyhood",
+"operationId": "getLikelyhoodUsingGET",
+"produces": [
+"*/*"
+],
+"parameters": [
+{
+"name": "id",
+"in": "query",
+"description": "id",
+"required": true,
+"type": "integer",
+"format": "int64"
+},
+{
+"name": "orgId",
+"in": "query",
+"description": "orgId",
+"required": true,
+"type": "string"
+}
+],
+"responses": {
+"200": {
+"description": "OK",
+"schema": {
+"$ref": "#/definitions/ApiResponse"
+}
+},
+"401": {
+"description": "Unauthorized"
+},
+"403": {
+"description": "Forbidden"
+},
+"404": {
+"description": "Not Found"
+}
+}
+}
+},
+"/api/v1/likelyhoods": {
+"get": {
+"tags": [
+"common-risk-controller"
+],
+"summary": "getAllLikelyhood",
+"operationId": "getAllLikelyhoodUsingGET",
 "produces": [
 "*/*"
 ],
@@ -1415,6 +1759,52 @@
 }
 }
 },
+"/api/v1/user/{id}/summary": {
+"get": {
+"tags": [
+"user-controller"
+],
+"summary": "getUserSummary",
+"operationId": "getUserSummaryUsingGET",
+"produces": [
+"*/*"
+],
+"parameters": [
+{
+"name": "id",
+"in": "path",
+"description": "id",
+"required": true,
+"type": "integer",
+"format": "int64"
+},
+{
+"name": "orgId",
+"in": "query",
+"description": "orgId",
+"required": true,
+"type": "string"
+}
+],
+"responses": {
+"200": {
+"description": "OK",
+"schema": {
+"$ref": "#/definitions/ApiResponse"
+}
+},
+"401": {
+"description": "Unauthorized"
+},
+"403": {
+"description": "Forbidden"
+},
+"404": {
+"description": "Not Found"
+}
+}
+}
+},
 "/api/v1/userDepartment": {
 "get": {
 "tags": [
@@ -1931,6 +2321,24 @@
 }
 },
 "title": "DepartmentDTO"
+},
+"DomainDTO": {
+"type": "object",
+"properties": {
+"code": {
+"type": "string"
+},
+"description": {
+"type": "string"
+},
+"name": {
+"type": "string"
+},
+"orgId": {
+"type": "string"
+}
+},
+"title": "DomainDTO"
 },
 "MessageResponse": {
 "type": "object",
