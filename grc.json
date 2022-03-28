@@ -43,6 +43,10 @@
 "description": "Organization Controller"
 },
 {
+"name": "risk-controller",
+"description": "Risk Controller"
+},
+{
 "name": "user-controller",
 "description": "User Controller"
 }
@@ -1397,6 +1401,183 @@
 }
 }
 },
+"/api/v1/risk": {
+"post": {
+"tags": [
+"risk-controller"
+],
+"summary": "createOrUpdateRisk",
+"operationId": "createOrUpdateRiskUsingPOST",
+"consumes": [
+"application/json"
+],
+"produces": [
+"*/*"
+],
+"parameters": [
+{
+"in": "body",
+"name": "riskDTO",
+"description": "riskDTO",
+"required": true,
+"schema": {
+"$ref": "#/definitions/RiskDTO"
+}
+}
+],
+"responses": {
+"200": {
+"description": "OK",
+"schema": {
+"$ref": "#/definitions/ApiResponse"
+}
+},
+"201": {
+"description": "Created"
+},
+"401": {
+"description": "Unauthorized"
+},
+"403": {
+"description": "Forbidden"
+},
+"404": {
+"description": "Not Found"
+}
+}
+}
+},
+"/api/v1/risk/control": {
+"post": {
+"tags": [
+"risk-controller"
+],
+"summary": "createOrUpdateRiskControl",
+"operationId": "createOrUpdateRiskControlUsingPOST",
+"consumes": [
+"application/json"
+],
+"produces": [
+"*/*"
+],
+"parameters": [
+{
+"in": "body",
+"name": "riskControlDTO",
+"description": "riskControlDTO",
+"required": true,
+"schema": {
+"$ref": "#/definitions/RiskControlDTO"
+}
+}
+],
+"responses": {
+"200": {
+"description": "OK",
+"schema": {
+"$ref": "#/definitions/ApiResponse"
+}
+},
+"201": {
+"description": "Created"
+},
+"401": {
+"description": "Unauthorized"
+},
+"403": {
+"description": "Forbidden"
+},
+"404": {
+"description": "Not Found"
+}
+}
+}
+},
+"/api/v1/risk/{id}": {
+"get": {
+"tags": [
+"risk-controller"
+],
+"summary": "getRiskById",
+"operationId": "getRiskByIdUsingGET",
+"produces": [
+"*/*"
+],
+"parameters": [
+{
+"name": "id",
+"in": "path",
+"description": "id",
+"required": true,
+"type": "integer",
+"format": "int64"
+}
+],
+"responses": {
+"200": {
+"description": "OK",
+"schema": {
+"$ref": "#/definitions/ApiResponse"
+}
+},
+"401": {
+"description": "Unauthorized"
+},
+"403": {
+"description": "Forbidden"
+},
+"404": {
+"description": "Not Found"
+}
+}
+}
+},
+"/api/v1/risks": {
+"post": {
+"tags": [
+"risk-controller"
+],
+"summary": "getRisks",
+"operationId": "getRisksUsingPOST",
+"consumes": [
+"application/json"
+],
+"produces": [
+"*/*"
+],
+"parameters": [
+{
+"in": "body",
+"name": "paginationRequestDTO",
+"description": "paginationRequestDTO",
+"required": true,
+"schema": {
+"$ref": "#/definitions/PaginationRequestDTO"
+}
+}
+],
+"responses": {
+"200": {
+"description": "OK",
+"schema": {
+"$ref": "#/definitions/ApiResponse"
+}
+},
+"201": {
+"description": "Created"
+},
+"401": {
+"description": "Unauthorized"
+},
+"403": {
+"description": "Forbidden"
+},
+"404": {
+"description": "Not Found"
+}
+}
+}
+},
 "/api/v1/role": {
 "get": {
 "tags": [
@@ -2716,6 +2897,67 @@
 }
 },
 "title": "ResponseEntity"
+},
+"RiskControlDTO": {
+"type": "object",
+"properties": {
+"controlTypeCode": {
+"type": "string"
+},
+"controlTypeId": {
+"type": "integer",
+"format": "int64"
+},
+"controlTypeName": {
+"type": "string"
+},
+"id": {
+"type": "integer",
+"format": "int64"
+},
+"name": {
+"type": "string"
+},
+"riskId": {
+"type": "integer",
+"format": "int64"
+}
+},
+"title": "RiskControlDTO"
+},
+"RiskDTO": {
+"type": "object",
+"properties": {
+"description": {
+"type": "string"
+},
+"domainId": {
+"type": "integer",
+"format": "int64"
+},
+"id": {
+"type": "integer",
+"format": "int64"
+},
+"impactId": {
+"type": "integer",
+"format": "int64"
+},
+"likelihoodId": {
+"type": "integer",
+"format": "int64"
+},
+"name": {
+"type": "string"
+},
+"riskStatement": {
+"type": "string"
+},
+"tags": {
+"type": "string"
+}
+},
+"title": "RiskDTO"
 },
 "RoleDTO": {
 "type": "object",
