@@ -1,6 +1,3 @@
-// 20220329102149
-// http://15.207.21.136:8088/v2/api-docs
-
 {
   "swagger": "2.0",
   "info": {
@@ -462,6 +459,14 @@
             "required": true,
             "type": "integer",
             "format": "int32"
+          },
+          {
+            "name": "pageSize",
+            "in": "query",
+            "description": "pageSize",
+            "required": false,
+            "type": "integer",
+            "format": "int64"
           },
           {
             "name": "sortDir",
@@ -1565,6 +1570,44 @@
         }
       }
     },
+    "/api/v1/risk/dashboard": {
+      "get": {
+        "tags": [
+          "common-risk-controller"
+        ],
+        "summary": "getDashboardCounts",
+        "operationId": "getDashboardCountsUsingGET",
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "orgId",
+            "in": "query",
+            "description": "orgId",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/ApiResponse"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
     "/api/v1/risk/{id}": {
       "get": {
         "tags": [
@@ -2243,16 +2286,19 @@
         "tags": [
           "basic-error-controller"
         ],
-        "summary": "errorHtml",
-        "operationId": "errorHtmlUsingGET",
+        "summary": "error",
+        "operationId": "errorUsingGET",
         "produces": [
-          "text/html"
+          "*/*"
         ],
         "responses": {
           "200": {
             "description": "OK",
             "schema": {
-              "$ref": "#/definitions/ModelAndView"
+              "type": "object",
+              "additionalProperties": {
+                "type": "object"
+              }
             }
           },
           "401": {
@@ -2270,19 +2316,22 @@
         "tags": [
           "basic-error-controller"
         ],
-        "summary": "errorHtml",
-        "operationId": "errorHtmlUsingHEAD",
+        "summary": "error",
+        "operationId": "errorUsingHEAD",
         "consumes": [
           "application/json"
         ],
         "produces": [
-          "text/html"
+          "*/*"
         ],
         "responses": {
           "200": {
             "description": "OK",
             "schema": {
-              "$ref": "#/definitions/ModelAndView"
+              "type": "object",
+              "additionalProperties": {
+                "type": "object"
+              }
             }
           },
           "204": {
@@ -2300,19 +2349,22 @@
         "tags": [
           "basic-error-controller"
         ],
-        "summary": "errorHtml",
-        "operationId": "errorHtmlUsingPOST",
+        "summary": "error",
+        "operationId": "errorUsingPOST",
         "consumes": [
           "application/json"
         ],
         "produces": [
-          "text/html"
+          "*/*"
         ],
         "responses": {
           "200": {
             "description": "OK",
             "schema": {
-              "$ref": "#/definitions/ModelAndView"
+              "type": "object",
+              "additionalProperties": {
+                "type": "object"
+              }
             }
           },
           "201": {
@@ -2333,19 +2385,22 @@
         "tags": [
           "basic-error-controller"
         ],
-        "summary": "errorHtml",
-        "operationId": "errorHtmlUsingPUT",
+        "summary": "error",
+        "operationId": "errorUsingPUT",
         "consumes": [
           "application/json"
         ],
         "produces": [
-          "text/html"
+          "*/*"
         ],
         "responses": {
           "200": {
             "description": "OK",
             "schema": {
-              "$ref": "#/definitions/ModelAndView"
+              "type": "object",
+              "additionalProperties": {
+                "type": "object"
+              }
             }
           },
           "201": {
@@ -2366,16 +2421,19 @@
         "tags": [
           "basic-error-controller"
         ],
-        "summary": "errorHtml",
-        "operationId": "errorHtmlUsingDELETE",
+        "summary": "error",
+        "operationId": "errorUsingDELETE",
         "produces": [
-          "text/html"
+          "*/*"
         ],
         "responses": {
           "200": {
             "description": "OK",
             "schema": {
-              "$ref": "#/definitions/ModelAndView"
+              "type": "object",
+              "additionalProperties": {
+                "type": "object"
+              }
             }
           },
           "204": {
@@ -2393,19 +2451,22 @@
         "tags": [
           "basic-error-controller"
         ],
-        "summary": "errorHtml",
-        "operationId": "errorHtmlUsingOPTIONS",
+        "summary": "error",
+        "operationId": "errorUsingOPTIONS",
         "consumes": [
           "application/json"
         ],
         "produces": [
-          "text/html"
+          "*/*"
         ],
         "responses": {
           "200": {
             "description": "OK",
             "schema": {
-              "$ref": "#/definitions/ModelAndView"
+              "type": "object",
+              "additionalProperties": {
+                "type": "object"
+              }
             }
           },
           "204": {
@@ -2423,19 +2484,22 @@
         "tags": [
           "basic-error-controller"
         ],
-        "summary": "errorHtml",
-        "operationId": "errorHtmlUsingPATCH",
+        "summary": "error",
+        "operationId": "errorUsingPATCH",
         "consumes": [
           "application/json"
         ],
         "produces": [
-          "text/html"
+          "*/*"
         ],
         "responses": {
           "200": {
             "description": "OK",
             "schema": {
-              "$ref": "#/definitions/ModelAndView"
+              "type": "object",
+              "additionalProperties": {
+                "type": "object"
+              }
             }
           },
           "204": {
