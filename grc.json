@@ -1,3789 +1,4024 @@
 {
-    "swagger": "2.0",
-    "info": {
-        "description": "Api Documentation",
-        "version": "1.0",
-        "title": "Api Documentation",
-        "termsOfService": "urn:tos",
-        "contact": {},
-        "license": {
-            "name": "Apache 2.0",
-            "url": "http://www.apache.org/licenses/LICENSE-2.0"
-        }
-    },
-    "host": "15.207.21.136:8088",
-    "basePath": "/",
-    "tags": [
-        {
-            "name": "authentication-controller",
-            "description": "Authentication Controller"
-        },
-        {
-            "name": "authorization-controller",
-            "description": "Authorization Controller"
-        },
-        {
-            "name": "basic-error-controller",
-            "description": "Basic Error Controller"
-        },
-        {
-            "name": "common-controller",
-            "description": "Common Controller"
-        },
-        {
-            "name": "common-risk-controller",
-            "description": "Common Risk Controller"
-        },
-        {
-            "name": "department-controller",
-            "description": "Department Controller"
-        },
-        {
-            "name": "organization-controller",
-            "description": "Organization Controller"
-        },
-        {
-            "name": "project-controller",
-            "description": "Project Controller"
-        },
-        {
-            "name": "risk-controller",
-            "description": "Risk Controller"
-        },
-        {
-            "name": "scoring-model-controller",
-            "description": "Scoring Model Controller"
-        },
-        {
-            "name": "template-controller",
-            "description": "Template Controller"
-        },
-        {
-            "name": "user-controller",
-            "description": "User Controller"
-        }
-    ],
-    "paths": {
-        "/api/v1/countries": {
-            "get": {
-                "tags": [
-                    "common-controller"
-                ],
-                "summary": "getCountries",
-                "operationId": "getCountriesUsingGET",
-                "produces": [
-                    "*/*"
-                ],
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "schema": {
-                            "$ref": "#/definitions/ApiResponse"
-                        }
-                    },
-                    "401": {
-                        "description": "Unauthorized"
-                    },
-                    "403": {
-                        "description": "Forbidden"
-                    },
-                    "404": {
-                        "description": "Not Found"
-                    }
-                }
-            }
-        },
-        "/api/v1/department": {
-            "get": {
-                "tags": [
-                    "department-controller"
-                ],
-                "summary": "getDepartmentById",
-                "operationId": "getDepartmentByIdUsingGET",
-                "produces": [
-                    "*/*"
-                ],
-                "parameters": [
-                    {
-                        "name": "deptId",
-                        "in": "query",
-                        "description": "deptId",
-                        "required": true,
-                        "type": "integer",
-                        "format": "int64"
-                    },
-                    {
-                        "name": "orgId",
-                        "in": "query",
-                        "description": "orgId",
-                        "required": true,
-                        "type": "string"
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "schema": {
-                            "$ref": "#/definitions/ApiResponse"
-                        }
-                    },
-                    "401": {
-                        "description": "Unauthorized"
-                    },
-                    "403": {
-                        "description": "Forbidden"
-                    },
-                    "404": {
-                        "description": "Not Found"
-                    }
-                }
-            },
-            "post": {
-                "tags": [
-                    "department-controller"
-                ],
-                "summary": "createDepartment",
-                "operationId": "createDepartmentUsingPOST",
-                "consumes": [
-                    "application/json"
-                ],
-                "produces": [
-                    "*/*"
-                ],
-                "parameters": [
-                    {
-                        "in": "body",
-                        "name": "departmentDTO",
-                        "description": "departmentDTO",
-                        "required": true,
-                        "schema": {
-                            "$ref": "#/definitions/DepartmentDTO"
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "schema": {
-                            "$ref": "#/definitions/ApiResponse"
-                        }
-                    },
-                    "201": {
-                        "description": "Created"
-                    },
-                    "401": {
-                        "description": "Unauthorized"
-                    },
-                    "403": {
-                        "description": "Forbidden"
-                    },
-                    "404": {
-                        "description": "Not Found"
-                    }
-                }
-            },
-            "delete": {
-                "tags": [
-                    "department-controller"
-                ],
-                "summary": "deleteDepartmentById",
-                "operationId": "deleteDepartmentByIdUsingDELETE",
-                "produces": [
-                    "*/*"
-                ],
-                "parameters": [
-                    {
-                        "name": "deptId",
-                        "in": "query",
-                        "description": "deptId",
-                        "required": true,
-                        "type": "integer",
-                        "format": "int64"
-                    },
-                    {
-                        "name": "orgId",
-                        "in": "query",
-                        "description": "orgId",
-                        "required": true,
-                        "type": "string"
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "schema": {
-                            "$ref": "#/definitions/ApiResponse"
-                        }
-                    },
-                    "204": {
-                        "description": "No Content"
-                    },
-                    "401": {
-                        "description": "Unauthorized"
-                    },
-                    "403": {
-                        "description": "Forbidden"
-                    }
-                }
-            }
-        },
-        "/api/v1/departments": {
-            "get": {
-                "tags": [
-                    "department-controller"
-                ],
-                "summary": "getDepartment",
-                "operationId": "getDepartmentUsingGET",
-                "produces": [
-                    "*/*"
-                ],
-                "parameters": [
-                    {
-                        "name": "orgId",
-                        "in": "query",
-                        "description": "orgId",
-                        "required": true,
-                        "type": "string"
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "schema": {
-                            "$ref": "#/definitions/ApiResponse"
-                        }
-                    },
-                    "401": {
-                        "description": "Unauthorized"
-                    },
-                    "403": {
-                        "description": "Forbidden"
-                    },
-                    "404": {
-                        "description": "Not Found"
-                    }
-                }
-            }
-        },
-        "/api/v1/domain": {
-            "get": {
-                "tags": [
-                    "common-risk-controller"
-                ],
-                "summary": "getDomain",
-                "operationId": "getDomainUsingGET",
-                "produces": [
-                    "*/*"
-                ],
-                "parameters": [
-                    {
-                        "name": "id",
-                        "in": "query",
-                        "description": "id",
-                        "required": true,
-                        "type": "integer",
-                        "format": "int64"
-                    },
-                    {
-                        "name": "orgId",
-                        "in": "query",
-                        "description": "orgId",
-                        "required": true,
-                        "type": "string"
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "schema": {
-                            "$ref": "#/definitions/ApiResponse"
-                        }
-                    },
-                    "401": {
-                        "description": "Unauthorized"
-                    },
-                    "403": {
-                        "description": "Forbidden"
-                    },
-                    "404": {
-                        "description": "Not Found"
-                    }
-                }
-            },
-            "post": {
-                "tags": [
-                    "common-risk-controller"
-                ],
-                "summary": "createDomain",
-                "operationId": "createDomainUsingPOST",
-                "consumes": [
-                    "application/json"
-                ],
-                "produces": [
-                    "*/*"
-                ],
-                "parameters": [
-                    {
-                        "in": "body",
-                        "name": "domainDTO",
-                        "description": "domainDTO",
-                        "required": true,
-                        "schema": {
-                            "$ref": "#/definitions/DomainDTO"
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "schema": {
-                            "$ref": "#/definitions/ApiResponse"
-                        }
-                    },
-                    "201": {
-                        "description": "Created"
-                    },
-                    "401": {
-                        "description": "Unauthorized"
-                    },
-                    "403": {
-                        "description": "Forbidden"
-                    },
-                    "404": {
-                        "description": "Not Found"
-                    }
-                }
-            },
-            "delete": {
-                "tags": [
-                    "common-risk-controller"
-                ],
-                "summary": "deleteDomain",
-                "operationId": "deleteDomainUsingDELETE",
-                "produces": [
-                    "*/*"
-                ],
-                "parameters": [
-                    {
-                        "name": "domainId",
-                        "in": "query",
-                        "description": "domainId",
-                        "required": true,
-                        "type": "integer",
-                        "format": "int64"
-                    },
-                    {
-                        "name": "orgId",
-                        "in": "query",
-                        "description": "orgId",
-                        "required": true,
-                        "type": "string"
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "schema": {
-                            "$ref": "#/definitions/ApiResponse"
-                        }
-                    },
-                    "204": {
-                        "description": "No Content"
-                    },
-                    "401": {
-                        "description": "Unauthorized"
-                    },
-                    "403": {
-                        "description": "Forbidden"
-                    }
-                }
-            }
-        },
-        "/api/v1/domains": {
-            "get": {
-                "tags": [
-                    "common-risk-controller"
-                ],
-                "summary": "getAllDomainForFirstPage",
-                "operationId": "getAllDomainForFirstPageUsingGET",
-                "produces": [
-                    "*/*"
-                ],
-                "parameters": [
-                    {
-                        "name": "orgId",
-                        "in": "query",
-                        "description": "orgId",
-                        "required": true,
-                        "type": "string"
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "schema": {
-                            "$ref": "#/definitions/ApiResponse"
-                        }
-                    },
-                    "401": {
-                        "description": "Unauthorized"
-                    },
-                    "403": {
-                        "description": "Forbidden"
-                    },
-                    "404": {
-                        "description": "Not Found"
-                    }
-                }
-            }
-        },
-        "/api/v1/domains/page/{pageNum}": {
-            "get": {
-                "tags": [
-                    "common-risk-controller"
-                ],
-                "summary": "listDomainByPage",
-                "operationId": "listDomainByPageUsingGET",
-                "produces": [
-                    "*/*"
-                ],
-                "parameters": [
-                    {
-                        "name": "keyword",
-                        "in": "query",
-                        "description": "keyword",
-                        "required": false,
-                        "type": "string"
-                    },
-                    {
-                        "name": "orgId",
-                        "in": "query",
-                        "description": "orgId",
-                        "required": true,
-                        "type": "string"
-                    },
-                    {
-                        "name": "pageNum",
-                        "in": "path",
-                        "description": "pageNum",
-                        "required": true,
-                        "type": "integer",
-                        "format": "int32"
-                    },
-                    {
-                        "name": "pageSize",
-                        "in": "query",
-                        "description": "pageSize",
-                        "required": false,
-                        "type": "integer",
-                        "format": "int64"
-                    },
-                    {
-                        "name": "sortDir",
-                        "in": "query",
-                        "description": "sortDir",
-                        "required": false,
-                        "type": "string"
-                    },
-                    {
-                        "name": "sortField",
-                        "in": "query",
-                        "description": "sortField",
-                        "required": false,
-                        "type": "string"
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "schema": {
-                            "$ref": "#/definitions/ApiResponse"
-                        }
-                    },
-                    "401": {
-                        "description": "Unauthorized"
-                    },
-                    "403": {
-                        "description": "Forbidden"
-                    },
-                    "404": {
-                        "description": "Not Found"
-                    }
-                }
-            }
-        },
-        "/api/v1/impact": {
-            "get": {
-                "tags": [
-                    "common-risk-controller"
-                ],
-                "summary": "getImpact",
-                "operationId": "getImpactUsingGET",
-                "produces": [
-                    "*/*"
-                ],
-                "parameters": [
-                    {
-                        "name": "id",
-                        "in": "query",
-                        "description": "id",
-                        "required": true,
-                        "type": "integer",
-                        "format": "int64"
-                    },
-                    {
-                        "name": "orgId",
-                        "in": "query",
-                        "description": "orgId",
-                        "required": true,
-                        "type": "string"
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "schema": {
-                            "$ref": "#/definitions/ApiResponse"
-                        }
-                    },
-                    "401": {
-                        "description": "Unauthorized"
-                    },
-                    "403": {
-                        "description": "Forbidden"
-                    },
-                    "404": {
-                        "description": "Not Found"
-                    }
-                }
-            }
-        },
-        "/api/v1/impacts": {
-            "get": {
-                "tags": [
-                    "common-risk-controller"
-                ],
-                "summary": "getAllImpact",
-                "operationId": "getAllImpactUsingGET",
-                "produces": [
-                    "*/*"
-                ],
-                "parameters": [
-                    {
-                        "name": "orgId",
-                        "in": "query",
-                        "description": "orgId",
-                        "required": true,
-                        "type": "string"
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "schema": {
-                            "$ref": "#/definitions/ApiResponse"
-                        }
-                    },
-                    "401": {
-                        "description": "Unauthorized"
-                    },
-                    "403": {
-                        "description": "Forbidden"
-                    },
-                    "404": {
-                        "description": "Not Found"
-                    }
-                }
-            }
-        },
-        "/api/v1/likelyhood": {
-            "get": {
-                "tags": [
-                    "common-risk-controller"
-                ],
-                "summary": "getLikelyhood",
-                "operationId": "getLikelyhoodUsingGET",
-                "produces": [
-                    "*/*"
-                ],
-                "parameters": [
-                    {
-                        "name": "id",
-                        "in": "query",
-                        "description": "id",
-                        "required": true,
-                        "type": "integer",
-                        "format": "int64"
-                    },
-                    {
-                        "name": "orgId",
-                        "in": "query",
-                        "description": "orgId",
-                        "required": true,
-                        "type": "string"
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "schema": {
-                            "$ref": "#/definitions/ApiResponse"
-                        }
-                    },
-                    "401": {
-                        "description": "Unauthorized"
-                    },
-                    "403": {
-                        "description": "Forbidden"
-                    },
-                    "404": {
-                        "description": "Not Found"
-                    }
-                }
-            }
-        },
-        "/api/v1/likelyhoods": {
-            "get": {
-                "tags": [
-                    "common-risk-controller"
-                ],
-                "summary": "getAllLikelyhood",
-                "operationId": "getAllLikelyhoodUsingGET",
-                "produces": [
-                    "*/*"
-                ],
-                "parameters": [
-                    {
-                        "name": "orgId",
-                        "in": "query",
-                        "description": "orgId",
-                        "required": true,
-                        "type": "string"
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "schema": {
-                            "$ref": "#/definitions/ApiResponse"
-                        }
-                    },
-                    "401": {
-                        "description": "Unauthorized"
-                    },
-                    "403": {
-                        "description": "Forbidden"
-                    },
-                    "404": {
-                        "description": "Not Found"
-                    }
-                }
-            }
-        },
-        "/api/v1/login": {
-            "post": {
-                "tags": [
-                    "authentication-controller"
-                ],
-                "summary": "login",
-                "operationId": "loginUsingPOST",
-                "consumes": [
-                    "application/json"
-                ],
-                "produces": [
-                    "*/*"
-                ],
-                "parameters": [
-                    {
-                        "in": "body",
-                        "name": "authenticationRequest",
-                        "description": "authenticationRequest",
-                        "required": true,
-                        "schema": {
-                            "$ref": "#/definitions/AuthenticationRequest"
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "schema": {
-                            "$ref": "#/definitions/ApiResponse"
-                        }
-                    },
-                    "201": {
-                        "description": "Created"
-                    },
-                    "401": {
-                        "description": "Unauthorized"
-                    },
-                    "403": {
-                        "description": "Forbidden"
-                    },
-                    "404": {
-                        "description": "Not Found"
-                    }
-                }
-            }
-        },
-        "/api/v1/logout": {
-            "get": {
-                "tags": [
-                    "authentication-controller"
-                ],
-                "summary": "logout",
-                "operationId": "logoutUsingGET",
-                "produces": [
-                    "*/*"
-                ],
-                "parameters": [
-                    {
-                        "name": "username",
-                        "in": "query",
-                        "description": "username",
-                        "required": true,
-                        "type": "string"
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "schema": {
-                            "$ref": "#/definitions/ApiResponse"
-                        }
-                    },
-                    "401": {
-                        "description": "Unauthorized"
-                    },
-                    "403": {
-                        "description": "Forbidden"
-                    },
-                    "404": {
-                        "description": "Not Found"
-                    }
-                }
-            }
-        },
-        "/api/v1/organization": {
-            "get": {
-                "tags": [
-                    "organization-controller"
-                ],
-                "summary": "getOrganization",
-                "operationId": "getOrganizationUsingGET",
-                "produces": [
-                    "*/*"
-                ],
-                "parameters": [
-                    {
-                        "name": "orgId",
-                        "in": "query",
-                        "description": "orgId",
-                        "required": true,
-                        "type": "string"
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "schema": {
-                            "$ref": "#/definitions/ApiResponse"
-                        }
-                    },
-                    "401": {
-                        "description": "Unauthorized"
-                    },
-                    "403": {
-                        "description": "Forbidden"
-                    },
-                    "404": {
-                        "description": "Not Found"
-                    }
-                }
-            },
-            "post": {
-                "tags": [
-                    "organization-controller"
-                ],
-                "summary": "createOrganization",
-                "operationId": "createOrganizationUsingPOST",
-                "consumes": [
-                    "application/json"
-                ],
-                "produces": [
-                    "*/*"
-                ],
-                "parameters": [
-                    {
-                        "in": "body",
-                        "name": "organizationDTO",
-                        "description": "organizationDTO",
-                        "required": true,
-                        "schema": {
-                            "$ref": "#/definitions/OrganizationDTO"
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "schema": {
-                            "$ref": "#/definitions/ApiResponse"
-                        }
-                    },
-                    "201": {
-                        "description": "Created"
-                    },
-                    "401": {
-                        "description": "Unauthorized"
-                    },
-                    "403": {
-                        "description": "Forbidden"
-                    },
-                    "404": {
-                        "description": "Not Found"
-                    }
-                }
-            }
-        },
-        "/api/v1/organization/isAvailable": {
-            "get": {
-                "tags": [
-                    "organization-controller"
-                ],
-                "summary": "isOrganizationValid",
-                "operationId": "isOrganizationValidUsingGET",
-                "produces": [
-                    "*/*"
-                ],
-                "parameters": [
-                    {
-                        "name": "orgId",
-                        "in": "query",
-                        "description": "orgId",
-                        "required": true,
-                        "type": "string"
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "schema": {
-                            "$ref": "#/definitions/ApiResponse"
-                        }
-                    },
-                    "401": {
-                        "description": "Unauthorized"
-                    },
-                    "403": {
-                        "description": "Forbidden"
-                    },
-                    "404": {
-                        "description": "Not Found"
-                    }
-                }
-            }
-        },
-        "/api/v1/organization/logo": {
-            "get": {
-                "tags": [
-                    "organization-controller"
-                ],
-                "summary": "getOrgLogoByOrgId",
-                "operationId": "getOrgLogoByOrgIdUsingGET",
-                "produces": [
-                    "*/*"
-                ],
-                "parameters": [
-                    {
-                        "name": "orgId",
-                        "in": "query",
-                        "description": "orgId",
-                        "required": true,
-                        "type": "string"
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "schema": {
-                            "$ref": "#/definitions/ResponseEntity"
-                        }
-                    },
-                    "401": {
-                        "description": "Unauthorized"
-                    },
-                    "403": {
-                        "description": "Forbidden"
-                    },
-                    "404": {
-                        "description": "Not Found"
-                    }
-                }
-            },
-            "post": {
-                "tags": [
-                    "organization-controller"
-                ],
-                "summary": "uploadOrgLogo",
-                "operationId": "uploadOrgLogoUsingPOST",
-                "consumes": [
-                    "multipart/form-data"
-                ],
-                "produces": [
-                    "*/*"
-                ],
-                "parameters": [
-                    {
-                        "in": "body",
-                        "name": "logo",
-                        "description": "logo",
-                        "required": true,
-                        "schema": {
-                            "type": "string",
-                            "format": "binary"
-                        }
-                    },
-                    {
-                        "name": "orgId",
-                        "in": "query",
-                        "description": "orgId",
-                        "required": true,
-                        "type": "string"
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "schema": {
-                            "$ref": "#/definitions/ApiResponse"
-                        }
-                    },
-                    "201": {
-                        "description": "Created"
-                    },
-                    "401": {
-                        "description": "Unauthorized"
-                    },
-                    "403": {
-                        "description": "Forbidden"
-                    },
-                    "404": {
-                        "description": "Not Found"
-                    }
-                }
-            }
-        },
-        "/api/v1/organization/summary": {
-            "get": {
-                "tags": [
-                    "organization-controller"
-                ],
-                "summary": "getOrganizationSummaryByOrgId",
-                "operationId": "getOrganizationSummaryByOrgIdUsingGET",
-                "produces": [
-                    "*/*"
-                ],
-                "parameters": [
-                    {
-                        "name": "orgId",
-                        "in": "query",
-                        "description": "orgId",
-                        "required": true,
-                        "type": "string"
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "schema": {
-                            "$ref": "#/definitions/ApiResponse"
-                        }
-                    },
-                    "401": {
-                        "description": "Unauthorized"
-                    },
-                    "403": {
-                        "description": "Forbidden"
-                    },
-                    "404": {
-                        "description": "Not Found"
-                    }
-                }
-            }
-        },
-        "/api/v1/organization/user": {
-            "get": {
-                "tags": [
-                    "user-controller"
-                ],
-                "summary": "getUserById",
-                "operationId": "getUserByIdUsingGET",
-                "produces": [
-                    "*/*"
-                ],
-                "parameters": [
-                    {
-                        "name": "id",
-                        "in": "query",
-                        "description": "id",
-                        "required": true,
-                        "type": "integer",
-                        "format": "int64"
-                    },
-                    {
-                        "name": "orgId",
-                        "in": "query",
-                        "description": "orgId",
-                        "required": true,
-                        "type": "string"
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "schema": {
-                            "$ref": "#/definitions/ApiResponse"
-                        }
-                    },
-                    "401": {
-                        "description": "Unauthorized"
-                    },
-                    "403": {
-                        "description": "Forbidden"
-                    },
-                    "404": {
-                        "description": "Not Found"
-                    }
-                }
-            },
-            "post": {
-                "tags": [
-                    "user-controller"
-                ],
-                "summary": "createUserForOrganization",
-                "operationId": "createUserForOrganizationUsingPOST",
-                "consumes": [
-                    "application/json"
-                ],
-                "produces": [
-                    "*/*"
-                ],
-                "parameters": [
-                    {
-                        "in": "body",
-                        "name": "userDTO",
-                        "description": "userDTO",
-                        "required": true,
-                        "schema": {
-                            "$ref": "#/definitions/UserDTO"
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "schema": {
-                            "$ref": "#/definitions/ApiResponse"
-                        }
-                    },
-                    "201": {
-                        "description": "Created"
-                    },
-                    "401": {
-                        "description": "Unauthorized"
-                    },
-                    "403": {
-                        "description": "Forbidden"
-                    },
-                    "404": {
-                        "description": "Not Found"
-                    }
-                }
-            }
-        },
-        "/api/v1/organization/user/resend/invitation": {
-            "get": {
-                "tags": [
-                    "user-controller"
-                ],
-                "summary": "reSendInvitationEmail",
-                "operationId": "reSendInvitationEmailUsingGET",
-                "produces": [
-                    "*/*"
-                ],
-                "parameters": [
-                    {
-                        "name": "orgId",
-                        "in": "query",
-                        "description": "orgId",
-                        "required": true,
-                        "type": "string"
-                    },
-                    {
-                        "name": "userId",
-                        "in": "query",
-                        "description": "userId",
-                        "required": true,
-                        "type": "integer",
-                        "format": "int64"
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "schema": {
-                            "$ref": "#/definitions/ApiResponse"
-                        }
-                    },
-                    "401": {
-                        "description": "Unauthorized"
-                    },
-                    "403": {
-                        "description": "Forbidden"
-                    },
-                    "404": {
-                        "description": "Not Found"
-                    }
-                }
-            }
-        },
-        "/api/v1/organization/users": {
-            "post": {
-                "tags": [
-                    "user-controller"
-                ],
-                "summary": "getUsers",
-                "operationId": "getUsersUsingPOST",
-                "consumes": [
-                    "application/json"
-                ],
-                "produces": [
-                    "*/*"
-                ],
-                "parameters": [
-                    {
-                        "in": "body",
-                        "name": "paginationRequestDTO",
-                        "description": "paginationRequestDTO",
-                        "required": true,
-                        "schema": {
-                            "$ref": "#/definitions/PaginationRequestDTO"
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "schema": {
-                            "$ref": "#/definitions/ApiResponse"
-                        }
-                    },
-                    "201": {
-                        "description": "Created"
-                    },
-                    "401": {
-                        "description": "Unauthorized"
-                    },
-                    "403": {
-                        "description": "Forbidden"
-                    },
-                    "404": {
-                        "description": "Not Found"
-                    }
-                }
-            }
-        },
-        "/api/v1/organizations": {
-            "post": {
-                "tags": [
-                    "organization-controller"
-                ],
-                "summary": "getOrganizations",
-                "operationId": "getOrganizationsUsingPOST",
-                "consumes": [
-                    "application/json"
-                ],
-                "produces": [
-                    "*/*"
-                ],
-                "parameters": [
-                    {
-                        "in": "body",
-                        "name": "paginationRequestDTO",
-                        "description": "paginationRequestDTO",
-                        "required": true,
-                        "schema": {
-                            "$ref": "#/definitions/PaginationRequestDTO"
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "schema": {
-                            "$ref": "#/definitions/ApiResponse"
-                        }
-                    },
-                    "201": {
-                        "description": "Created"
-                    },
-                    "401": {
-                        "description": "Unauthorized"
-                    },
-                    "403": {
-                        "description": "Forbidden"
-                    },
-                    "404": {
-                        "description": "Not Found"
-                    }
-                }
-            }
-        },
-        "/api/v1/organizations/list": {
-            "get": {
-                "tags": [
-                    "organization-controller"
-                ],
-                "summary": "getOrganizationsList",
-                "operationId": "getOrganizationsListUsingGET",
-                "produces": [
-                    "*/*"
-                ],
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "schema": {
-                            "$ref": "#/definitions/ApiResponse"
-                        }
-                    },
-                    "401": {
-                        "description": "Unauthorized"
-                    },
-                    "403": {
-                        "description": "Forbidden"
-                    },
-                    "404": {
-                        "description": "Not Found"
-                    }
-                }
-            }
-        },
-        "/api/v1/permissions": {
-            "get": {
-                "tags": [
-                    "authorization-controller"
-                ],
-                "summary": "getPermissions",
-                "operationId": "getPermissionsUsingGET",
-                "produces": [
-                    "*/*"
-                ],
-                "parameters": [
-                    {
-                        "name": "orgId",
-                        "in": "query",
-                        "description": "orgId",
-                        "required": true,
-                        "type": "string"
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "schema": {
-                            "$ref": "#/definitions/ApiResponse"
-                        }
-                    },
-                    "401": {
-                        "description": "Unauthorized"
-                    },
-                    "403": {
-                        "description": "Forbidden"
-                    },
-                    "404": {
-                        "description": "Not Found"
-                    }
-                }
-            }
-        },
-        "/api/v1/project": {
-            "post": {
-                "tags": [
-                    "project-controller"
-                ],
-                "summary": "createProject",
-                "operationId": "createProjectUsingPOST",
-                "consumes": [
-                    "application/json"
-                ],
-                "produces": [
-                    "*/*"
-                ],
-                "parameters": [
-                    {
-                        "in": "body",
-                        "name": "projectDTO",
-                        "description": "projectDTO",
-                        "required": true,
-                        "schema": {
-                            "$ref": "#/definitions/ProjectDTO"
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "schema": {
-                            "$ref": "#/definitions/ApiResponse"
-                        }
-                    },
-                    "201": {
-                        "description": "Created"
-                    },
-                    "401": {
-                        "description": "Unauthorized"
-                    },
-                    "403": {
-                        "description": "Forbidden"
-                    },
-                    "404": {
-                        "description": "Not Found"
-                    }
-                }
-            }
-        },
-        "/api/v1/referenceLibrary": {
-            "get": {
-                "tags": [
-                    "common-controller"
-                ],
-                "summary": "getGroupValuesByGroupCode",
-                "operationId": "getGroupValuesByGroupCodeUsingGET",
-                "produces": [
-                    "*/*"
-                ],
-                "parameters": [
-                    {
-                        "name": "groupCode",
-                        "in": "query",
-                        "description": "groupCode",
-                        "required": true,
-                        "type": "string"
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "schema": {
-                            "$ref": "#/definitions/ApiResponse"
-                        }
-                    },
-                    "401": {
-                        "description": "Unauthorized"
-                    },
-                    "403": {
-                        "description": "Forbidden"
-                    },
-                    "404": {
-                        "description": "Not Found"
-                    }
-                }
-            }
-        },
-        "/api/v1/refreshToken": {
-            "post": {
-                "tags": [
-                    "authentication-controller"
-                ],
-                "summary": "getTokenByRefreshToken",
-                "operationId": "getTokenByRefreshTokenUsingPOST",
-                "consumes": [
-                    "application/json"
-                ],
-                "produces": [
-                    "*/*"
-                ],
-                "parameters": [
-                    {
-                        "in": "body",
-                        "name": "refreshToken",
-                        "description": "refreshToken",
-                        "required": true,
-                        "schema": {
-                            "$ref": "#/definitions/RefreshTokenDTO"
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "schema": {
-                            "$ref": "#/definitions/ApiResponse"
-                        }
-                    },
-                    "201": {
-                        "description": "Created"
-                    },
-                    "401": {
-                        "description": "Unauthorized"
-                    },
-                    "403": {
-                        "description": "Forbidden"
-                    },
-                    "404": {
-                        "description": "Not Found"
-                    }
-                }
-            }
-        },
-        "/api/v1/reset": {
-            "post": {
-                "tags": [
-                    "user-controller"
-                ],
-                "summary": "generateResetPasswordLink",
-                "operationId": "generateResetPasswordLinkUsingPOST",
-                "consumes": [
-                    "application/json"
-                ],
-                "produces": [
-                    "*/*"
-                ],
-                "parameters": [
-                    {
-                        "name": "orgId",
-                        "in": "query",
-                        "description": "orgId",
-                        "required": true,
-                        "type": "string"
-                    },
-                    {
-                        "name": "username",
-                        "in": "query",
-                        "description": "username",
-                        "required": true,
-                        "type": "string"
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "schema": {
-                            "$ref": "#/definitions/ApiResponse"
-                        }
-                    },
-                    "201": {
-                        "description": "Created"
-                    },
-                    "401": {
-                        "description": "Unauthorized"
-                    },
-                    "403": {
-                        "description": "Forbidden"
-                    },
-                    "404": {
-                        "description": "Not Found"
-                    }
-                }
-            }
-        },
-        "/api/v1/reset/password": {
-            "post": {
-                "tags": [
-                    "user-controller"
-                ],
-                "summary": "resetPassword",
-                "operationId": "resetPasswordUsingPOST",
-                "consumes": [
-                    "application/json"
-                ],
-                "produces": [
-                    "*/*"
-                ],
-                "parameters": [
-                    {
-                        "in": "body",
-                        "name": "resetPasswordDTO",
-                        "description": "resetPasswordDTO",
-                        "required": true,
-                        "schema": {
-                            "$ref": "#/definitions/ResetPasswordDTO"
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "schema": {
-                            "$ref": "#/definitions/ApiResponse"
-                        }
-                    },
-                    "201": {
-                        "description": "Created"
-                    },
-                    "401": {
-                        "description": "Unauthorized"
-                    },
-                    "403": {
-                        "description": "Forbidden"
-                    },
-                    "404": {
-                        "description": "Not Found"
-                    }
-                }
-            }
-        },
-        "/api/v1/risk": {
-            "post": {
-                "tags": [
-                    "risk-controller"
-                ],
-                "summary": "createOrUpdateRisk",
-                "operationId": "createOrUpdateRiskUsingPOST",
-                "consumes": [
-                    "application/json"
-                ],
-                "produces": [
-                    "*/*"
-                ],
-                "parameters": [
-                    {
-                        "in": "body",
-                        "name": "riskDTO",
-                        "description": "riskDTO",
-                        "required": true,
-                        "schema": {
-                            "$ref": "#/definitions/RiskDTO"
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "schema": {
-                            "$ref": "#/definitions/ApiResponse"
-                        }
-                    },
-                    "201": {
-                        "description": "Created"
-                    },
-                    "401": {
-                        "description": "Unauthorized"
-                    },
-                    "403": {
-                        "description": "Forbidden"
-                    },
-                    "404": {
-                        "description": "Not Found"
-                    }
-                }
-            }
-        },
-        "/api/v1/risk/control": {
-            "post": {
-                "tags": [
-                    "risk-controller"
-                ],
-                "summary": "createOrUpdateRiskControl",
-                "operationId": "createOrUpdateRiskControlUsingPOST",
-                "consumes": [
-                    "application/json"
-                ],
-                "produces": [
-                    "*/*"
-                ],
-                "parameters": [
-                    {
-                        "in": "body",
-                        "name": "riskControlDTO",
-                        "description": "riskControlDTO",
-                        "required": true,
-                        "schema": {
-                            "$ref": "#/definitions/RiskControlDTO"
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "schema": {
-                            "$ref": "#/definitions/ApiResponse"
-                        }
-                    },
-                    "201": {
-                        "description": "Created"
-                    },
-                    "401": {
-                        "description": "Unauthorized"
-                    },
-                    "403": {
-                        "description": "Forbidden"
-                    },
-                    "404": {
-                        "description": "Not Found"
-                    }
-                }
-            }
-        },
-        "/api/v1/risk/control/{id}": {
-            "delete": {
-                "tags": [
-                    "risk-controller"
-                ],
-                "summary": "deleteRiskControlById",
-                "operationId": "deleteRiskControlByIdUsingDELETE",
-                "produces": [
-                    "*/*"
-                ],
-                "parameters": [
-                    {
-                        "name": "id",
-                        "in": "path",
-                        "description": "id",
-                        "required": true,
-                        "type": "integer",
-                        "format": "int64"
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "schema": {
-                            "$ref": "#/definitions/ApiResponse"
-                        }
-                    },
-                    "204": {
-                        "description": "No Content"
-                    },
-                    "401": {
-                        "description": "Unauthorized"
-                    },
-                    "403": {
-                        "description": "Forbidden"
-                    }
-                }
-            }
-        },
-        "/api/v1/risk/dashboard": {
-            "get": {
-                "tags": [
-                    "common-risk-controller"
-                ],
-                "summary": "getDashboardCounts",
-                "operationId": "getDashboardCountsUsingGET",
-                "produces": [
-                    "*/*"
-                ],
-                "parameters": [
-                    {
-                        "name": "orgId",
-                        "in": "query",
-                        "description": "orgId",
-                        "required": true,
-                        "type": "string"
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "schema": {
-                            "$ref": "#/definitions/ApiResponse"
-                        }
-                    },
-                    "401": {
-                        "description": "Unauthorized"
-                    },
-                    "403": {
-                        "description": "Forbidden"
-                    },
-                    "404": {
-                        "description": "Not Found"
-                    }
-                }
-            }
-        },
-        "/api/v1/risk/{id}": {
-            "get": {
-                "tags": [
-                    "risk-controller"
-                ],
-                "summary": "getRiskById",
-                "operationId": "getRiskByIdUsingGET",
-                "produces": [
-                    "*/*"
-                ],
-                "parameters": [
-                    {
-                        "name": "id",
-                        "in": "path",
-                        "description": "id",
-                        "required": true,
-                        "type": "integer",
-                        "format": "int64"
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "schema": {
-                            "$ref": "#/definitions/ApiResponse"
-                        }
-                    },
-                    "401": {
-                        "description": "Unauthorized"
-                    },
-                    "403": {
-                        "description": "Forbidden"
-                    },
-                    "404": {
-                        "description": "Not Found"
-                    }
-                }
-            },
-            "delete": {
-                "tags": [
-                    "risk-controller"
-                ],
-                "summary": "deleteRiskById",
-                "operationId": "deleteRiskByIdUsingDELETE",
-                "produces": [
-                    "*/*"
-                ],
-                "parameters": [
-                    {
-                        "name": "id",
-                        "in": "path",
-                        "description": "id",
-                        "required": true,
-                        "type": "integer",
-                        "format": "int64"
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "schema": {
-                            "$ref": "#/definitions/ApiResponse"
-                        }
-                    },
-                    "204": {
-                        "description": "No Content"
-                    },
-                    "401": {
-                        "description": "Unauthorized"
-                    },
-                    "403": {
-                        "description": "Forbidden"
-                    }
-                }
-            }
-        },
-        "/api/v1/risks": {
-            "post": {
-                "tags": [
-                    "risk-controller"
-                ],
-                "summary": "getRisks",
-                "operationId": "getRisksUsingPOST",
-                "consumes": [
-                    "application/json"
-                ],
-                "produces": [
-                    "*/*"
-                ],
-                "parameters": [
-                    {
-                        "in": "body",
-                        "name": "paginationRequestDTO",
-                        "description": "paginationRequestDTO",
-                        "required": true,
-                        "schema": {
-                            "$ref": "#/definitions/PaginationRequestDTO"
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "schema": {
-                            "$ref": "#/definitions/ApiResponse"
-                        }
-                    },
-                    "201": {
-                        "description": "Created"
-                    },
-                    "401": {
-                        "description": "Unauthorized"
-                    },
-                    "403": {
-                        "description": "Forbidden"
-                    },
-                    "404": {
-                        "description": "Not Found"
-                    }
-                }
-            }
-        },
-        "/api/v1/role": {
-            "get": {
-                "tags": [
-                    "authorization-controller"
-                ],
-                "summary": "getRoleById",
-                "operationId": "getRoleByIdUsingGET",
-                "produces": [
-                    "*/*"
-                ],
-                "parameters": [
-                    {
-                        "name": "orgId",
-                        "in": "query",
-                        "description": "orgId",
-                        "required": true,
-                        "type": "string"
-                    },
-                    {
-                        "name": "roleId",
-                        "in": "query",
-                        "description": "roleId",
-                        "required": true,
-                        "type": "integer",
-                        "format": "int64"
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "schema": {
-                            "$ref": "#/definitions/ApiResponse"
-                        }
-                    },
-                    "401": {
-                        "description": "Unauthorized"
-                    },
-                    "403": {
-                        "description": "Forbidden"
-                    },
-                    "404": {
-                        "description": "Not Found"
-                    }
-                }
-            },
-            "post": {
-                "tags": [
-                    "authorization-controller"
-                ],
-                "summary": "createRole",
-                "operationId": "createRoleUsingPOST",
-                "consumes": [
-                    "application/json"
-                ],
-                "produces": [
-                    "*/*"
-                ],
-                "parameters": [
-                    {
-                        "in": "body",
-                        "name": "roleDTO",
-                        "description": "roleDTO",
-                        "required": true,
-                        "schema": {
-                            "$ref": "#/definitions/RoleDTO"
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "schema": {
-                            "$ref": "#/definitions/ApiResponse"
-                        }
-                    },
-                    "201": {
-                        "description": "Created"
-                    },
-                    "401": {
-                        "description": "Unauthorized"
-                    },
-                    "403": {
-                        "description": "Forbidden"
-                    },
-                    "404": {
-                        "description": "Not Found"
-                    }
-                }
-            }
-        },
-        "/api/v1/rolePermission": {
-            "get": {
-                "tags": [
-                    "authorization-controller"
-                ],
-                "summary": "getRolePermissionByRoleId",
-                "operationId": "getRolePermissionByRoleIdUsingGET",
-                "produces": [
-                    "*/*"
-                ],
-                "parameters": [
-                    {
-                        "name": "orgId",
-                        "in": "query",
-                        "description": "orgId",
-                        "required": true,
-                        "type": "string"
-                    },
-                    {
-                        "name": "roleId",
-                        "in": "query",
-                        "description": "roleId",
-                        "required": true,
-                        "type": "integer",
-                        "format": "int64"
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "schema": {
-                            "$ref": "#/definitions/ApiResponse"
-                        }
-                    },
-                    "401": {
-                        "description": "Unauthorized"
-                    },
-                    "403": {
-                        "description": "Forbidden"
-                    },
-                    "404": {
-                        "description": "Not Found"
-                    }
-                }
-            },
-            "post": {
-                "tags": [
-                    "authorization-controller"
-                ],
-                "summary": "createRolePermission",
-                "operationId": "createRolePermissionUsingPOST",
-                "consumes": [
-                    "application/json"
-                ],
-                "produces": [
-                    "*/*"
-                ],
-                "parameters": [
-                    {
-                        "in": "body",
-                        "name": "rolePermDTO",
-                        "description": "rolePermDTO",
-                        "required": true,
-                        "schema": {
-                            "$ref": "#/definitions/RolePermissionDTO"
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "schema": {
-                            "$ref": "#/definitions/ApiResponse"
-                        }
-                    },
-                    "201": {
-                        "description": "Created"
-                    },
-                    "401": {
-                        "description": "Unauthorized"
-                    },
-                    "403": {
-                        "description": "Forbidden"
-                    },
-                    "404": {
-                        "description": "Not Found"
-                    }
-                }
-            }
-        },
-        "/api/v1/roles": {
-            "get": {
-                "tags": [
-                    "authorization-controller"
-                ],
-                "summary": "getRoles",
-                "operationId": "getRolesUsingGET",
-                "produces": [
-                    "*/*"
-                ],
-                "parameters": [
-                    {
-                        "name": "orgId",
-                        "in": "query",
-                        "description": "orgId",
-                        "required": true,
-                        "type": "string"
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "schema": {
-                            "$ref": "#/definitions/ApiResponse"
-                        }
-                    },
-                    "401": {
-                        "description": "Unauthorized"
-                    },
-                    "403": {
-                        "description": "Forbidden"
-                    },
-                    "404": {
-                        "description": "Not Found"
-                    }
-                }
-            }
-        },
-        "/api/v1/scoringModel": {
-            "get": {
-                "tags": [
-                    "scoring-model-controller"
-                ],
-                "summary": "getScoringModel",
-                "operationId": "getScoringModelUsingGET",
-                "produces": [
-                    "*/*"
-                ],
-                "parameters": [
-                    {
-                        "name": "id",
-                        "in": "query",
-                        "description": "id",
-                        "required": true,
-                        "type": "integer",
-                        "format": "int64"
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "schema": {
-                            "$ref": "#/definitions/ApiResponse"
-                        }
-                    },
-                    "401": {
-                        "description": "Unauthorized"
-                    },
-                    "403": {
-                        "description": "Forbidden"
-                    },
-                    "404": {
-                        "description": "Not Found"
-                    }
-                }
-            },
-            "post": {
-                "tags": [
-                    "scoring-model-controller"
-                ],
-                "summary": "createScoringModel",
-                "operationId": "createScoringModelUsingPOST",
-                "consumes": [
-                    "application/json"
-                ],
-                "produces": [
-                    "*/*"
-                ],
-                "parameters": [
-                    {
-                        "in": "body",
-                        "name": "scoringModelDTO",
-                        "description": "scoringModelDTO",
-                        "required": true,
-                        "schema": {
-                            "$ref": "#/definitions/ScoringModelDTO"
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "schema": {
-                            "$ref": "#/definitions/ApiResponse"
-                        }
-                    },
-                    "201": {
-                        "description": "Created"
-                    },
-                    "401": {
-                        "description": "Unauthorized"
-                    },
-                    "403": {
-                        "description": "Forbidden"
-                    },
-                    "404": {
-                        "description": "Not Found"
-                    }
-                }
-            }
-        },
-        "/api/v1/scoringModels": {
-            "get": {
-                "tags": [
-                    "scoring-model-controller"
-                ],
-                "summary": "getScoringModels",
-                "operationId": "getScoringModelsUsingGET",
-                "produces": [
-                    "*/*"
-                ],
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "schema": {
-                            "$ref": "#/definitions/ApiResponse"
-                        }
-                    },
-                    "401": {
-                        "description": "Unauthorized"
-                    },
-                    "403": {
-                        "description": "Forbidden"
-                    },
-                    "404": {
-                        "description": "Not Found"
-                    }
-                }
-            }
-        },
-        "/api/v1/states": {
-            "get": {
-                "tags": [
-                    "common-controller"
-                ],
-                "summary": "getStatesByCountryCode",
-                "operationId": "getStatesByCountryCodeUsingGET",
-                "produces": [
-                    "*/*"
-                ],
-                "parameters": [
-                    {
-                        "name": "countryCode",
-                        "in": "query",
-                        "description": "countryCode",
-                        "required": true,
-                        "type": "string"
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "schema": {
-                            "$ref": "#/definitions/ApiResponse"
-                        }
-                    },
-                    "401": {
-                        "description": "Unauthorized"
-                    },
-                    "403": {
-                        "description": "Forbidden"
-                    },
-                    "404": {
-                        "description": "Not Found"
-                    }
-                }
-            }
-        },
-        "/api/v1/template": {
-            "get": {
-                "tags": [
-                    "template-controller"
-                ],
-                "summary": "getTemplate",
-                "operationId": "getTemplateUsingGET",
-                "produces": [
-                    "*/*"
-                ],
-                "parameters": [
-                    {
-                        "name": "orgId",
-                        "in": "query",
-                        "description": "orgId",
-                        "required": true,
-                        "type": "string"
-                    },
-                    {
-                        "name": "templateId",
-                        "in": "query",
-                        "description": "templateId",
-                        "required": true,
-                        "type": "integer",
-                        "format": "int64"
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "schema": {
-                            "$ref": "#/definitions/ApiResponse"
-                        }
-                    },
-                    "401": {
-                        "description": "Unauthorized"
-                    },
-                    "403": {
-                        "description": "Forbidden"
-                    },
-                    "404": {
-                        "description": "Not Found"
-                    }
-                }
-            },
-            "post": {
-                "tags": [
-                    "template-controller"
-                ],
-                "summary": "createTemplate",
-                "operationId": "createTemplateUsingPOST",
-                "consumes": [
-                    "application/json"
-                ],
-                "produces": [
-                    "*/*"
-                ],
-                "parameters": [
-                    {
-                        "in": "body",
-                        "name": "templateDTO",
-                        "description": "templateDTO",
-                        "required": true,
-                        "schema": {
-                            "$ref": "#/definitions/TemplateDTO"
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "schema": {
-                            "$ref": "#/definitions/ApiResponse"
-                        }
-                    },
-                    "201": {
-                        "description": "Created"
-                    },
-                    "401": {
-                        "description": "Unauthorized"
-                    },
-                    "403": {
-                        "description": "Forbidden"
-                    },
-                    "404": {
-                        "description": "Not Found"
-                    }
-                }
-            }
-        },
-        "/api/v1/template/page/{pageNum}": {
-            "get": {
-                "tags": [
-                    "template-controller"
-                ],
-                "summary": "listTemplateByPage",
-                "operationId": "listTemplateByPageUsingGET",
-                "produces": [
-                    "*/*"
-                ],
-                "parameters": [
-                    {
-                        "name": "keyword",
-                        "in": "query",
-                        "description": "keyword",
-                        "required": false,
-                        "type": "string"
-                    },
-                    {
-                        "name": "orgId",
-                        "in": "query",
-                        "description": "orgId",
-                        "required": true,
-                        "type": "string"
-                    },
-                    {
-                        "name": "pageNum",
-                        "in": "path",
-                        "description": "pageNum",
-                        "required": true,
-                        "type": "integer",
-                        "format": "int32"
-                    },
-                    {
-                        "name": "pageSize",
-                        "in": "query",
-                        "description": "pageSize",
-                        "required": false,
-                        "type": "integer",
-                        "format": "int64"
-                    },
-                    {
-                        "name": "sortDir",
-                        "in": "query",
-                        "description": "sortDir",
-                        "required": false,
-                        "type": "string"
-                    },
-                    {
-                        "name": "sortField",
-                        "in": "query",
-                        "description": "sortField",
-                        "required": false,
-                        "type": "string"
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "schema": {
-                            "$ref": "#/definitions/ApiResponse"
-                        }
-                    },
-                    "401": {
-                        "description": "Unauthorized"
-                    },
-                    "403": {
-                        "description": "Forbidden"
-                    },
-                    "404": {
-                        "description": "Not Found"
-                    }
-                }
-            }
-        },
-        "/api/v1/user/{id}/profilePic": {
-            "get": {
-                "tags": [
-                    "user-controller"
-                ],
-                "summary": "getProfilePicByUserId",
-                "operationId": "getProfilePicByUserIdUsingGET",
-                "produces": [
-                    "*/*"
-                ],
-                "parameters": [
-                    {
-                        "name": "id",
-                        "in": "path",
-                        "description": "id",
-                        "required": true,
-                        "type": "integer",
-                        "format": "int64"
-                    },
-                    {
-                        "name": "orgId",
-                        "in": "query",
-                        "description": "orgId",
-                        "required": true,
-                        "type": "string"
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "schema": {
-                            "$ref": "#/definitions/ResponseEntity"
-                        }
-                    },
-                    "401": {
-                        "description": "Unauthorized"
-                    },
-                    "403": {
-                        "description": "Forbidden"
-                    },
-                    "404": {
-                        "description": "Not Found"
-                    }
-                }
-            },
-            "post": {
-                "tags": [
-                    "user-controller"
-                ],
-                "summary": "uploadProfilePic",
-                "operationId": "uploadProfilePicUsingPOST",
-                "consumes": [
-                    "multipart/form-data"
-                ],
-                "produces": [
-                    "*/*"
-                ],
-                "parameters": [
-                    {
-                        "name": "id",
-                        "in": "path",
-                        "description": "id",
-                        "required": true,
-                        "type": "integer",
-                        "format": "int64"
-                    },
-                    {
-                        "name": "orgId",
-                        "in": "query",
-                        "description": "orgId",
-                        "required": true,
-                        "type": "string"
-                    },
-                    {
-                        "in": "body",
-                        "name": "profilePic",
-                        "description": "profilePic",
-                        "required": true,
-                        "schema": {
-                            "type": "string",
-                            "format": "binary"
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "schema": {
-                            "$ref": "#/definitions/ApiResponse"
-                        }
-                    },
-                    "201": {
-                        "description": "Created"
-                    },
-                    "401": {
-                        "description": "Unauthorized"
-                    },
-                    "403": {
-                        "description": "Forbidden"
-                    },
-                    "404": {
-                        "description": "Not Found"
-                    }
-                }
-            }
-        },
-        "/api/v1/user/{id}/summary": {
-            "get": {
-                "tags": [
-                    "user-controller"
-                ],
-                "summary": "getUserSummary",
-                "operationId": "getUserSummaryUsingGET",
-                "produces": [
-                    "*/*"
-                ],
-                "parameters": [
-                    {
-                        "name": "id",
-                        "in": "path",
-                        "description": "id",
-                        "required": true,
-                        "type": "integer",
-                        "format": "int64"
-                    },
-                    {
-                        "name": "orgId",
-                        "in": "query",
-                        "description": "orgId",
-                        "required": true,
-                        "type": "string"
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "schema": {
-                            "$ref": "#/definitions/ApiResponse"
-                        }
-                    },
-                    "401": {
-                        "description": "Unauthorized"
-                    },
-                    "403": {
-                        "description": "Forbidden"
-                    },
-                    "404": {
-                        "description": "Not Found"
-                    }
-                }
-            }
-        },
-        "/api/v1/userDepartment": {
-            "get": {
-                "tags": [
-                    "department-controller"
-                ],
-                "summary": "getUserDepartment",
-                "operationId": "getUserDepartmentUsingGET",
-                "produces": [
-                    "*/*"
-                ],
-                "parameters": [
-                    {
-                        "name": "orgId",
-                        "in": "query",
-                        "description": "orgId",
-                        "required": true,
-                        "type": "string"
-                    },
-                    {
-                        "name": "userId",
-                        "in": "query",
-                        "description": "userId",
-                        "required": true,
-                        "type": "integer",
-                        "format": "int64"
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "schema": {
-                            "$ref": "#/definitions/ApiResponse"
-                        }
-                    },
-                    "401": {
-                        "description": "Unauthorized"
-                    },
-                    "403": {
-                        "description": "Forbidden"
-                    },
-                    "404": {
-                        "description": "Not Found"
-                    }
-                }
-            },
-            "post": {
-                "tags": [
-                    "department-controller"
-                ],
-                "summary": "createUserDepartment",
-                "operationId": "createUserDepartmentUsingPOST",
-                "consumes": [
-                    "application/json"
-                ],
-                "produces": [
-                    "*/*"
-                ],
-                "parameters": [
-                    {
-                        "in": "body",
-                        "name": "userDepartmentDTO",
-                        "description": "userDepartmentDTO",
-                        "required": true,
-                        "schema": {
-                            "$ref": "#/definitions/UserDepartmentDTO"
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "schema": {
-                            "$ref": "#/definitions/ApiResponse"
-                        }
-                    },
-                    "201": {
-                        "description": "Created"
-                    },
-                    "401": {
-                        "description": "Unauthorized"
-                    },
-                    "403": {
-                        "description": "Forbidden"
-                    },
-                    "404": {
-                        "description": "Not Found"
-                    }
-                }
-            }
-        },
-        "/api/v1/userRole": {
-            "get": {
-                "tags": [
-                    "authorization-controller"
-                ],
-                "summary": "getUserRoleByUserId",
-                "operationId": "getUserRoleByUserIdUsingGET",
-                "produces": [
-                    "*/*"
-                ],
-                "parameters": [
-                    {
-                        "name": "orgId",
-                        "in": "query",
-                        "description": "orgId",
-                        "required": true,
-                        "type": "string"
-                    },
-                    {
-                        "name": "userId",
-                        "in": "query",
-                        "description": "userId",
-                        "required": true,
-                        "type": "integer",
-                        "format": "int64"
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "schema": {
-                            "$ref": "#/definitions/ApiResponse"
-                        }
-                    },
-                    "401": {
-                        "description": "Unauthorized"
-                    },
-                    "403": {
-                        "description": "Forbidden"
-                    },
-                    "404": {
-                        "description": "Not Found"
-                    }
-                }
-            },
-            "post": {
-                "tags": [
-                    "authorization-controller"
-                ],
-                "summary": "createUserRole",
-                "operationId": "createUserRoleUsingPOST",
-                "consumes": [
-                    "application/json"
-                ],
-                "produces": [
-                    "*/*"
-                ],
-                "parameters": [
-                    {
-                        "in": "body",
-                        "name": "userRoleDTO",
-                        "description": "userRoleDTO",
-                        "required": true,
-                        "schema": {
-                            "$ref": "#/definitions/UserRoleDTO"
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "schema": {
-                            "$ref": "#/definitions/ApiResponse"
-                        }
-                    },
-                    "201": {
-                        "description": "Created"
-                    },
-                    "401": {
-                        "description": "Unauthorized"
-                    },
-                    "403": {
-                        "description": "Forbidden"
-                    },
-                    "404": {
-                        "description": "Not Found"
-                    }
-                }
-            }
-        },
-        "/error": {
-            "get": {
-                "tags": [
-                    "basic-error-controller"
-                ],
-                "summary": "errorHtml",
-                "operationId": "errorHtmlUsingGET",
-                "produces": [
-                    "text/html"
-                ],
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "schema": {
-                            "$ref": "#/definitions/ModelAndView"
-                        }
-                    },
-                    "401": {
-                        "description": "Unauthorized"
-                    },
-                    "403": {
-                        "description": "Forbidden"
-                    },
-                    "404": {
-                        "description": "Not Found"
-                    }
-                }
-            },
-            "head": {
-                "tags": [
-                    "basic-error-controller"
-                ],
-                "summary": "errorHtml",
-                "operationId": "errorHtmlUsingHEAD",
-                "consumes": [
-                    "application/json"
-                ],
-                "produces": [
-                    "text/html"
-                ],
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "schema": {
-                            "$ref": "#/definitions/ModelAndView"
-                        }
-                    },
-                    "204": {
-                        "description": "No Content"
-                    },
-                    "401": {
-                        "description": "Unauthorized"
-                    },
-                    "403": {
-                        "description": "Forbidden"
-                    }
-                }
-            },
-            "post": {
-                "tags": [
-                    "basic-error-controller"
-                ],
-                "summary": "errorHtml",
-                "operationId": "errorHtmlUsingPOST",
-                "consumes": [
-                    "application/json"
-                ],
-                "produces": [
-                    "text/html"
-                ],
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "schema": {
-                            "$ref": "#/definitions/ModelAndView"
-                        }
-                    },
-                    "201": {
-                        "description": "Created"
-                    },
-                    "401": {
-                        "description": "Unauthorized"
-                    },
-                    "403": {
-                        "description": "Forbidden"
-                    },
-                    "404": {
-                        "description": "Not Found"
-                    }
-                }
-            },
-            "put": {
-                "tags": [
-                    "basic-error-controller"
-                ],
-                "summary": "errorHtml",
-                "operationId": "errorHtmlUsingPUT",
-                "consumes": [
-                    "application/json"
-                ],
-                "produces": [
-                    "text/html"
-                ],
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "schema": {
-                            "$ref": "#/definitions/ModelAndView"
-                        }
-                    },
-                    "201": {
-                        "description": "Created"
-                    },
-                    "401": {
-                        "description": "Unauthorized"
-                    },
-                    "403": {
-                        "description": "Forbidden"
-                    },
-                    "404": {
-                        "description": "Not Found"
-                    }
-                }
-            },
-            "delete": {
-                "tags": [
-                    "basic-error-controller"
-                ],
-                "summary": "errorHtml",
-                "operationId": "errorHtmlUsingDELETE",
-                "produces": [
-                    "text/html"
-                ],
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "schema": {
-                            "$ref": "#/definitions/ModelAndView"
-                        }
-                    },
-                    "204": {
-                        "description": "No Content"
-                    },
-                    "401": {
-                        "description": "Unauthorized"
-                    },
-                    "403": {
-                        "description": "Forbidden"
-                    }
-                }
-            },
-            "options": {
-                "tags": [
-                    "basic-error-controller"
-                ],
-                "summary": "errorHtml",
-                "operationId": "errorHtmlUsingOPTIONS",
-                "consumes": [
-                    "application/json"
-                ],
-                "produces": [
-                    "text/html"
-                ],
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "schema": {
-                            "$ref": "#/definitions/ModelAndView"
-                        }
-                    },
-                    "204": {
-                        "description": "No Content"
-                    },
-                    "401": {
-                        "description": "Unauthorized"
-                    },
-                    "403": {
-                        "description": "Forbidden"
-                    }
-                }
-            },
-            "patch": {
-                "tags": [
-                    "basic-error-controller"
-                ],
-                "summary": "errorHtml",
-                "operationId": "errorHtmlUsingPATCH",
-                "consumes": [
-                    "application/json"
-                ],
-                "produces": [
-                    "text/html"
-                ],
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "schema": {
-                            "$ref": "#/definitions/ModelAndView"
-                        }
-                    },
-                    "204": {
-                        "description": "No Content"
-                    },
-                    "401": {
-                        "description": "Unauthorized"
-                    },
-                    "403": {
-                        "description": "Forbidden"
-                    }
-                }
-            }
-        }
-    },
-    "definitions": {
-        "Address": {
-            "type": "object",
-            "properties": {
-                "addressLine1": {
-                    "type": "string"
-                },
-                "addressLine2": {
-                    "type": "string"
-                },
-                "addressRefCode": {
-                    "type": "string"
-                },
-                "addressRefId": {
-                    "type": "integer",
-                    "format": "int64"
-                },
-                "addressRefName": {
-                    "type": "string"
-                },
-                "city": {
-                    "type": "string"
-                },
-                "country": {
-                    "type": "string"
-                },
-                "countryName": {
-                    "type": "string"
-                },
-                "id": {
-                    "type": "integer",
-                    "format": "int64"
-                },
-                "orgId": {
-                    "type": "string"
-                },
-                "postalCode": {
-                    "type": "string"
-                },
-                "state": {
-                    "type": "string"
-                },
-                "stateName": {
-                    "type": "string"
-                }
-            },
-            "title": "Address"
-        },
-        "ApiResponse": {
-            "type": "object",
-            "properties": {
-                "data": {
-                    "type": "object"
-                },
-                "errors": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/definitions/MessageResponse"
-                    }
-                },
-                "message": {
-                    "$ref": "#/definitions/MessageResponse"
-                },
-                "status": {
-                    "type": "integer",
-                    "format": "int32"
-                }
-            },
-            "title": "ApiResponse"
-        },
-        "AuthenticationRequest": {
-            "type": "object",
-            "properties": {
-                "orgId": {
-                    "type": "string"
-                },
-                "password": {
-                    "type": "string"
-                },
-                "username": {
-                    "type": "string"
-                }
-            },
-            "title": "AuthenticationRequest"
-        },
-        "DepartmentDTO": {
-            "type": "object",
-            "properties": {
-                "code": {
-                    "type": "string"
-                },
-                "description": {
-                    "type": "string"
-                },
-                "name": {
-                    "type": "string"
-                },
-                "orgId": {
-                    "type": "string"
-                }
-            },
-            "title": "DepartmentDTO"
-        },
-        "DomainDTO": {
-            "type": "object",
-            "properties": {
-                "code": {
-                    "type": "string"
-                },
-                "description": {
-                    "type": "string"
-                },
-                "name": {
-                    "type": "string"
-                },
-                "orgId": {
-                    "type": "string"
-                }
-            },
-            "title": "DomainDTO"
-        },
-        "MessageResponse": {
-            "type": "object",
-            "properties": {
-                "code": {
-                    "type": "string"
-                },
-                "message": {
-                    "type": "string"
-                }
-            },
-            "title": "MessageResponse"
-        },
-        "ModelAndView": {
-            "type": "object",
-            "properties": {
-                "empty": {
-                    "type": "boolean"
-                },
-                "model": {
-                    "type": "object"
-                },
-                "modelMap": {
-                    "type": "object",
-                    "additionalProperties": {
-                        "type": "object"
-                    }
-                },
-                "reference": {
-                    "type": "boolean"
-                },
-                "status": {
-                    "type": "string",
-                    "enum": [
-                        "ACCEPTED",
-                        "ALREADY_REPORTED",
-                        "BAD_GATEWAY",
-                        "BAD_REQUEST",
-                        "BANDWIDTH_LIMIT_EXCEEDED",
-                        "CHECKPOINT",
-                        "CONFLICT",
-                        "CONTINUE",
-                        "CREATED",
-                        "DESTINATION_LOCKED",
-                        "EXPECTATION_FAILED",
-                        "FAILED_DEPENDENCY",
-                        "FORBIDDEN",
-                        "FOUND",
-                        "GATEWAY_TIMEOUT",
-                        "GONE",
-                        "HTTP_VERSION_NOT_SUPPORTED",
-                        "IM_USED",
-                        "INSUFFICIENT_SPACE_ON_RESOURCE",
-                        "INSUFFICIENT_STORAGE",
-                        "INTERNAL_SERVER_ERROR",
-                        "I_AM_A_TEAPOT",
-                        "LENGTH_REQUIRED",
-                        "LOCKED",
-                        "LOOP_DETECTED",
-                        "METHOD_FAILURE",
-                        "METHOD_NOT_ALLOWED",
-                        "MOVED_PERMANENTLY",
-                        "MOVED_TEMPORARILY",
-                        "MULTIPLE_CHOICES",
-                        "MULTI_STATUS",
-                        "NETWORK_AUTHENTICATION_REQUIRED",
-                        "NON_AUTHORITATIVE_INFORMATION",
-                        "NOT_ACCEPTABLE",
-                        "NOT_EXTENDED",
-                        "NOT_FOUND",
-                        "NOT_IMPLEMENTED",
-                        "NOT_MODIFIED",
-                        "NO_CONTENT",
-                        "OK",
-                        "PARTIAL_CONTENT",
-                        "PAYLOAD_TOO_LARGE",
-                        "PAYMENT_REQUIRED",
-                        "PERMANENT_REDIRECT",
-                        "PRECONDITION_FAILED",
-                        "PRECONDITION_REQUIRED",
-                        "PROCESSING",
-                        "PROXY_AUTHENTICATION_REQUIRED",
-                        "REQUESTED_RANGE_NOT_SATISFIABLE",
-                        "REQUEST_ENTITY_TOO_LARGE",
-                        "REQUEST_HEADER_FIELDS_TOO_LARGE",
-                        "REQUEST_TIMEOUT",
-                        "REQUEST_URI_TOO_LONG",
-                        "RESET_CONTENT",
-                        "SEE_OTHER",
-                        "SERVICE_UNAVAILABLE",
-                        "SWITCHING_PROTOCOLS",
-                        "TEMPORARY_REDIRECT",
-                        "TOO_EARLY",
-                        "TOO_MANY_REQUESTS",
-                        "UNAUTHORIZED",
-                        "UNAVAILABLE_FOR_LEGAL_REASONS",
-                        "UNPROCESSABLE_ENTITY",
-                        "UNSUPPORTED_MEDIA_TYPE",
-                        "UPGRADE_REQUIRED",
-                        "URI_TOO_LONG",
-                        "USE_PROXY",
-                        "VARIANT_ALSO_NEGOTIATES"
-                    ]
-                },
-                "view": {
-                    "$ref": "#/definitions/View"
-                },
-                "viewName": {
-                    "type": "string"
-                }
-            },
-            "title": "ModelAndView"
-        },
-        "OrganizationDTO": {
-            "type": "object",
-            "properties": {
-                "addressList": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/definitions/Address"
-                    }
-                },
-                "description": {
-                    "type": "string"
-                },
-                "id": {
-                    "type": "integer",
-                    "format": "int64"
-                },
-                "logo": {
-                    "type": "string"
-                },
-                "logoId": {
-                    "type": "integer",
-                    "format": "int64"
-                },
-                "orgId": {
-                    "type": "string"
-                },
-                "orgName": {
-                    "type": "string"
-                },
-                "orgRefCode": {
-                    "type": "string"
-                },
-                "orgRefId": {
-                    "type": "integer",
-                    "format": "int64"
-                },
-                "orgRefName": {
-                    "type": "string"
-                },
-                "orgShortName": {
-                    "type": "string"
-                },
-                "orgStatusRefCode": {
-                    "type": "string"
-                },
-                "orgStatusRefId": {
-                    "type": "integer",
-                    "format": "int64"
-                },
-                "orgStatusRefName": {
-                    "type": "string"
-                },
-                "phoneList": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/definitions/Phone"
-                    }
-                },
-                "website": {
-                    "type": "string"
-                }
-            },
-            "title": "OrganizationDTO"
-        },
-        "PaginationRequestDTO": {
-            "type": "object",
-            "properties": {
-                "filter": {
-                    "type": "string"
-                },
-                "orgId": {
-                    "type": "string"
-                },
-                "pageNumber": {
-                    "type": "integer",
-                    "format": "int32"
-                },
-                "pageSize": {
-                    "type": "integer",
-                    "format": "int32"
-                },
-                "search": {
-                    "type": "string"
-                },
-                "sortDirection": {
-                    "type": "string"
-                },
-                "sortField": {
-                    "type": "string"
-                }
-            },
-            "title": "PaginationRequestDTO"
-        },
-        "PermissionBitmap": {
-            "type": "object",
-            "properties": {
-                "permBitmap": {
-                    "type": "integer",
-                    "format": "int32"
-                },
-                "permId": {
-                    "type": "integer",
-                    "format": "int64"
-                }
-            },
-            "title": "PermissionBitmap"
-        },
-        "Phone": {
-            "type": "object",
-            "properties": {
-                "id": {
-                    "type": "integer",
-                    "format": "int64"
-                },
-                "orgId": {
-                    "type": "string"
-                },
-                "phoneCode": {
-                    "type": "string"
-                },
-                "phoneNumber": {
-                    "type": "string"
-                },
-                "phoneRefCode": {
-                    "type": "string"
-                },
-                "phoneRefId": {
-                    "type": "integer",
-                    "format": "int64"
-                },
-                "phoneRefName": {
-                    "type": "string"
-                },
-                "userId": {
-                    "type": "integer",
-                    "format": "int64"
-                }
-            },
-            "title": "Phone"
-        },
-        "ProjectDTO": {
-            "type": "object",
-            "properties": {
-                "approverId": {
-                    "type": "integer",
-                    "format": "int64"
-                },
-                "description": {
-                    "type": "string"
-                },
-                "endDate": {
-                    "type": "string",
-                    "format": "date-time"
-                },
-                "id": {
-                    "type": "integer",
-                    "format": "int64"
-                },
-                "managerId": {
-                    "type": "integer",
-                    "format": "int64"
-                },
-                "name": {
-                    "type": "string"
-                },
-                "orgId": {
-                    "type": "string"
-                },
-                "reviewerId": {
-                    "type": "integer",
-                    "format": "int64"
-                },
-                "scoringModelId": {
-                    "type": "integer",
-                    "format": "int64"
-                },
-                "smeId": {
-                    "type": "integer",
-                    "format": "int64"
-                },
-                "startDate": {
-                    "type": "string",
-                    "format": "date-time"
-                }
-            },
-            "title": "ProjectDTO"
-        },
-        "Range": {
-            "type": "object",
-            "properties": {
-                "colorHex": {
-                    "type": "string"
-                },
-                "createdDate": {
-                    "type": "string",
-                    "format": "date-time"
-                },
-                "createdId": {
-                    "type": "integer",
-                    "format": "int64"
-                },
-                "from": {
-                    "type": "integer",
-                    "format": "int64"
-                },
-                "id": {
-                    "type": "integer",
-                    "format": "int64"
-                },
-                "scoringModelId": {
-                    "type": "integer",
-                    "format": "int64"
-                },
-                "to": {
-                    "type": "integer",
-                    "format": "int64"
-                },
-                "updatedDate": {
-                    "type": "string",
-                    "format": "date-time"
-                },
-                "updatedId": {
-                    "type": "integer",
-                    "format": "int64"
-                }
-            },
-            "title": "Range"
-        },
-        "RefreshTokenDTO": {
-            "type": "object",
-            "properties": {
-                "newToken": {
-                    "type": "string"
-                },
-                "orgType": {
-                    "type": "string"
-                },
-                "permissions": {
-                    "type": "object"
-                },
-                "refreshToken": {
-                    "type": "string"
-                }
-            },
-            "title": "RefreshTokenDTO"
-        },
-        "ResetPasswordDTO": {
-            "type": "object",
-            "properties": {
-                "orgId": {
-                    "type": "string"
-                },
-                "password": {
-                    "type": "string"
-                },
-                "rePassword": {
-                    "type": "string"
-                },
-                "username": {
-                    "type": "string"
-                },
-                "validationToken": {
-                    "type": "string"
-                }
-            },
-            "title": "ResetPasswordDTO"
-        },
-        "ResponseEntity": {
-            "type": "object",
-            "properties": {
-                "body": {
-                    "type": "object"
-                },
-                "statusCode": {
-                    "type": "string",
-                    "enum": [
-                        "ACCEPTED",
-                        "ALREADY_REPORTED",
-                        "BAD_GATEWAY",
-                        "BAD_REQUEST",
-                        "BANDWIDTH_LIMIT_EXCEEDED",
-                        "CHECKPOINT",
-                        "CONFLICT",
-                        "CONTINUE",
-                        "CREATED",
-                        "DESTINATION_LOCKED",
-                        "EXPECTATION_FAILED",
-                        "FAILED_DEPENDENCY",
-                        "FORBIDDEN",
-                        "FOUND",
-                        "GATEWAY_TIMEOUT",
-                        "GONE",
-                        "HTTP_VERSION_NOT_SUPPORTED",
-                        "IM_USED",
-                        "INSUFFICIENT_SPACE_ON_RESOURCE",
-                        "INSUFFICIENT_STORAGE",
-                        "INTERNAL_SERVER_ERROR",
-                        "I_AM_A_TEAPOT",
-                        "LENGTH_REQUIRED",
-                        "LOCKED",
-                        "LOOP_DETECTED",
-                        "METHOD_FAILURE",
-                        "METHOD_NOT_ALLOWED",
-                        "MOVED_PERMANENTLY",
-                        "MOVED_TEMPORARILY",
-                        "MULTIPLE_CHOICES",
-                        "MULTI_STATUS",
-                        "NETWORK_AUTHENTICATION_REQUIRED",
-                        "NON_AUTHORITATIVE_INFORMATION",
-                        "NOT_ACCEPTABLE",
-                        "NOT_EXTENDED",
-                        "NOT_FOUND",
-                        "NOT_IMPLEMENTED",
-                        "NOT_MODIFIED",
-                        "NO_CONTENT",
-                        "OK",
-                        "PARTIAL_CONTENT",
-                        "PAYLOAD_TOO_LARGE",
-                        "PAYMENT_REQUIRED",
-                        "PERMANENT_REDIRECT",
-                        "PRECONDITION_FAILED",
-                        "PRECONDITION_REQUIRED",
-                        "PROCESSING",
-                        "PROXY_AUTHENTICATION_REQUIRED",
-                        "REQUESTED_RANGE_NOT_SATISFIABLE",
-                        "REQUEST_ENTITY_TOO_LARGE",
-                        "REQUEST_HEADER_FIELDS_TOO_LARGE",
-                        "REQUEST_TIMEOUT",
-                        "REQUEST_URI_TOO_LONG",
-                        "RESET_CONTENT",
-                        "SEE_OTHER",
-                        "SERVICE_UNAVAILABLE",
-                        "SWITCHING_PROTOCOLS",
-                        "TEMPORARY_REDIRECT",
-                        "TOO_EARLY",
-                        "TOO_MANY_REQUESTS",
-                        "UNAUTHORIZED",
-                        "UNAVAILABLE_FOR_LEGAL_REASONS",
-                        "UNPROCESSABLE_ENTITY",
-                        "UNSUPPORTED_MEDIA_TYPE",
-                        "UPGRADE_REQUIRED",
-                        "URI_TOO_LONG",
-                        "USE_PROXY",
-                        "VARIANT_ALSO_NEGOTIATES"
-                    ]
-                },
-                "statusCodeValue": {
-                    "type": "integer",
-                    "format": "int32"
-                }
-            },
-            "title": "ResponseEntity"
-        },
-        "RiskControlDTO": {
-            "type": "object",
-            "properties": {
-                "controlTypeCode": {
-                    "type": "string"
-                },
-                "controlTypeId": {
-                    "type": "integer",
-                    "format": "int64"
-                },
-                "controlTypeName": {
-                    "type": "string"
-                },
-                "id": {
-                    "type": "integer",
-                    "format": "int64"
-                },
-                "name": {
-                    "type": "string"
-                },
-                "riskId": {
-                    "type": "integer",
-                    "format": "int64"
-                }
-            },
-            "title": "RiskControlDTO"
-        },
-        "RiskDTO": {
-            "type": "object",
-            "properties": {
-                "description": {
-                    "type": "string"
-                },
-                "domainId": {
-                    "type": "integer",
-                    "format": "int64"
-                },
-                "id": {
-                    "type": "integer",
-                    "format": "int64"
-                },
-                "impactId": {
-                    "type": "integer",
-                    "format": "int64"
-                },
-                "likelihoodId": {
-                    "type": "integer",
-                    "format": "int64"
-                },
-                "name": {
-                    "type": "string"
-                },
-                "riskStatement": {
-                    "type": "string"
-                },
-                "tags": {
-                    "type": "string"
-                }
-            },
-            "title": "RiskDTO"
-        },
-        "RoleDTO": {
-            "type": "object",
-            "properties": {
-                "code": {
-                    "type": "string"
-                },
-                "description": {
-                    "type": "string"
-                },
-                "name": {
-                    "type": "string"
-                },
-                "orgId": {
-                    "type": "string"
-                }
-            },
-            "title": "RoleDTO"
-        },
-        "RolePermissionDTO": {
-            "type": "object",
-            "properties": {
-                "orgId": {
-                    "type": "string"
-                },
-                "permissions": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/definitions/PermissionBitmap"
-                    }
-                },
-                "roleId": {
-                    "type": "integer",
-                    "format": "int64"
-                }
-            },
-            "title": "RolePermissionDTO"
-        },
-        "ScoringModelDTO": {
-            "type": "object",
-            "properties": {
-                "formula": {
-                    "type": "string"
-                },
-                "id": {
-                    "type": "integer",
-                    "format": "int64"
-                },
-                "modelName": {
-                    "type": "string"
-                },
-                "rangeList": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/definitions/Range"
-                    }
-                }
-            },
-            "title": "ScoringModelDTO"
-        },
-        "TemplateDTO": {
-            "type": "object",
-            "properties": {
-                "createdDate": {
-                    "type": "string",
-                    "format": "date-time"
-                },
-                "createdId": {
-                    "type": "integer",
-                    "format": "int64"
-                },
-                "description": {
-                    "type": "string"
-                },
-                "id": {
-                    "type": "integer",
-                    "format": "int64"
-                },
-                "name": {
-                    "type": "string"
-                },
-                "orgId": {
-                    "type": "string"
-                },
-                "updatedId": {
-                    "type": "integer",
-                    "format": "int64"
-                }
-            },
-            "title": "TemplateDTO"
-        },
-        "UserDTO": {
-            "type": "object",
-            "required": [
-                "genderRefId",
-                "titleRefId"
-            ],
-            "properties": {
-                "firstName": {
-                    "type": "string"
-                },
-                "genderRefCode": {
-                    "type": "string"
-                },
-                "genderRefId": {
-                    "type": "integer",
-                    "format": "int64"
-                },
-                "genderRefName": {
-                    "type": "string"
-                },
-                "id": {
-                    "type": "integer",
-                    "format": "int64"
-                },
-                "lastName": {
-                    "type": "string"
-                },
-                "middleName": {
-                    "type": "string"
-                },
-                "orgId": {
-                    "type": "string"
-                },
-                "profileId": {
-                    "type": "integer",
-                    "format": "int64"
-                },
-                "profilePic": {
-                    "type": "string"
-                },
-                "statusRefCode": {
-                    "type": "string"
-                },
-                "statusRefId": {
-                    "type": "integer",
-                    "format": "int64"
-                },
-                "statusRefName": {
-                    "type": "string"
-                },
-                "titleRefCode": {
-                    "type": "string"
-                },
-                "titleRefId": {
-                    "type": "integer",
-                    "format": "int64"
-                },
-                "titleRefName": {
-                    "type": "string"
-                },
-                "userPhones": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/definitions/UserPhone"
-                    }
-                },
-                "username": {
-                    "type": "string"
-                }
-            },
-            "title": "UserDTO"
-        },
-        "UserDepartmentDTO": {
-            "type": "object",
-            "properties": {
-                "deptId": {
-                    "type": "integer",
-                    "format": "int64"
-                },
-                "orgId": {
-                    "type": "string"
-                },
-                "userId": {
-                    "type": "integer",
-                    "format": "int64"
-                }
-            },
-            "title": "UserDepartmentDTO"
-        },
-        "UserPhone": {
-            "type": "object",
-            "properties": {
-                "id": {
-                    "type": "integer",
-                    "format": "int64"
-                },
-                "orgId": {
-                    "type": "string"
-                },
-                "phoneCode": {
-                    "type": "string"
-                },
-                "phoneNumber": {
-                    "type": "string"
-                },
-                "phoneRefId": {
-                    "type": "integer",
-                    "format": "int64"
-                },
-                "phoneRefName": {
-                    "type": "string"
-                },
-                "userId": {
-                    "type": "integer",
-                    "format": "int64"
-                }
-            },
-            "title": "UserPhone"
-        },
-        "UserRoleDTO": {
-            "type": "object",
-            "properties": {
-                "orgId": {
-                    "type": "string"
-                },
-                "roleId": {
-                    "type": "integer",
-                    "format": "int64"
-                },
-                "userId": {
-                    "type": "integer",
-                    "format": "int64"
-                }
-            },
-            "title": "UserRoleDTO"
-        },
-        "View": {
-            "type": "object",
-            "properties": {
-                "contentType": {
-                    "type": "string"
-                }
-            },
-            "title": "View"
-        }
-    }
+"swagger": "2.0",
+"info": {
+"description": "Api Documentation",
+"version": "1.0",
+"title": "Api Documentation",
+"termsOfService": "urn:tos",
+"contact": {},
+"license": {
+"name": "Apache 2.0",
+"url": "http://www.apache.org/licenses/LICENSE-2.0"
+}
+},
+"host": "15.207.21.136:8088",
+"basePath": "/",
+"tags": [
+{
+"name": "authentication-controller",
+"description": "Authentication Controller"
+},
+{
+"name": "authorization-controller",
+"description": "Authorization Controller"
+},
+{
+"name": "basic-error-controller",
+"description": "Basic Error Controller"
+},
+{
+"name": "common-controller",
+"description": "Common Controller"
+},
+{
+"name": "common-risk-controller",
+"description": "Common Risk Controller"
+},
+{
+"name": "department-controller",
+"description": "Department Controller"
+},
+{
+"name": "organization-controller",
+"description": "Organization Controller"
+},
+{
+"name": "project-controller",
+"description": "Project Controller"
+},
+{
+"name": "risk-controller",
+"description": "Risk Controller"
+},
+{
+"name": "scoring-model-controller",
+"description": "Scoring Model Controller"
+},
+{
+"name": "template-controller",
+"description": "Template Controller"
+},
+{
+"name": "user-controller",
+"description": "User Controller"
+}
+],
+"paths": {
+"/api/v1/countries": {
+"get": {
+"tags": [
+"common-controller"
+],
+"summary": "getCountries",
+"operationId": "getCountriesUsingGET",
+"produces": [
+"*/*"
+],
+"responses": {
+"200": {
+"description": "OK",
+"schema": {
+"$ref": "#/definitions/ApiResponse"
+}
+},
+"401": {
+"description": "Unauthorized"
+},
+"403": {
+"description": "Forbidden"
+},
+"404": {
+"description": "Not Found"
+}
+}
+}
+},
+"/api/v1/department": {
+"get": {
+"tags": [
+"department-controller"
+],
+"summary": "getDepartmentById",
+"operationId": "getDepartmentByIdUsingGET",
+"produces": [
+"*/*"
+],
+"parameters": [
+{
+"name": "deptId",
+"in": "query",
+"description": "deptId",
+"required": true,
+"type": "integer",
+"format": "int64"
+},
+{
+"name": "orgId",
+"in": "query",
+"description": "orgId",
+"required": true,
+"type": "string"
+}
+],
+"responses": {
+"200": {
+"description": "OK",
+"schema": {
+"$ref": "#/definitions/ApiResponse"
+}
+},
+"401": {
+"description": "Unauthorized"
+},
+"403": {
+"description": "Forbidden"
+},
+"404": {
+"description": "Not Found"
+}
+}
+},
+"post": {
+"tags": [
+"department-controller"
+],
+"summary": "createDepartment",
+"operationId": "createDepartmentUsingPOST",
+"consumes": [
+"application/json"
+],
+"produces": [
+"*/*"
+],
+"parameters": [
+{
+"in": "body",
+"name": "departmentDTO",
+"description": "departmentDTO",
+"required": true,
+"schema": {
+"$ref": "#/definitions/DepartmentDTO"
+}
+}
+],
+"responses": {
+"200": {
+"description": "OK",
+"schema": {
+"$ref": "#/definitions/ApiResponse"
+}
+},
+"201": {
+"description": "Created"
+},
+"401": {
+"description": "Unauthorized"
+},
+"403": {
+"description": "Forbidden"
+},
+"404": {
+"description": "Not Found"
+}
+}
+},
+"delete": {
+"tags": [
+"department-controller"
+],
+"summary": "deleteDepartmentById",
+"operationId": "deleteDepartmentByIdUsingDELETE",
+"produces": [
+"*/*"
+],
+"parameters": [
+{
+"name": "deptId",
+"in": "query",
+"description": "deptId",
+"required": true,
+"type": "integer",
+"format": "int64"
+},
+{
+"name": "orgId",
+"in": "query",
+"description": "orgId",
+"required": true,
+"type": "string"
+}
+],
+"responses": {
+"200": {
+"description": "OK",
+"schema": {
+"$ref": "#/definitions/ApiResponse"
+}
+},
+"204": {
+"description": "No Content"
+},
+"401": {
+"description": "Unauthorized"
+},
+"403": {
+"description": "Forbidden"
+}
+}
+}
+},
+"/api/v1/departments": {
+"get": {
+"tags": [
+"department-controller"
+],
+"summary": "getDepartment",
+"operationId": "getDepartmentUsingGET",
+"produces": [
+"*/*"
+],
+"parameters": [
+{
+"name": "orgId",
+"in": "query",
+"description": "orgId",
+"required": true,
+"type": "string"
+}
+],
+"responses": {
+"200": {
+"description": "OK",
+"schema": {
+"$ref": "#/definitions/ApiResponse"
+}
+},
+"401": {
+"description": "Unauthorized"
+},
+"403": {
+"description": "Forbidden"
+},
+"404": {
+"description": "Not Found"
+}
+}
+}
+},
+"/api/v1/domain": {
+"get": {
+"tags": [
+"common-risk-controller"
+],
+"summary": "getDomain",
+"operationId": "getDomainUsingGET",
+"produces": [
+"*/*"
+],
+"parameters": [
+{
+"name": "id",
+"in": "query",
+"description": "id",
+"required": true,
+"type": "integer",
+"format": "int64"
+},
+{
+"name": "orgId",
+"in": "query",
+"description": "orgId",
+"required": true,
+"type": "string"
+}
+],
+"responses": {
+"200": {
+"description": "OK",
+"schema": {
+"$ref": "#/definitions/ApiResponse"
+}
+},
+"401": {
+"description": "Unauthorized"
+},
+"403": {
+"description": "Forbidden"
+},
+"404": {
+"description": "Not Found"
+}
+}
+},
+"post": {
+"tags": [
+"common-risk-controller"
+],
+"summary": "createDomain",
+"operationId": "createDomainUsingPOST",
+"consumes": [
+"application/json"
+],
+"produces": [
+"*/*"
+],
+"parameters": [
+{
+"in": "body",
+"name": "domainDTO",
+"description": "domainDTO",
+"required": true,
+"schema": {
+"$ref": "#/definitions/DomainDTO"
+}
+}
+],
+"responses": {
+"200": {
+"description": "OK",
+"schema": {
+"$ref": "#/definitions/ApiResponse"
+}
+},
+"201": {
+"description": "Created"
+},
+"401": {
+"description": "Unauthorized"
+},
+"403": {
+"description": "Forbidden"
+},
+"404": {
+"description": "Not Found"
+}
+}
+},
+"delete": {
+"tags": [
+"common-risk-controller"
+],
+"summary": "deleteDomain",
+"operationId": "deleteDomainUsingDELETE",
+"produces": [
+"*/*"
+],
+"parameters": [
+{
+"name": "domainId",
+"in": "query",
+"description": "domainId",
+"required": true,
+"type": "integer",
+"format": "int64"
+},
+{
+"name": "orgId",
+"in": "query",
+"description": "orgId",
+"required": true,
+"type": "string"
+}
+],
+"responses": {
+"200": {
+"description": "OK",
+"schema": {
+"$ref": "#/definitions/ApiResponse"
+}
+},
+"204": {
+"description": "No Content"
+},
+"401": {
+"description": "Unauthorized"
+},
+"403": {
+"description": "Forbidden"
+}
+}
+}
+},
+"/api/v1/domains": {
+"get": {
+"tags": [
+"common-risk-controller"
+],
+"summary": "getAllDomainForFirstPage",
+"operationId": "getAllDomainForFirstPageUsingGET",
+"produces": [
+"*/*"
+],
+"parameters": [
+{
+"name": "orgId",
+"in": "query",
+"description": "orgId",
+"required": true,
+"type": "string"
+}
+],
+"responses": {
+"200": {
+"description": "OK",
+"schema": {
+"$ref": "#/definitions/ApiResponse"
+}
+},
+"401": {
+"description": "Unauthorized"
+},
+"403": {
+"description": "Forbidden"
+},
+"404": {
+"description": "Not Found"
+}
+}
+}
+},
+"/api/v1/domains/page/{pageNum}": {
+"get": {
+"tags": [
+"common-risk-controller"
+],
+"summary": "listDomainByPage",
+"operationId": "listDomainByPageUsingGET",
+"produces": [
+"*/*"
+],
+"parameters": [
+{
+"name": "keyword",
+"in": "query",
+"description": "keyword",
+"required": false,
+"type": "string"
+},
+{
+"name": "orgId",
+"in": "query",
+"description": "orgId",
+"required": true,
+"type": "string"
+},
+{
+"name": "pageNum",
+"in": "path",
+"description": "pageNum",
+"required": true,
+"type": "integer",
+"format": "int32"
+},
+{
+"name": "pageSize",
+"in": "query",
+"description": "pageSize",
+"required": false,
+"type": "integer",
+"format": "int64"
+},
+{
+"name": "sortDir",
+"in": "query",
+"description": "sortDir",
+"required": false,
+"type": "string"
+},
+{
+"name": "sortField",
+"in": "query",
+"description": "sortField",
+"required": false,
+"type": "string"
+}
+],
+"responses": {
+"200": {
+"description": "OK",
+"schema": {
+"$ref": "#/definitions/ApiResponse"
+}
+},
+"401": {
+"description": "Unauthorized"
+},
+"403": {
+"description": "Forbidden"
+},
+"404": {
+"description": "Not Found"
+}
+}
+}
+},
+"/api/v1/impact": {
+"get": {
+"tags": [
+"common-risk-controller"
+],
+"summary": "getImpact",
+"operationId": "getImpactUsingGET",
+"produces": [
+"*/*"
+],
+"parameters": [
+{
+"name": "id",
+"in": "query",
+"description": "id",
+"required": true,
+"type": "integer",
+"format": "int64"
+},
+{
+"name": "orgId",
+"in": "query",
+"description": "orgId",
+"required": true,
+"type": "string"
+}
+],
+"responses": {
+"200": {
+"description": "OK",
+"schema": {
+"$ref": "#/definitions/ApiResponse"
+}
+},
+"401": {
+"description": "Unauthorized"
+},
+"403": {
+"description": "Forbidden"
+},
+"404": {
+"description": "Not Found"
+}
+}
+}
+},
+"/api/v1/impacts": {
+"get": {
+"tags": [
+"common-risk-controller"
+],
+"summary": "getAllImpact",
+"operationId": "getAllImpactUsingGET",
+"produces": [
+"*/*"
+],
+"parameters": [
+{
+"name": "orgId",
+"in": "query",
+"description": "orgId",
+"required": true,
+"type": "string"
+}
+],
+"responses": {
+"200": {
+"description": "OK",
+"schema": {
+"$ref": "#/definitions/ApiResponse"
+}
+},
+"401": {
+"description": "Unauthorized"
+},
+"403": {
+"description": "Forbidden"
+},
+"404": {
+"description": "Not Found"
+}
+}
+}
+},
+"/api/v1/likelyhood": {
+"get": {
+"tags": [
+"common-risk-controller"
+],
+"summary": "getLikelyhood",
+"operationId": "getLikelyhoodUsingGET",
+"produces": [
+"*/*"
+],
+"parameters": [
+{
+"name": "id",
+"in": "query",
+"description": "id",
+"required": true,
+"type": "integer",
+"format": "int64"
+},
+{
+"name": "orgId",
+"in": "query",
+"description": "orgId",
+"required": true,
+"type": "string"
+}
+],
+"responses": {
+"200": {
+"description": "OK",
+"schema": {
+"$ref": "#/definitions/ApiResponse"
+}
+},
+"401": {
+"description": "Unauthorized"
+},
+"403": {
+"description": "Forbidden"
+},
+"404": {
+"description": "Not Found"
+}
+}
+}
+},
+"/api/v1/likelyhoods": {
+"get": {
+"tags": [
+"common-risk-controller"
+],
+"summary": "getAllLikelyhood",
+"operationId": "getAllLikelyhoodUsingGET",
+"produces": [
+"*/*"
+],
+"parameters": [
+{
+"name": "orgId",
+"in": "query",
+"description": "orgId",
+"required": true,
+"type": "string"
+}
+],
+"responses": {
+"200": {
+"description": "OK",
+"schema": {
+"$ref": "#/definitions/ApiResponse"
+}
+},
+"401": {
+"description": "Unauthorized"
+},
+"403": {
+"description": "Forbidden"
+},
+"404": {
+"description": "Not Found"
+}
+}
+}
+},
+"/api/v1/login": {
+"post": {
+"tags": [
+"authentication-controller"
+],
+"summary": "login",
+"operationId": "loginUsingPOST",
+"consumes": [
+"application/json"
+],
+"produces": [
+"*/*"
+],
+"parameters": [
+{
+"in": "body",
+"name": "authenticationRequest",
+"description": "authenticationRequest",
+"required": true,
+"schema": {
+"$ref": "#/definitions/AuthenticationRequest"
+}
+}
+],
+"responses": {
+"200": {
+"description": "OK",
+"schema": {
+"$ref": "#/definitions/ApiResponse"
+}
+},
+"201": {
+"description": "Created"
+},
+"401": {
+"description": "Unauthorized"
+},
+"403": {
+"description": "Forbidden"
+},
+"404": {
+"description": "Not Found"
+}
+}
+}
+},
+"/api/v1/logout": {
+"get": {
+"tags": [
+"authentication-controller"
+],
+"summary": "logout",
+"operationId": "logoutUsingGET",
+"produces": [
+"*/*"
+],
+"parameters": [
+{
+"name": "username",
+"in": "query",
+"description": "username",
+"required": true,
+"type": "string"
+}
+],
+"responses": {
+"200": {
+"description": "OK",
+"schema": {
+"$ref": "#/definitions/ApiResponse"
+}
+},
+"401": {
+"description": "Unauthorized"
+},
+"403": {
+"description": "Forbidden"
+},
+"404": {
+"description": "Not Found"
+}
+}
+}
+},
+"/api/v1/organization": {
+"get": {
+"tags": [
+"organization-controller"
+],
+"summary": "getOrganization",
+"operationId": "getOrganizationUsingGET",
+"produces": [
+"*/*"
+],
+"parameters": [
+{
+"name": "orgId",
+"in": "query",
+"description": "orgId",
+"required": true,
+"type": "string"
+}
+],
+"responses": {
+"200": {
+"description": "OK",
+"schema": {
+"$ref": "#/definitions/ApiResponse"
+}
+},
+"401": {
+"description": "Unauthorized"
+},
+"403": {
+"description": "Forbidden"
+},
+"404": {
+"description": "Not Found"
+}
+}
+},
+"post": {
+"tags": [
+"organization-controller"
+],
+"summary": "createOrganization",
+"operationId": "createOrganizationUsingPOST",
+"consumes": [
+"application/json"
+],
+"produces": [
+"*/*"
+],
+"parameters": [
+{
+"in": "body",
+"name": "organizationDTO",
+"description": "organizationDTO",
+"required": true,
+"schema": {
+"$ref": "#/definitions/OrganizationDTO"
+}
+}
+],
+"responses": {
+"200": {
+"description": "OK",
+"schema": {
+"$ref": "#/definitions/ApiResponse"
+}
+},
+"201": {
+"description": "Created"
+},
+"401": {
+"description": "Unauthorized"
+},
+"403": {
+"description": "Forbidden"
+},
+"404": {
+"description": "Not Found"
+}
+}
+}
+},
+"/api/v1/organization/isAvailable": {
+"get": {
+"tags": [
+"organization-controller"
+],
+"summary": "isOrganizationValid",
+"operationId": "isOrganizationValidUsingGET",
+"produces": [
+"*/*"
+],
+"parameters": [
+{
+"name": "orgId",
+"in": "query",
+"description": "orgId",
+"required": true,
+"type": "string"
+}
+],
+"responses": {
+"200": {
+"description": "OK",
+"schema": {
+"$ref": "#/definitions/ApiResponse"
+}
+},
+"401": {
+"description": "Unauthorized"
+},
+"403": {
+"description": "Forbidden"
+},
+"404": {
+"description": "Not Found"
+}
+}
+}
+},
+"/api/v1/organization/logo": {
+"get": {
+"tags": [
+"organization-controller"
+],
+"summary": "getOrgLogoByOrgId",
+"operationId": "getOrgLogoByOrgIdUsingGET",
+"produces": [
+"*/*"
+],
+"parameters": [
+{
+"name": "orgId",
+"in": "query",
+"description": "orgId",
+"required": true,
+"type": "string"
+}
+],
+"responses": {
+"200": {
+"description": "OK",
+"schema": {
+"$ref": "#/definitions/ResponseEntity"
+}
+},
+"401": {
+"description": "Unauthorized"
+},
+"403": {
+"description": "Forbidden"
+},
+"404": {
+"description": "Not Found"
+}
+}
+},
+"post": {
+"tags": [
+"organization-controller"
+],
+"summary": "uploadOrgLogo",
+"operationId": "uploadOrgLogoUsingPOST",
+"consumes": [
+"multipart/form-data"
+],
+"produces": [
+"*/*"
+],
+"parameters": [
+{
+"in": "body",
+"name": "logo",
+"description": "logo",
+"required": true,
+"schema": {
+"type": "string",
+"format": "binary"
+}
+},
+{
+"name": "orgId",
+"in": "query",
+"description": "orgId",
+"required": true,
+"type": "string"
+}
+],
+"responses": {
+"200": {
+"description": "OK",
+"schema": {
+"$ref": "#/definitions/ApiResponse"
+}
+},
+"201": {
+"description": "Created"
+},
+"401": {
+"description": "Unauthorized"
+},
+"403": {
+"description": "Forbidden"
+},
+"404": {
+"description": "Not Found"
+}
+}
+}
+},
+"/api/v1/organization/summary": {
+"get": {
+"tags": [
+"organization-controller"
+],
+"summary": "getOrganizationSummaryByOrgId",
+"operationId": "getOrganizationSummaryByOrgIdUsingGET",
+"produces": [
+"*/*"
+],
+"parameters": [
+{
+"name": "orgId",
+"in": "query",
+"description": "orgId",
+"required": true,
+"type": "string"
+}
+],
+"responses": {
+"200": {
+"description": "OK",
+"schema": {
+"$ref": "#/definitions/ApiResponse"
+}
+},
+"401": {
+"description": "Unauthorized"
+},
+"403": {
+"description": "Forbidden"
+},
+"404": {
+"description": "Not Found"
+}
+}
+}
+},
+"/api/v1/organization/user": {
+"get": {
+"tags": [
+"user-controller"
+],
+"summary": "getUserById",
+"operationId": "getUserByIdUsingGET",
+"produces": [
+"*/*"
+],
+"parameters": [
+{
+"name": "id",
+"in": "query",
+"description": "id",
+"required": true,
+"type": "integer",
+"format": "int64"
+},
+{
+"name": "orgId",
+"in": "query",
+"description": "orgId",
+"required": true,
+"type": "string"
+}
+],
+"responses": {
+"200": {
+"description": "OK",
+"schema": {
+"$ref": "#/definitions/ApiResponse"
+}
+},
+"401": {
+"description": "Unauthorized"
+},
+"403": {
+"description": "Forbidden"
+},
+"404": {
+"description": "Not Found"
+}
+}
+},
+"post": {
+"tags": [
+"user-controller"
+],
+"summary": "createUserForOrganization",
+"operationId": "createUserForOrganizationUsingPOST",
+"consumes": [
+"application/json"
+],
+"produces": [
+"*/*"
+],
+"parameters": [
+{
+"in": "body",
+"name": "userDTO",
+"description": "userDTO",
+"required": true,
+"schema": {
+"$ref": "#/definitions/UserDTO"
+}
+}
+],
+"responses": {
+"200": {
+"description": "OK",
+"schema": {
+"$ref": "#/definitions/ApiResponse"
+}
+},
+"201": {
+"description": "Created"
+},
+"401": {
+"description": "Unauthorized"
+},
+"403": {
+"description": "Forbidden"
+},
+"404": {
+"description": "Not Found"
+}
+}
+}
+},
+"/api/v1/organization/user/resend/invitation": {
+"get": {
+"tags": [
+"user-controller"
+],
+"summary": "reSendInvitationEmail",
+"operationId": "reSendInvitationEmailUsingGET",
+"produces": [
+"*/*"
+],
+"parameters": [
+{
+"name": "orgId",
+"in": "query",
+"description": "orgId",
+"required": true,
+"type": "string"
+},
+{
+"name": "userId",
+"in": "query",
+"description": "userId",
+"required": true,
+"type": "integer",
+"format": "int64"
+}
+],
+"responses": {
+"200": {
+"description": "OK",
+"schema": {
+"$ref": "#/definitions/ApiResponse"
+}
+},
+"401": {
+"description": "Unauthorized"
+},
+"403": {
+"description": "Forbidden"
+},
+"404": {
+"description": "Not Found"
+}
+}
+}
+},
+"/api/v1/organization/users": {
+"post": {
+"tags": [
+"user-controller"
+],
+"summary": "getUsers",
+"operationId": "getUsersUsingPOST",
+"consumes": [
+"application/json"
+],
+"produces": [
+"*/*"
+],
+"parameters": [
+{
+"in": "body",
+"name": "paginationRequestDTO",
+"description": "paginationRequestDTO",
+"required": true,
+"schema": {
+"$ref": "#/definitions/PaginationRequestDTO"
+}
+}
+],
+"responses": {
+"200": {
+"description": "OK",
+"schema": {
+"$ref": "#/definitions/ApiResponse"
+}
+},
+"201": {
+"description": "Created"
+},
+"401": {
+"description": "Unauthorized"
+},
+"403": {
+"description": "Forbidden"
+},
+"404": {
+"description": "Not Found"
+}
+}
+}
+},
+"/api/v1/organizations": {
+"post": {
+"tags": [
+"organization-controller"
+],
+"summary": "getOrganizations",
+"operationId": "getOrganizationsUsingPOST",
+"consumes": [
+"application/json"
+],
+"produces": [
+"*/*"
+],
+"parameters": [
+{
+"in": "body",
+"name": "paginationRequestDTO",
+"description": "paginationRequestDTO",
+"required": true,
+"schema": {
+"$ref": "#/definitions/PaginationRequestDTO"
+}
+}
+],
+"responses": {
+"200": {
+"description": "OK",
+"schema": {
+"$ref": "#/definitions/ApiResponse"
+}
+},
+"201": {
+"description": "Created"
+},
+"401": {
+"description": "Unauthorized"
+},
+"403": {
+"description": "Forbidden"
+},
+"404": {
+"description": "Not Found"
+}
+}
+}
+},
+"/api/v1/organizations/list": {
+"get": {
+"tags": [
+"organization-controller"
+],
+"summary": "getOrganizationsList",
+"operationId": "getOrganizationsListUsingGET",
+"produces": [
+"*/*"
+],
+"responses": {
+"200": {
+"description": "OK",
+"schema": {
+"$ref": "#/definitions/ApiResponse"
+}
+},
+"401": {
+"description": "Unauthorized"
+},
+"403": {
+"description": "Forbidden"
+},
+"404": {
+"description": "Not Found"
+}
+}
+}
+},
+"/api/v1/permissions": {
+"get": {
+"tags": [
+"authorization-controller"
+],
+"summary": "getPermissions",
+"operationId": "getPermissionsUsingGET",
+"produces": [
+"*/*"
+],
+"parameters": [
+{
+"name": "orgId",
+"in": "query",
+"description": "orgId",
+"required": true,
+"type": "string"
+}
+],
+"responses": {
+"200": {
+"description": "OK",
+"schema": {
+"$ref": "#/definitions/ApiResponse"
+}
+},
+"401": {
+"description": "Unauthorized"
+},
+"403": {
+"description": "Forbidden"
+},
+"404": {
+"description": "Not Found"
+}
+}
+}
+},
+"/api/v1/project": {
+"get": {
+"tags": [
+"project-controller"
+],
+"summary": "getProject",
+"operationId": "getProjectUsingGET",
+"produces": [
+"*/*"
+],
+"parameters": [
+{
+"name": "id",
+"in": "query",
+"description": "id",
+"required": true,
+"type": "integer",
+"format": "int64"
+}
+],
+"responses": {
+"200": {
+"description": "OK",
+"schema": {
+"$ref": "#/definitions/ApiResponse"
+}
+},
+"401": {
+"description": "Unauthorized"
+},
+"403": {
+"description": "Forbidden"
+},
+"404": {
+"description": "Not Found"
+}
+}
+},
+"post": {
+"tags": [
+"project-controller"
+],
+"summary": "createProject",
+"operationId": "createProjectUsingPOST",
+"consumes": [
+"application/json"
+],
+"produces": [
+"*/*"
+],
+"parameters": [
+{
+"in": "body",
+"name": "projectDTO",
+"description": "projectDTO",
+"required": true,
+"schema": {
+"$ref": "#/definitions/ProjectDTO"
+}
+}
+],
+"responses": {
+"200": {
+"description": "OK",
+"schema": {
+"$ref": "#/definitions/ApiResponse"
+}
+},
+"201": {
+"description": "Created"
+},
+"401": {
+"description": "Unauthorized"
+},
+"403": {
+"description": "Forbidden"
+},
+"404": {
+"description": "Not Found"
+}
+}
+}
+},
+"/api/v1/project/delete": {
+"get": {
+"tags": [
+"project-controller"
+],
+"summary": "deleteProject",
+"operationId": "deleteProjectUsingGET",
+"produces": [
+"*/*"
+],
+"parameters": [
+{
+"name": "id",
+"in": "query",
+"description": "id",
+"required": true,
+"type": "integer",
+"format": "int64"
+}
+],
+"responses": {
+"200": {
+"description": "OK",
+"schema": {
+"$ref": "#/definitions/ApiResponse"
+}
+},
+"401": {
+"description": "Unauthorized"
+},
+"403": {
+"description": "Forbidden"
+},
+"404": {
+"description": "Not Found"
+}
+}
+}
+},
+"/api/v1/project/risks": {
+"get": {
+"tags": [
+"project-controller"
+],
+"summary": "getRisksByProjectId",
+"operationId": "getRisksByProjectIdUsingGET",
+"produces": [
+"*/*"
+],
+"parameters": [
+{
+"name": "id",
+"in": "query",
+"description": "id",
+"required": true,
+"type": "integer",
+"format": "int64"
+},
+{
+"in": "body",
+"name": "paginationRequestDTO",
+"description": "paginationRequestDTO",
+"required": true,
+"schema": {
+"$ref": "#/definitions/PaginationRequestDTO"
+}
+}
+],
+"responses": {
+"200": {
+"description": "OK",
+"schema": {
+"$ref": "#/definitions/ApiResponse"
+}
+},
+"401": {
+"description": "Unauthorized"
+},
+"403": {
+"description": "Forbidden"
+},
+"404": {
+"description": "Not Found"
+}
+}
+}
+},
+"/api/v1/projects": {
+"post": {
+"tags": [
+"project-controller"
+],
+"summary": "getProjects",
+"operationId": "getProjectsUsingPOST",
+"consumes": [
+"application/json"
+],
+"produces": [
+"*/*"
+],
+"parameters": [
+{
+"in": "body",
+"name": "paginationRequestDTO",
+"description": "paginationRequestDTO",
+"required": true,
+"schema": {
+"$ref": "#/definitions/PaginationRequestDTO"
+}
+}
+],
+"responses": {
+"200": {
+"description": "OK",
+"schema": {
+"$ref": "#/definitions/ApiResponse"
+}
+},
+"201": {
+"description": "Created"
+},
+"401": {
+"description": "Unauthorized"
+},
+"403": {
+"description": "Forbidden"
+},
+"404": {
+"description": "Not Found"
+}
+}
+}
+},
+"/api/v1/referenceLibrary": {
+"get": {
+"tags": [
+"common-controller"
+],
+"summary": "getGroupValuesByGroupCode",
+"operationId": "getGroupValuesByGroupCodeUsingGET",
+"produces": [
+"*/*"
+],
+"parameters": [
+{
+"name": "groupCode",
+"in": "query",
+"description": "groupCode",
+"required": true,
+"type": "string"
+}
+],
+"responses": {
+"200": {
+"description": "OK",
+"schema": {
+"$ref": "#/definitions/ApiResponse"
+}
+},
+"401": {
+"description": "Unauthorized"
+},
+"403": {
+"description": "Forbidden"
+},
+"404": {
+"description": "Not Found"
+}
+}
+}
+},
+"/api/v1/refreshToken": {
+"post": {
+"tags": [
+"authentication-controller"
+],
+"summary": "getTokenByRefreshToken",
+"operationId": "getTokenByRefreshTokenUsingPOST",
+"consumes": [
+"application/json"
+],
+"produces": [
+"*/*"
+],
+"parameters": [
+{
+"in": "body",
+"name": "refreshToken",
+"description": "refreshToken",
+"required": true,
+"schema": {
+"$ref": "#/definitions/RefreshTokenDTO"
+}
+}
+],
+"responses": {
+"200": {
+"description": "OK",
+"schema": {
+"$ref": "#/definitions/ApiResponse"
+}
+},
+"201": {
+"description": "Created"
+},
+"401": {
+"description": "Unauthorized"
+},
+"403": {
+"description": "Forbidden"
+},
+"404": {
+"description": "Not Found"
+}
+}
+}
+},
+"/api/v1/reset": {
+"post": {
+"tags": [
+"user-controller"
+],
+"summary": "generateResetPasswordLink",
+"operationId": "generateResetPasswordLinkUsingPOST",
+"consumes": [
+"application/json"
+],
+"produces": [
+"*/*"
+],
+"parameters": [
+{
+"name": "orgId",
+"in": "query",
+"description": "orgId",
+"required": true,
+"type": "string"
+},
+{
+"name": "username",
+"in": "query",
+"description": "username",
+"required": true,
+"type": "string"
+}
+],
+"responses": {
+"200": {
+"description": "OK",
+"schema": {
+"$ref": "#/definitions/ApiResponse"
+}
+},
+"201": {
+"description": "Created"
+},
+"401": {
+"description": "Unauthorized"
+},
+"403": {
+"description": "Forbidden"
+},
+"404": {
+"description": "Not Found"
+}
+}
+}
+},
+"/api/v1/reset/password": {
+"post": {
+"tags": [
+"user-controller"
+],
+"summary": "resetPassword",
+"operationId": "resetPasswordUsingPOST",
+"consumes": [
+"application/json"
+],
+"produces": [
+"*/*"
+],
+"parameters": [
+{
+"in": "body",
+"name": "resetPasswordDTO",
+"description": "resetPasswordDTO",
+"required": true,
+"schema": {
+"$ref": "#/definitions/ResetPasswordDTO"
+}
+}
+],
+"responses": {
+"200": {
+"description": "OK",
+"schema": {
+"$ref": "#/definitions/ApiResponse"
+}
+},
+"201": {
+"description": "Created"
+},
+"401": {
+"description": "Unauthorized"
+},
+"403": {
+"description": "Forbidden"
+},
+"404": {
+"description": "Not Found"
+}
+}
+}
+},
+"/api/v1/risk": {
+"post": {
+"tags": [
+"risk-controller"
+],
+"summary": "createOrUpdateRisk",
+"operationId": "createOrUpdateRiskUsingPOST",
+"consumes": [
+"application/json"
+],
+"produces": [
+"*/*"
+],
+"parameters": [
+{
+"in": "body",
+"name": "riskDTO",
+"description": "riskDTO",
+"required": true,
+"schema": {
+"$ref": "#/definitions/RiskDTO"
+}
+}
+],
+"responses": {
+"200": {
+"description": "OK",
+"schema": {
+"$ref": "#/definitions/ApiResponse"
+}
+},
+"201": {
+"description": "Created"
+},
+"401": {
+"description": "Unauthorized"
+},
+"403": {
+"description": "Forbidden"
+},
+"404": {
+"description": "Not Found"
+}
+}
+}
+},
+"/api/v1/risk/control": {
+"post": {
+"tags": [
+"risk-controller"
+],
+"summary": "createOrUpdateRiskControl",
+"operationId": "createOrUpdateRiskControlUsingPOST",
+"consumes": [
+"application/json"
+],
+"produces": [
+"*/*"
+],
+"parameters": [
+{
+"in": "body",
+"name": "riskControlDTO",
+"description": "riskControlDTO",
+"required": true,
+"schema": {
+"$ref": "#/definitions/RiskControlDTO"
+}
+}
+],
+"responses": {
+"200": {
+"description": "OK",
+"schema": {
+"$ref": "#/definitions/ApiResponse"
+}
+},
+"201": {
+"description": "Created"
+},
+"401": {
+"description": "Unauthorized"
+},
+"403": {
+"description": "Forbidden"
+},
+"404": {
+"description": "Not Found"
+}
+}
+}
+},
+"/api/v1/risk/control/{id}": {
+"delete": {
+"tags": [
+"risk-controller"
+],
+"summary": "deleteRiskControlById",
+"operationId": "deleteRiskControlByIdUsingDELETE",
+"produces": [
+"*/*"
+],
+"parameters": [
+{
+"name": "id",
+"in": "path",
+"description": "id",
+"required": true,
+"type": "integer",
+"format": "int64"
+}
+],
+"responses": {
+"200": {
+"description": "OK",
+"schema": {
+"$ref": "#/definitions/ApiResponse"
+}
+},
+"204": {
+"description": "No Content"
+},
+"401": {
+"description": "Unauthorized"
+},
+"403": {
+"description": "Forbidden"
+}
+}
+}
+},
+"/api/v1/risk/dashboard": {
+"get": {
+"tags": [
+"common-risk-controller"
+],
+"summary": "getDashboardCounts",
+"operationId": "getDashboardCountsUsingGET",
+"produces": [
+"*/*"
+],
+"parameters": [
+{
+"name": "orgId",
+"in": "query",
+"description": "orgId",
+"required": true,
+"type": "string"
+}
+],
+"responses": {
+"200": {
+"description": "OK",
+"schema": {
+"$ref": "#/definitions/ApiResponse"
+}
+},
+"401": {
+"description": "Unauthorized"
+},
+"403": {
+"description": "Forbidden"
+},
+"404": {
+"description": "Not Found"
+}
+}
+}
+},
+"/api/v1/risk/{id}": {
+"get": {
+"tags": [
+"risk-controller"
+],
+"summary": "getRiskById",
+"operationId": "getRiskByIdUsingGET",
+"produces": [
+"*/*"
+],
+"parameters": [
+{
+"name": "id",
+"in": "path",
+"description": "id",
+"required": true,
+"type": "integer",
+"format": "int64"
+}
+],
+"responses": {
+"200": {
+"description": "OK",
+"schema": {
+"$ref": "#/definitions/ApiResponse"
+}
+},
+"401": {
+"description": "Unauthorized"
+},
+"403": {
+"description": "Forbidden"
+},
+"404": {
+"description": "Not Found"
+}
+}
+},
+"delete": {
+"tags": [
+"risk-controller"
+],
+"summary": "deleteRiskById",
+"operationId": "deleteRiskByIdUsingDELETE",
+"produces": [
+"*/*"
+],
+"parameters": [
+{
+"name": "id",
+"in": "path",
+"description": "id",
+"required": true,
+"type": "integer",
+"format": "int64"
+}
+],
+"responses": {
+"200": {
+"description": "OK",
+"schema": {
+"$ref": "#/definitions/ApiResponse"
+}
+},
+"204": {
+"description": "No Content"
+},
+"401": {
+"description": "Unauthorized"
+},
+"403": {
+"description": "Forbidden"
+}
+}
+}
+},
+"/api/v1/risks": {
+"post": {
+"tags": [
+"risk-controller"
+],
+"summary": "getRisks",
+"operationId": "getRisksUsingPOST",
+"consumes": [
+"application/json"
+],
+"produces": [
+"*/*"
+],
+"parameters": [
+{
+"in": "body",
+"name": "paginationRequestDTO",
+"description": "paginationRequestDTO",
+"required": true,
+"schema": {
+"$ref": "#/definitions/PaginationRequestDTO"
+}
+}
+],
+"responses": {
+"200": {
+"description": "OK",
+"schema": {
+"$ref": "#/definitions/ApiResponse"
+}
+},
+"201": {
+"description": "Created"
+},
+"401": {
+"description": "Unauthorized"
+},
+"403": {
+"description": "Forbidden"
+},
+"404": {
+"description": "Not Found"
+}
+}
+}
+},
+"/api/v1/role": {
+"get": {
+"tags": [
+"authorization-controller"
+],
+"summary": "getRoleById",
+"operationId": "getRoleByIdUsingGET",
+"produces": [
+"*/*"
+],
+"parameters": [
+{
+"name": "orgId",
+"in": "query",
+"description": "orgId",
+"required": true,
+"type": "string"
+},
+{
+"name": "roleId",
+"in": "query",
+"description": "roleId",
+"required": true,
+"type": "integer",
+"format": "int64"
+}
+],
+"responses": {
+"200": {
+"description": "OK",
+"schema": {
+"$ref": "#/definitions/ApiResponse"
+}
+},
+"401": {
+"description": "Unauthorized"
+},
+"403": {
+"description": "Forbidden"
+},
+"404": {
+"description": "Not Found"
+}
+}
+},
+"post": {
+"tags": [
+"authorization-controller"
+],
+"summary": "createRole",
+"operationId": "createRoleUsingPOST",
+"consumes": [
+"application/json"
+],
+"produces": [
+"*/*"
+],
+"parameters": [
+{
+"in": "body",
+"name": "roleDTO",
+"description": "roleDTO",
+"required": true,
+"schema": {
+"$ref": "#/definitions/RoleDTO"
+}
+}
+],
+"responses": {
+"200": {
+"description": "OK",
+"schema": {
+"$ref": "#/definitions/ApiResponse"
+}
+},
+"201": {
+"description": "Created"
+},
+"401": {
+"description": "Unauthorized"
+},
+"403": {
+"description": "Forbidden"
+},
+"404": {
+"description": "Not Found"
+}
+}
+}
+},
+"/api/v1/rolePermission": {
+"get": {
+"tags": [
+"authorization-controller"
+],
+"summary": "getRolePermissionByRoleId",
+"operationId": "getRolePermissionByRoleIdUsingGET",
+"produces": [
+"*/*"
+],
+"parameters": [
+{
+"name": "orgId",
+"in": "query",
+"description": "orgId",
+"required": true,
+"type": "string"
+},
+{
+"name": "roleId",
+"in": "query",
+"description": "roleId",
+"required": true,
+"type": "integer",
+"format": "int64"
+}
+],
+"responses": {
+"200": {
+"description": "OK",
+"schema": {
+"$ref": "#/definitions/ApiResponse"
+}
+},
+"401": {
+"description": "Unauthorized"
+},
+"403": {
+"description": "Forbidden"
+},
+"404": {
+"description": "Not Found"
+}
+}
+},
+"post": {
+"tags": [
+"authorization-controller"
+],
+"summary": "createRolePermission",
+"operationId": "createRolePermissionUsingPOST",
+"consumes": [
+"application/json"
+],
+"produces": [
+"*/*"
+],
+"parameters": [
+{
+"in": "body",
+"name": "rolePermDTO",
+"description": "rolePermDTO",
+"required": true,
+"schema": {
+"$ref": "#/definitions/RolePermissionDTO"
+}
+}
+],
+"responses": {
+"200": {
+"description": "OK",
+"schema": {
+"$ref": "#/definitions/ApiResponse"
+}
+},
+"201": {
+"description": "Created"
+},
+"401": {
+"description": "Unauthorized"
+},
+"403": {
+"description": "Forbidden"
+},
+"404": {
+"description": "Not Found"
+}
+}
+}
+},
+"/api/v1/roles": {
+"get": {
+"tags": [
+"authorization-controller"
+],
+"summary": "getRoles",
+"operationId": "getRolesUsingGET",
+"produces": [
+"*/*"
+],
+"parameters": [
+{
+"name": "orgId",
+"in": "query",
+"description": "orgId",
+"required": true,
+"type": "string"
+}
+],
+"responses": {
+"200": {
+"description": "OK",
+"schema": {
+"$ref": "#/definitions/ApiResponse"
+}
+},
+"401": {
+"description": "Unauthorized"
+},
+"403": {
+"description": "Forbidden"
+},
+"404": {
+"description": "Not Found"
+}
+}
+}
+},
+"/api/v1/scoringModel": {
+"get": {
+"tags": [
+"scoring-model-controller"
+],
+"summary": "getScoringModel",
+"operationId": "getScoringModelUsingGET",
+"produces": [
+"*/*"
+],
+"parameters": [
+{
+"name": "id",
+"in": "query",
+"description": "id",
+"required": true,
+"type": "integer",
+"format": "int64"
+}
+],
+"responses": {
+"200": {
+"description": "OK",
+"schema": {
+"$ref": "#/definitions/ApiResponse"
+}
+},
+"401": {
+"description": "Unauthorized"
+},
+"403": {
+"description": "Forbidden"
+},
+"404": {
+"description": "Not Found"
+}
+}
+},
+"post": {
+"tags": [
+"scoring-model-controller"
+],
+"summary": "createScoringModel",
+"operationId": "createScoringModelUsingPOST",
+"consumes": [
+"application/json"
+],
+"produces": [
+"*/*"
+],
+"parameters": [
+{
+"in": "body",
+"name": "scoringModelDTO",
+"description": "scoringModelDTO",
+"required": true,
+"schema": {
+"$ref": "#/definitions/ScoringModelDTO"
+}
+}
+],
+"responses": {
+"200": {
+"description": "OK",
+"schema": {
+"$ref": "#/definitions/ApiResponse"
+}
+},
+"201": {
+"description": "Created"
+},
+"401": {
+"description": "Unauthorized"
+},
+"403": {
+"description": "Forbidden"
+},
+"404": {
+"description": "Not Found"
+}
+}
+}
+},
+"/api/v1/scoringModels": {
+"get": {
+"tags": [
+"scoring-model-controller"
+],
+"summary": "getScoringModels",
+"operationId": "getScoringModelsUsingGET",
+"produces": [
+"*/*"
+],
+"responses": {
+"200": {
+"description": "OK",
+"schema": {
+"$ref": "#/definitions/ApiResponse"
+}
+},
+"401": {
+"description": "Unauthorized"
+},
+"403": {
+"description": "Forbidden"
+},
+"404": {
+"description": "Not Found"
+}
+}
+}
+},
+"/api/v1/states": {
+"get": {
+"tags": [
+"common-controller"
+],
+"summary": "getStatesByCountryCode",
+"operationId": "getStatesByCountryCodeUsingGET",
+"produces": [
+"*/*"
+],
+"parameters": [
+{
+"name": "countryCode",
+"in": "query",
+"description": "countryCode",
+"required": true,
+"type": "string"
+}
+],
+"responses": {
+"200": {
+"description": "OK",
+"schema": {
+"$ref": "#/definitions/ApiResponse"
+}
+},
+"401": {
+"description": "Unauthorized"
+},
+"403": {
+"description": "Forbidden"
+},
+"404": {
+"description": "Not Found"
+}
+}
+}
+},
+"/api/v1/template": {
+"get": {
+"tags": [
+"template-controller"
+],
+"summary": "getTemplate",
+"operationId": "getTemplateUsingGET",
+"produces": [
+"*/*"
+],
+"parameters": [
+{
+"name": "orgId",
+"in": "query",
+"description": "orgId",
+"required": true,
+"type": "string"
+},
+{
+"name": "templateId",
+"in": "query",
+"description": "templateId",
+"required": true,
+"type": "integer",
+"format": "int64"
+}
+],
+"responses": {
+"200": {
+"description": "OK",
+"schema": {
+"$ref": "#/definitions/ApiResponse"
+}
+},
+"401": {
+"description": "Unauthorized"
+},
+"403": {
+"description": "Forbidden"
+},
+"404": {
+"description": "Not Found"
+}
+}
+},
+"post": {
+"tags": [
+"template-controller"
+],
+"summary": "createTemplate",
+"operationId": "createTemplateUsingPOST",
+"consumes": [
+"application/json"
+],
+"produces": [
+"*/*"
+],
+"parameters": [
+{
+"in": "body",
+"name": "templateDTO",
+"description": "templateDTO",
+"required": true,
+"schema": {
+"$ref": "#/definitions/TemplateDTO"
+}
+}
+],
+"responses": {
+"200": {
+"description": "OK",
+"schema": {
+"$ref": "#/definitions/ApiResponse"
+}
+},
+"201": {
+"description": "Created"
+},
+"401": {
+"description": "Unauthorized"
+},
+"403": {
+"description": "Forbidden"
+},
+"404": {
+"description": "Not Found"
+}
+}
+},
+"delete": {
+"tags": [
+"template-controller"
+],
+"summary": "deleteTemplate",
+"operationId": "deleteTemplateUsingDELETE",
+"produces": [
+"*/*"
+],
+"parameters": [
+{
+"name": "orgId",
+"in": "query",
+"description": "orgId",
+"required": true,
+"type": "string"
+},
+{
+"name": "templateId",
+"in": "query",
+"description": "templateId",
+"required": true,
+"type": "integer",
+"format": "int64"
+}
+],
+"responses": {
+"200": {
+"description": "OK",
+"schema": {
+"$ref": "#/definitions/ApiResponse"
+}
+},
+"204": {
+"description": "No Content"
+},
+"401": {
+"description": "Unauthorized"
+},
+"403": {
+"description": "Forbidden"
+}
+}
+}
+},
+"/api/v1/template/page/{pageNum}": {
+"get": {
+"tags": [
+"template-controller"
+],
+"summary": "listTemplateByPage",
+"operationId": "listTemplateByPageUsingGET",
+"produces": [
+"*/*"
+],
+"parameters": [
+{
+"name": "keyword",
+"in": "query",
+"description": "keyword",
+"required": false,
+"type": "string"
+},
+{
+"name": "orgId",
+"in": "query",
+"description": "orgId",
+"required": true,
+"type": "string"
+},
+{
+"name": "pageNum",
+"in": "path",
+"description": "pageNum",
+"required": true,
+"type": "integer",
+"format": "int32"
+},
+{
+"name": "pageSize",
+"in": "query",
+"description": "pageSize",
+"required": false,
+"type": "integer",
+"format": "int64"
+},
+{
+"name": "sortDir",
+"in": "query",
+"description": "sortDir",
+"required": false,
+"type": "string"
+},
+{
+"name": "sortField",
+"in": "query",
+"description": "sortField",
+"required": false,
+"type": "string"
+}
+],
+"responses": {
+"200": {
+"description": "OK",
+"schema": {
+"$ref": "#/definitions/ApiResponse"
+}
+},
+"401": {
+"description": "Unauthorized"
+},
+"403": {
+"description": "Forbidden"
+},
+"404": {
+"description": "Not Found"
+}
+}
+}
+},
+"/api/v1/user/{id}/profilePic": {
+"get": {
+"tags": [
+"user-controller"
+],
+"summary": "getProfilePicByUserId",
+"operationId": "getProfilePicByUserIdUsingGET",
+"produces": [
+"*/*"
+],
+"parameters": [
+{
+"name": "id",
+"in": "path",
+"description": "id",
+"required": true,
+"type": "integer",
+"format": "int64"
+},
+{
+"name": "orgId",
+"in": "query",
+"description": "orgId",
+"required": true,
+"type": "string"
+}
+],
+"responses": {
+"200": {
+"description": "OK",
+"schema": {
+"$ref": "#/definitions/ResponseEntity"
+}
+},
+"401": {
+"description": "Unauthorized"
+},
+"403": {
+"description": "Forbidden"
+},
+"404": {
+"description": "Not Found"
+}
+}
+},
+"post": {
+"tags": [
+"user-controller"
+],
+"summary": "uploadProfilePic",
+"operationId": "uploadProfilePicUsingPOST",
+"consumes": [
+"multipart/form-data"
+],
+"produces": [
+"*/*"
+],
+"parameters": [
+{
+"name": "id",
+"in": "path",
+"description": "id",
+"required": true,
+"type": "integer",
+"format": "int64"
+},
+{
+"name": "orgId",
+"in": "query",
+"description": "orgId",
+"required": true,
+"type": "string"
+},
+{
+"in": "body",
+"name": "profilePic",
+"description": "profilePic",
+"required": true,
+"schema": {
+"type": "string",
+"format": "binary"
+}
+}
+],
+"responses": {
+"200": {
+"description": "OK",
+"schema": {
+"$ref": "#/definitions/ApiResponse"
+}
+},
+"201": {
+"description": "Created"
+},
+"401": {
+"description": "Unauthorized"
+},
+"403": {
+"description": "Forbidden"
+},
+"404": {
+"description": "Not Found"
+}
+}
+}
+},
+"/api/v1/user/{id}/summary": {
+"get": {
+"tags": [
+"user-controller"
+],
+"summary": "getUserSummary",
+"operationId": "getUserSummaryUsingGET",
+"produces": [
+"*/*"
+],
+"parameters": [
+{
+"name": "id",
+"in": "path",
+"description": "id",
+"required": true,
+"type": "integer",
+"format": "int64"
+},
+{
+"name": "orgId",
+"in": "query",
+"description": "orgId",
+"required": true,
+"type": "string"
+}
+],
+"responses": {
+"200": {
+"description": "OK",
+"schema": {
+"$ref": "#/definitions/ApiResponse"
+}
+},
+"401": {
+"description": "Unauthorized"
+},
+"403": {
+"description": "Forbidden"
+},
+"404": {
+"description": "Not Found"
+}
+}
+}
+},
+"/api/v1/userDepartment": {
+"get": {
+"tags": [
+"department-controller"
+],
+"summary": "getUserDepartment",
+"operationId": "getUserDepartmentUsingGET",
+"produces": [
+"*/*"
+],
+"parameters": [
+{
+"name": "orgId",
+"in": "query",
+"description": "orgId",
+"required": true,
+"type": "string"
+},
+{
+"name": "userId",
+"in": "query",
+"description": "userId",
+"required": true,
+"type": "integer",
+"format": "int64"
+}
+],
+"responses": {
+"200": {
+"description": "OK",
+"schema": {
+"$ref": "#/definitions/ApiResponse"
+}
+},
+"401": {
+"description": "Unauthorized"
+},
+"403": {
+"description": "Forbidden"
+},
+"404": {
+"description": "Not Found"
+}
+}
+},
+"post": {
+"tags": [
+"department-controller"
+],
+"summary": "createUserDepartment",
+"operationId": "createUserDepartmentUsingPOST",
+"consumes": [
+"application/json"
+],
+"produces": [
+"*/*"
+],
+"parameters": [
+{
+"in": "body",
+"name": "userDepartmentDTO",
+"description": "userDepartmentDTO",
+"required": true,
+"schema": {
+"$ref": "#/definitions/UserDepartmentDTO"
+}
+}
+],
+"responses": {
+"200": {
+"description": "OK",
+"schema": {
+"$ref": "#/definitions/ApiResponse"
+}
+},
+"201": {
+"description": "Created"
+},
+"401": {
+"description": "Unauthorized"
+},
+"403": {
+"description": "Forbidden"
+},
+"404": {
+"description": "Not Found"
+}
+}
+}
+},
+"/api/v1/userRole": {
+"get": {
+"tags": [
+"authorization-controller"
+],
+"summary": "getUserRoleByUserId",
+"operationId": "getUserRoleByUserIdUsingGET",
+"produces": [
+"*/*"
+],
+"parameters": [
+{
+"name": "orgId",
+"in": "query",
+"description": "orgId",
+"required": true,
+"type": "string"
+},
+{
+"name": "userId",
+"in": "query",
+"description": "userId",
+"required": true,
+"type": "integer",
+"format": "int64"
+}
+],
+"responses": {
+"200": {
+"description": "OK",
+"schema": {
+"$ref": "#/definitions/ApiResponse"
+}
+},
+"401": {
+"description": "Unauthorized"
+},
+"403": {
+"description": "Forbidden"
+},
+"404": {
+"description": "Not Found"
+}
+}
+},
+"post": {
+"tags": [
+"authorization-controller"
+],
+"summary": "createUserRole",
+"operationId": "createUserRoleUsingPOST",
+"consumes": [
+"application/json"
+],
+"produces": [
+"*/*"
+],
+"parameters": [
+{
+"in": "body",
+"name": "userRoleDTO",
+"description": "userRoleDTO",
+"required": true,
+"schema": {
+"$ref": "#/definitions/UserRoleDTO"
+}
+}
+],
+"responses": {
+"200": {
+"description": "OK",
+"schema": {
+"$ref": "#/definitions/ApiResponse"
+}
+},
+"201": {
+"description": "Created"
+},
+"401": {
+"description": "Unauthorized"
+},
+"403": {
+"description": "Forbidden"
+},
+"404": {
+"description": "Not Found"
+}
+}
+}
+},
+"/error": {
+"get": {
+"tags": [
+"basic-error-controller"
+],
+"summary": "error",
+"operationId": "errorUsingGET",
+"produces": [
+"*/*"
+],
+"responses": {
+"200": {
+"description": "OK",
+"schema": {
+"type": "object",
+"additionalProperties": {
+"type": "object"
+}
+}
+},
+"401": {
+"description": "Unauthorized"
+},
+"403": {
+"description": "Forbidden"
+},
+"404": {
+"description": "Not Found"
+}
+}
+},
+"head": {
+"tags": [
+"basic-error-controller"
+],
+"summary": "error",
+"operationId": "errorUsingHEAD",
+"consumes": [
+"application/json"
+],
+"produces": [
+"*/*"
+],
+"responses": {
+"200": {
+"description": "OK",
+"schema": {
+"type": "object",
+"additionalProperties": {
+"type": "object"
+}
+}
+},
+"204": {
+"description": "No Content"
+},
+"401": {
+"description": "Unauthorized"
+},
+"403": {
+"description": "Forbidden"
+}
+}
+},
+"post": {
+"tags": [
+"basic-error-controller"
+],
+"summary": "error",
+"operationId": "errorUsingPOST",
+"consumes": [
+"application/json"
+],
+"produces": [
+"*/*"
+],
+"responses": {
+"200": {
+"description": "OK",
+"schema": {
+"type": "object",
+"additionalProperties": {
+"type": "object"
+}
+}
+},
+"201": {
+"description": "Created"
+},
+"401": {
+"description": "Unauthorized"
+},
+"403": {
+"description": "Forbidden"
+},
+"404": {
+"description": "Not Found"
+}
+}
+},
+"put": {
+"tags": [
+"basic-error-controller"
+],
+"summary": "error",
+"operationId": "errorUsingPUT",
+"consumes": [
+"application/json"
+],
+"produces": [
+"*/*"
+],
+"responses": {
+"200": {
+"description": "OK",
+"schema": {
+"type": "object",
+"additionalProperties": {
+"type": "object"
+}
+}
+},
+"201": {
+"description": "Created"
+},
+"401": {
+"description": "Unauthorized"
+},
+"403": {
+"description": "Forbidden"
+},
+"404": {
+"description": "Not Found"
+}
+}
+},
+"delete": {
+"tags": [
+"basic-error-controller"
+],
+"summary": "error",
+"operationId": "errorUsingDELETE",
+"produces": [
+"*/*"
+],
+"responses": {
+"200": {
+"description": "OK",
+"schema": {
+"type": "object",
+"additionalProperties": {
+"type": "object"
+}
+}
+},
+"204": {
+"description": "No Content"
+},
+"401": {
+"description": "Unauthorized"
+},
+"403": {
+"description": "Forbidden"
+}
+}
+},
+"options": {
+"tags": [
+"basic-error-controller"
+],
+"summary": "error",
+"operationId": "errorUsingOPTIONS",
+"consumes": [
+"application/json"
+],
+"produces": [
+"*/*"
+],
+"responses": {
+"200": {
+"description": "OK",
+"schema": {
+"type": "object",
+"additionalProperties": {
+"type": "object"
+}
+}
+},
+"204": {
+"description": "No Content"
+},
+"401": {
+"description": "Unauthorized"
+},
+"403": {
+"description": "Forbidden"
+}
+}
+},
+"patch": {
+"tags": [
+"basic-error-controller"
+],
+"summary": "error",
+"operationId": "errorUsingPATCH",
+"consumes": [
+"application/json"
+],
+"produces": [
+"*/*"
+],
+"responses": {
+"200": {
+"description": "OK",
+"schema": {
+"type": "object",
+"additionalProperties": {
+"type": "object"
+}
+}
+},
+"204": {
+"description": "No Content"
+},
+"401": {
+"description": "Unauthorized"
+},
+"403": {
+"description": "Forbidden"
+}
+}
+}
+}
+},
+"definitions": {
+"Address": {
+"type": "object",
+"properties": {
+"addressLine1": {
+"type": "string"
+},
+"addressLine2": {
+"type": "string"
+},
+"addressRefCode": {
+"type": "string"
+},
+"addressRefId": {
+"type": "integer",
+"format": "int64"
+},
+"addressRefName": {
+"type": "string"
+},
+"city": {
+"type": "string"
+},
+"country": {
+"type": "string"
+},
+"countryName": {
+"type": "string"
+},
+"id": {
+"type": "integer",
+"format": "int64"
+},
+"orgId": {
+"type": "string"
+},
+"postalCode": {
+"type": "string"
+},
+"state": {
+"type": "string"
+},
+"stateName": {
+"type": "string"
+}
+},
+"title": "Address"
+},
+"ApiResponse": {
+"type": "object",
+"properties": {
+"data": {
+"type": "object"
+},
+"errors": {
+"type": "array",
+"items": {
+"$ref": "#/definitions/MessageResponse"
+}
+},
+"message": {
+"$ref": "#/definitions/MessageResponse"
+},
+"status": {
+"type": "integer",
+"format": "int32"
+}
+},
+"title": "ApiResponse"
+},
+"AuthenticationRequest": {
+"type": "object",
+"properties": {
+"orgId": {
+"type": "string"
+},
+"password": {
+"type": "string"
+},
+"username": {
+"type": "string"
+}
+},
+"title": "AuthenticationRequest"
+},
+"DepartmentDTO": {
+"type": "object",
+"properties": {
+"code": {
+"type": "string"
+},
+"description": {
+"type": "string"
+},
+"name": {
+"type": "string"
+},
+"orgId": {
+"type": "string"
+}
+},
+"title": "DepartmentDTO"
+},
+"DomainDTO": {
+"type": "object",
+"properties": {
+"code": {
+"type": "string"
+},
+"description": {
+"type": "string"
+},
+"name": {
+"type": "string"
+},
+"orgId": {
+"type": "string"
+}
+},
+"title": "DomainDTO"
+},
+"MessageResponse": {
+"type": "object",
+"properties": {
+"code": {
+"type": "string"
+},
+"message": {
+"type": "string"
+}
+},
+"title": "MessageResponse"
+},
+"ModelAndView": {
+"type": "object",
+"properties": {
+"empty": {
+"type": "boolean"
+},
+"model": {
+"type": "object"
+},
+"modelMap": {
+"type": "object",
+"additionalProperties": {
+"type": "object"
+}
+},
+"reference": {
+"type": "boolean"
+},
+"status": {
+"type": "string",
+"enum": [
+"ACCEPTED",
+"ALREADY_REPORTED",
+"BAD_GATEWAY",
+"BAD_REQUEST",
+"BANDWIDTH_LIMIT_EXCEEDED",
+"CHECKPOINT",
+"CONFLICT",
+"CONTINUE",
+"CREATED",
+"DESTINATION_LOCKED",
+"EXPECTATION_FAILED",
+"FAILED_DEPENDENCY",
+"FORBIDDEN",
+"FOUND",
+"GATEWAY_TIMEOUT",
+"GONE",
+"HTTP_VERSION_NOT_SUPPORTED",
+"IM_USED",
+"INSUFFICIENT_SPACE_ON_RESOURCE",
+"INSUFFICIENT_STORAGE",
+"INTERNAL_SERVER_ERROR",
+"I_AM_A_TEAPOT",
+"LENGTH_REQUIRED",
+"LOCKED",
+"LOOP_DETECTED",
+"METHOD_FAILURE",
+"METHOD_NOT_ALLOWED",
+"MOVED_PERMANENTLY",
+"MOVED_TEMPORARILY",
+"MULTIPLE_CHOICES",
+"MULTI_STATUS",
+"NETWORK_AUTHENTICATION_REQUIRED",
+"NON_AUTHORITATIVE_INFORMATION",
+"NOT_ACCEPTABLE",
+"NOT_EXTENDED",
+"NOT_FOUND",
+"NOT_IMPLEMENTED",
+"NOT_MODIFIED",
+"NO_CONTENT",
+"OK",
+"PARTIAL_CONTENT",
+"PAYLOAD_TOO_LARGE",
+"PAYMENT_REQUIRED",
+"PERMANENT_REDIRECT",
+"PRECONDITION_FAILED",
+"PRECONDITION_REQUIRED",
+"PROCESSING",
+"PROXY_AUTHENTICATION_REQUIRED",
+"REQUESTED_RANGE_NOT_SATISFIABLE",
+"REQUEST_ENTITY_TOO_LARGE",
+"REQUEST_HEADER_FIELDS_TOO_LARGE",
+"REQUEST_TIMEOUT",
+"REQUEST_URI_TOO_LONG",
+"RESET_CONTENT",
+"SEE_OTHER",
+"SERVICE_UNAVAILABLE",
+"SWITCHING_PROTOCOLS",
+"TEMPORARY_REDIRECT",
+"TOO_EARLY",
+"TOO_MANY_REQUESTS",
+"UNAUTHORIZED",
+"UNAVAILABLE_FOR_LEGAL_REASONS",
+"UNPROCESSABLE_ENTITY",
+"UNSUPPORTED_MEDIA_TYPE",
+"UPGRADE_REQUIRED",
+"URI_TOO_LONG",
+"USE_PROXY",
+"VARIANT_ALSO_NEGOTIATES"
+]
+},
+"view": {
+"$ref": "#/definitions/View"
+},
+"viewName": {
+"type": "string"
+}
+},
+"title": "ModelAndView"
+},
+"OrganizationDTO": {
+"type": "object",
+"properties": {
+"addressList": {
+"type": "array",
+"items": {
+"$ref": "#/definitions/Address"
+}
+},
+"description": {
+"type": "string"
+},
+"id": {
+"type": "integer",
+"format": "int64"
+},
+"logo": {
+"type": "string"
+},
+"logoId": {
+"type": "integer",
+"format": "int64"
+},
+"orgId": {
+"type": "string"
+},
+"orgName": {
+"type": "string"
+},
+"orgRefCode": {
+"type": "string"
+},
+"orgRefId": {
+"type": "integer",
+"format": "int64"
+},
+"orgRefName": {
+"type": "string"
+},
+"orgShortName": {
+"type": "string"
+},
+"orgStatusRefCode": {
+"type": "string"
+},
+"orgStatusRefId": {
+"type": "integer",
+"format": "int64"
+},
+"orgStatusRefName": {
+"type": "string"
+},
+"phoneList": {
+"type": "array",
+"items": {
+"$ref": "#/definitions/Phone"
+}
+},
+"website": {
+"type": "string"
+}
+},
+"title": "OrganizationDTO"
+},
+"PaginationRequestDTO": {
+"type": "object",
+"properties": {
+"filter": {
+"type": "string"
+},
+"orgId": {
+"type": "string"
+},
+"pageNumber": {
+"type": "integer",
+"format": "int32"
+},
+"pageSize": {
+"type": "integer",
+"format": "int32"
+},
+"search": {
+"type": "string"
+},
+"sortDirection": {
+"type": "string"
+},
+"sortField": {
+"type": "string"
+}
+},
+"title": "PaginationRequestDTO"
+},
+"PermissionBitmap": {
+"type": "object",
+"properties": {
+"permBitmap": {
+"type": "integer",
+"format": "int32"
+},
+"permId": {
+"type": "integer",
+"format": "int64"
+}
+},
+"title": "PermissionBitmap"
+},
+"Phone": {
+"type": "object",
+"properties": {
+"id": {
+"type": "integer",
+"format": "int64"
+},
+"orgId": {
+"type": "string"
+},
+"phoneCode": {
+"type": "string"
+},
+"phoneNumber": {
+"type": "string"
+},
+"phoneRefCode": {
+"type": "string"
+},
+"phoneRefId": {
+"type": "integer",
+"format": "int64"
+},
+"phoneRefName": {
+"type": "string"
+},
+"userId": {
+"type": "integer",
+"format": "int64"
+}
+},
+"title": "Phone"
+},
+"ProjectDTO": {
+"type": "object",
+"properties": {
+"approverId": {
+"type": "integer",
+"format": "int64"
+},
+"description": {
+"type": "string"
+},
+"endDate": {
+"type": "string",
+"format": "date-time"
+},
+"id": {
+"type": "integer",
+"format": "int64"
+},
+"managerId": {
+"type": "integer",
+"format": "int64"
+},
+"name": {
+"type": "string"
+},
+"orgId": {
+"type": "string"
+},
+"reviewerId": {
+"type": "integer",
+"format": "int64"
+},
+"scoringModelId": {
+"type": "integer",
+"format": "int64"
+},
+"smeId": {
+"type": "integer",
+"format": "int64"
+},
+"startDate": {
+"type": "string",
+"format": "date-time"
+}
+},
+"title": "ProjectDTO"
+},
+"Range": {
+"type": "object",
+"properties": {
+"colorHex": {
+"type": "string"
+},
+"createdDate": {
+"type": "string",
+"format": "date-time"
+},
+"createdId": {
+"type": "integer",
+"format": "int64"
+},
+"from": {
+"type": "integer",
+"format": "int64"
+},
+"id": {
+"type": "integer",
+"format": "int64"
+},
+"scoringModelId": {
+"type": "integer",
+"format": "int64"
+},
+"to": {
+"type": "integer",
+"format": "int64"
+},
+"updatedDate": {
+"type": "string",
+"format": "date-time"
+},
+"updatedId": {
+"type": "integer",
+"format": "int64"
+}
+},
+"title": "Range"
+},
+"RefreshTokenDTO": {
+"type": "object",
+"properties": {
+"newToken": {
+"type": "string"
+},
+"orgType": {
+"type": "string"
+},
+"permissions": {
+"type": "object"
+},
+"refreshToken": {
+"type": "string"
+}
+},
+"title": "RefreshTokenDTO"
+},
+"ResetPasswordDTO": {
+"type": "object",
+"properties": {
+"orgId": {
+"type": "string"
+},
+"password": {
+"type": "string"
+},
+"rePassword": {
+"type": "string"
+},
+"username": {
+"type": "string"
+},
+"validationToken": {
+"type": "string"
+}
+},
+"title": "ResetPasswordDTO"
+},
+"ResponseEntity": {
+"type": "object",
+"properties": {
+"body": {
+"type": "object"
+},
+"statusCode": {
+"type": "string",
+"enum": [
+"ACCEPTED",
+"ALREADY_REPORTED",
+"BAD_GATEWAY",
+"BAD_REQUEST",
+"BANDWIDTH_LIMIT_EXCEEDED",
+"CHECKPOINT",
+"CONFLICT",
+"CONTINUE",
+"CREATED",
+"DESTINATION_LOCKED",
+"EXPECTATION_FAILED",
+"FAILED_DEPENDENCY",
+"FORBIDDEN",
+"FOUND",
+"GATEWAY_TIMEOUT",
+"GONE",
+"HTTP_VERSION_NOT_SUPPORTED",
+"IM_USED",
+"INSUFFICIENT_SPACE_ON_RESOURCE",
+"INSUFFICIENT_STORAGE",
+"INTERNAL_SERVER_ERROR",
+"I_AM_A_TEAPOT",
+"LENGTH_REQUIRED",
+"LOCKED",
+"LOOP_DETECTED",
+"METHOD_FAILURE",
+"METHOD_NOT_ALLOWED",
+"MOVED_PERMANENTLY",
+"MOVED_TEMPORARILY",
+"MULTIPLE_CHOICES",
+"MULTI_STATUS",
+"NETWORK_AUTHENTICATION_REQUIRED",
+"NON_AUTHORITATIVE_INFORMATION",
+"NOT_ACCEPTABLE",
+"NOT_EXTENDED",
+"NOT_FOUND",
+"NOT_IMPLEMENTED",
+"NOT_MODIFIED",
+"NO_CONTENT",
+"OK",
+"PARTIAL_CONTENT",
+"PAYLOAD_TOO_LARGE",
+"PAYMENT_REQUIRED",
+"PERMANENT_REDIRECT",
+"PRECONDITION_FAILED",
+"PRECONDITION_REQUIRED",
+"PROCESSING",
+"PROXY_AUTHENTICATION_REQUIRED",
+"REQUESTED_RANGE_NOT_SATISFIABLE",
+"REQUEST_ENTITY_TOO_LARGE",
+"REQUEST_HEADER_FIELDS_TOO_LARGE",
+"REQUEST_TIMEOUT",
+"REQUEST_URI_TOO_LONG",
+"RESET_CONTENT",
+"SEE_OTHER",
+"SERVICE_UNAVAILABLE",
+"SWITCHING_PROTOCOLS",
+"TEMPORARY_REDIRECT",
+"TOO_EARLY",
+"TOO_MANY_REQUESTS",
+"UNAUTHORIZED",
+"UNAVAILABLE_FOR_LEGAL_REASONS",
+"UNPROCESSABLE_ENTITY",
+"UNSUPPORTED_MEDIA_TYPE",
+"UPGRADE_REQUIRED",
+"URI_TOO_LONG",
+"USE_PROXY",
+"VARIANT_ALSO_NEGOTIATES"
+]
+},
+"statusCodeValue": {
+"type": "integer",
+"format": "int32"
+}
+},
+"title": "ResponseEntity"
+},
+"RiskControlDTO": {
+"type": "object",
+"properties": {
+"controlTypeCode": {
+"type": "string"
+},
+"controlTypeId": {
+"type": "integer",
+"format": "int64"
+},
+"controlTypeName": {
+"type": "string"
+},
+"id": {
+"type": "integer",
+"format": "int64"
+},
+"name": {
+"type": "string"
+},
+"riskId": {
+"type": "integer",
+"format": "int64"
+}
+},
+"title": "RiskControlDTO"
+},
+"RiskDTO": {
+"type": "object",
+"properties": {
+"description": {
+"type": "string"
+},
+"domainId": {
+"type": "integer",
+"format": "int64"
+},
+"id": {
+"type": "integer",
+"format": "int64"
+},
+"impactId": {
+"type": "integer",
+"format": "int64"
+},
+"likelihoodId": {
+"type": "integer",
+"format": "int64"
+},
+"name": {
+"type": "string"
+},
+"riskStatement": {
+"type": "string"
+},
+"tags": {
+"type": "string"
+}
+},
+"title": "RiskDTO"
+},
+"RoleDTO": {
+"type": "object",
+"properties": {
+"code": {
+"type": "string"
+},
+"description": {
+"type": "string"
+},
+"name": {
+"type": "string"
+},
+"orgId": {
+"type": "string"
+}
+},
+"title": "RoleDTO"
+},
+"RolePermissionDTO": {
+"type": "object",
+"properties": {
+"orgId": {
+"type": "string"
+},
+"permissions": {
+"type": "array",
+"items": {
+"$ref": "#/definitions/PermissionBitmap"
+}
+},
+"roleId": {
+"type": "integer",
+"format": "int64"
+}
+},
+"title": "RolePermissionDTO"
+},
+"ScoringModelDTO": {
+"type": "object",
+"properties": {
+"formula": {
+"type": "string"
+},
+"id": {
+"type": "integer",
+"format": "int64"
+},
+"modelName": {
+"type": "string"
+},
+"rangeList": {
+"type": "array",
+"items": {
+"$ref": "#/definitions/Range"
+}
+}
+},
+"title": "ScoringModelDTO"
+},
+"TemplateDTO": {
+"type": "object",
+"properties": {
+"createdDate": {
+"type": "string",
+"format": "date-time"
+},
+"createdId": {
+"type": "integer",
+"format": "int64"
+},
+"description": {
+"type": "string"
+},
+"id": {
+"type": "integer",
+"format": "int64"
+},
+"name": {
+"type": "string"
+},
+"orgId": {
+"type": "string"
+},
+"updatedId": {
+"type": "integer",
+"format": "int64"
+}
+},
+"title": "TemplateDTO"
+},
+"UserDTO": {
+"type": "object",
+"required": [
+"genderRefId",
+"titleRefId"
+],
+"properties": {
+"firstName": {
+"type": "string"
+},
+"genderRefCode": {
+"type": "string"
+},
+"genderRefId": {
+"type": "integer",
+"format": "int64"
+},
+"genderRefName": {
+"type": "string"
+},
+"id": {
+"type": "integer",
+"format": "int64"
+},
+"lastName": {
+"type": "string"
+},
+"middleName": {
+"type": "string"
+},
+"orgId": {
+"type": "string"
+},
+"profileId": {
+"type": "integer",
+"format": "int64"
+},
+"profilePic": {
+"type": "string"
+},
+"statusRefCode": {
+"type": "string"
+},
+"statusRefId": {
+"type": "integer",
+"format": "int64"
+},
+"statusRefName": {
+"type": "string"
+},
+"titleRefCode": {
+"type": "string"
+},
+"titleRefId": {
+"type": "integer",
+"format": "int64"
+},
+"titleRefName": {
+"type": "string"
+},
+"userPhones": {
+"type": "array",
+"items": {
+"$ref": "#/definitions/UserPhone"
+}
+},
+"username": {
+"type": "string"
+}
+},
+"title": "UserDTO"
+},
+"UserDepartmentDTO": {
+"type": "object",
+"properties": {
+"deptId": {
+"type": "integer",
+"format": "int64"
+},
+"orgId": {
+"type": "string"
+},
+"userId": {
+"type": "integer",
+"format": "int64"
+}
+},
+"title": "UserDepartmentDTO"
+},
+"UserPhone": {
+"type": "object",
+"properties": {
+"id": {
+"type": "integer",
+"format": "int64"
+},
+"orgId": {
+"type": "string"
+},
+"phoneCode": {
+"type": "string"
+},
+"phoneNumber": {
+"type": "string"
+},
+"phoneRefId": {
+"type": "integer",
+"format": "int64"
+},
+"phoneRefName": {
+"type": "string"
+},
+"userId": {
+"type": "integer",
+"format": "int64"
+}
+},
+"title": "UserPhone"
+},
+"UserRoleDTO": {
+"type": "object",
+"properties": {
+"orgId": {
+"type": "string"
+},
+"roleId": {
+"type": "integer",
+"format": "int64"
+},
+"userId": {
+"type": "integer",
+"format": "int64"
+}
+},
+"title": "UserRoleDTO"
+},
+"View": {
+"type": "object",
+"properties": {
+"contentType": {
+"type": "string"
+}
+},
+"title": "View"
+}
+}
 }
