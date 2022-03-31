@@ -51,6 +51,10 @@
             "description": "Risk Controller"
         },
         {
+            "name": "risk-import-controller",
+            "description": "Risk Import Controller"
+        },
+        {
             "name": "scoring-model-controller",
             "description": "Scoring Model Controller"
         },
@@ -1294,6 +1298,52 @@
                         "schema": {
                             "$ref": "#/definitions/ApiResponse"
                         }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                }
+            }
+        },
+        "/api/v1/platform/risks": {
+            "post": {
+                "tags": [
+                    "risk-import-controller"
+                ],
+                "summary": "getPlatformRisks",
+                "operationId": "getPlatformRisksUsingPOST",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "*/*"
+                ],
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "paginationRequestDTO",
+                        "description": "paginationRequestDTO",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/PaginationRequestDTO"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/ApiResponse"
+                        }
+                    },
+                    "201": {
+                        "description": "Created"
                     },
                     "401": {
                         "description": "Unauthorized"
@@ -3417,7 +3467,10 @@
         "PaginationRequestDTO": {
             "type": "object",
             "properties": {
-                "filter": {
+                "filterName": {
+                    "type": "string"
+                },
+                "filterValue": {
                     "type": "string"
                 },
                 "orgId": {
@@ -3492,7 +3545,17 @@
         },
         "ProjectDTO": {
             "type": "object",
+            "required": [
+                "approverId",
+                "managerId",
+                "reviewerId",
+                "scoringModelId",
+                "smeId"
+            ],
             "properties": {
+                "approver": {
+                    "$ref": "#/definitions/ProjectUserDTO"
+                },
                 "approverId": {
                     "type": "integer",
                     "format": "int64"
@@ -3508,6 +3571,9 @@
                     "type": "integer",
                     "format": "int64"
                 },
+                "manager": {
+                    "$ref": "#/definitions/ProjectUserDTO"
+                },
                 "managerId": {
                     "type": "integer",
                     "format": "int64"
@@ -3518,6 +3584,9 @@
                 "orgId": {
                     "type": "string"
                 },
+                "reviewer": {
+                    "$ref": "#/definitions/ProjectUserDTO"
+                },
                 "reviewerId": {
                     "type": "integer",
                     "format": "int64"
@@ -3526,6 +3595,9 @@
                     "type": "integer",
                     "format": "int64"
                 },
+                "scoringModelName": {
+                    "type": "string"
+                },
                 "smeId": {
                     "type": "integer",
                     "format": "int64"
@@ -3533,9 +3605,34 @@
                 "startDate": {
                     "type": "string",
                     "format": "date-time"
+                },
+                "subjectMatterExpert": {
+                    "$ref": "#/definitions/ProjectUserDTO"
                 }
             },
             "title": "ProjectDTO"
+        },
+        "ProjectUserDTO": {
+            "type": "object",
+            "properties": {
+                "firstName": {
+                    "type": "string"
+                },
+                "lastName": {
+                    "type": "string"
+                },
+                "profilePic": {
+                    "type": "string"
+                },
+                "userId": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "username": {
+                    "type": "string"
+                }
+            },
+            "title": "ProjectUserDTO"
         },
         "Range": {
             "type": "object",
@@ -3705,6 +3802,10 @@
         },
         "RiskControlDTO": {
             "type": "object",
+            "required": [
+                "controlTypeId",
+                "riskId"
+            ],
             "properties": {
                 "controlTypeCode": {
                     "type": "string"
@@ -3732,6 +3833,11 @@
         },
         "RiskRequestDTO": {
             "type": "object",
+            "required": [
+                "domainId",
+                "impactId",
+                "likelihoodId"
+            ],
             "properties": {
                 "description": {
                     "type": "string"
