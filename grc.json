@@ -1311,6 +1311,50 @@
                 }
             }
         },
+        "/api/v1/platform/risk": {
+            "post": {
+                "tags": [
+                    "risk-import-controller"
+                ],
+                "summary": "saveListRisks",
+                "operationId": "saveListRisksUsingPOST",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "*/*"
+                ],
+                "parameters": [
+                    {
+                        "name": "risks",
+                        "in": "query",
+                        "description": "risks",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/ApiResponse"
+                        }
+                    },
+                    "201": {
+                        "description": "Created"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                }
+            }
+        },
         "/api/v1/platform/risks": {
             "post": {
                 "tags": [
