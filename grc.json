@@ -39,6 +39,10 @@
             "description": "Department Controller"
         },
         {
+            "name": "job-controller",
+            "description": "Job Controller"
+        },
+        {
             "name": "organization-controller",
             "description": "Organization Controller"
         },
@@ -53,6 +57,10 @@
         {
             "name": "risk-import-controller",
             "description": "Risk Import Controller"
+        },
+        {
+            "name": "risk-upload-controller",
+            "description": "Risk Upload Controller"
         },
         {
             "name": "scoring-model-controller",
@@ -587,6 +595,52 @@
                         "schema": {
                             "$ref": "#/definitions/ApiResponse"
                         }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                }
+            }
+        },
+        "/api/v1/import/platform/risk": {
+            "post": {
+                "tags": [
+                    "risk-import-controller"
+                ],
+                "summary": "saveListRisks",
+                "operationId": "saveListRisksUsingPOST",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "*/*"
+                ],
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "riskImportDTO",
+                        "description": "riskImportDTO",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/RiskImportDTO"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/ApiResponse"
+                        }
+                    },
+                    "201": {
+                        "description": "Created"
                     },
                     "401": {
                         "description": "Unauthorized"
@@ -1298,50 +1352,6 @@
                         "schema": {
                             "$ref": "#/definitions/ApiResponse"
                         }
-                    },
-                    "401": {
-                        "description": "Unauthorized"
-                    },
-                    "403": {
-                        "description": "Forbidden"
-                    },
-                    "404": {
-                        "description": "Not Found"
-                    }
-                }
-            }
-        },
-        "/api/v1/platform/risk": {
-            "post": {
-                "tags": [
-                    "risk-import-controller"
-                ],
-                "summary": "saveListRisks",
-                "operationId": "saveListRisksUsingPOST",
-                "consumes": [
-                    "application/json"
-                ],
-                "produces": [
-                    "*/*"
-                ],
-                "parameters": [
-                    {
-                        "name": "risks",
-                        "in": "query",
-                        "description": "risks",
-                        "required": true,
-                        "type": "string"
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "schema": {
-                            "$ref": "#/definitions/ApiResponse"
-                        }
-                    },
-                    "201": {
-                        "description": "Created"
                     },
                     "401": {
                         "description": "Unauthorized"
@@ -2457,6 +2467,97 @@
                 }
             }
         },
+        "/api/v1/summary/risk/job": {
+            "get": {
+                "tags": [
+                    "job-controller"
+                ],
+                "summary": "getRiskUploadJob",
+                "operationId": "getRiskUploadJobUsingGET",
+                "produces": [
+                    "*/*"
+                ],
+                "parameters": [
+                    {
+                        "name": "jobId",
+                        "in": "query",
+                        "description": "jobId",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "orgId",
+                        "in": "query",
+                        "description": "orgId",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/ApiResponse"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                }
+            }
+        },
+        "/api/v1/summary/risk/jobs": {
+            "get": {
+                "tags": [
+                    "job-controller"
+                ],
+                "summary": "getAllRiskUploadJobs",
+                "operationId": "getAllRiskUploadJobsUsingGET",
+                "produces": [
+                    "*/*"
+                ],
+                "parameters": [
+                    {
+                        "name": "orgId",
+                        "in": "query",
+                        "description": "orgId",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "typeId",
+                        "in": "query",
+                        "description": "typeId",
+                        "required": true,
+                        "type": "integer",
+                        "format": "int64"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/ApiResponse"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                }
+            }
+        },
         "/api/v1/template": {
             "get": {
                 "tags": [
@@ -2653,6 +2754,60 @@
                         "schema": {
                             "$ref": "#/definitions/ApiResponse"
                         }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                }
+            }
+        },
+        "/api/v1/upload/risk": {
+            "post": {
+                "tags": [
+                    "risk-upload-controller"
+                ],
+                "summary": "uploadRiskCSV",
+                "operationId": "uploadRiskCSVUsingPOST",
+                "consumes": [
+                    "multipart/form-data"
+                ],
+                "produces": [
+                    "*/*"
+                ],
+                "parameters": [
+                    {
+                        "name": "orgId",
+                        "in": "query",
+                        "description": "orgId",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "in": "body",
+                        "name": "riskCSV",
+                        "description": "riskCSV",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "format": "binary"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/ApiResponse"
+                        }
+                    },
+                    "201": {
+                        "description": "Created"
                     },
                     "401": {
                         "description": "Unauthorized"
@@ -3003,16 +3158,19 @@
                 "tags": [
                     "basic-error-controller"
                 ],
-                "summary": "errorHtml",
-                "operationId": "errorHtmlUsingGET",
+                "summary": "error",
+                "operationId": "errorUsingGET",
                 "produces": [
-                    "text/html"
+                    "*/*"
                 ],
                 "responses": {
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/ModelAndView"
+                            "type": "object",
+                            "additionalProperties": {
+                                "type": "object"
+                            }
                         }
                     },
                     "401": {
@@ -3030,19 +3188,22 @@
                 "tags": [
                     "basic-error-controller"
                 ],
-                "summary": "errorHtml",
-                "operationId": "errorHtmlUsingHEAD",
+                "summary": "error",
+                "operationId": "errorUsingHEAD",
                 "consumes": [
                     "application/json"
                 ],
                 "produces": [
-                    "text/html"
+                    "*/*"
                 ],
                 "responses": {
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/ModelAndView"
+                            "type": "object",
+                            "additionalProperties": {
+                                "type": "object"
+                            }
                         }
                     },
                     "204": {
@@ -3060,19 +3221,22 @@
                 "tags": [
                     "basic-error-controller"
                 ],
-                "summary": "errorHtml",
-                "operationId": "errorHtmlUsingPOST",
+                "summary": "error",
+                "operationId": "errorUsingPOST",
                 "consumes": [
                     "application/json"
                 ],
                 "produces": [
-                    "text/html"
+                    "*/*"
                 ],
                 "responses": {
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/ModelAndView"
+                            "type": "object",
+                            "additionalProperties": {
+                                "type": "object"
+                            }
                         }
                     },
                     "201": {
@@ -3093,19 +3257,22 @@
                 "tags": [
                     "basic-error-controller"
                 ],
-                "summary": "errorHtml",
-                "operationId": "errorHtmlUsingPUT",
+                "summary": "error",
+                "operationId": "errorUsingPUT",
                 "consumes": [
                     "application/json"
                 ],
                 "produces": [
-                    "text/html"
+                    "*/*"
                 ],
                 "responses": {
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/ModelAndView"
+                            "type": "object",
+                            "additionalProperties": {
+                                "type": "object"
+                            }
                         }
                     },
                     "201": {
@@ -3126,16 +3293,19 @@
                 "tags": [
                     "basic-error-controller"
                 ],
-                "summary": "errorHtml",
-                "operationId": "errorHtmlUsingDELETE",
+                "summary": "error",
+                "operationId": "errorUsingDELETE",
                 "produces": [
-                    "text/html"
+                    "*/*"
                 ],
                 "responses": {
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/ModelAndView"
+                            "type": "object",
+                            "additionalProperties": {
+                                "type": "object"
+                            }
                         }
                     },
                     "204": {
@@ -3153,19 +3323,22 @@
                 "tags": [
                     "basic-error-controller"
                 ],
-                "summary": "errorHtml",
-                "operationId": "errorHtmlUsingOPTIONS",
+                "summary": "error",
+                "operationId": "errorUsingOPTIONS",
                 "consumes": [
                     "application/json"
                 ],
                 "produces": [
-                    "text/html"
+                    "*/*"
                 ],
                 "responses": {
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/ModelAndView"
+                            "type": "object",
+                            "additionalProperties": {
+                                "type": "object"
+                            }
                         }
                     },
                     "204": {
@@ -3183,19 +3356,22 @@
                 "tags": [
                     "basic-error-controller"
                 ],
-                "summary": "errorHtml",
-                "operationId": "errorHtmlUsingPATCH",
+                "summary": "error",
+                "operationId": "errorUsingPATCH",
                 "consumes": [
                     "application/json"
                 ],
                 "produces": [
-                    "text/html"
+                    "*/*"
                 ],
                 "responses": {
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/ModelAndView"
+                            "type": "object",
+                            "additionalProperties": {
+                                "type": "object"
+                            }
                         }
                     },
                     "204": {
@@ -3874,6 +4050,19 @@
                 }
             },
             "title": "RiskControlDTO"
+        },
+        "RiskImportDTO": {
+            "type": "object",
+            "properties": {
+                "riskIds": {
+                    "type": "array",
+                    "items": {
+                        "type": "integer",
+                        "format": "int64"
+                    }
+                }
+            },
+            "title": "RiskImportDTO"
         },
         "RiskRequestDTO": {
             "type": "object",
