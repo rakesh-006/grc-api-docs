@@ -51,6 +51,10 @@
             "description": "Project Controller"
         },
         {
+            "name": "project-risk-controller",
+            "description": "Project Risk Controller"
+        },
+        {
             "name": "risk-controller",
             "description": "Risk Controller"
         },
@@ -71,11 +75,107 @@
             "description": "Template Controller"
         },
         {
+            "name": "template-risk-controller",
+            "description": "Template Risk Controller"
+        },
+        {
             "name": "user-controller",
             "description": "User Controller"
         }
     ],
     "paths": {
+        "/api/v1/assign/risks/project": {
+            "post": {
+                "tags": [
+                    "project-risk-controller"
+                ],
+                "summary": "assignRisksToProject",
+                "operationId": "assignRisksToProjectUsingPOST",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "*/*"
+                ],
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "projectRiskDTO",
+                        "description": "projectRiskDTO",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/ProjectRiskDTO"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/ApiResponse"
+                        }
+                    },
+                    "201": {
+                        "description": "Created"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                }
+            }
+        },
+        "/api/v1/assign/template/risks/project": {
+            "post": {
+                "tags": [
+                    "project-risk-controller"
+                ],
+                "summary": "assignTemplateRisksToProject",
+                "operationId": "assignTemplateRisksToProjectUsingPOST",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "*/*"
+                ],
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "projectRiskDTO",
+                        "description": "projectRiskDTO",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/ProjectRiskDTO"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/ApiResponse"
+                        }
+                    },
+                    "201": {
+                        "description": "Created"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                }
+            }
+        },
         "/api/v1/countries": {
             "get": {
                 "tags": [
@@ -613,8 +713,8 @@
                 "tags": [
                     "risk-import-controller"
                 ],
-                "summary": "saveListRisks",
-                "operationId": "saveListRisksUsingPOST",
+                "summary": "saveImportRisks",
+                "operationId": "saveImportRisksUsingPOST",
                 "consumes": [
                     "application/json"
                 ],
@@ -2483,7 +2583,8 @@
                         "in": "query",
                         "description": "jobId",
                         "required": true,
-                        "type": "string"
+                        "type": "integer",
+                        "format": "int64"
                     },
                     {
                         "name": "orgId",
@@ -2747,6 +2848,157 @@
                         "required": false,
                         "type": "string"
                     }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/ApiResponse"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                }
+            }
+        },
+        "/api/v1/template/risk": {
+            "post": {
+                "tags": [
+                    "template-risk-controller"
+                ],
+                "summary": "createTemplateRiskByRiskIds",
+                "operationId": "createTemplateRiskByRiskIdsUsingPOST",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "*/*"
+                ],
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "templateRiskDTO",
+                        "description": "templateRiskDTO",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/TemplateRiskDTO"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/ApiResponse"
+                        }
+                    },
+                    "201": {
+                        "description": "Created"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                }
+            }
+        },
+        "/api/v1/template/risk/{id}": {
+            "get": {
+                "tags": [
+                    "template-risk-controller"
+                ],
+                "summary": "getTemplateRiskById",
+                "operationId": "getTemplateRiskByIdUsingGET",
+                "produces": [
+                    "*/*"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id",
+                        "required": true,
+                        "type": "integer",
+                        "format": "int64"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/ApiResponse"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "template-risk-controller"
+                ],
+                "summary": "deleteTemplateRisk",
+                "operationId": "deleteTemplateRiskUsingDELETE",
+                "produces": [
+                    "*/*"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id",
+                        "required": true,
+                        "type": "integer",
+                        "format": "int64"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/ApiResponse"
+                        }
+                    },
+                    "204": {
+                        "description": "No Content"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                }
+            }
+        },
+        "/api/v1/template/risks": {
+            "get": {
+                "tags": [
+                    "template-risk-controller"
+                ],
+                "summary": "getTemplateRisks",
+                "operationId": "getTemplateRisksUsingGET",
+                "produces": [
+                    "*/*"
                 ],
                 "responses": {
                     "200": {
@@ -3832,6 +4084,30 @@
             },
             "title": "ProjectDTO"
         },
+        "ProjectRiskDTO": {
+            "type": "object",
+            "properties": {
+                "projectId": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "riskIds": {
+                    "type": "array",
+                    "items": {
+                        "type": "integer",
+                        "format": "int64"
+                    }
+                },
+                "templateIds": {
+                    "type": "array",
+                    "items": {
+                        "type": "integer",
+                        "format": "int64"
+                    }
+                }
+            },
+            "title": "ProjectRiskDTO"
+        },
         "ProjectUserDTO": {
             "type": "object",
             "properties": {
@@ -4192,6 +4468,23 @@
                 }
             },
             "title": "TemplateDTO"
+        },
+        "TemplateRiskDTO": {
+            "type": "object",
+            "properties": {
+                "riskIds": {
+                    "type": "array",
+                    "items": {
+                        "type": "integer",
+                        "format": "int64"
+                    }
+                },
+                "templateId": {
+                    "type": "integer",
+                    "format": "int64"
+                }
+            },
+            "title": "TemplateRiskDTO"
         },
         "UserDTO": {
             "type": "object",
