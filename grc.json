@@ -1638,8 +1638,8 @@
                 "tags": [
                     "project-risk-controller"
                 ],
-                "summary": "createProjectAndRisk",
-                "operationId": "createProjectAndRiskUsingPOST",
+                "summary": "createProjectRisk",
+                "operationId": "createProjectRiskUsingPOST",
                 "consumes": [
                     "application/json"
                 ],
@@ -1654,6 +1654,52 @@
                         "required": true,
                         "schema": {
                             "$ref": "#/definitions/ProjectRiskDTO"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/ApiResponse"
+                        }
+                    },
+                    "201": {
+                        "description": "Created"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                }
+            }
+        },
+        "/api/v1/project/risk/control": {
+            "post": {
+                "tags": [
+                    "project-risk-controller"
+                ],
+                "summary": "createProjectRiskControl",
+                "operationId": "createProjectRiskControlUsingPOST",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "*/*"
+                ],
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "projectRiskControlDTO",
+                        "description": "projectRiskControlDTO",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/ProjectRiskControlDTO"
                         }
                     }
                 ],
@@ -3502,16 +3548,19 @@
                 "tags": [
                     "basic-error-controller"
                 ],
-                "summary": "errorHtml",
-                "operationId": "errorHtmlUsingGET",
+                "summary": "error",
+                "operationId": "errorUsingGET",
                 "produces": [
-                    "text/html"
+                    "*/*"
                 ],
                 "responses": {
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/ModelAndView"
+                            "type": "object",
+                            "additionalProperties": {
+                                "type": "object"
+                            }
                         }
                     },
                     "401": {
@@ -3529,19 +3578,22 @@
                 "tags": [
                     "basic-error-controller"
                 ],
-                "summary": "errorHtml",
-                "operationId": "errorHtmlUsingHEAD",
+                "summary": "error",
+                "operationId": "errorUsingHEAD",
                 "consumes": [
                     "application/json"
                 ],
                 "produces": [
-                    "text/html"
+                    "*/*"
                 ],
                 "responses": {
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/ModelAndView"
+                            "type": "object",
+                            "additionalProperties": {
+                                "type": "object"
+                            }
                         }
                     },
                     "204": {
@@ -3559,19 +3611,22 @@
                 "tags": [
                     "basic-error-controller"
                 ],
-                "summary": "errorHtml",
-                "operationId": "errorHtmlUsingPOST",
+                "summary": "error",
+                "operationId": "errorUsingPOST",
                 "consumes": [
                     "application/json"
                 ],
                 "produces": [
-                    "text/html"
+                    "*/*"
                 ],
                 "responses": {
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/ModelAndView"
+                            "type": "object",
+                            "additionalProperties": {
+                                "type": "object"
+                            }
                         }
                     },
                     "201": {
@@ -3592,19 +3647,22 @@
                 "tags": [
                     "basic-error-controller"
                 ],
-                "summary": "errorHtml",
-                "operationId": "errorHtmlUsingPUT",
+                "summary": "error",
+                "operationId": "errorUsingPUT",
                 "consumes": [
                     "application/json"
                 ],
                 "produces": [
-                    "text/html"
+                    "*/*"
                 ],
                 "responses": {
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/ModelAndView"
+                            "type": "object",
+                            "additionalProperties": {
+                                "type": "object"
+                            }
                         }
                     },
                     "201": {
@@ -3625,16 +3683,19 @@
                 "tags": [
                     "basic-error-controller"
                 ],
-                "summary": "errorHtml",
-                "operationId": "errorHtmlUsingDELETE",
+                "summary": "error",
+                "operationId": "errorUsingDELETE",
                 "produces": [
-                    "text/html"
+                    "*/*"
                 ],
                 "responses": {
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/ModelAndView"
+                            "type": "object",
+                            "additionalProperties": {
+                                "type": "object"
+                            }
                         }
                     },
                     "204": {
@@ -3652,19 +3713,22 @@
                 "tags": [
                     "basic-error-controller"
                 ],
-                "summary": "errorHtml",
-                "operationId": "errorHtmlUsingOPTIONS",
+                "summary": "error",
+                "operationId": "errorUsingOPTIONS",
                 "consumes": [
                     "application/json"
                 ],
                 "produces": [
-                    "text/html"
+                    "*/*"
                 ],
                 "responses": {
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/ModelAndView"
+                            "type": "object",
+                            "additionalProperties": {
+                                "type": "object"
+                            }
                         }
                     },
                     "204": {
@@ -3682,19 +3746,22 @@
                 "tags": [
                     "basic-error-controller"
                 ],
-                "summary": "errorHtml",
-                "operationId": "errorHtmlUsingPATCH",
+                "summary": "error",
+                "operationId": "errorUsingPATCH",
                 "consumes": [
                     "application/json"
                 ],
                 "produces": [
-                    "text/html"
+                    "*/*"
                 ],
                 "responses": {
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/ModelAndView"
+                            "type": "object",
+                            "additionalProperties": {
+                                "type": "object"
+                            }
                         }
                     },
                     "204": {
@@ -4155,6 +4222,42 @@
             },
             "title": "ProjectDTO"
         },
+        "ProjectRiskControlDTO": {
+            "type": "object",
+            "required": [
+                "controlTypeId",
+                "projectId",
+                "projectRiskId"
+            ],
+            "properties": {
+                "controlTypeCode": {
+                    "type": "string"
+                },
+                "controlTypeId": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "controlTypeName": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "projectId": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "projectRiskControlId": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "projectRiskId": {
+                    "type": "integer",
+                    "format": "int64"
+                }
+            },
+            "title": "ProjectRiskControlDTO"
+        },
         "ProjectRiskDTO": {
             "type": "object",
             "required": [
@@ -4183,6 +4286,10 @@
                     "type": "string"
                 },
                 "projectId": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "projectRiskId": {
                     "type": "integer",
                     "format": "int64"
                 },
