@@ -624,6 +624,51 @@
                 }
             }
         },
+        "/api/v1/downloadFile/{fileName}": {
+            "get": {
+                "tags": [
+                    "risk-upload-controller"
+                ],
+                "summary": "downloadFile",
+                "operationId": "downloadFileUsingGET",
+                "produces": [
+                    "*/*"
+                ],
+                "parameters": [
+                    {
+                        "name": "fileName",
+                        "in": "path",
+                        "description": "fileName",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "orgId",
+                        "in": "query",
+                        "description": "orgId",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/Resource"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                }
+            }
+        },
         "/api/v1/impact": {
             "get": {
                 "tags": [
@@ -1752,6 +1797,45 @@
                         "schema": {
                             "$ref": "#/definitions/PaginationRequestDTO"
                         }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/ApiResponse"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                }
+            }
+        },
+        "/api/v1/project/{id}/risk": {
+            "get": {
+                "tags": [
+                    "project-risk-controller"
+                ],
+                "summary": "getProjectRisks",
+                "operationId": "getProjectRisksUsingGET",
+                "produces": [
+                    "*/*"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id",
+                        "required": true,
+                        "type": "integer",
+                        "format": "int64"
                     }
                 ],
                 "responses": {
@@ -3128,7 +3212,7 @@
                 }
             }
         },
-        "/api/v1/template/risks": {
+        "/api/v1/template/{id}/risks": {
             "get": {
                 "tags": [
                     "template-risk-controller"
@@ -3137,6 +3221,16 @@
                 "operationId": "getTemplateRisksUsingGET",
                 "produces": [
                     "*/*"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id",
+                        "required": true,
+                        "type": "integer",
+                        "format": "int64"
+                    }
                 ],
                 "responses": {
                     "200": {
@@ -3898,6 +3992,10 @@
             },
             "title": "DomainDTO"
         },
+        "InputStream": {
+            "type": "object",
+            "title": "InputStream"
+        },
         "MessageResponse": {
             "type": "object",
             "properties": {
@@ -4173,6 +4271,10 @@
                 "description": {
                     "type": "string"
                 },
+                "domainCount": {
+                    "type": "integer",
+                    "format": "int64"
+                },
                 "endDate": {
                     "type": "string",
                     "format": "date-time"
@@ -4218,6 +4320,10 @@
                 },
                 "subjectMatterExpert": {
                     "$ref": "#/definitions/ProjectUserDTO"
+                },
+                "totalRiskCount": {
+                    "type": "integer",
+                    "format": "int64"
                 }
             },
             "title": "ProjectDTO"
@@ -4427,6 +4533,38 @@
                 }
             },
             "title": "ResetPasswordDTO"
+        },
+        "Resource": {
+            "type": "object",
+            "properties": {
+                "description": {
+                    "type": "string"
+                },
+                "file": {
+                    "type": "file"
+                },
+                "filename": {
+                    "type": "string"
+                },
+                "inputStream": {
+                    "$ref": "#/definitions/InputStream"
+                },
+                "open": {
+                    "type": "boolean"
+                },
+                "readable": {
+                    "type": "boolean"
+                },
+                "uri": {
+                    "type": "string",
+                    "format": "uri"
+                },
+                "url": {
+                    "type": "string",
+                    "format": "url"
+                }
+            },
+            "title": "Resource"
         },
         "ResponseEntity": {
             "type": "object",
