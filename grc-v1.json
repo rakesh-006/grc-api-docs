@@ -651,7 +651,7 @@
 "in": "query",
 "description": "orgId",
 "required": true,
-"type": "string"
+"type": "array"
 }
 ],
 "responses": {
