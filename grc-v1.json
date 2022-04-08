@@ -27,10 +27,6 @@
 "description": "Authorization Controller"
 },
 {
-"name": "basic-error-controller",
-"description": "Basic Error Controller"
-},
-{
 "name": "common-controller",
 "description": "Common Controller"
 },
@@ -131,7 +127,15 @@
 "404": {
 "description": "Not Found"
 }
+},
+"security": [
+{
+"apiKey": [
+"global"
+]
 }
+],
+"deprecated": false
 }
 },
 "/api/v1/assign/template/risks/project": {
@@ -177,7 +181,15 @@
 "404": {
 "description": "Not Found"
 }
+},
+"security": [
+{
+"apiKey": [
+"global"
+]
 }
+],
+"deprecated": false
 }
 },
 "/api/v1/countries": {
@@ -206,7 +218,15 @@
 "404": {
 "description": "Not Found"
 }
+},
+"security": [
+{
+"apiKey": [
+"global"
+]
 }
+],
+"deprecated": false
 }
 },
 "/api/v1/department": {
@@ -252,7 +272,15 @@
 "404": {
 "description": "Not Found"
 }
+},
+"security": [
+{
+"apiKey": [
+"global"
+]
 }
+],
+"deprecated": false
 },
 "post": {
 "tags": [
@@ -296,7 +324,15 @@
 "404": {
 "description": "Not Found"
 }
+},
+"security": [
+{
+"apiKey": [
+"global"
+]
 }
+],
+"deprecated": false
 },
 "delete": {
 "tags": [
@@ -340,7 +376,15 @@
 "403": {
 "description": "Forbidden"
 }
+},
+"security": [
+{
+"apiKey": [
+"global"
+]
 }
+],
+"deprecated": false
 }
 },
 "/api/v1/departments": {
@@ -378,7 +422,15 @@
 "404": {
 "description": "Not Found"
 }
+},
+"security": [
+{
+"apiKey": [
+"global"
+]
 }
+],
+"deprecated": false
 }
 },
 "/api/v1/domain": {
@@ -424,7 +476,15 @@
 "404": {
 "description": "Not Found"
 }
+},
+"security": [
+{
+"apiKey": [
+"global"
+]
 }
+],
+"deprecated": false
 },
 "post": {
 "tags": [
@@ -468,7 +528,15 @@
 "404": {
 "description": "Not Found"
 }
+},
+"security": [
+{
+"apiKey": [
+"global"
+]
 }
+],
+"deprecated": false
 },
 "delete": {
 "tags": [
@@ -512,7 +580,15 @@
 "403": {
 "description": "Forbidden"
 }
+},
+"security": [
+{
+"apiKey": [
+"global"
+]
 }
+],
+"deprecated": false
 }
 },
 "/api/v1/domains": {
@@ -550,7 +626,15 @@
 "404": {
 "description": "Not Found"
 }
+},
+"security": [
+{
+"apiKey": [
+"global"
+]
 }
+],
+"deprecated": false
 }
 },
 "/api/v1/domains/page/{pageNum}": {
@@ -565,11 +649,13 @@
 ],
 "parameters": [
 {
+"in": "body",
 "name": "keyword",
-"in": "query",
 "description": "keyword",
 "required": false,
+"schema": {
 "type": "string"
+}
 },
 {
 "name": "orgId",
@@ -587,26 +673,32 @@
 "format": "int32"
 },
 {
+"in": "body",
 "name": "pageSize",
-"in": "query",
 "description": "pageSize",
 "required": false,
+"schema": {
 "type": "integer",
 "format": "int64"
+}
 },
 {
+"in": "body",
 "name": "sortDir",
-"in": "query",
 "description": "sortDir",
 "required": false,
+"schema": {
 "type": "string"
+}
 },
 {
+"in": "body",
 "name": "sortField",
-"in": "query",
 "description": "sortField",
 "required": false,
+"schema": {
 "type": "string"
+}
 }
 ],
 "responses": {
@@ -625,7 +717,15 @@
 "404": {
 "description": "Not Found"
 }
+},
+"security": [
+{
+"apiKey": [
+"global"
+]
 }
+],
+"deprecated": false
 }
 },
 "/api/v1/downloadFile/{fileName}": {
@@ -670,7 +770,15 @@
 "404": {
 "description": "Not Found"
 }
+},
+"security": [
+{
+"apiKey": [
+"global"
+]
 }
+],
+"deprecated": false
 }
 },
 "/api/v1/impact": {
@@ -716,7 +824,15 @@
 "404": {
 "description": "Not Found"
 }
+},
+"security": [
+{
+"apiKey": [
+"global"
+]
 }
+],
+"deprecated": false
 }
 },
 "/api/v1/impacts": {
@@ -754,7 +870,15 @@
 "404": {
 "description": "Not Found"
 }
+},
+"security": [
+{
+"apiKey": [
+"global"
+]
 }
+],
+"deprecated": false
 }
 },
 "/api/v1/import/platform/risk": {
@@ -800,7 +924,15 @@
 "404": {
 "description": "Not Found"
 }
+},
+"security": [
+{
+"apiKey": [
+"global"
+]
 }
+],
+"deprecated": false
 }
 },
 "/api/v1/likelyhood": {
@@ -846,7 +978,15 @@
 "404": {
 "description": "Not Found"
 }
+},
+"security": [
+{
+"apiKey": [
+"global"
+]
 }
+],
+"deprecated": false
 }
 },
 "/api/v1/likelyhoods": {
@@ -884,7 +1024,15 @@
 "404": {
 "description": "Not Found"
 }
+},
+"security": [
+{
+"apiKey": [
+"global"
+]
 }
+],
+"deprecated": false
 }
 },
 "/api/v1/login": {
@@ -930,7 +1078,15 @@
 "404": {
 "description": "Not Found"
 }
+},
+"security": [
+{
+"apiKey": [
+"global"
+]
 }
+],
+"deprecated": false
 }
 },
 "/api/v1/logout": {
@@ -968,7 +1124,15 @@
 "404": {
 "description": "Not Found"
 }
+},
+"security": [
+{
+"apiKey": [
+"global"
+]
 }
+],
+"deprecated": false
 }
 },
 "/api/v1/organization": {
@@ -1006,7 +1170,15 @@
 "404": {
 "description": "Not Found"
 }
+},
+"security": [
+{
+"apiKey": [
+"global"
+]
 }
+],
+"deprecated": false
 },
 "post": {
 "tags": [
@@ -1050,7 +1222,15 @@
 "404": {
 "description": "Not Found"
 }
+},
+"security": [
+{
+"apiKey": [
+"global"
+]
 }
+],
+"deprecated": false
 }
 },
 "/api/v1/organization/isAvailable": {
@@ -1088,7 +1268,15 @@
 "404": {
 "description": "Not Found"
 }
+},
+"security": [
+{
+"apiKey": [
+"global"
+]
 }
+],
+"deprecated": false
 }
 },
 "/api/v1/organization/logo": {
@@ -1126,7 +1314,15 @@
 "404": {
 "description": "Not Found"
 }
+},
+"security": [
+{
+"apiKey": [
+"global"
+]
 }
+],
+"deprecated": false
 },
 "post": {
 "tags": [
@@ -1142,14 +1338,11 @@
 ],
 "parameters": [
 {
-"in": "body",
 "name": "logo",
+"in": "formData",
 "description": "logo",
 "required": true,
-"schema": {
-"type": "string",
-"format": "binary"
-}
+"type": "file"
 },
 {
 "name": "orgId",
@@ -1178,7 +1371,15 @@
 "404": {
 "description": "Not Found"
 }
+},
+"security": [
+{
+"apiKey": [
+"global"
+]
 }
+],
+"deprecated": false
 }
 },
 "/api/v1/organization/summary": {
@@ -1216,7 +1417,15 @@
 "404": {
 "description": "Not Found"
 }
+},
+"security": [
+{
+"apiKey": [
+"global"
+]
 }
+],
+"deprecated": false
 }
 },
 "/api/v1/organization/user": {
@@ -1262,7 +1471,15 @@
 "404": {
 "description": "Not Found"
 }
+},
+"security": [
+{
+"apiKey": [
+"global"
+]
 }
+],
+"deprecated": false
 },
 "post": {
 "tags": [
@@ -1306,7 +1523,15 @@
 "404": {
 "description": "Not Found"
 }
+},
+"security": [
+{
+"apiKey": [
+"global"
+]
 }
+],
+"deprecated": false
 }
 },
 "/api/v1/organization/user/resend/invitation": {
@@ -1352,7 +1577,15 @@
 "404": {
 "description": "Not Found"
 }
+},
+"security": [
+{
+"apiKey": [
+"global"
+]
 }
+],
+"deprecated": false
 }
 },
 "/api/v1/organization/users": {
@@ -1398,7 +1631,15 @@
 "404": {
 "description": "Not Found"
 }
+},
+"security": [
+{
+"apiKey": [
+"global"
+]
 }
+],
+"deprecated": false
 }
 },
 "/api/v1/organizations": {
@@ -1444,7 +1685,15 @@
 "404": {
 "description": "Not Found"
 }
+},
+"security": [
+{
+"apiKey": [
+"global"
+]
 }
+],
+"deprecated": false
 }
 },
 "/api/v1/organizations/list": {
@@ -1473,7 +1722,15 @@
 "404": {
 "description": "Not Found"
 }
+},
+"security": [
+{
+"apiKey": [
+"global"
+]
 }
+],
+"deprecated": false
 }
 },
 "/api/v1/permissions": {
@@ -1511,7 +1768,15 @@
 "404": {
 "description": "Not Found"
 }
+},
+"security": [
+{
+"apiKey": [
+"global"
+]
 }
+],
+"deprecated": false
 }
 },
 "/api/v1/platform/risks": {
@@ -1557,7 +1822,15 @@
 "404": {
 "description": "Not Found"
 }
+},
+"security": [
+{
+"apiKey": [
+"global"
+]
 }
+],
+"deprecated": false
 }
 },
 "/api/v1/project": {
@@ -1596,7 +1869,15 @@
 "404": {
 "description": "Not Found"
 }
+},
+"security": [
+{
+"apiKey": [
+"global"
+]
 }
+],
+"deprecated": false
 },
 "post": {
 "tags": [
@@ -1640,7 +1921,15 @@
 "404": {
 "description": "Not Found"
 }
+},
+"security": [
+{
+"apiKey": [
+"global"
+]
 }
+],
+"deprecated": false
 }
 },
 "/api/v1/project/delete": {
@@ -1679,7 +1968,15 @@
 "404": {
 "description": "Not Found"
 }
+},
+"security": [
+{
+"apiKey": [
+"global"
+]
 }
+],
+"deprecated": false
 }
 },
 "/api/v1/project/risk": {
@@ -1726,7 +2023,15 @@
 "404": {
 "description": "Not Found"
 }
+},
+"security": [
+{
+"apiKey": [
+"global"
+]
 }
+],
+"deprecated": false
 },
 "post": {
 "tags": [
@@ -1770,7 +2075,15 @@
 "404": {
 "description": "Not Found"
 }
+},
+"security": [
+{
+"apiKey": [
+"global"
+]
 }
+],
+"deprecated": false
 }
 },
 "/api/v1/project/risk/control": {
@@ -1816,7 +2129,15 @@
 "404": {
 "description": "Not Found"
 }
+},
+"security": [
+{
+"apiKey": [
+"global"
+]
 }
+],
+"deprecated": false
 }
 },
 "/api/v1/project/risks": {
@@ -1870,7 +2191,15 @@
 "404": {
 "description": "Not Found"
 }
+},
+"security": [
+{
+"apiKey": [
+"global"
+]
 }
+],
+"deprecated": false
 }
 },
 "/api/v1/project/{id}/risk": {
@@ -1909,7 +2238,15 @@
 "404": {
 "description": "Not Found"
 }
+},
+"security": [
+{
+"apiKey": [
+"global"
+]
 }
+],
+"deprecated": false
 }
 },
 "/api/v1/projects": {
@@ -1955,7 +2292,15 @@
 "404": {
 "description": "Not Found"
 }
+},
+"security": [
+{
+"apiKey": [
+"global"
+]
 }
+],
+"deprecated": false
 }
 },
 "/api/v1/referenceLibrary": {
@@ -1993,7 +2338,15 @@
 "404": {
 "description": "Not Found"
 }
+},
+"security": [
+{
+"apiKey": [
+"global"
+]
 }
+],
+"deprecated": false
 }
 },
 "/api/v1/refreshToken": {
@@ -2039,7 +2392,15 @@
 "404": {
 "description": "Not Found"
 }
+},
+"security": [
+{
+"apiKey": [
+"global"
+]
 }
+],
+"deprecated": false
 }
 },
 "/api/v1/reset": {
@@ -2090,7 +2451,15 @@
 "404": {
 "description": "Not Found"
 }
+},
+"security": [
+{
+"apiKey": [
+"global"
+]
 }
+],
+"deprecated": false
 }
 },
 "/api/v1/reset/password": {
@@ -2136,7 +2505,15 @@
 "404": {
 "description": "Not Found"
 }
+},
+"security": [
+{
+"apiKey": [
+"global"
+]
 }
+],
+"deprecated": false
 }
 },
 "/api/v1/risk": {
@@ -2182,7 +2559,15 @@
 "404": {
 "description": "Not Found"
 }
+},
+"security": [
+{
+"apiKey": [
+"global"
+]
 }
+],
+"deprecated": false
 }
 },
 "/api/v1/risk/control": {
@@ -2228,7 +2613,15 @@
 "404": {
 "description": "Not Found"
 }
+},
+"security": [
+{
+"apiKey": [
+"global"
+]
 }
+],
+"deprecated": false
 }
 },
 "/api/v1/risk/control/{id}": {
@@ -2267,7 +2660,15 @@
 "403": {
 "description": "Forbidden"
 }
+},
+"security": [
+{
+"apiKey": [
+"global"
+]
 }
+],
+"deprecated": false
 }
 },
 "/api/v1/risk/dashboard": {
@@ -2305,7 +2706,15 @@
 "404": {
 "description": "Not Found"
 }
+},
+"security": [
+{
+"apiKey": [
+"global"
+]
 }
+],
+"deprecated": false
 }
 },
 "/api/v1/risk/{id}": {
@@ -2344,7 +2753,15 @@
 "404": {
 "description": "Not Found"
 }
+},
+"security": [
+{
+"apiKey": [
+"global"
+]
 }
+],
+"deprecated": false
 },
 "delete": {
 "tags": [
@@ -2381,7 +2798,15 @@
 "403": {
 "description": "Forbidden"
 }
+},
+"security": [
+{
+"apiKey": [
+"global"
+]
 }
+],
+"deprecated": false
 }
 },
 "/api/v1/risks": {
@@ -2427,7 +2852,15 @@
 "404": {
 "description": "Not Found"
 }
+},
+"security": [
+{
+"apiKey": [
+"global"
+]
 }
+],
+"deprecated": false
 }
 },
 "/api/v1/role": {
@@ -2473,7 +2906,15 @@
 "404": {
 "description": "Not Found"
 }
+},
+"security": [
+{
+"apiKey": [
+"global"
+]
 }
+],
+"deprecated": false
 },
 "post": {
 "tags": [
@@ -2517,7 +2958,15 @@
 "404": {
 "description": "Not Found"
 }
+},
+"security": [
+{
+"apiKey": [
+"global"
+]
 }
+],
+"deprecated": false
 }
 },
 "/api/v1/rolePermission": {
@@ -2563,7 +3012,15 @@
 "404": {
 "description": "Not Found"
 }
+},
+"security": [
+{
+"apiKey": [
+"global"
+]
 }
+],
+"deprecated": false
 },
 "post": {
 "tags": [
@@ -2607,7 +3064,15 @@
 "404": {
 "description": "Not Found"
 }
+},
+"security": [
+{
+"apiKey": [
+"global"
+]
 }
+],
+"deprecated": false
 }
 },
 "/api/v1/roles": {
@@ -2645,7 +3110,15 @@
 "404": {
 "description": "Not Found"
 }
+},
+"security": [
+{
+"apiKey": [
+"global"
+]
 }
+],
+"deprecated": false
 }
 },
 "/api/v1/scoringModel": {
@@ -2684,7 +3157,15 @@
 "404": {
 "description": "Not Found"
 }
+},
+"security": [
+{
+"apiKey": [
+"global"
+]
 }
+],
+"deprecated": false
 },
 "post": {
 "tags": [
@@ -2728,7 +3209,15 @@
 "404": {
 "description": "Not Found"
 }
+},
+"security": [
+{
+"apiKey": [
+"global"
+]
 }
+],
+"deprecated": false
 }
 },
 "/api/v1/scoringModels": {
@@ -2757,7 +3246,15 @@
 "404": {
 "description": "Not Found"
 }
+},
+"security": [
+{
+"apiKey": [
+"global"
+]
 }
+],
+"deprecated": false
 }
 },
 "/api/v1/states": {
@@ -2795,7 +3292,15 @@
 "404": {
 "description": "Not Found"
 }
+},
+"security": [
+{
+"apiKey": [
+"global"
+]
 }
+],
+"deprecated": false
 }
 },
 "/api/v1/summary/risk/job": {
@@ -2841,7 +3346,15 @@
 "404": {
 "description": "Not Found"
 }
+},
+"security": [
+{
+"apiKey": [
+"global"
+]
 }
+],
+"deprecated": false
 }
 },
 "/api/v1/summary/risk/job/{id}": {
@@ -2887,7 +3400,15 @@
 "404": {
 "description": "Not Found"
 }
+},
+"security": [
+{
+"apiKey": [
+"global"
+]
 }
+],
+"deprecated": false
 }
 },
 "/api/v1/summary/risk/jobs": {
@@ -2933,7 +3454,15 @@
 "404": {
 "description": "Not Found"
 }
+},
+"security": [
+{
+"apiKey": [
+"global"
+]
 }
+],
+"deprecated": false
 }
 },
 "/api/v1/template": {
@@ -2979,7 +3508,15 @@
 "404": {
 "description": "Not Found"
 }
+},
+"security": [
+{
+"apiKey": [
+"global"
+]
 }
+],
+"deprecated": false
 },
 "post": {
 "tags": [
@@ -3023,7 +3560,15 @@
 "404": {
 "description": "Not Found"
 }
+},
+"security": [
+{
+"apiKey": [
+"global"
+]
 }
+],
+"deprecated": false
 },
 "delete": {
 "tags": [
@@ -3067,7 +3612,15 @@
 "403": {
 "description": "Forbidden"
 }
+},
+"security": [
+{
+"apiKey": [
+"global"
+]
 }
+],
+"deprecated": false
 }
 },
 "/api/v1/template/page/{pageNum}": {
@@ -3082,11 +3635,13 @@
 ],
 "parameters": [
 {
+"in": "body",
 "name": "keyword",
-"in": "query",
 "description": "keyword",
 "required": false,
+"schema": {
 "type": "string"
+}
 },
 {
 "name": "orgId",
@@ -3104,26 +3659,32 @@
 "format": "int32"
 },
 {
+"in": "body",
 "name": "pageSize",
-"in": "query",
 "description": "pageSize",
 "required": false,
+"schema": {
 "type": "integer",
 "format": "int64"
+}
 },
 {
+"in": "body",
 "name": "sortDir",
-"in": "query",
 "description": "sortDir",
 "required": false,
+"schema": {
 "type": "string"
+}
 },
 {
+"in": "body",
 "name": "sortField",
-"in": "query",
 "description": "sortField",
 "required": false,
+"schema": {
 "type": "string"
+}
 }
 ],
 "responses": {
@@ -3142,7 +3703,15 @@
 "404": {
 "description": "Not Found"
 }
+},
+"security": [
+{
+"apiKey": [
+"global"
+]
 }
+],
+"deprecated": false
 }
 },
 "/api/v1/template/risk": {
@@ -3188,7 +3757,15 @@
 "404": {
 "description": "Not Found"
 }
+},
+"security": [
+{
+"apiKey": [
+"global"
+]
 }
+],
+"deprecated": false
 },
 "delete": {
 "tags": [
@@ -3233,7 +3810,15 @@
 "403": {
 "description": "Forbidden"
 }
+},
+"security": [
+{
+"apiKey": [
+"global"
+]
 }
+],
+"deprecated": false
 }
 },
 "/api/v1/template/risk/{id}": {
@@ -3272,7 +3857,15 @@
 "404": {
 "description": "Not Found"
 }
+},
+"security": [
+{
+"apiKey": [
+"global"
+]
 }
+],
+"deprecated": false
 }
 },
 "/api/v1/template/{id}/risks": {
@@ -3311,7 +3904,15 @@
 "404": {
 "description": "Not Found"
 }
+},
+"security": [
+{
+"apiKey": [
+"global"
+]
 }
+],
+"deprecated": false
 }
 },
 "/api/v1/upload/risk": {
@@ -3336,14 +3937,11 @@
 "type": "string"
 },
 {
-"in": "body",
 "name": "riskCSV",
+"in": "formData",
 "description": "riskCSV",
 "required": true,
-"schema": {
-"type": "string",
-"format": "binary"
-}
+"type": "file"
 }
 ],
 "responses": {
@@ -3365,7 +3963,15 @@
 "404": {
 "description": "Not Found"
 }
+},
+"security": [
+{
+"apiKey": [
+"global"
+]
 }
+],
+"deprecated": false
 }
 },
 "/api/v1/user/{id}/profilePic": {
@@ -3411,7 +4017,15 @@
 "404": {
 "description": "Not Found"
 }
+},
+"security": [
+{
+"apiKey": [
+"global"
+]
 }
+],
+"deprecated": false
 },
 "post": {
 "tags": [
@@ -3442,14 +4056,11 @@
 "type": "string"
 },
 {
-"in": "body",
 "name": "profilePic",
+"in": "formData",
 "description": "profilePic",
 "required": true,
-"schema": {
-"type": "string",
-"format": "binary"
-}
+"type": "file"
 }
 ],
 "responses": {
@@ -3471,7 +4082,15 @@
 "404": {
 "description": "Not Found"
 }
+},
+"security": [
+{
+"apiKey": [
+"global"
+]
 }
+],
+"deprecated": false
 }
 },
 "/api/v1/user/{id}/summary": {
@@ -3517,7 +4136,15 @@
 "404": {
 "description": "Not Found"
 }
+},
+"security": [
+{
+"apiKey": [
+"global"
+]
 }
+],
+"deprecated": false
 }
 },
 "/api/v1/userDepartment": {
@@ -3563,7 +4190,15 @@
 "404": {
 "description": "Not Found"
 }
+},
+"security": [
+{
+"apiKey": [
+"global"
+]
 }
+],
+"deprecated": false
 },
 "post": {
 "tags": [
@@ -3607,7 +4242,15 @@
 "404": {
 "description": "Not Found"
 }
+},
+"security": [
+{
+"apiKey": [
+"global"
+]
 }
+],
+"deprecated": false
 }
 },
 "/api/v1/userRole": {
@@ -3653,7 +4296,15 @@
 "404": {
 "description": "Not Found"
 }
+},
+"security": [
+{
+"apiKey": [
+"global"
+]
 }
+],
+"deprecated": false
 },
 "post": {
 "tags": [
@@ -3697,241 +4348,23 @@
 "404": {
 "description": "Not Found"
 }
-}
-}
 },
-"/error": {
-"get": {
-"tags": [
-"basic-error-controller"
+"security": [
+{
+"apiKey": [
+"global"
+]
+}
 ],
-"summary": "error",
-"operationId": "errorUsingGET",
-"produces": [
-"*/*"
-],
-"responses": {
-"200": {
-"description": "OK",
-"schema": {
-"type": "object",
-"additionalProperties": {
-"type": "object"
+"deprecated": false
 }
 }
 },
-"401": {
-"description": "Unauthorized"
-},
-"403": {
-"description": "Forbidden"
-},
-"404": {
-"description": "Not Found"
-}
-}
-},
-"head": {
-"tags": [
-"basic-error-controller"
-],
-"summary": "error",
-"operationId": "errorUsingHEAD",
-"consumes": [
-"application/json"
-],
-"produces": [
-"*/*"
-],
-"responses": {
-"200": {
-"description": "OK",
-"schema": {
-"type": "object",
-"additionalProperties": {
-"type": "object"
-}
-}
-},
-"204": {
-"description": "No Content"
-},
-"401": {
-"description": "Unauthorized"
-},
-"403": {
-"description": "Forbidden"
-}
-}
-},
-"post": {
-"tags": [
-"basic-error-controller"
-],
-"summary": "error",
-"operationId": "errorUsingPOST",
-"consumes": [
-"application/json"
-],
-"produces": [
-"*/*"
-],
-"responses": {
-"200": {
-"description": "OK",
-"schema": {
-"type": "object",
-"additionalProperties": {
-"type": "object"
-}
-}
-},
-"201": {
-"description": "Created"
-},
-"401": {
-"description": "Unauthorized"
-},
-"403": {
-"description": "Forbidden"
-},
-"404": {
-"description": "Not Found"
-}
-}
-},
-"put": {
-"tags": [
-"basic-error-controller"
-],
-"summary": "error",
-"operationId": "errorUsingPUT",
-"consumes": [
-"application/json"
-],
-"produces": [
-"*/*"
-],
-"responses": {
-"200": {
-"description": "OK",
-"schema": {
-"type": "object",
-"additionalProperties": {
-"type": "object"
-}
-}
-},
-"201": {
-"description": "Created"
-},
-"401": {
-"description": "Unauthorized"
-},
-"403": {
-"description": "Forbidden"
-},
-"404": {
-"description": "Not Found"
-}
-}
-},
-"delete": {
-"tags": [
-"basic-error-controller"
-],
-"summary": "error",
-"operationId": "errorUsingDELETE",
-"produces": [
-"*/*"
-],
-"responses": {
-"200": {
-"description": "OK",
-"schema": {
-"type": "object",
-"additionalProperties": {
-"type": "object"
-}
-}
-},
-"204": {
-"description": "No Content"
-},
-"401": {
-"description": "Unauthorized"
-},
-"403": {
-"description": "Forbidden"
-}
-}
-},
-"options": {
-"tags": [
-"basic-error-controller"
-],
-"summary": "error",
-"operationId": "errorUsingOPTIONS",
-"consumes": [
-"application/json"
-],
-"produces": [
-"*/*"
-],
-"responses": {
-"200": {
-"description": "OK",
-"schema": {
-"type": "object",
-"additionalProperties": {
-"type": "object"
-}
-}
-},
-"204": {
-"description": "No Content"
-},
-"401": {
-"description": "Unauthorized"
-},
-"403": {
-"description": "Forbidden"
-}
-}
-},
-"patch": {
-"tags": [
-"basic-error-controller"
-],
-"summary": "error",
-"operationId": "errorUsingPATCH",
-"consumes": [
-"application/json"
-],
-"produces": [
-"*/*"
-],
-"responses": {
-"200": {
-"description": "OK",
-"schema": {
-"type": "object",
-"additionalProperties": {
-"type": "object"
-}
-}
-},
-"204": {
-"description": "No Content"
-},
-"401": {
-"description": "Unauthorized"
-},
-"403": {
-"description": "Forbidden"
-}
-}
-}
+"securityDefinitions": {
+"apiKey": {
+"type": "apiKey",
+"name": "Authorization",
+"in": "header"
 }
 },
 "definitions": {
@@ -4055,6 +4488,60 @@
 },
 "title": "DomainDTO"
 },
+"File": {
+"type": "object",
+"properties": {
+"absolute": {
+"type": "boolean"
+},
+"absoluteFile": {
+"$ref": "#/definitions/File"
+},
+"absolutePath": {
+"type": "string"
+},
+"canonicalFile": {
+"$ref": "#/definitions/File"
+},
+"canonicalPath": {
+"type": "string"
+},
+"directory": {
+"type": "boolean"
+},
+"file": {
+"type": "boolean"
+},
+"freeSpace": {
+"type": "integer",
+"format": "int64"
+},
+"hidden": {
+"type": "boolean"
+},
+"name": {
+"type": "string"
+},
+"parent": {
+"type": "string"
+},
+"parentFile": {
+"$ref": "#/definitions/File"
+},
+"path": {
+"type": "string"
+},
+"totalSpace": {
+"type": "integer",
+"format": "int64"
+},
+"usableSpace": {
+"type": "integer",
+"format": "int64"
+}
+},
+"title": "File"
+},
 "InputStream": {
 "type": "object",
 "title": "InputStream"
@@ -4070,106 +4557,6 @@
 }
 },
 "title": "MessageResponse"
-},
-"ModelAndView": {
-"type": "object",
-"properties": {
-"empty": {
-"type": "boolean"
-},
-"model": {
-"type": "object"
-},
-"modelMap": {
-"type": "object",
-"additionalProperties": {
-"type": "object"
-}
-},
-"reference": {
-"type": "boolean"
-},
-"status": {
-"type": "string",
-"enum": [
-"ACCEPTED",
-"ALREADY_REPORTED",
-"BAD_GATEWAY",
-"BAD_REQUEST",
-"BANDWIDTH_LIMIT_EXCEEDED",
-"CHECKPOINT",
-"CONFLICT",
-"CONTINUE",
-"CREATED",
-"DESTINATION_LOCKED",
-"EXPECTATION_FAILED",
-"FAILED_DEPENDENCY",
-"FORBIDDEN",
-"FOUND",
-"GATEWAY_TIMEOUT",
-"GONE",
-"HTTP_VERSION_NOT_SUPPORTED",
-"IM_USED",
-"INSUFFICIENT_SPACE_ON_RESOURCE",
-"INSUFFICIENT_STORAGE",
-"INTERNAL_SERVER_ERROR",
-"I_AM_A_TEAPOT",
-"LENGTH_REQUIRED",
-"LOCKED",
-"LOOP_DETECTED",
-"METHOD_FAILURE",
-"METHOD_NOT_ALLOWED",
-"MOVED_PERMANENTLY",
-"MOVED_TEMPORARILY",
-"MULTIPLE_CHOICES",
-"MULTI_STATUS",
-"NETWORK_AUTHENTICATION_REQUIRED",
-"NON_AUTHORITATIVE_INFORMATION",
-"NOT_ACCEPTABLE",
-"NOT_EXTENDED",
-"NOT_FOUND",
-"NOT_IMPLEMENTED",
-"NOT_MODIFIED",
-"NO_CONTENT",
-"OK",
-"PARTIAL_CONTENT",
-"PAYLOAD_TOO_LARGE",
-"PAYMENT_REQUIRED",
-"PERMANENT_REDIRECT",
-"PRECONDITION_FAILED",
-"PRECONDITION_REQUIRED",
-"PROCESSING",
-"PROXY_AUTHENTICATION_REQUIRED",
-"REQUESTED_RANGE_NOT_SATISFIABLE",
-"REQUEST_ENTITY_TOO_LARGE",
-"REQUEST_HEADER_FIELDS_TOO_LARGE",
-"REQUEST_TIMEOUT",
-"REQUEST_URI_TOO_LONG",
-"RESET_CONTENT",
-"SEE_OTHER",
-"SERVICE_UNAVAILABLE",
-"SWITCHING_PROTOCOLS",
-"TEMPORARY_REDIRECT",
-"TOO_EARLY",
-"TOO_MANY_REQUESTS",
-"UNAUTHORIZED",
-"UNAVAILABLE_FOR_LEGAL_REASONS",
-"UNPROCESSABLE_ENTITY",
-"UNSUPPORTED_MEDIA_TYPE",
-"UPGRADE_REQUIRED",
-"URI_TOO_LONG",
-"USE_PROXY",
-"VARIANT_ALSO_NEGOTIATES"
-]
-},
-"view": {
-"$ref": "#/definitions/View"
-},
-"viewName": {
-"type": "string"
-}
-},
-"title": "ModelAndView"
 },
 "OrganizationDTO": {
 "type": "object",
@@ -4316,13 +4703,6 @@
 },
 "ProjectDTO": {
 "type": "object",
-"required": [
-"approverId",
-"managerId",
-"reviewerId",
-"scoringModelId",
-"smeId"
-],
 "properties": {
 "approver": {
 "$ref": "#/definitions/ProjectUserDTO"
@@ -4393,11 +4773,6 @@
 },
 "ProjectRiskControlDTO": {
 "type": "object",
-"required": [
-"controlTypeId",
-"projectId",
-"projectRiskId"
-],
 "properties": {
 "controlTypeCode": {
 "type": "string"
@@ -4429,12 +4804,6 @@
 },
 "ProjectRiskDTO": {
 "type": "object",
-"required": [
-"domainId",
-"impactId",
-"likelihoodId",
-"projectId"
-],
 "properties": {
 "description": {
 "type": "string"
@@ -4608,7 +4977,7 @@
 "type": "string"
 },
 "file": {
-"type": "file"
+"$ref": "#/definitions/File"
 },
 "filename": {
 "type": "string"
@@ -4623,12 +4992,10 @@
 "type": "boolean"
 },
 "uri": {
-"type": "string",
-"format": "uri"
+"$ref": "#/definitions/URI"
 },
 "url": {
-"type": "string",
-"format": "url"
+"$ref": "#/definitions/URL"
 }
 },
 "title": "Resource"
@@ -4642,74 +5009,74 @@
 "statusCode": {
 "type": "string",
 "enum": [
-"ACCEPTED",
-"ALREADY_REPORTED",
-"BAD_GATEWAY",
-"BAD_REQUEST",
-"BANDWIDTH_LIMIT_EXCEEDED",
-"CHECKPOINT",
-"CONFLICT",
-"CONTINUE",
-"CREATED",
-"DESTINATION_LOCKED",
-"EXPECTATION_FAILED",
-"FAILED_DEPENDENCY",
-"FORBIDDEN",
-"FOUND",
-"GATEWAY_TIMEOUT",
-"GONE",
-"HTTP_VERSION_NOT_SUPPORTED",
-"IM_USED",
-"INSUFFICIENT_SPACE_ON_RESOURCE",
-"INSUFFICIENT_STORAGE",
-"INTERNAL_SERVER_ERROR",
-"I_AM_A_TEAPOT",
-"LENGTH_REQUIRED",
-"LOCKED",
-"LOOP_DETECTED",
-"METHOD_FAILURE",
-"METHOD_NOT_ALLOWED",
-"MOVED_PERMANENTLY",
-"MOVED_TEMPORARILY",
-"MULTIPLE_CHOICES",
-"MULTI_STATUS",
-"NETWORK_AUTHENTICATION_REQUIRED",
-"NON_AUTHORITATIVE_INFORMATION",
-"NOT_ACCEPTABLE",
-"NOT_EXTENDED",
-"NOT_FOUND",
-"NOT_IMPLEMENTED",
-"NOT_MODIFIED",
-"NO_CONTENT",
-"OK",
-"PARTIAL_CONTENT",
-"PAYLOAD_TOO_LARGE",
-"PAYMENT_REQUIRED",
-"PERMANENT_REDIRECT",
-"PRECONDITION_FAILED",
-"PRECONDITION_REQUIRED",
-"PROCESSING",
-"PROXY_AUTHENTICATION_REQUIRED",
-"REQUESTED_RANGE_NOT_SATISFIABLE",
-"REQUEST_ENTITY_TOO_LARGE",
-"REQUEST_HEADER_FIELDS_TOO_LARGE",
-"REQUEST_TIMEOUT",
-"REQUEST_URI_TOO_LONG",
-"RESET_CONTENT",
-"SEE_OTHER",
-"SERVICE_UNAVAILABLE",
-"SWITCHING_PROTOCOLS",
-"TEMPORARY_REDIRECT",
-"TOO_EARLY",
-"TOO_MANY_REQUESTS",
-"UNAUTHORIZED",
-"UNAVAILABLE_FOR_LEGAL_REASONS",
-"UNPROCESSABLE_ENTITY",
-"UNSUPPORTED_MEDIA_TYPE",
-"UPGRADE_REQUIRED",
-"URI_TOO_LONG",
-"USE_PROXY",
-"VARIANT_ALSO_NEGOTIATES"
+"100 CONTINUE",
+"101 SWITCHING_PROTOCOLS",
+"102 PROCESSING",
+"103 CHECKPOINT",
+"200 OK",
+"201 CREATED",
+"202 ACCEPTED",
+"203 NON_AUTHORITATIVE_INFORMATION",
+"204 NO_CONTENT",
+"205 RESET_CONTENT",
+"206 PARTIAL_CONTENT",
+"207 MULTI_STATUS",
+"208 ALREADY_REPORTED",
+"226 IM_USED",
+"300 MULTIPLE_CHOICES",
+"301 MOVED_PERMANENTLY",
+"302 FOUND",
+"302 MOVED_TEMPORARILY",
+"303 SEE_OTHER",
+"304 NOT_MODIFIED",
+"305 USE_PROXY",
+"307 TEMPORARY_REDIRECT",
+"308 PERMANENT_REDIRECT",
+"400 BAD_REQUEST",
+"401 UNAUTHORIZED",
+"402 PAYMENT_REQUIRED",
+"403 FORBIDDEN",
+"404 NOT_FOUND",
+"405 METHOD_NOT_ALLOWED",
+"406 NOT_ACCEPTABLE",
+"407 PROXY_AUTHENTICATION_REQUIRED",
+"408 REQUEST_TIMEOUT",
+"409 CONFLICT",
+"410 GONE",
+"411 LENGTH_REQUIRED",
+"412 PRECONDITION_FAILED",
+"413 PAYLOAD_TOO_LARGE",
+"413 REQUEST_ENTITY_TOO_LARGE",
+"414 URI_TOO_LONG",
+"414 REQUEST_URI_TOO_LONG",
+"415 UNSUPPORTED_MEDIA_TYPE",
+"416 REQUESTED_RANGE_NOT_SATISFIABLE",
+"417 EXPECTATION_FAILED",
+"418 I_AM_A_TEAPOT",
+"419 INSUFFICIENT_SPACE_ON_RESOURCE",
+"420 METHOD_FAILURE",
+"421 DESTINATION_LOCKED",
+"422 UNPROCESSABLE_ENTITY",
+"423 LOCKED",
+"424 FAILED_DEPENDENCY",
+"425 TOO_EARLY",
+"426 UPGRADE_REQUIRED",
+"428 PRECONDITION_REQUIRED",
+"429 TOO_MANY_REQUESTS",
+"431 REQUEST_HEADER_FIELDS_TOO_LARGE",
+"451 UNAVAILABLE_FOR_LEGAL_REASONS",
+"500 INTERNAL_SERVER_ERROR",
+"501 NOT_IMPLEMENTED",
+"502 BAD_GATEWAY",
+"503 SERVICE_UNAVAILABLE",
+"504 GATEWAY_TIMEOUT",
+"505 HTTP_VERSION_NOT_SUPPORTED",
+"506 VARIANT_ALSO_NEGOTIATES",
+"507 INSUFFICIENT_STORAGE",
+"508 LOOP_DETECTED",
+"509 BANDWIDTH_LIMIT_EXCEEDED",
+"510 NOT_EXTENDED",
+"511 NETWORK_AUTHENTICATION_REQUIRED"
 ]
 },
 "statusCodeValue": {
@@ -4721,10 +5088,6 @@
 },
 "RiskControlDTO": {
 "type": "object",
-"required": [
-"controlTypeId",
-"riskId"
-],
 "properties": {
 "controlTypeCode": {
 "type": "string"
@@ -4765,11 +5128,6 @@
 },
 "RiskRequestDTO": {
 "type": "object",
-"required": [
-"domainId",
-"impactId",
-"likelihoodId"
-],
 "properties": {
 "description": {
 "type": "string"
@@ -4909,12 +5267,107 @@
 },
 "title": "TemplateRiskDTO"
 },
+"URI": {
+"type": "object",
+"properties": {
+"absolute": {
+"type": "boolean"
+},
+"authority": {
+"type": "string"
+},
+"fragment": {
+"type": "string"
+},
+"host": {
+"type": "string"
+},
+"opaque": {
+"type": "boolean"
+},
+"path": {
+"type": "string"
+},
+"port": {
+"type": "integer",
+"format": "int32"
+},
+"query": {
+"type": "string"
+},
+"rawAuthority": {
+"type": "string"
+},
+"rawFragment": {
+"type": "string"
+},
+"rawPath": {
+"type": "string"
+},
+"rawQuery": {
+"type": "string"
+},
+"rawSchemeSpecificPart": {
+"type": "string"
+},
+"rawUserInfo": {
+"type": "string"
+},
+"scheme": {
+"type": "string"
+},
+"schemeSpecificPart": {
+"type": "string"
+},
+"userInfo": {
+"type": "string"
+}
+},
+"title": "URI"
+},
+"URL": {
+"type": "object",
+"properties": {
+"authority": {
+"type": "string"
+},
+"content": {
+"type": "object"
+},
+"defaultPort": {
+"type": "integer",
+"format": "int32"
+},
+"file": {
+"type": "string"
+},
+"host": {
+"type": "string"
+},
+"path": {
+"type": "string"
+},
+"port": {
+"type": "integer",
+"format": "int32"
+},
+"protocol": {
+"type": "string"
+},
+"query": {
+"type": "string"
+},
+"ref": {
+"type": "string"
+},
+"userInfo": {
+"type": "string"
+}
+},
+"title": "URL"
+},
 "UserDTO": {
 "type": "object",
-"required": [
-"genderRefId",
-"titleRefId"
-],
 "properties": {
 "firstName": {
 "type": "string"
@@ -5044,15 +5497,6 @@
 }
 },
 "title": "UserRoleDTO"
-},
-"View": {
-"type": "object",
-"properties": {
-"contentType": {
-"type": "string"
-}
-},
-"title": "View"
 }
 }
 }
