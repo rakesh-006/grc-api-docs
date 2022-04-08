@@ -649,13 +649,11 @@
 ],
 "parameters": [
 {
-"in": "body",
 "name": "keyword",
+"in": "query",
 "description": "keyword",
-"required": false,
-"schema": {
+"required": true,
 "type": "string"
-}
 },
 {
 "name": "orgId",
@@ -673,32 +671,26 @@
 "format": "int32"
 },
 {
-"in": "body",
 "name": "pageSize",
+"in": "query",
 "description": "pageSize",
-"required": false,
-"schema": {
+"required": true,
 "type": "integer",
 "format": "int64"
-}
 },
 {
-"in": "body",
 "name": "sortDir",
+"in": "query",
 "description": "sortDir",
-"required": false,
-"schema": {
+"required": true,
 "type": "string"
-}
 },
 {
-"in": "body",
 "name": "sortField",
+"in": "query",
 "description": "sortField",
-"required": false,
-"schema": {
+"required": true,
 "type": "string"
-}
 }
 ],
 "responses": {
@@ -3635,13 +3627,11 @@
 ],
 "parameters": [
 {
-"in": "body",
 "name": "keyword",
+"in": "query",
 "description": "keyword",
-"required": false,
-"schema": {
+"required": true,
 "type": "string"
-}
 },
 {
 "name": "orgId",
@@ -3659,32 +3649,26 @@
 "format": "int32"
 },
 {
-"in": "body",
 "name": "pageSize",
+"in": "query",
 "description": "pageSize",
-"required": false,
-"schema": {
+"required": true,
 "type": "integer",
 "format": "int64"
-}
 },
 {
-"in": "body",
 "name": "sortDir",
+"in": "query",
 "description": "sortDir",
-"required": false,
-"schema": {
+"required": true,
 "type": "string"
-}
 },
 {
-"in": "body",
 "name": "sortField",
+"in": "query",
 "description": "sortField",
-"required": false,
-"schema": {
+"required": true,
 "type": "string"
-}
 }
 ],
 "responses": {
