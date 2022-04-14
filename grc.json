@@ -2378,6 +2378,59 @@
                     }
                 ],
                 "deprecated": false
+            },
+            "delete": {
+                "tags": [
+                    "assessment-controller"
+                ],
+                "summary": "deleteAssessmentRemarkById",
+                "operationId": "deleteAssessmentRemarkByIdUsingDELETE",
+                "produces": [
+                    "*/*"
+                ],
+                "parameters": [
+                    {
+                        "name": "assessmentRemarkControlId",
+                        "in": "query",
+                        "description": "assessmentRemarkControlId",
+                        "required": true,
+                        "type": "integer",
+                        "format": "int64"
+                    },
+                    {
+                        "name": "projectId",
+                        "in": "query",
+                        "description": "projectId",
+                        "required": true,
+                        "type": "integer",
+                        "format": "int64"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/ApiResponse"
+                        }
+                    },
+                    "204": {
+                        "description": "No Content"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                },
+                "security": [
+                    {
+                        "apiKey": [
+                            "global"
+                        ]
+                    }
+                ],
+                "deprecated": false
             }
         },
         "/api/v1/project/risk/control": {
@@ -4928,6 +4981,23 @@
             },
             "title": "DomainDTO"
         },
+        "DomainRiskDTO": {
+            "type": "object",
+            "properties": {
+                "domainId": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "domainName": {
+                    "type": "string"
+                },
+                "riskCount": {
+                    "type": "integer",
+                    "format": "int64"
+                }
+            },
+            "title": "DomainRiskDTO"
+        },
         "File": {
             "type": "object",
             "properties": {
@@ -5157,6 +5227,12 @@
                 "domainCount": {
                     "type": "integer",
                     "format": "int64"
+                },
+                "domainRiskDTOList": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/DomainRiskDTO"
+                    }
                 },
                 "endDate": {
                     "type": "string",
