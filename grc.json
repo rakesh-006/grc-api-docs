@@ -2229,6 +2229,14 @@
                 ],
                 "parameters": [
                     {
+                        "name": "assessmentTypeRefId",
+                        "in": "query",
+                        "description": "assessmentTypeRefId",
+                        "required": true,
+                        "type": "integer",
+                        "format": "int64"
+                    },
+                    {
                         "name": "projectId",
                         "in": "query",
                         "description": "projectId",
@@ -2331,8 +2339,8 @@
                 "tags": [
                     "assessment-controller"
                 ],
-                "summary": "createOrUpdateAssessmentRemarkControl",
-                "operationId": "createOrUpdateAssessmentRemarkControlUsingPOST",
+                "summary": "createAssessmentRemarkControl",
+                "operationId": "createAssessmentRemarkControlUsingPOST",
                 "consumes": [
                     "application/json"
                 ],
@@ -4840,9 +4848,12 @@
         "AssessmentRemark": {
             "type": "object",
             "properties": {
-                "assessmentStatusRefId": {
+                "assessmentTypeRefId": {
                     "type": "integer",
                     "format": "int64"
+                },
+                "createdBy": {
+                    "type": "string"
                 },
                 "createdDate": {
                     "type": "string",
@@ -4851,6 +4862,9 @@
                 "createdId": {
                     "type": "integer",
                     "format": "int64"
+                },
+                "createdOrgType": {
+                    "type": "string"
                 },
                 "id": {
                     "type": "integer",
@@ -4886,6 +4900,10 @@
         "AssessmentRemarkControl": {
             "type": "object",
             "properties": {
+                "assessmentTypeRefId": {
+                    "type": "integer",
+                    "format": "int64"
+                },
                 "controlTypeCode": {
                     "type": "string"
                 },
@@ -4896,6 +4914,9 @@
                 "controlTypeName": {
                     "type": "string"
                 },
+                "createdBy": {
+                    "type": "string"
+                },
                 "createdDate": {
                     "type": "string",
                     "format": "date-time"
@@ -4903,6 +4924,9 @@
                 "createdId": {
                     "type": "integer",
                     "format": "int64"
+                },
+                "createdOrgType": {
+                    "type": "string"
                 },
                 "id": {
                     "type": "integer",
