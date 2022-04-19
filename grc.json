@@ -2594,12 +2594,12 @@
             }
         },
         "/api/v1/project/delete": {
-            "get": {
+            "delete": {
                 "tags": [
                     "project-controller"
                 ],
                 "summary": "deleteProject",
-                "operationId": "deleteProjectUsingGET",
+                "operationId": "deleteProjectUsingDELETE",
                 "produces": [
                     "*/*"
                 ],
@@ -2620,14 +2620,14 @@
                             "$ref": "#/definitions/ApiResponse"
                         }
                     },
+                    "204": {
+                        "description": "No Content"
+                    },
                     "401": {
                         "description": "Unauthorized"
                     },
                     "403": {
                         "description": "Forbidden"
-                    },
-                    "404": {
-                        "description": "Not Found"
                     }
                 },
                 "security": [
@@ -2990,7 +2990,7 @@
                     },
                     {
                         "name": "reviewId",
-                        "in": "path",
+                        "in": "query",
                         "description": "reviewId",
                         "required": true,
                         "type": "integer",
@@ -7155,6 +7155,9 @@
                     "format": "int64"
                 },
                 "name": {
+                    "type": "string"
+                },
+                "question": {
                     "type": "string"
                 },
                 "riskStatement": {
