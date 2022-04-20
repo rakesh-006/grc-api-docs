@@ -15,8 +15,12 @@
 "basePath": "/",
 "tags": [
 {
-"name": "assessment-controller",
-"description": "Assessment Controller"
+"name": "assessment-remark-controller",
+"description": "Assessment Remark Controller"
+},
+{
+"name": "assessment-review-controller",
+"description": "Assessment Review Controller"
 },
 {
 "name": "assign-risk-controller",
@@ -79,6 +83,10 @@
 "description": "Risk Import Controller"
 },
 {
+"name": "risk-questions-controller",
+"description": "Risk Questions Controller"
+},
+{
 "name": "risk-upload-controller",
 "description": "Risk Upload Controller"
 },
@@ -100,6 +108,68 @@
 }
 ],
 "paths": {
+"/api/v1/assessment/project/risk": {
+"post": {
+"tags": [
+"project-risk-controller"
+],
+"summary": "getAssessmentProjectRisks",
+"operationId": "getAssessmentProjectRisksUsingPOST",
+"consumes": [
+"application/json"
+],
+"produces": [
+"*/*"
+],
+"parameters": [
+{
+"in": "body",
+"name": "paginationRequestDTO",
+"description": "paginationRequestDTO",
+"required": true,
+"schema": {
+"$ref": "#/definitions/PaginationRequestDTO"
+}
+},
+{
+"name": "projectId",
+"in": "query",
+"description": "projectId",
+"required": true,
+"type": "integer",
+"format": "int64"
+}
+],
+"responses": {
+"200": {
+"description": "OK",
+"schema": {
+"$ref": "#/definitions/ApiResponse"
+}
+},
+"201": {
+"description": "Created"
+},
+"401": {
+"description": "Unauthorized"
+},
+"403": {
+"description": "Forbidden"
+},
+"404": {
+"description": "Not Found"
+}
+},
+"security": [
+{
+"apiKey": [
+"global"
+]
+}
+],
+"deprecated": false
+}
+},
 "/api/v1/assign/risks/project": {
 "post": {
 "tags": [
@@ -260,6 +330,61 @@
 "name": "projectId",
 "in": "query",
 "description": "projectId",
+"required": true,
+"type": "integer",
+"format": "int64"
+},
+{
+"name": "riskId",
+"in": "query",
+"description": "riskId",
+"required": true,
+"type": "integer",
+"format": "int64"
+}
+],
+"responses": {
+"200": {
+"description": "OK",
+"schema": {
+"$ref": "#/definitions/ApiResponse"
+}
+},
+"204": {
+"description": "No Content"
+},
+"401": {
+"description": "Unauthorized"
+},
+"403": {
+"description": "Forbidden"
+}
+},
+"security": [
+{
+"apiKey": [
+"global"
+]
+}
+],
+"deprecated": false
+}
+},
+"/api/v1/delete/risk/question": {
+"delete": {
+"tags": [
+"risk-questions-controller"
+],
+"summary": "getRiskAllRiskQuestions",
+"operationId": "getRiskAllRiskQuestionsUsingDELETE",
+"produces": [
+"*/*"
+],
+"parameters": [
+{
+"name": "questionId",
+"in": "query",
+"description": "questionId",
 "required": true,
 "type": "integer",
 "format": "int64"
@@ -2528,12 +2653,12 @@
 }
 },
 "/api/v1/project/delete": {
-"get": {
+"delete": {
 "tags": [
 "project-controller"
 ],
 "summary": "deleteProject",
-"operationId": "deleteProjectUsingGET",
+"operationId": "deleteProjectUsingDELETE",
 "produces": [
 "*/*"
 ],
@@ -2554,14 +2679,14 @@
 "$ref": "#/definitions/ApiResponse"
 }
 },
+"204": {
+"description": "No Content"
+},
 "401": {
 "description": "Unauthorized"
 },
 "403": {
 "description": "Forbidden"
-},
-"404": {
-"description": "Not Found"
 }
 },
 "security": [
@@ -2684,7 +2809,7 @@
 "/api/v1/project/risk/assessment/remark": {
 "get": {
 "tags": [
-"assessment-controller"
+"assessment-remark-controller"
 ],
 "summary": "getAssessmentRemarkDetails",
 "operationId": "getAssessmentRemarkDetailsUsingGET",
@@ -2737,7 +2862,7 @@
 },
 "post": {
 "tags": [
-"assessment-controller"
+"assessment-remark-controller"
 ],
 "summary": "createOrUpdateAssessmentRemark",
 "operationId": "createOrUpdateAssessmentRemarkUsingPOST",
@@ -2791,7 +2916,7 @@
 "/api/v1/project/risk/assessment/remark/control": {
 "post": {
 "tags": [
-"assessment-controller"
+"assessment-remark-controller"
 ],
 "summary": "createAssessmentRemarkControl",
 "operationId": "createAssessmentRemarkControlUsingPOST",
@@ -2843,7 +2968,7 @@
 },
 "delete": {
 "tags": [
-"assessment-controller"
+"assessment-remark-controller"
 ],
 "summary": "deleteAssessmentRemarkById",
 "operationId": "deleteAssessmentRemarkByIdUsingDELETE",
@@ -2898,10 +3023,232 @@
 "/api/v1/project/risk/assessment/review": {
 "get": {
 "tags": [
-"assessment-controller"
+"assessment-review-controller"
 ],
-"summary": "getAssessmentDetails",
-"operationId": "getAssessmentDetailsUsingGET",
+"summary": "getAssessmentReviewByReviewId",
+"operationId": "getAssessmentReviewByReviewIdUsingGET",
+"produces": [
+"*/*"
+],
+"parameters": [
+{
+"name": "projectId",
+"in": "query",
+"description": "projectId",
+"required": true,
+"type": "integer",
+"format": "int64"
+},
+{
+"name": "projectRiskId",
+"in": "query",
+"description": "projectRiskId",
+"required": true,
+"type": "integer",
+"format": "int64"
+},
+{
+"name": "reviewId",
+"in": "query",
+"description": "reviewId",
+"required": true,
+"type": "integer",
+"format": "int64"
+}
+],
+"responses": {
+"200": {
+"description": "OK",
+"schema": {
+"$ref": "#/definitions/ApiResponse"
+}
+},
+"401": {
+"description": "Unauthorized"
+},
+"403": {
+"description": "Forbidden"
+},
+"404": {
+"description": "Not Found"
+}
+},
+"security": [
+{
+"apiKey": [
+"global"
+]
+}
+],
+"deprecated": false
+},
+"post": {
+"tags": [
+"assessment-review-controller"
+],
+"summary": "createOrUpdateAssessmentReview",
+"operationId": "createOrUpdateAssessmentReviewUsingPOST",
+"consumes": [
+"application/json"
+],
+"produces": [
+"*/*"
+],
+"parameters": [
+{
+"in": "body",
+"name": "assessmentReview",
+"description": "assessmentReview",
+"required": true,
+"schema": {
+"$ref": "#/definitions/AssessmentReview"
+}
+}
+],
+"responses": {
+"200": {
+"description": "OK",
+"schema": {
+"$ref": "#/definitions/ApiResponse"
+}
+},
+"201": {
+"description": "Created"
+},
+"401": {
+"description": "Unauthorized"
+},
+"403": {
+"description": "Forbidden"
+},
+"404": {
+"description": "Not Found"
+}
+},
+"security": [
+{
+"apiKey": [
+"global"
+]
+}
+],
+"deprecated": false
+}
+},
+"/api/v1/project/risk/assessment/review/control": {
+"post": {
+"tags": [
+"assessment-review-controller"
+],
+"summary": "createAssessmentReviewControl",
+"operationId": "createAssessmentReviewControlUsingPOST",
+"consumes": [
+"application/json"
+],
+"produces": [
+"*/*"
+],
+"parameters": [
+{
+"in": "body",
+"name": "assessmentReviewControl",
+"description": "assessmentReviewControl",
+"required": true,
+"schema": {
+"$ref": "#/definitions/AssessmentReviewControl"
+}
+}
+],
+"responses": {
+"200": {
+"description": "OK",
+"schema": {
+"$ref": "#/definitions/ApiResponse"
+}
+},
+"201": {
+"description": "Created"
+},
+"401": {
+"description": "Unauthorized"
+},
+"403": {
+"description": "Forbidden"
+},
+"404": {
+"description": "Not Found"
+}
+},
+"security": [
+{
+"apiKey": [
+"global"
+]
+}
+],
+"deprecated": false
+},
+"delete": {
+"tags": [
+"assessment-review-controller"
+],
+"summary": "deleteAssessmentReviewById",
+"operationId": "deleteAssessmentReviewByIdUsingDELETE",
+"produces": [
+"*/*"
+],
+"parameters": [
+{
+"name": "assessmentReviewControlId",
+"in": "query",
+"description": "assessmentReviewControlId",
+"required": true,
+"type": "integer",
+"format": "int64"
+},
+{
+"name": "projectId",
+"in": "query",
+"description": "projectId",
+"required": true,
+"type": "integer",
+"format": "int64"
+}
+],
+"responses": {
+"200": {
+"description": "OK",
+"schema": {
+"$ref": "#/definitions/ApiResponse"
+}
+},
+"204": {
+"description": "No Content"
+},
+"401": {
+"description": "Unauthorized"
+},
+"403": {
+"description": "Forbidden"
+}
+},
+"security": [
+{
+"apiKey": [
+"global"
+]
+}
+],
+"deprecated": false
+}
+},
+"/api/v1/project/risk/assessment/review/latest": {
+"get": {
+"tags": [
+"assessment-review-controller"
+],
+"summary": "getLatestAssessmentReview",
+"operationId": "getLatestAssessmentReviewUsingGET",
 "produces": [
 "*/*"
 ],
@@ -2929,6 +3276,115 @@
 "schema": {
 "$ref": "#/definitions/ApiResponse"
 }
+},
+"401": {
+"description": "Unauthorized"
+},
+"403": {
+"description": "Forbidden"
+},
+"404": {
+"description": "Not Found"
+}
+},
+"security": [
+{
+"apiKey": [
+"global"
+]
+}
+],
+"deprecated": false
+}
+},
+"/api/v1/project/risk/assessment/reviews": {
+"get": {
+"tags": [
+"assessment-review-controller"
+],
+"summary": "getAssessmentReview",
+"operationId": "getAssessmentReviewUsingGET",
+"produces": [
+"*/*"
+],
+"parameters": [
+{
+"name": "projectId",
+"in": "query",
+"description": "projectId",
+"required": true,
+"type": "integer",
+"format": "int64"
+},
+{
+"name": "projectRiskId",
+"in": "query",
+"description": "projectRiskId",
+"required": true,
+"type": "integer",
+"format": "int64"
+}
+],
+"responses": {
+"200": {
+"description": "OK",
+"schema": {
+"$ref": "#/definitions/ApiResponse"
+}
+},
+"401": {
+"description": "Unauthorized"
+},
+"403": {
+"description": "Forbidden"
+},
+"404": {
+"description": "Not Found"
+}
+},
+"security": [
+{
+"apiKey": [
+"global"
+]
+}
+],
+"deprecated": false
+}
+},
+"/api/v1/project/risk/assessment/status": {
+"put": {
+"tags": [
+"assessment-remark-controller"
+],
+"summary": "updateProjectRiskAssessmentStatus",
+"operationId": "updateProjectRiskAssessmentStatusUsingPUT",
+"consumes": [
+"application/json"
+],
+"produces": [
+"*/*"
+],
+"parameters": [
+{
+"in": "body",
+"name": "statusUpdateDTO",
+"description": "statusUpdateDTO",
+"required": true,
+"schema": {
+"$ref": "#/definitions/StatusUpdateDTO"
+}
+}
+],
+"responses": {
+"200": {
+"description": "OK",
+"schema": {
+"$ref": "#/definitions/ApiResponse"
+}
+},
+"201": {
+"description": "Created"
 },
 "401": {
 "description": "Unauthorized"
@@ -3228,6 +3684,67 @@
 "deprecated": false
 }
 },
+"/api/v1/project/{projectId}/artefact/{artefactName}": {
+"delete": {
+"tags": [
+"risk-assessment-controller"
+],
+"summary": "deleteArtefactForProject",
+"operationId": "deleteArtefactForProjectUsingDELETE",
+"produces": [
+"*/*"
+],
+"parameters": [
+{
+"name": "artefactName",
+"in": "path",
+"description": "artefactName",
+"required": true,
+"type": "string"
+},
+{
+"name": "orgId",
+"in": "query",
+"description": "orgId",
+"required": true,
+"type": "string"
+},
+{
+"name": "projectId",
+"in": "path",
+"description": "projectId",
+"required": true,
+"type": "integer",
+"format": "int64"
+}
+],
+"responses": {
+"200": {
+"description": "OK",
+"schema": {
+"$ref": "#/definitions/ApiResponse"
+}
+},
+"204": {
+"description": "No Content"
+},
+"401": {
+"description": "Unauthorized"
+},
+"403": {
+"description": "Forbidden"
+}
+},
+"security": [
+{
+"apiKey": [
+"global"
+]
+}
+],
+"deprecated": false
+}
+},
 "/api/v1/project/{projectId}/risk/{projectRiskId}/artefact": {
 "get": {
 "tags": [
@@ -3278,6 +3795,75 @@
 },
 "404": {
 "description": "Not Found"
+}
+},
+"security": [
+{
+"apiKey": [
+"global"
+]
+}
+],
+"deprecated": false
+}
+},
+"/api/v1/project/{projectId}/risk/{projectRiskId}/artefact/{artefactName}": {
+"delete": {
+"tags": [
+"risk-assessment-controller"
+],
+"summary": "deleteArtefactForProjectRisk",
+"operationId": "deleteArtefactForProjectRiskUsingDELETE",
+"produces": [
+"*/*"
+],
+"parameters": [
+{
+"name": "artefactName",
+"in": "path",
+"description": "artefactName",
+"required": true,
+"type": "string"
+},
+{
+"name": "orgId",
+"in": "query",
+"description": "orgId",
+"required": true,
+"type": "string"
+},
+{
+"name": "projectId",
+"in": "path",
+"description": "projectId",
+"required": true,
+"type": "integer",
+"format": "int64"
+},
+{
+"name": "projectRiskId",
+"in": "path",
+"description": "projectRiskId",
+"required": true,
+"type": "integer",
+"format": "int64"
+}
+],
+"responses": {
+"200": {
+"description": "OK",
+"schema": {
+"$ref": "#/definitions/ApiResponse"
+}
+},
+"204": {
+"description": "No Content"
+},
+"401": {
+"description": "Unauthorized"
+},
+"403": {
+"description": "Forbidden"
 }
 },
 "security": [
@@ -3737,6 +4323,60 @@
 "schema": {
 "$ref": "#/definitions/ApiResponse"
 }
+},
+"401": {
+"description": "Unauthorized"
+},
+"403": {
+"description": "Forbidden"
+},
+"404": {
+"description": "Not Found"
+}
+},
+"security": [
+{
+"apiKey": [
+"global"
+]
+}
+],
+"deprecated": false
+}
+},
+"/api/v1/risk/question": {
+"post": {
+"tags": [
+"risk-questions-controller"
+],
+"summary": "createOrUpdateRiskQuestion",
+"operationId": "createOrUpdateRiskQuestionUsingPOST",
+"consumes": [
+"application/json"
+],
+"produces": [
+"*/*"
+],
+"parameters": [
+{
+"in": "body",
+"name": "riskQuestionDTO",
+"description": "riskQuestionDTO",
+"required": true,
+"schema": {
+"$ref": "#/definitions/RiskQuestionDTO"
+}
+}
+],
+"responses": {
+"200": {
+"description": "OK",
+"schema": {
+"$ref": "#/definitions/ApiResponse"
+}
+},
+"201": {
+"description": "Created"
 },
 "401": {
 "description": "Unauthorized"
@@ -5555,9 +6195,124 @@
 "AssessmentRemark": {
 "type": "object",
 "properties": {
-"assessmentTypeRefId": {
+"completedDate": {
+"type": "string",
+"format": "date-time"
+},
+"createdBy": {
+"type": "string"
+},
+"createdDate": {
+"type": "string",
+"format": "date-time"
+},
+"createdId": {
 "type": "integer",
 "format": "int64"
+},
+"createdOrgType": {
+"type": "string"
+},
+"id": {
+"type": "integer",
+"format": "int64"
+},
+"justification": {
+"type": "string"
+},
+"projectId": {
+"type": "integer",
+"format": "int64"
+},
+"projectRiskId": {
+"type": "integer",
+"format": "int64"
+},
+"residualImpactId": {
+"type": "integer",
+"format": "int64"
+},
+"residualLikelihoodId": {
+"type": "integer",
+"format": "int64"
+},
+"residualRisk": {
+"type": "integer",
+"format": "int64"
+},
+"treatment": {
+"type": "string"
+},
+"updatedDate": {
+"type": "string",
+"format": "date-time"
+},
+"updatedId": {
+"type": "integer",
+"format": "int64"
+}
+},
+"title": "AssessmentRemark"
+},
+"AssessmentRemarkControl": {
+"type": "object",
+"properties": {
+"controlTypeCode": {
+"type": "string"
+},
+"controlTypeId": {
+"type": "integer",
+"format": "int64"
+},
+"controlTypeName": {
+"type": "string"
+},
+"createdBy": {
+"type": "string"
+},
+"createdDate": {
+"type": "string",
+"format": "date-time"
+},
+"createdId": {
+"type": "integer",
+"format": "int64"
+},
+"createdOrgType": {
+"type": "string"
+},
+"id": {
+"type": "integer",
+"format": "int64"
+},
+"name": {
+"type": "string"
+},
+"projectId": {
+"type": "integer",
+"format": "int64"
+},
+"projectRiskId": {
+"type": "integer",
+"format": "int64"
+},
+"updatedDate": {
+"type": "string",
+"format": "date-time"
+},
+"updatedId": {
+"type": "integer",
+"format": "int64"
+}
+},
+"title": "AssessmentRemarkControl"
+},
+"AssessmentReview": {
+"type": "object",
+"properties": {
+"completedDate": {
+"type": "string",
+"format": "date-time"
 },
 "createdBy": {
 "type": "string"
@@ -5616,14 +6371,14 @@
 "format": "int64"
 }
 },
-"title": "AssessmentRemark"
+"title": "AssessmentReview"
 },
-"AssessmentRemarkControl": {
+"AssessmentReviewControl": {
 "type": "object",
 "properties": {
-"assessmentTypeRefId": {
-"type": "integer",
-"format": "int64"
+"completedDate": {
+"type": "string",
+"format": "date-time"
 },
 "controlTypeCode": {
 "type": "string"
@@ -5664,6 +6419,10 @@
 "type": "integer",
 "format": "int64"
 },
+"reviewId": {
+"type": "integer",
+"format": "int64"
+},
 "updatedDate": {
 "type": "string",
 "format": "date-time"
@@ -5673,7 +6432,7 @@
 "format": "int64"
 }
 },
-"title": "AssessmentRemarkControl"
+"title": "AssessmentReviewControl"
 },
 "AuthenticationRequest": {
 "type": "object",
@@ -5729,10 +6488,6 @@
 "DomainRiskDTO": {
 "type": "object",
 "properties": {
-"domainId": {
-"type": "integer",
-"format": "int64"
-},
 "domainName": {
 "type": "string"
 },
@@ -5912,6 +6667,9 @@
 "type": "string"
 },
 "orgRefCode": {
+"type": "string"
+},
+"orgRefDesc": {
 "type": "string"
 },
 "orgRefId": {
@@ -6483,6 +7241,23 @@
 },
 "title": "RiskImportDTO"
 },
+"RiskQuestionDTO": {
+"type": "object",
+"properties": {
+"id": {
+"type": "integer",
+"format": "int64"
+},
+"question": {
+"type": "string"
+},
+"riskId": {
+"type": "integer",
+"format": "int64"
+}
+},
+"title": "RiskQuestionDTO"
+},
 "RiskRequestDTO": {
 "type": "object",
 "properties": {
@@ -6510,6 +7285,9 @@
 "format": "int64"
 },
 "name": {
+"type": "string"
+},
+"question": {
 "type": "string"
 },
 "riskStatement": {
@@ -6579,6 +7357,27 @@
 }
 },
 "title": "ScoringModelDTO"
+},
+"StatusUpdateDTO": {
+"type": "object",
+"properties": {
+"isReview": {
+"type": "boolean"
+},
+"nextReviewDate": {
+"type": "string",
+"format": "date-time"
+},
+"projectId": {
+"type": "integer",
+"format": "int64"
+},
+"projectRiskId": {
+"type": "integer",
+"format": "int64"
+}
+},
+"title": "StatusUpdateDTO"
 },
 "TemplateDTO": {
 "type": "object",
