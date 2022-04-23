@@ -2983,6 +2983,14 @@
                         "required": true,
                         "type": "integer",
                         "format": "int64"
+                    },
+                    {
+                        "name": "projectRiskId",
+                        "in": "query",
+                        "description": "projectRiskId",
+                        "required": true,
+                        "type": "integer",
+                        "format": "int64"
                     }
                 ],
                 "responses": {
@@ -3202,6 +3210,14 @@
                         "name": "projectId",
                         "in": "query",
                         "description": "projectId",
+                        "required": true,
+                        "type": "integer",
+                        "format": "int64"
+                    },
+                    {
+                        "name": "projectRiskId",
+                        "in": "query",
+                        "description": "projectRiskId",
                         "required": true,
                         "type": "integer",
                         "format": "int64"
