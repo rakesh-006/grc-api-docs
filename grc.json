@@ -3325,11 +3325,11 @@
                 "parameters": [
                     {
                         "in": "body",
-                        "name": "statusUpdateDTO",
-                        "description": "statusUpdateDTO",
+                        "name": "assessmentStatusDTO",
+                        "description": "assessmentStatusDTO",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/StatusUpdateDTO"
+                            "$ref": "#/definitions/AssessmentStatusDTO"
                         }
                     }
                 ],
@@ -3478,13 +3478,13 @@
                 "deprecated": false
             }
         },
-        "/api/v1/project/risk/notApplicable": {
+        "/api/v1/project/risk/status": {
             "put": {
                 "tags": [
                     "project-risk-controller"
                 ],
-                "summary": "markProjectRiskAsNotApplicable",
-                "operationId": "markProjectRiskAsNotApplicableUsingPUT",
+                "summary": "updateProjectRiskStatus",
+                "operationId": "updateProjectRiskStatusUsingPUT",
                 "consumes": [
                     "application/json"
                 ],
@@ -3493,20 +3493,13 @@
                 ],
                 "parameters": [
                     {
-                        "name": "projectId",
-                        "in": "query",
-                        "description": "projectId",
+                        "in": "body",
+                        "name": "projectRiskStatusDTO",
+                        "description": "projectRiskStatusDTO",
                         "required": true,
-                        "type": "integer",
-                        "format": "int64"
-                    },
-                    {
-                        "name": "projectRiskId",
-                        "in": "query",
-                        "description": "projectRiskId",
-                        "required": true,
-                        "type": "integer",
-                        "format": "int64"
+                        "schema": {
+                            "$ref": "#/definitions/ProjectRiskStatusDTO"
+                        }
                     }
                 ],
                 "responses": {
@@ -6627,6 +6620,27 @@
             },
             "title": "AssessmentReviewControl"
         },
+        "AssessmentStatusDTO": {
+            "type": "object",
+            "properties": {
+                "isReview": {
+                    "type": "boolean"
+                },
+                "nextReviewDate": {
+                    "type": "string",
+                    "format": "date-time"
+                },
+                "projectId": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "projectRiskId": {
+                    "type": "integer",
+                    "format": "int64"
+                }
+            },
+            "title": "AssessmentStatusDTO"
+        },
         "AuthenticationRequest": {
             "type": "object",
             "properties": {
@@ -7176,6 +7190,23 @@
             },
             "title": "ProjectRiskImportDTO"
         },
+        "ProjectRiskStatusDTO": {
+            "type": "object",
+            "properties": {
+                "isProjectRiskApplicable": {
+                    "type": "boolean"
+                },
+                "projectId": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "projectRiskId": {
+                    "type": "integer",
+                    "format": "int64"
+                }
+            },
+            "title": "ProjectRiskStatusDTO"
+        },
         "ProjectUserDTO": {
             "type": "object",
             "properties": {
@@ -7568,27 +7599,6 @@
                 }
             },
             "title": "ScoringModelDTO"
-        },
-        "StatusUpdateDTO": {
-            "type": "object",
-            "properties": {
-                "isReview": {
-                    "type": "boolean"
-                },
-                "nextReviewDate": {
-                    "type": "string",
-                    "format": "date-time"
-                },
-                "projectId": {
-                    "type": "integer",
-                    "format": "int64"
-                },
-                "projectRiskId": {
-                    "type": "integer",
-                    "format": "int64"
-                }
-            },
-            "title": "StatusUpdateDTO"
         },
         "TemplateDTO": {
             "type": "object",
