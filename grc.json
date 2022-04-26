@@ -51,6 +51,10 @@
 "description": "History Controller"
 },
 {
+"name": "issue-management-controller",
+"description": "Issue Management Controller"
+},
+{
 "name": "job-controller",
 "description": "Job Controller"
 },
@@ -73,6 +77,10 @@
 {
 "name": "project-risk-questions-controller",
 "description": "Project Risk Questions Controller"
+},
+{
+"name": "report-template-controller",
+"description": "Report Template Controller"
 },
 {
 "name": "risk-assessment-controller",
@@ -101,6 +109,10 @@
 {
 "name": "template-controller",
 "description": "Template Controller"
+},
+{
+"name": "template-placeholder-controller",
+"description": "Template Placeholder Controller"
 },
 {
 "name": "template-risk-controller",
@@ -1455,6 +1467,214 @@
 "required": true,
 "schema": {
 "$ref": "#/definitions/RiskImportDTO"
+}
+}
+],
+"responses": {
+"200": {
+"description": "OK",
+"schema": {
+"$ref": "#/definitions/ApiResponse"
+}
+},
+"201": {
+"description": "Created"
+},
+"401": {
+"description": "Unauthorized"
+},
+"403": {
+"description": "Forbidden"
+},
+"404": {
+"description": "Not Found"
+}
+},
+"security": [
+{
+"apiKey": [
+"global"
+]
+}
+],
+"deprecated": false
+}
+},
+"/api/v1/issue": {
+"post": {
+"tags": [
+"issue-management-controller"
+],
+"summary": "createOrUpdateIssue",
+"operationId": "createOrUpdateIssueUsingPOST",
+"consumes": [
+"application/json"
+],
+"produces": [
+"*/*"
+],
+"parameters": [
+{
+"in": "body",
+"name": "issueRequestDTO",
+"description": "issueRequestDTO",
+"required": true,
+"schema": {
+"$ref": "#/definitions/IssueRequestDTO"
+}
+}
+],
+"responses": {
+"200": {
+"description": "OK",
+"schema": {
+"$ref": "#/definitions/ApiResponse"
+}
+},
+"201": {
+"description": "Created"
+},
+"401": {
+"description": "Unauthorized"
+},
+"403": {
+"description": "Forbidden"
+},
+"404": {
+"description": "Not Found"
+}
+},
+"security": [
+{
+"apiKey": [
+"global"
+]
+}
+],
+"deprecated": false
+}
+},
+"/api/v1/issue/user": {
+"get": {
+"tags": [
+"issue-management-controller"
+],
+"summary": "listUserForIssue",
+"operationId": "listUserForIssueUsingGET",
+"produces": [
+"*/*"
+],
+"parameters": [
+{
+"name": "tenantOrgId",
+"in": "query",
+"description": "tenantOrgId",
+"required": true,
+"type": "string"
+}
+],
+"responses": {
+"200": {
+"description": "OK",
+"schema": {
+"$ref": "#/definitions/ApiResponse"
+}
+},
+"401": {
+"description": "Unauthorized"
+},
+"403": {
+"description": "Forbidden"
+},
+"404": {
+"description": "Not Found"
+}
+},
+"security": [
+{
+"apiKey": [
+"global"
+]
+}
+],
+"deprecated": false
+}
+},
+"/api/v1/issue/{issueId}": {
+"get": {
+"tags": [
+"issue-management-controller"
+],
+"summary": "detailIssue",
+"operationId": "detailIssueUsingGET",
+"produces": [
+"*/*"
+],
+"parameters": [
+{
+"name": "issueId",
+"in": "path",
+"description": "issueId",
+"required": true,
+"type": "integer",
+"format": "int64"
+},
+{
+"name": "tenantOrgId",
+"in": "query",
+"description": "tenantOrgId",
+"required": true,
+"type": "string"
+}
+],
+"responses": {
+"200": {
+"description": "OK",
+"schema": {
+"$ref": "#/definitions/ApiResponse"
+}
+},
+"401": {
+"description": "Unauthorized"
+},
+"403": {
+"description": "Forbidden"
+},
+"404": {
+"description": "Not Found"
+}
+},
+"security": [
+{
+"apiKey": [
+"global"
+]
+}
+],
+"deprecated": false
+}
+},
+"/api/v1/issues": {
+"post": {
+"tags": [
+"issue-management-controller"
+],
+"summary": "listIssue",
+"operationId": "listIssueUsingPOST",
+"consumes": [
+"application/json"
+],
+"produces": [
+"*/*"
+],
+"parameters": [
+{
+"in": "body",
+"name": "paginationRequestDTO",
+"description": "paginationRequestDTO",
+"required": true,
+"schema": {
+"$ref": "#/definitions/PaginationRequestDTO"
 }
 }
 ],
@@ -3478,6 +3698,60 @@
 "deprecated": false
 }
 },
+"/api/v1/project/risk/question/response": {
+"put": {
+"tags": [
+"project-risk-questions-controller"
+],
+"summary": "updateProjectRiskQuestionResponse",
+"operationId": "updateProjectRiskQuestionResponseUsingPUT",
+"consumes": [
+"application/json"
+],
+"produces": [
+"*/*"
+],
+"parameters": [
+{
+"in": "body",
+"name": "questionResponse",
+"description": "questionResponse",
+"required": true,
+"schema": {
+"$ref": "#/definitions/QuestionResponseDTO"
+}
+}
+],
+"responses": {
+"200": {
+"description": "OK",
+"schema": {
+"$ref": "#/definitions/ApiResponse"
+}
+},
+"201": {
+"description": "Created"
+},
+"401": {
+"description": "Unauthorized"
+},
+"403": {
+"description": "Forbidden"
+},
+"404": {
+"description": "Not Found"
+}
+},
+"security": [
+{
+"apiKey": [
+"global"
+]
+}
+],
+"deprecated": false
+}
+},
 "/api/v1/project/risk/status": {
 "put": {
 "tags": [
@@ -4088,6 +4362,208 @@
 "required": true,
 "schema": {
 "$ref": "#/definitions/RefreshTokenDTO"
+}
+}
+],
+"responses": {
+"200": {
+"description": "OK",
+"schema": {
+"$ref": "#/definitions/ApiResponse"
+}
+},
+"201": {
+"description": "Created"
+},
+"401": {
+"description": "Unauthorized"
+},
+"403": {
+"description": "Forbidden"
+},
+"404": {
+"description": "Not Found"
+}
+},
+"security": [
+{
+"apiKey": [
+"global"
+]
+}
+],
+"deprecated": false
+}
+},
+"/api/v1/report/placeholder/{templateRefId}": {
+"get": {
+"tags": [
+"template-placeholder-controller"
+],
+"summary": "getTemplatePlaceholder",
+"operationId": "getTemplatePlaceholderUsingGET",
+"produces": [
+"*/*"
+],
+"parameters": [
+{
+"name": "templateRefId",
+"in": "path",
+"description": "templateRefId",
+"required": true,
+"type": "integer",
+"format": "int64"
+}
+],
+"responses": {
+"200": {
+"description": "OK",
+"schema": {
+"$ref": "#/definitions/ApiResponse"
+}
+},
+"401": {
+"description": "Unauthorized"
+},
+"403": {
+"description": "Forbidden"
+},
+"404": {
+"description": "Not Found"
+}
+},
+"security": [
+{
+"apiKey": [
+"global"
+]
+}
+],
+"deprecated": false
+}
+},
+"/api/v1/report/template": {
+"post": {
+"tags": [
+"report-template-controller"
+],
+"summary": "createReportTemplate",
+"operationId": "createReportTemplateUsingPOST",
+"consumes": [
+"application/json"
+],
+"produces": [
+"*/*"
+],
+"parameters": [
+{
+"in": "body",
+"name": "reportTemplateDTO",
+"description": "reportTemplateDTO",
+"required": true,
+"schema": {
+"$ref": "#/definitions/ReportTemplateDTO"
+}
+}
+],
+"responses": {
+"200": {
+"description": "OK",
+"schema": {
+"$ref": "#/definitions/ApiResponse"
+}
+},
+"201": {
+"description": "Created"
+},
+"401": {
+"description": "Unauthorized"
+},
+"403": {
+"description": "Forbidden"
+},
+"404": {
+"description": "Not Found"
+}
+},
+"security": [
+{
+"apiKey": [
+"global"
+]
+}
+],
+"deprecated": false
+}
+},
+"/api/v1/report/template/{id}": {
+"delete": {
+"tags": [
+"report-template-controller"
+],
+"summary": "deleteReportTemplateById",
+"operationId": "deleteReportTemplateByIdUsingDELETE",
+"produces": [
+"*/*"
+],
+"parameters": [
+{
+"name": "id",
+"in": "path",
+"description": "id",
+"required": true,
+"type": "integer",
+"format": "int64"
+}
+],
+"responses": {
+"200": {
+"description": "OK",
+"schema": {
+"$ref": "#/definitions/ApiResponse"
+}
+},
+"204": {
+"description": "No Content"
+},
+"401": {
+"description": "Unauthorized"
+},
+"403": {
+"description": "Forbidden"
+}
+},
+"security": [
+{
+"apiKey": [
+"global"
+]
+}
+],
+"deprecated": false
+}
+},
+"/api/v1/report/templates": {
+"post": {
+"tags": [
+"report-template-controller"
+],
+"summary": "getAllReportTemplate",
+"operationId": "getAllReportTemplateUsingPOST",
+"consumes": [
+"application/json"
+],
+"produces": [
+"*/*"
+],
+"parameters": [
+{
+"in": "body",
+"name": "paginationRequestDTO",
+"description": "paginationRequestDTO",
+"required": true,
+"schema": {
+"$ref": "#/definitions/PaginationRequestDTO"
 }
 }
 ],
@@ -6763,6 +7239,94 @@
 "type": "object",
 "title": "InputStream"
 },
+"IssueRequestDTO": {
+"type": "object",
+"properties": {
+"assessmentId": {
+"type": "integer",
+"format": "int64"
+},
+"assignedTo": {
+"type": "string"
+},
+"assignedToSp": {
+"type": "string"
+},
+"createdBy": {
+"type": "string"
+},
+"createdDate": {
+"type": "string",
+"format": "date-time"
+},
+"createdId": {
+"type": "integer",
+"format": "int64"
+},
+"createdOrgId": {
+"type": "string"
+},
+"creatorOrgId": {
+"type": "string"
+},
+"description": {
+"type": "string"
+},
+"id": {
+"type": "integer",
+"format": "int64"
+},
+"issueDatedOn": {
+"type": "string",
+"format": "date-time"
+},
+"issueDueOn": {
+"type": "string",
+"format": "date-time"
+},
+"issueStatusRefId": {
+"type": "integer",
+"format": "int64"
+},
+"priorityRefId": {
+"type": "integer",
+"format": "int64"
+},
+"projectId": {
+"type": "integer",
+"format": "int64"
+},
+"projectRiskId": {
+"type": "integer",
+"format": "int64"
+},
+"reportedBy": {
+"type": "string"
+},
+"severityRefId": {
+"type": "integer",
+"format": "int64"
+},
+"tags": {
+"type": "string"
+},
+"title": {
+"type": "string"
+},
+"updatedBy": {
+"type": "string"
+},
+"updatedDate": {
+"type": "string",
+"format": "date-time"
+},
+"updatedId": {
+"type": "integer",
+"format": "int64"
+}
+},
+"title": "IssueRequestDTO"
+},
 "MessageResponse": {
 "type": "object",
 "properties": {
@@ -7229,6 +7793,19 @@
 },
 "title": "ProjectUserDTO"
 },
+"QuestionAndResponseDTO": {
+"type": "object",
+"properties": {
+"questionId": {
+"type": "integer",
+"format": "int64"
+},
+"response": {
+"type": "string"
+}
+},
+"title": "QuestionAndResponseDTO"
+},
 "QuestionDTO": {
 "type": "object",
 "properties": {
@@ -7263,6 +7840,26 @@
 }
 },
 "title": "QuestionDTO"
+},
+"QuestionResponseDTO": {
+"type": "object",
+"properties": {
+"projectId": {
+"type": "integer",
+"format": "int64"
+},
+"projectRiskId": {
+"type": "integer",
+"format": "int64"
+},
+"questionAndResponses": {
+"type": "array",
+"items": {
+"$ref": "#/definitions/QuestionAndResponseDTO"
+}
+}
+},
+"title": "QuestionResponseDTO"
 },
 "Range": {
 "type": "object",
@@ -7322,6 +7919,60 @@
 }
 },
 "title": "RefreshTokenDTO"
+},
+"ReportTemplateDTO": {
+"type": "object",
+"properties": {
+"createdBy": {
+"type": "string"
+},
+"createdDate": {
+"type": "string",
+"format": "date-time"
+},
+"createdId": {
+"type": "integer",
+"format": "int64"
+},
+"id": {
+"type": "integer",
+"format": "int64"
+},
+"reportTemplateBodyPath": {
+"type": "string"
+},
+"reportTemplateFooterPath": {
+"type": "string"
+},
+"reportTemplateHeaderPath": {
+"type": "string"
+},
+"reportTemplateName": {
+"type": "string"
+},
+"reportTemplateRefCode": {
+"type": "string"
+},
+"reportTemplateRefId": {
+"type": "integer",
+"format": "int64"
+},
+"reportTemplateRefName": {
+"type": "string"
+},
+"updatedBy": {
+"type": "string"
+},
+"updatedDate": {
+"type": "string",
+"format": "date-time"
+},
+"updatedId": {
+"type": "integer",
+"format": "int64"
+}
+},
+"title": "ReportTemplateDTO"
 },
 "ResetPasswordDTO": {
 "type": "object",
