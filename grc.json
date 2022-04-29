@@ -1911,6 +1911,60 @@
                 "deprecated": false
             }
         },
+        "/api/v1/issues/note": {
+            "post": {
+                "tags": [
+                    "note-controller"
+                ],
+                "summary": "createIssueNote",
+                "operationId": "createIssueNoteUsingPOST",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "*/*"
+                ],
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "noteDTO",
+                        "description": "noteDTO",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/NoteDTO"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/ApiResponse"
+                        }
+                    },
+                    "201": {
+                        "description": "Created"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                },
+                "security": [
+                    {
+                        "apiKey": [
+                            "global"
+                        ]
+                    }
+                ],
+                "deprecated": false
+            }
+        },
         "/api/v1/likelyhood": {
             "get": {
                 "tags": [
@@ -2032,6 +2086,60 @@
                         "required": true,
                         "schema": {
                             "$ref": "#/definitions/IssueLinkDTO"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/ApiResponse"
+                        }
+                    },
+                    "201": {
+                        "description": "Created"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                },
+                "security": [
+                    {
+                        "apiKey": [
+                            "global"
+                        ]
+                    }
+                ],
+                "deprecated": false
+            }
+        },
+        "/api/v1/link/issues": {
+            "post": {
+                "tags": [
+                    "issue-management-controller"
+                ],
+                "summary": "listLinkedIssues",
+                "operationId": "listLinkedIssuesUsingPOST",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "*/*"
+                ],
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "aprDTO",
+                        "description": "aprDTO",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/AdvancePaginationRequestDTO"
                         }
                     }
                 ],
@@ -3105,6 +3213,60 @@
                     },
                     "403": {
                         "description": "Forbidden"
+                    }
+                },
+                "security": [
+                    {
+                        "apiKey": [
+                            "global"
+                        ]
+                    }
+                ],
+                "deprecated": false
+            }
+        },
+        "/api/v1/project/report": {
+            "post": {
+                "tags": [
+                    "report-document-controller"
+                ],
+                "summary": "generateProjectReport",
+                "operationId": "generateProjectReportUsingPOST",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "*/*"
+                ],
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "reportDocumentDTO",
+                        "description": "reportDocumentDTO",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/ReportDocumentDTO"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/ApiResponse"
+                        }
+                    },
+                    "201": {
+                        "description": "Created"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
                     }
                 },
                 "security": [
@@ -4754,6 +4916,59 @@
             }
         },
         "/api/v1/report/template/draft": {
+            "get": {
+                "tags": [
+                    "report-document-controller"
+                ],
+                "summary": "getReportTemplateDraft",
+                "operationId": "getReportTemplateDraftUsingGET",
+                "produces": [
+                    "*/*"
+                ],
+                "parameters": [
+                    {
+                        "name": "projectId",
+                        "in": "query",
+                        "description": "projectId",
+                        "required": true,
+                        "type": "integer",
+                        "format": "int64"
+                    },
+                    {
+                        "name": "reportTemplateId",
+                        "in": "query",
+                        "description": "reportTemplateId",
+                        "required": true,
+                        "type": "integer",
+                        "format": "int64"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/ApiResponse"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                },
+                "security": [
+                    {
+                        "apiKey": [
+                            "global"
+                        ]
+                    }
+                ],
+                "deprecated": false
+            },
             "post": {
                 "tags": [
                     "report-document-controller"
@@ -4795,6 +5010,111 @@
                     },
                     "404": {
                         "description": "Not Found"
+                    }
+                },
+                "security": [
+                    {
+                        "apiKey": [
+                            "global"
+                        ]
+                    }
+                ],
+                "deprecated": false
+            },
+            "put": {
+                "tags": [
+                    "report-document-controller"
+                ],
+                "summary": "updateReportTemplateDraft",
+                "operationId": "updateReportTemplateDraftUsingPUT",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "*/*"
+                ],
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "reportDocumentDTO",
+                        "description": "reportDocumentDTO",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/ReportDocumentDTO"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/ApiResponse"
+                        }
+                    },
+                    "201": {
+                        "description": "Created"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                },
+                "security": [
+                    {
+                        "apiKey": [
+                            "global"
+                        ]
+                    }
+                ],
+                "deprecated": false
+            },
+            "delete": {
+                "tags": [
+                    "report-document-controller"
+                ],
+                "summary": "deleteReportTemplateDraft",
+                "operationId": "deleteReportTemplateDraftUsingDELETE",
+                "produces": [
+                    "*/*"
+                ],
+                "parameters": [
+                    {
+                        "name": "projectId",
+                        "in": "query",
+                        "description": "projectId",
+                        "required": true,
+                        "type": "integer",
+                        "format": "int64"
+                    },
+                    {
+                        "name": "reportTemplateId",
+                        "in": "query",
+                        "description": "reportTemplateId",
+                        "required": true,
+                        "type": "integer",
+                        "format": "int64"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/ApiResponse"
+                        }
+                    },
+                    "204": {
+                        "description": "No Content"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
                     }
                 },
                 "security": [
@@ -7228,9 +7548,20 @@
                 "filterValue": {
                     "type": "string"
                 },
+                "moduleRefId": {
+                    "type": "integer",
+                    "format": "int64"
+                },
                 "moduleStatus": {
                     "type": "integer",
                     "format": "int64"
+                },
+                "moduleSubRefId": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "moduleType": {
+                    "type": "string"
                 },
                 "orgId": {
                     "type": "string"
@@ -7842,6 +8173,9 @@
                 "noteText": {
                     "type": "string"
                 },
+                "orgId": {
+                    "type": "string"
+                },
                 "projectId": {
                     "type": "integer",
                     "format": "int64"
@@ -7865,6 +8199,9 @@
                 "moduleTypeId": {
                     "type": "integer",
                     "format": "int64"
+                },
+                "orgId": {
+                    "type": "string"
                 },
                 "pageNumber": {
                     "type": "integer",
