@@ -1,15 +1,9 @@
 {
 "swagger": "2.0",
 "info": {
-"description": "Api Documentation",
-"version": "1.0",
-"title": "Api Documentation",
-"termsOfService": "urn:tos",
-"contact": {},
-"license": {
-"name": "Apache 2.0",
-"url": "http://www.apache.org/licenses/LICENSE-2.0"
-}
+"description": "Swagger 2.0 API for CyPRO Product",
+"version": "v1",
+"title": "CyPRO"
 },
 "host": "13.235.63.196:8088",
 "basePath": "/",
@@ -126,6 +120,10 @@
 "name": "user-controller",
 "description": "User Controller"
 }
+],
+"schemes": [
+"http",
+"https"
 ],
 "paths": {
 "/api/v1/assessment/project/risk": {
@@ -949,6 +947,67 @@
 "deprecated": false
 }
 },
+"/api/v1/downloadFile/issue/{issueId}/attachment/{fileName}": {
+"get": {
+"tags": [
+"issue-management-controller"
+],
+"summary": "downloadIssueAttachment",
+"operationId": "downloadIssueAttachmentUsingGET",
+"produces": [
+"*/*"
+],
+"parameters": [
+{
+"name": "fileName",
+"in": "path",
+"description": "fileName",
+"required": true,
+"type": "string"
+},
+{
+"name": "issueId",
+"in": "path",
+"description": "issueId",
+"required": true,
+"type": "integer",
+"format": "int64"
+},
+{
+"name": "tenantOrgId",
+"in": "query",
+"description": "tenantOrgId",
+"required": true,
+"type": "string"
+}
+],
+"responses": {
+"200": {
+"description": "OK",
+"schema": {
+"$ref": "#/definitions/Resource"
+}
+},
+"401": {
+"description": "Unauthorized"
+},
+"403": {
+"description": "Forbidden"
+},
+"404": {
+"description": "Not Found"
+}
+},
+"security": [
+{
+"apiKey": [
+"global"
+]
+}
+],
+"deprecated": false
+}
+},
 "/api/v1/downloadFile/{fileName}": {
 "get": {
 "tags": [
@@ -1646,6 +1705,68 @@
 },
 "201": {
 "description": "Created"
+},
+"401": {
+"description": "Unauthorized"
+},
+"403": {
+"description": "Forbidden"
+},
+"404": {
+"description": "Not Found"
+}
+},
+"security": [
+{
+"apiKey": [
+"global"
+]
+}
+],
+"deprecated": false
+}
+},
+"/api/v1/issue/dashboard": {
+"get": {
+"tags": [
+"issue-management-controller"
+],
+"summary": "issueDashboard",
+"operationId": "issueDashboardUsingGET",
+"produces": [
+"*/*"
+],
+"parameters": [
+{
+"name": "priority",
+"in": "query",
+"description": "priority",
+"required": true,
+"type": "integer",
+"format": "int64"
+},
+{
+"name": "severity",
+"in": "query",
+"description": "severity",
+"required": true,
+"type": "integer",
+"format": "int64"
+},
+{
+"name": "tenantOrgId",
+"in": "query",
+"description": "tenantOrgId",
+"required": true,
+"type": "string"
+}
+],
+"responses": {
+"200": {
+"description": "OK",
+"schema": {
+"$ref": "#/definitions/ApiResponse"
+}
 },
 "401": {
 "description": "Unauthorized"
@@ -4525,13 +4646,13 @@
 "deprecated": false
 }
 },
-"/api/v1/project/risks": {
+"/api/v1/project/{id}/risk": {
 "post": {
 "tags": [
-"project-controller"
+"project-risk-controller"
 ],
-"summary": "getRisksByProjectId",
-"operationId": "getRisksByProjectIdUsingPOST",
+"summary": "getProjectRisks",
+"operationId": "getProjectRisksUsingPOST",
 "consumes": [
 "application/json"
 ],
@@ -4541,7 +4662,7 @@
 "parameters": [
 {
 "name": "id",
-"in": "query",
+"in": "path",
 "description": "id",
 "required": true,
 "type": "integer",
@@ -4566,53 +4687,6 @@
 },
 "201": {
 "description": "Created"
-},
-"401": {
-"description": "Unauthorized"
-},
-"403": {
-"description": "Forbidden"
-},
-"404": {
-"description": "Not Found"
-}
-},
-"security": [
-{
-"apiKey": [
-"global"
-]
-}
-],
-"deprecated": false
-}
-},
-"/api/v1/project/{id}/risk": {
-"get": {
-"tags": [
-"project-risk-controller"
-],
-"summary": "getProjectRisks",
-"operationId": "getProjectRisksUsingGET",
-"produces": [
-"*/*"
-],
-"parameters": [
-{
-"name": "id",
-"in": "path",
-"description": "id",
-"required": true,
-"type": "integer",
-"format": "int64"
-}
-],
-"responses": {
-"200": {
-"description": "OK",
-"schema": {
-"$ref": "#/definitions/ApiResponse"
-}
 },
 "401": {
 "description": "Unauthorized"
@@ -5138,7 +5212,7 @@
 "200": {
 "description": "OK",
 "schema": {
-"$ref": "#/definitions/ApiResponse"
+"$ref": "#/definitions/Resource"
 }
 },
 "401": {
@@ -8390,10 +8464,6 @@
 "IssueRequestDTO": {
 "type": "object",
 "properties": {
-"assessmentId": {
-"type": "integer",
-"format": "int64"
-},
 "assignedTo": {
 "type": "string"
 },
@@ -8431,6 +8501,10 @@
 "issueDueOn": {
 "type": "string",
 "format": "date-time"
+},
+"issueId": {
+"type": "integer",
+"format": "int64"
 },
 "issueStatusRefId": {
 "type": "integer",
@@ -8978,6 +9052,12 @@
 "QuestionDTO": {
 "type": "object",
 "properties": {
+"controlTypeCode": {
+"type": "string"
+},
+"controlTypeName": {
+"type": "string"
+},
 "createdBy": {
 "type": "string"
 },
@@ -9051,6 +9131,9 @@
 "lowerLimit": {
 "type": "integer",
 "format": "int64"
+},
+"rangeLabel": {
+"type": "string"
 },
 "scoringModelId": {
 "type": "integer",
