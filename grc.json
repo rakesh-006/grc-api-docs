@@ -122,8 +122,8 @@
 }
 ],
 "schemes": [
-"http",
-"https"
+"https",
+"http"
 ],
 "paths": {
 "/api/v1/assessment/project/risk": {
