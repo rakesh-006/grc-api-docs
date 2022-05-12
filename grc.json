@@ -126,8 +126,8 @@
         }
     ],
     "schemes": [
-        "https",
-        "http"
+        "http",
+        "https"
     ],
     "paths": {
         "/api/v1/assessment/project/risk": {
@@ -3467,6 +3467,152 @@
                 "operationId": "getOrganizationsListUsingGET",
                 "produces": [
                     "*/*"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/ApiResponse"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                },
+                "security": [
+                    {
+                        "apiKey": [
+                            "global"
+                        ]
+                    }
+                ],
+                "deprecated": false
+            }
+        },
+        "/api/v1/package": {
+            "get": {
+                "tags": [
+                    "subscription-management-controller"
+                ],
+                "summary": "listPackage",
+                "operationId": "listPackageUsingGET",
+                "produces": [
+                    "*/*"
+                ],
+                "parameters": [
+                    {
+                        "name": "orgType",
+                        "in": "query",
+                        "description": "orgType",
+                        "required": true,
+                        "type": "integer",
+                        "format": "int64"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/ApiResponse"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                },
+                "security": [
+                    {
+                        "apiKey": [
+                            "global"
+                        ]
+                    }
+                ],
+                "deprecated": false
+            },
+            "post": {
+                "tags": [
+                    "subscription-management-controller"
+                ],
+                "summary": "createOrUpdatePackage",
+                "operationId": "createOrUpdatePackageUsingPOST",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "*/*"
+                ],
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "packageDTO",
+                        "description": "packageDTO",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/PackageDTO"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/ApiResponse"
+                        }
+                    },
+                    "201": {
+                        "description": "Created"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                },
+                "security": [
+                    {
+                        "apiKey": [
+                            "global"
+                        ]
+                    }
+                ],
+                "deprecated": false
+            }
+        },
+        "/api/v1/package/{packageId}": {
+            "get": {
+                "tags": [
+                    "subscription-management-controller"
+                ],
+                "summary": "getpackageDetails",
+                "operationId": "getpackageDetailsUsingGET",
+                "produces": [
+                    "*/*"
+                ],
+                "parameters": [
+                    {
+                        "name": "packageId",
+                        "in": "path",
+                        "description": "packageId",
+                        "required": true,
+                        "type": "integer",
+                        "format": "int64"
+                    }
                 ],
                 "responses": {
                     "200": {
@@ -8575,6 +8721,24 @@
             },
             "title": "FollowerDTO"
         },
+        "InclusionDTO": {
+            "type": "object",
+            "properties": {
+                "count": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "id": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "inclusionId": {
+                    "type": "integer",
+                    "format": "int64"
+                }
+            },
+            "title": "InclusionDTO"
+        },
         "InputStream": {
             "type": "object",
             "title": "InputStream"
@@ -8706,6 +8870,20 @@
                 }
             },
             "title": "MessageResponse"
+        },
+        "ModuleDTO": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "moduleId": {
+                    "type": "integer",
+                    "format": "int64"
+                }
+            },
+            "title": "ModuleDTO"
         },
         "NoteDTO": {
             "type": "object",
@@ -8848,6 +9026,82 @@
                 }
             },
             "title": "OrganizationDTO"
+        },
+        "OverageDTO": {
+            "type": "object",
+            "properties": {
+                "count": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "id": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "overageId": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "price": {
+                    "type": "number",
+                    "format": "double"
+                }
+            },
+            "title": "OverageDTO"
+        },
+        "PackageDTO": {
+            "type": "object",
+            "properties": {
+                "basePrice": {
+                    "type": "number",
+                    "format": "double"
+                },
+                "currencyRefId": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "description": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "inclusions": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/InclusionDTO"
+                    }
+                },
+                "modules": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/ModuleDTO"
+                    }
+                },
+                "name": {
+                    "type": "string"
+                },
+                "orgTypeId": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "overages": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/OverageDTO"
+                    }
+                },
+                "statusRefId": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "yearlyDiscount": {
+                    "type": "number",
+                    "format": "double"
+                }
+            },
+            "title": "PackageDTO"
         },
         "PaginationRequestDTO": {
             "type": "object",
