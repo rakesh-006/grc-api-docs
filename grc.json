@@ -9,6 +9,10 @@
     "basePath": "/",
     "tags": [
         {
+            "name": "app-notification-controller",
+            "description": "App Notification Controller"
+        },
+        {
             "name": "assessment-remark-controller",
             "description": "Assessment Remark Controller"
         },
@@ -27,6 +31,10 @@
         {
             "name": "authorization-controller",
             "description": "Authorization Controller"
+        },
+        {
+            "name": "billing-controller",
+            "description": "Billing Controller"
         },
         {
             "name": "common-controller",
@@ -130,6 +138,218 @@
         "http"
     ],
     "paths": {
+        "/api/v1/app/notification/recent": {
+            "get": {
+                "tags": [
+                    "app-notification-controller"
+                ],
+                "summary": "getRecentNotifications",
+                "operationId": "getRecentNotificationsUsingGET",
+                "produces": [
+                    "*/*"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/ApiResponse"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                },
+                "security": [
+                    {
+                        "apiKey": [
+                            "global"
+                        ]
+                    }
+                ],
+                "deprecated": false
+            }
+        },
+        "/api/v1/app/notification/unread/count": {
+            "get": {
+                "tags": [
+                    "app-notification-controller"
+                ],
+                "summary": "getUnreadAppNotificationCount",
+                "operationId": "getUnreadAppNotificationCountUsingGET",
+                "produces": [
+                    "*/*"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/ApiResponse"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                },
+                "security": [
+                    {
+                        "apiKey": [
+                            "global"
+                        ]
+                    }
+                ],
+                "deprecated": false
+            }
+        },
+        "/api/v1/app/notification/{appNotificationId}/markAsRead": {
+            "get": {
+                "tags": [
+                    "app-notification-controller"
+                ],
+                "summary": "markAppNotificationAsRead",
+                "operationId": "markAppNotificationAsReadUsingGET",
+                "produces": [
+                    "*/*"
+                ],
+                "parameters": [
+                    {
+                        "name": "appNotificationId",
+                        "in": "path",
+                        "description": "appNotificationId",
+                        "required": true,
+                        "type": "integer",
+                        "format": "int64"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/ApiResponse"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                },
+                "security": [
+                    {
+                        "apiKey": [
+                            "global"
+                        ]
+                    }
+                ],
+                "deprecated": false
+            }
+        },
+        "/api/v1/app/notifications": {
+            "post": {
+                "tags": [
+                    "app-notification-controller"
+                ],
+                "summary": "getNotifications",
+                "operationId": "getNotificationsUsingPOST",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "*/*"
+                ],
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "paginationRequestDTO",
+                        "description": "paginationRequestDTO",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/PaginationRequestDTO"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/ApiResponse"
+                        }
+                    },
+                    "201": {
+                        "description": "Created"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                },
+                "security": [
+                    {
+                        "apiKey": [
+                            "global"
+                        ]
+                    }
+                ],
+                "deprecated": false
+            }
+        },
+        "/api/v1/app/notifications/markAsRead": {
+            "get": {
+                "tags": [
+                    "app-notification-controller"
+                ],
+                "summary": "markAllAppNotificationAsRead",
+                "operationId": "markAllAppNotificationAsReadUsingGET",
+                "produces": [
+                    "*/*"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/ApiResponse"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                },
+                "security": [
+                    {
+                        "apiKey": [
+                            "global"
+                        ]
+                    }
+                ],
+                "deprecated": false
+            }
+        },
         "/api/v1/assessment/project/risk": {
             "post": {
                 "tags": [
@@ -279,6 +499,99 @@
                     },
                     "201": {
                         "description": "Created"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                },
+                "security": [
+                    {
+                        "apiKey": [
+                            "global"
+                        ]
+                    }
+                ],
+                "deprecated": false
+            }
+        },
+        "/api/v1/billing": {
+            "get": {
+                "tags": [
+                    "billing-controller"
+                ],
+                "summary": "listBilling",
+                "operationId": "listBillingUsingGET",
+                "produces": [
+                    "*/*"
+                ],
+                "parameters": [
+                    {
+                        "name": "tenantOrgId",
+                        "in": "query",
+                        "description": "tenantOrgId",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/ApiResponse"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                },
+                "security": [
+                    {
+                        "apiKey": [
+                            "global"
+                        ]
+                    }
+                ],
+                "deprecated": false
+            }
+        },
+        "/api/v1/billing/{billingId}": {
+            "get": {
+                "tags": [
+                    "billing-controller"
+                ],
+                "summary": "getBillingDetail",
+                "operationId": "getBillingDetailUsingGET",
+                "produces": [
+                    "*/*"
+                ],
+                "parameters": [
+                    {
+                        "name": "billingId",
+                        "in": "path",
+                        "description": "billingId",
+                        "required": true,
+                        "type": "integer",
+                        "format": "int64"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/ApiResponse"
+                        }
                     },
                     "401": {
                         "description": "Unauthorized"
@@ -10046,6 +10359,10 @@
                     "type": "string"
                 },
                 "packageId": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "subscriptionModeRefId": {
                     "type": "integer",
                     "format": "int64"
                 }
