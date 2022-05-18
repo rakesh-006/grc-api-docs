@@ -350,7 +350,7 @@
                 "deprecated": false
             }
         },
-        "/api/v1/app/notifications/{id}": {
+        "/api/v1/app/notifications/{appNotificationId}": {
             "delete": {
                 "tags": [
                     "app-notification-controller"
