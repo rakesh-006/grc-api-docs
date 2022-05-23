@@ -2220,22 +2220,6 @@
                 ],
                 "parameters": [
                     {
-                        "name": "priority",
-                        "in": "query",
-                        "description": "priority",
-                        "required": true,
-                        "type": "integer",
-                        "format": "int64"
-                    },
-                    {
-                        "name": "severity",
-                        "in": "query",
-                        "description": "severity",
-                        "required": true,
-                        "type": "integer",
-                        "format": "int64"
-                    },
-                    {
                         "name": "tenantOrgId",
                         "in": "query",
                         "description": "tenantOrgId",
