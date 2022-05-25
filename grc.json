@@ -146,8 +146,8 @@
         }
     ],
     "schemes": [
-        "http",
-        "https"
+        "https",
+        "http"
     ],
     "paths": {
         "/api/v1/app/notification/recent": {
