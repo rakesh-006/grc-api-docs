@@ -49,6 +49,10 @@
             "description": "Control Library Controller"
         },
         {
+            "name": "control-library-import-controller",
+            "description": "Control Library Import Controller"
+        },
+        {
             "name": "department-controller",
             "description": "Department Controller"
         },
@@ -71,6 +75,10 @@
         {
             "name": "organization-controller",
             "description": "Organization Controller"
+        },
+        {
+            "name": "project-control-library-controller",
+            "description": "Project Control Library Controller"
         },
         {
             "name": "project-controller",
@@ -119,6 +127,10 @@
         {
             "name": "scoring-model-controller",
             "description": "Scoring Model Controller"
+        },
+        {
+            "name": "standard-library-controller",
+            "description": "Standard Library Controller"
         },
         {
             "name": "subscription-management-controller",
@@ -2254,6 +2266,114 @@
                         "schema": {
                             "$ref": "#/definitions/ApiResponse"
                         }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                },
+                "security": [
+                    {
+                        "apiKey": [
+                            "global"
+                        ]
+                    }
+                ],
+                "deprecated": false
+            }
+        },
+        "/api/v1/import/library/controlLibraries": {
+            "post": {
+                "tags": [
+                    "project-control-library-controller"
+                ],
+                "summary": "importProjectControlLibraries",
+                "operationId": "importProjectControlLibrariesUsingPOST",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "*/*"
+                ],
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "importDTO",
+                        "description": "importDTO",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/ImportDTO"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/ApiResponse"
+                        }
+                    },
+                    "201": {
+                        "description": "Created"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                },
+                "security": [
+                    {
+                        "apiKey": [
+                            "global"
+                        ]
+                    }
+                ],
+                "deprecated": false
+            }
+        },
+        "/api/v1/import/platform/controlLibraries": {
+            "post": {
+                "tags": [
+                    "control-library-import-controller"
+                ],
+                "summary": "importPlatformControlLibraries",
+                "operationId": "importPlatformControlLibrariesUsingPOST",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "*/*"
+                ],
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "importDTO",
+                        "description": "importDTO",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/ImportDTO"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/ApiResponse"
+                        }
+                    },
+                    "201": {
+                        "description": "Created"
                     },
                     "401": {
                         "description": "Unauthorized"
@@ -7945,6 +8065,161 @@
                 "deprecated": false
             }
         },
+        "/api/v1/standard": {
+            "post": {
+                "tags": [
+                    "standard-library-controller"
+                ],
+                "summary": "createOrUpdateStandard",
+                "operationId": "createOrUpdateStandardUsingPOST",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "*/*"
+                ],
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "standardDTO",
+                        "description": "standardDTO",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/StandardDTO"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/ApiResponse"
+                        }
+                    },
+                    "201": {
+                        "description": "Created"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                },
+                "security": [
+                    {
+                        "apiKey": [
+                            "global"
+                        ]
+                    }
+                ],
+                "deprecated": false
+            }
+        },
+        "/api/v1/standard/{standardId}": {
+            "get": {
+                "tags": [
+                    "standard-library-controller"
+                ],
+                "summary": "getStandardById",
+                "operationId": "getStandardByIdUsingGET",
+                "produces": [
+                    "*/*"
+                ],
+                "parameters": [
+                    {
+                        "name": "standardId",
+                        "in": "path",
+                        "description": "standardId",
+                        "required": true,
+                        "type": "integer",
+                        "format": "int64"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/ApiResponse"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                },
+                "security": [
+                    {
+                        "apiKey": [
+                            "global"
+                        ]
+                    }
+                ],
+                "deprecated": false
+            }
+        },
+        "/api/v1/standards": {
+            "post": {
+                "tags": [
+                    "standard-library-controller"
+                ],
+                "summary": "getAllStandards",
+                "operationId": "getAllStandardsUsingPOST",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "*/*"
+                ],
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "paginationRequestDTO",
+                        "description": "paginationRequestDTO",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/PaginationRequestDTO"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/ApiResponse"
+                        }
+                    },
+                    "201": {
+                        "description": "Created"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                },
+                "security": [
+                    {
+                        "apiKey": [
+                            "global"
+                        ]
+                    }
+                ],
+                "deprecated": false
+            }
+        },
         "/api/v1/stat": {
             "get": {
                 "tags": [
@@ -9441,7 +9716,7 @@
             },
             "title": "ApiResponse"
         },
-        "Artefact": {
+        "ArtefactLibrary": {
             "type": "object",
             "properties": {
                 "artifactName": {
@@ -9481,7 +9756,7 @@
                     "format": "int64"
                 }
             },
-            "title": "Artefact"
+            "title": "ArtefactLibrary"
         },
         "AssessmentRemark": {
             "type": "object",
@@ -9780,15 +10055,15 @@
         "ControlLibraryDTO": {
             "type": "object",
             "properties": {
+                "artefactFreqRefId": {
+                    "type": "integer",
+                    "format": "int64"
+                },
                 "artefacts": {
                     "type": "array",
                     "items": {
                         "$ref": "#/definitions/ControlSubRequestDTO"
                     }
-                },
-                "artifactFreqRefId": {
-                    "type": "integer",
-                    "format": "int64"
                 },
                 "controlDescription": {
                     "type": "string"
@@ -9812,10 +10087,10 @@
                     "type": "integer",
                     "format": "int64"
                 },
-                "listArtefacts": {
+                "listArtefactLibraries": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/definitions/Artefact"
+                        "$ref": "#/definitions/ArtefactLibrary"
                     }
                 },
                 "questions": {
@@ -9966,6 +10241,23 @@
                 }
             },
             "title": "FollowerDTO"
+        },
+        "ImportDTO": {
+            "type": "object",
+            "properties": {
+                "importIds": {
+                    "type": "array",
+                    "items": {
+                        "type": "integer",
+                        "format": "int64"
+                    }
+                },
+                "projectId": {
+                    "type": "integer",
+                    "format": "int64"
+                }
+            },
+            "title": "ImportDTO"
         },
         "InclusionDTO": {
             "type": "object",
@@ -11245,6 +11537,56 @@
                 }
             },
             "title": "ScoringModelDTO"
+        },
+        "StandardDTO": {
+            "type": "object",
+            "properties": {
+                "domainId": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "id": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "standardLibraryControls": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/StandardLibraryControlDTO"
+                    }
+                },
+                "standardName": {
+                    "type": "string"
+                }
+            },
+            "title": "StandardDTO"
+        },
+        "StandardLibraryControlDTO": {
+            "type": "object",
+            "properties": {
+                "controlDescription": {
+                    "type": "string"
+                },
+                "controlNumber": {
+                    "type": "string"
+                },
+                "controlObjective": {
+                    "type": "string"
+                },
+                "createdDate": {
+                    "type": "string",
+                    "format": "date-time"
+                },
+                "createdId": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "id": {
+                    "type": "integer",
+                    "format": "int64"
+                }
+            },
+            "title": "StandardLibraryControlDTO"
         },
         "SubscriptionDetailRequestDTO": {
             "type": "object",
