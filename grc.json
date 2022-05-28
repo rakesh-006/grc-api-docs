@@ -133,6 +133,10 @@
             "description": "Standard Library Controller"
         },
         {
+            "name": "standard-library-import-controller",
+            "description": "Standard Library Import Controller"
+        },
+        {
             "name": "subscription-management-controller",
             "description": "Subscription Management Controller"
         },
@@ -2287,60 +2291,6 @@
                 "deprecated": false
             }
         },
-        "/api/v1/import/library/controlLibraries": {
-            "post": {
-                "tags": [
-                    "project-control-library-controller"
-                ],
-                "summary": "importProjectControlLibraries",
-                "operationId": "importProjectControlLibrariesUsingPOST",
-                "consumes": [
-                    "application/json"
-                ],
-                "produces": [
-                    "*/*"
-                ],
-                "parameters": [
-                    {
-                        "in": "body",
-                        "name": "importDTO",
-                        "description": "importDTO",
-                        "required": true,
-                        "schema": {
-                            "$ref": "#/definitions/ImportDTO"
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "schema": {
-                            "$ref": "#/definitions/ApiResponse"
-                        }
-                    },
-                    "201": {
-                        "description": "Created"
-                    },
-                    "401": {
-                        "description": "Unauthorized"
-                    },
-                    "403": {
-                        "description": "Forbidden"
-                    },
-                    "404": {
-                        "description": "Not Found"
-                    }
-                },
-                "security": [
-                    {
-                        "apiKey": [
-                            "global"
-                        ]
-                    }
-                ],
-                "deprecated": false
-            }
-        },
         "/api/v1/import/platform/controlLibraries": {
             "post": {
                 "tags": [
@@ -2416,6 +2366,114 @@
                         "required": true,
                         "schema": {
                             "$ref": "#/definitions/RiskImportDTO"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/ApiResponse"
+                        }
+                    },
+                    "201": {
+                        "description": "Created"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                },
+                "security": [
+                    {
+                        "apiKey": [
+                            "global"
+                        ]
+                    }
+                ],
+                "deprecated": false
+            }
+        },
+        "/api/v1/import/platform/standardLibraries": {
+            "post": {
+                "tags": [
+                    "standard-library-import-controller"
+                ],
+                "summary": "importPlatformStandardLibraries",
+                "operationId": "importPlatformStandardLibrariesUsingPOST",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "*/*"
+                ],
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "importDTO",
+                        "description": "importDTO",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/ImportDTO"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/ApiResponse"
+                        }
+                    },
+                    "201": {
+                        "description": "Created"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                },
+                "security": [
+                    {
+                        "apiKey": [
+                            "global"
+                        ]
+                    }
+                ],
+                "deprecated": false
+            }
+        },
+        "/api/v1/import/project/controlLibraries": {
+            "post": {
+                "tags": [
+                    "project-control-library-controller"
+                ],
+                "summary": "importControlLibrariesToProject",
+                "operationId": "importControlLibrariesToProjectUsingPOST",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "*/*"
+                ],
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "importDTO",
+                        "description": "importDTO",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/ImportDTO"
                         }
                     }
                 ],
@@ -4658,6 +4716,60 @@
                 ],
                 "summary": "getPlatformRisks",
                 "operationId": "getPlatformRisksUsingPOST",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "*/*"
+                ],
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "paginationRequestDTO",
+                        "description": "paginationRequestDTO",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/PaginationRequestDTO"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/ApiResponse"
+                        }
+                    },
+                    "201": {
+                        "description": "Created"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                },
+                "security": [
+                    {
+                        "apiKey": [
+                            "global"
+                        ]
+                    }
+                ],
+                "deprecated": false
+            }
+        },
+        "/api/v1/platform/standards": {
+            "post": {
+                "tags": [
+                    "standard-library-controller"
+                ],
+                "summary": "getAllPlatformStandards",
+                "operationId": "getAllPlatformStandardsUsingPOST",
                 "consumes": [
                     "application/json"
                 ],
