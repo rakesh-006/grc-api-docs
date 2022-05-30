@@ -89,6 +89,10 @@
             "description": "Project Risk Controller"
         },
         {
+            "name": "project-risk-library-import-controller",
+            "description": "Project Risk Library Import Controller"
+        },
+        {
             "name": "project-risk-questions-controller",
             "description": "Project Risk Questions Controller"
         },
@@ -111,6 +115,10 @@
         {
             "name": "risk-import-controller",
             "description": "Risk Import Controller"
+        },
+        {
+            "name": "risk-library-control-controller",
+            "description": "Risk Library Control Controller"
         },
         {
             "name": "risk-library-controller",
@@ -2565,6 +2573,60 @@
                 "deprecated": false
             }
         },
+        "/api/v1/import/project/riskLibraries": {
+            "post": {
+                "tags": [
+                    "project-risk-library-import-controller"
+                ],
+                "summary": "importRiskLibraryToProject",
+                "operationId": "importRiskLibraryToProjectUsingPOST",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "*/*"
+                ],
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "importDTO",
+                        "description": "importDTO",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/ImportDTO"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/ApiResponse"
+                        }
+                    },
+                    "201": {
+                        "description": "Created"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                },
+                "security": [
+                    {
+                        "apiKey": [
+                            "global"
+                        ]
+                    }
+                ],
+                "deprecated": false
+            }
+        },
         "/api/v1/issue": {
             "post": {
                 "tags": [
@@ -3550,6 +3612,60 @@
                         "schema": {
                             "$ref": "#/definitions/ApiResponse"
                         }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                },
+                "security": [
+                    {
+                        "apiKey": [
+                            "global"
+                        ]
+                    }
+                ],
+                "deprecated": false
+            }
+        },
+        "/api/v1/map/riskLibrary/controlLibrary": {
+            "post": {
+                "tags": [
+                    "risk-library-control-controller"
+                ],
+                "summary": "mapRiskLibraryToControlLibrary",
+                "operationId": "mapRiskLibraryToControlLibraryUsingPOST",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "*/*"
+                ],
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "riskLibraryControl",
+                        "description": "riskLibraryControl",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/RiskLibraryControl"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/ApiResponse"
+                        }
+                    },
+                    "201": {
+                        "description": "Created"
                     },
                     "401": {
                         "description": "Unauthorized"
@@ -11692,6 +11808,53 @@
                 }
             },
             "title": "RiskImportDTO"
+        },
+        "RiskLibraryControl": {
+            "type": "object",
+            "properties": {
+                "controlLibraryId": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "createdDate": {
+                    "type": "string",
+                    "format": "date-time"
+                },
+                "createdId": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "id": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "riskLibraryId": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "source": {
+                    "type": "string"
+                },
+                "sourceCreatedBy": {
+                    "type": "string"
+                },
+                "sourceCreatedDate": {
+                    "type": "string",
+                    "format": "date-time"
+                },
+                "sourceReference": {
+                    "type": "string"
+                },
+                "updatedDate": {
+                    "type": "string",
+                    "format": "date-time"
+                },
+                "updatedId": {
+                    "type": "integer",
+                    "format": "int64"
+                }
+            },
+            "title": "RiskLibraryControl"
         },
         "RiskLibraryRequestDTO": {
             "type": "object",
