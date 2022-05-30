@@ -141,6 +141,10 @@
             "description": "Scoring Model Controller"
         },
         {
+            "name": "standard-control-controller",
+            "description": "Standard Control Controller"
+        },
+        {
             "name": "standard-library-controller",
             "description": "Standard Library Controller"
         },
@@ -3500,6 +3504,60 @@
                         "required": true,
                         "schema": {
                             "$ref": "#/definitions/AdvancePaginationRequestDTO"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/ApiResponse"
+                        }
+                    },
+                    "201": {
+                        "description": "Created"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                },
+                "security": [
+                    {
+                        "apiKey": [
+                            "global"
+                        ]
+                    }
+                ],
+                "deprecated": false
+            }
+        },
+        "/api/v1/linking/standards/controls": {
+            "post": {
+                "tags": [
+                    "standard-control-controller"
+                ],
+                "summary": "linkingControlsToStandard",
+                "operationId": "linkingControlsToStandardUsingPOST",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "*/*"
+                ],
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "standardControlDTO",
+                        "description": "standardControlDTO",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/StandardControlDTO"
                         }
                     }
                 ],
@@ -11986,6 +12044,24 @@
                 }
             },
             "title": "ScoringModelDTO"
+        },
+        "StandardControlDTO": {
+            "type": "object",
+            "properties": {
+                "controlIds": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "standardControlIds": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                }
+            },
+            "title": "StandardControlDTO"
         },
         "StandardDTO": {
             "type": "object",
