@@ -3711,7 +3711,7 @@
                         "description": "riskLibraryControl",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/RiskLibraryControl"
+                            "$ref": "#/definitions/RiskLibraryControlDTO"
                         }
                     }
                 ],
@@ -11867,52 +11867,26 @@
             },
             "title": "RiskImportDTO"
         },
-        "RiskLibraryControl": {
+        "RiskLibraryControlDTO": {
             "type": "object",
             "properties": {
-                "controlLibraryId": {
-                    "type": "integer",
-                    "format": "int64"
+                "controlLibraryIds": {
+                    "type": "array",
+                    "items": {
+                        "type": "integer",
+                        "format": "int64"
+                    }
                 },
-                "createdDate": {
-                    "type": "string",
-                    "format": "date-time"
-                },
-                "createdId": {
-                    "type": "integer",
-                    "format": "int64"
-                },
-                "id": {
+                "projectId": {
                     "type": "integer",
                     "format": "int64"
                 },
                 "riskLibraryId": {
                     "type": "integer",
                     "format": "int64"
-                },
-                "source": {
-                    "type": "string"
-                },
-                "sourceCreatedBy": {
-                    "type": "string"
-                },
-                "sourceCreatedDate": {
-                    "type": "string",
-                    "format": "date-time"
-                },
-                "sourceReference": {
-                    "type": "string"
-                },
-                "updatedDate": {
-                    "type": "string",
-                    "format": "date-time"
-                },
-                "updatedId": {
-                    "type": "integer",
-                    "format": "int64"
                 }
             },
-            "title": "RiskLibraryControl"
+            "title": "RiskLibraryControlDTO"
         },
         "RiskLibraryRequestDTO": {
             "type": "object",
