@@ -6253,7 +6253,114 @@
                 "deprecated": false
             }
         },
+        "/api/v1/project/riskLibraries": {
+            "post": {
+                "tags": [
+                    "project-risk-library-controller"
+                ],
+                "summary": "getProjectRiskLibraries",
+                "operationId": "getProjectRiskLibrariesUsingPOST",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "*/*"
+                ],
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "paginationRequestDTO",
+                        "description": "paginationRequestDTO",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/PaginationRequestDTO"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/ApiResponse"
+                        }
+                    },
+                    "201": {
+                        "description": "Created"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                },
+                "security": [
+                    {
+                        "apiKey": [
+                            "global"
+                        ]
+                    }
+                ],
+                "deprecated": false
+            }
+        },
         "/api/v1/project/riskLibrary": {
+            "get": {
+                "tags": [
+                    "project-risk-library-controller"
+                ],
+                "summary": "getProjectRiskLibraryById",
+                "operationId": "getProjectRiskLibraryByIdUsingGET",
+                "produces": [
+                    "*/*"
+                ],
+                "parameters": [
+                    {
+                        "name": "projectId",
+                        "in": "query",
+                        "description": "projectId",
+                        "required": true,
+                        "type": "integer",
+                        "format": "int64"
+                    },
+                    {
+                        "name": "projectRiskLibraryId",
+                        "in": "query",
+                        "description": "projectRiskLibraryId",
+                        "required": true,
+                        "type": "integer",
+                        "format": "int64"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/ApiResponse"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                },
+                "security": [
+                    {
+                        "apiKey": [
+                            "global"
+                        ]
+                    }
+                ],
+                "deprecated": false
+            },
             "post": {
                 "tags": [
                     "project-risk-library-controller"
@@ -11204,6 +11311,10 @@
                 "pageSize": {
                     "type": "integer",
                     "format": "int32"
+                },
+                "projectId": {
+                    "type": "integer",
+                    "format": "int64"
                 },
                 "search": {
                     "type": "string"
