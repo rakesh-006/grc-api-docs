@@ -801,60 +801,6 @@
                 "deprecated": false
             }
         },
-        "/api/v1/control/review": {
-            "post": {
-                "tags": [
-                    "control-review-controller"
-                ],
-                "summary": "controlReview",
-                "operationId": "controlReviewUsingPOST",
-                "consumes": [
-                    "application/json"
-                ],
-                "produces": [
-                    "*/*"
-                ],
-                "parameters": [
-                    {
-                        "in": "body",
-                        "name": "controlReviewRequestDTO",
-                        "description": "controlReviewRequestDTO",
-                        "required": true,
-                        "schema": {
-                            "$ref": "#/definitions/ControlReviewRequestDTO"
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "schema": {
-                            "$ref": "#/definitions/ApiResponse"
-                        }
-                    },
-                    "201": {
-                        "description": "Created"
-                    },
-                    "401": {
-                        "description": "Unauthorized"
-                    },
-                    "403": {
-                        "description": "Forbidden"
-                    },
-                    "404": {
-                        "description": "Not Found"
-                    }
-                },
-                "security": [
-                    {
-                        "apiKey": [
-                            "global"
-                        ]
-                    }
-                ],
-                "deprecated": false
-            }
-        },
         "/api/v1/control/{controlId}": {
             "get": {
                 "tags": [
@@ -5347,6 +5293,60 @@
                         "required": true,
                         "schema": {
                             "$ref": "#/definitions/ControlLibraryDTO"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/ApiResponse"
+                        }
+                    },
+                    "201": {
+                        "description": "Created"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                },
+                "security": [
+                    {
+                        "apiKey": [
+                            "global"
+                        ]
+                    }
+                ],
+                "deprecated": false
+            }
+        },
+        "/api/v1/project/control/review": {
+            "post": {
+                "tags": [
+                    "control-review-controller"
+                ],
+                "summary": "saveControlReview",
+                "operationId": "saveControlReviewUsingPOST",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "*/*"
+                ],
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "controlReviewRequestDTO",
+                        "description": "controlReviewRequestDTO",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/ControlReviewRequestDTO"
                         }
                     }
                 ],
@@ -10866,6 +10866,10 @@
         "ArtefactLibrary": {
             "type": "object",
             "properties": {
+                "artefactFrequencyRefId": {
+                    "type": "integer",
+                    "format": "int64"
+                },
                 "artefactName": {
                     "type": "string"
                 },
@@ -11202,10 +11206,6 @@
         "ControlLibraryDTO": {
             "type": "object",
             "properties": {
-                "artefactFreqRefId": {
-                    "type": "integer",
-                    "format": "int64"
-                },
                 "artefacts": {
                     "type": "array",
                     "items": {
@@ -11265,12 +11265,16 @@
                 "comments": {
                     "type": "string"
                 },
+                "id": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "isPass": {
+                    "type": "boolean"
+                },
                 "nextReviewDate": {
                     "type": "string",
                     "format": "date-time"
-                },
-                "pass": {
-                    "type": "boolean"
                 },
                 "projectControlId": {
                     "type": "integer",
@@ -11283,10 +11287,6 @@
                 "recommendation": {
                     "type": "string"
                 },
-                "reviewId": {
-                    "type": "integer",
-                    "format": "int64"
-                },
                 "statusRefId": {
                     "type": "integer",
                     "format": "int64"
@@ -11297,6 +11297,10 @@
         "ControlSubRequestDTO": {
             "type": "object",
             "properties": {
+                "artefactFreqRefId": {
+                    "type": "integer",
+                    "format": "int64"
+                },
                 "artefactName": {
                     "type": "string"
                 },
