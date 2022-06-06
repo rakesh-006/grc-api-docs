@@ -17,14 +17,6 @@
             "description": "Assessment Remark Controller"
         },
         {
-            "name": "assessment-review-controller",
-            "description": "Assessment Review Controller"
-        },
-        {
-            "name": "assign-risk-controller",
-            "description": "Assign Risk Controller"
-        },
-        {
             "name": "authentication-controller",
             "description": "Authentication Controller"
         },
@@ -97,10 +89,6 @@
             "description": "Project Risk Control Question Controller"
         },
         {
-            "name": "project-risk-controller",
-            "description": "Project Risk Controller"
-        },
-        {
             "name": "project-risk-library-controller",
             "description": "Project Risk Library Controller"
         },
@@ -125,14 +113,6 @@
             "description": "Risk Assessment Controller"
         },
         {
-            "name": "risk-controller",
-            "description": "Risk Controller"
-        },
-        {
-            "name": "risk-import-controller",
-            "description": "Risk Import Controller"
-        },
-        {
             "name": "risk-library-control-controller",
             "description": "Risk Library Control Controller"
         },
@@ -143,10 +123,6 @@
         {
             "name": "risk-library-import-controller",
             "description": "Risk Library Import Controller"
-        },
-        {
-            "name": "risk-questions-controller",
-            "description": "Risk Questions Controller"
         },
         {
             "name": "risk-upload-controller",
@@ -457,13 +433,13 @@
                 "deprecated": false
             }
         },
-        "/api/v1/assessment/project/risk": {
-            "post": {
+        "/api/v1/assessment/remark/status/update": {
+            "put": {
                 "tags": [
-                    "project-risk-controller"
+                    "assessment-remark-controller"
                 ],
-                "summary": "getAssessmentProjectRisks",
-                "operationId": "getAssessmentProjectRisksUsingPOST",
+                "summary": "updateProjectRiskAssessmentStatus",
+                "operationId": "updateProjectRiskAssessmentStatusUsingPUT",
                 "consumes": [
                     "application/json"
                 ],
@@ -473,127 +449,11 @@
                 "parameters": [
                     {
                         "in": "body",
-                        "name": "paginationRequestDTO",
-                        "description": "paginationRequestDTO",
+                        "name": "assessmentStatusDTO",
+                        "description": "assessmentStatusDTO",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/PaginationRequestDTO"
-                        }
-                    },
-                    {
-                        "name": "projectId",
-                        "in": "query",
-                        "description": "projectId",
-                        "required": true,
-                        "type": "integer",
-                        "format": "int64"
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "schema": {
-                            "$ref": "#/definitions/ApiResponse"
-                        }
-                    },
-                    "201": {
-                        "description": "Created"
-                    },
-                    "401": {
-                        "description": "Unauthorized"
-                    },
-                    "403": {
-                        "description": "Forbidden"
-                    },
-                    "404": {
-                        "description": "Not Found"
-                    }
-                },
-                "security": [
-                    {
-                        "apiKey": [
-                            "global"
-                        ]
-                    }
-                ],
-                "deprecated": false
-            }
-        },
-        "/api/v1/assign/risks/project": {
-            "post": {
-                "tags": [
-                    "assign-risk-controller"
-                ],
-                "summary": "assignRisksToProject",
-                "operationId": "assignRisksToProjectUsingPOST",
-                "consumes": [
-                    "application/json"
-                ],
-                "produces": [
-                    "*/*"
-                ],
-                "parameters": [
-                    {
-                        "in": "body",
-                        "name": "projectRiskImportDTO",
-                        "description": "projectRiskImportDTO",
-                        "required": true,
-                        "schema": {
-                            "$ref": "#/definitions/ProjectRiskImportDTO"
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "schema": {
-                            "$ref": "#/definitions/ApiResponse"
-                        }
-                    },
-                    "201": {
-                        "description": "Created"
-                    },
-                    "401": {
-                        "description": "Unauthorized"
-                    },
-                    "403": {
-                        "description": "Forbidden"
-                    },
-                    "404": {
-                        "description": "Not Found"
-                    }
-                },
-                "security": [
-                    {
-                        "apiKey": [
-                            "global"
-                        ]
-                    }
-                ],
-                "deprecated": false
-            }
-        },
-        "/api/v1/assign/template/risks/project": {
-            "post": {
-                "tags": [
-                    "assign-risk-controller"
-                ],
-                "summary": "assignTemplateRisksToProject",
-                "operationId": "assignTemplateRisksToProjectUsingPOST",
-                "consumes": [
-                    "application/json"
-                ],
-                "produces": [
-                    "*/*"
-                ],
-                "parameters": [
-                    {
-                        "in": "body",
-                        "name": "projectRiskImportDTO",
-                        "description": "projectRiskImportDTO",
-                        "required": true,
-                        "schema": {
-                            "$ref": "#/definitions/ProjectRiskImportDTO"
+                            "$ref": "#/definitions/AssessmentStatusDTO"
                         }
                     }
                 ],
@@ -972,61 +832,6 @@
                     },
                     "404": {
                         "description": "Not Found"
-                    }
-                },
-                "security": [
-                    {
-                        "apiKey": [
-                            "global"
-                        ]
-                    }
-                ],
-                "deprecated": false
-            }
-        },
-        "/api/v1/delete/project/risk": {
-            "delete": {
-                "tags": [
-                    "project-risk-controller"
-                ],
-                "summary": "deleteProjectRiskByRiskId",
-                "operationId": "deleteProjectRiskByRiskIdUsingDELETE",
-                "produces": [
-                    "*/*"
-                ],
-                "parameters": [
-                    {
-                        "name": "projectId",
-                        "in": "query",
-                        "description": "projectId",
-                        "required": true,
-                        "type": "integer",
-                        "format": "int64"
-                    },
-                    {
-                        "name": "riskId",
-                        "in": "query",
-                        "description": "riskId",
-                        "required": true,
-                        "type": "integer",
-                        "format": "int64"
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "schema": {
-                            "$ref": "#/definitions/ApiResponse"
-                        }
-                    },
-                    "204": {
-                        "description": "No Content"
-                    },
-                    "401": {
-                        "description": "Unauthorized"
-                    },
-                    "403": {
-                        "description": "Forbidden"
                     }
                 },
                 "security": [
@@ -2344,60 +2149,6 @@
                         "required": true,
                         "schema": {
                             "$ref": "#/definitions/ImportDTO"
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "schema": {
-                            "$ref": "#/definitions/ApiResponse"
-                        }
-                    },
-                    "201": {
-                        "description": "Created"
-                    },
-                    "401": {
-                        "description": "Unauthorized"
-                    },
-                    "403": {
-                        "description": "Forbidden"
-                    },
-                    "404": {
-                        "description": "Not Found"
-                    }
-                },
-                "security": [
-                    {
-                        "apiKey": [
-                            "global"
-                        ]
-                    }
-                ],
-                "deprecated": false
-            }
-        },
-        "/api/v1/import/platform/risk": {
-            "post": {
-                "tags": [
-                    "risk-import-controller"
-                ],
-                "summary": "saveImportRisks",
-                "operationId": "saveImportRisksUsingPOST",
-                "consumes": [
-                    "application/json"
-                ],
-                "produces": [
-                    "*/*"
-                ],
-                "parameters": [
-                    {
-                        "in": "body",
-                        "name": "riskImportDTO",
-                        "description": "riskImportDTO",
-                        "required": true,
-                        "schema": {
-                            "$ref": "#/definitions/RiskImportDTO"
                         }
                     }
                 ],
@@ -5065,60 +4816,6 @@
                 "deprecated": false
             }
         },
-        "/api/v1/platform/risks": {
-            "post": {
-                "tags": [
-                    "risk-import-controller"
-                ],
-                "summary": "getPlatformRisks",
-                "operationId": "getPlatformRisksUsingPOST",
-                "consumes": [
-                    "application/json"
-                ],
-                "produces": [
-                    "*/*"
-                ],
-                "parameters": [
-                    {
-                        "in": "body",
-                        "name": "paginationRequestDTO",
-                        "description": "paginationRequestDTO",
-                        "required": true,
-                        "schema": {
-                            "$ref": "#/definitions/PaginationRequestDTO"
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "schema": {
-                            "$ref": "#/definitions/ApiResponse"
-                        }
-                    },
-                    "201": {
-                        "description": "Created"
-                    },
-                    "401": {
-                        "description": "Unauthorized"
-                    },
-                    "403": {
-                        "description": "Forbidden"
-                    },
-                    "404": {
-                        "description": "Not Found"
-                    }
-                },
-                "security": [
-                    {
-                        "apiKey": [
-                            "global"
-                        ]
-                    }
-                ],
-                "deprecated": false
-            }
-        },
         "/api/v1/platform/standards": {
             "post": {
                 "tags": [
@@ -5590,113 +5287,6 @@
                 "deprecated": false
             }
         },
-        "/api/v1/project/risk": {
-            "get": {
-                "tags": [
-                    "project-risk-controller"
-                ],
-                "summary": "getProjectRiskDetailsByRiskId",
-                "operationId": "getProjectRiskDetailsByRiskIdUsingGET",
-                "produces": [
-                    "*/*"
-                ],
-                "parameters": [
-                    {
-                        "name": "projectId",
-                        "in": "query",
-                        "description": "projectId",
-                        "required": true,
-                        "type": "integer",
-                        "format": "int64"
-                    },
-                    {
-                        "name": "riskId",
-                        "in": "query",
-                        "description": "riskId",
-                        "required": true,
-                        "type": "integer",
-                        "format": "int64"
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "schema": {
-                            "$ref": "#/definitions/ApiResponse"
-                        }
-                    },
-                    "401": {
-                        "description": "Unauthorized"
-                    },
-                    "403": {
-                        "description": "Forbidden"
-                    },
-                    "404": {
-                        "description": "Not Found"
-                    }
-                },
-                "security": [
-                    {
-                        "apiKey": [
-                            "global"
-                        ]
-                    }
-                ],
-                "deprecated": false
-            },
-            "post": {
-                "tags": [
-                    "project-risk-controller"
-                ],
-                "summary": "createProjectRisk",
-                "operationId": "createProjectRiskUsingPOST",
-                "consumes": [
-                    "application/json"
-                ],
-                "produces": [
-                    "*/*"
-                ],
-                "parameters": [
-                    {
-                        "in": "body",
-                        "name": "projectRiskDTO",
-                        "description": "projectRiskDTO",
-                        "required": true,
-                        "schema": {
-                            "$ref": "#/definitions/ProjectRiskDTO"
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "schema": {
-                            "$ref": "#/definitions/ApiResponse"
-                        }
-                    },
-                    "201": {
-                        "description": "Created"
-                    },
-                    "401": {
-                        "description": "Unauthorized"
-                    },
-                    "403": {
-                        "description": "Forbidden"
-                    },
-                    "404": {
-                        "description": "Not Found"
-                    }
-                },
-                "security": [
-                    {
-                        "apiKey": [
-                            "global"
-                        ]
-                    }
-                ],
-                "deprecated": false
-            }
-        },
         "/api/v1/project/risk/assessment/remark": {
             "get": {
                 "tags": [
@@ -5804,468 +5394,13 @@
                 "deprecated": false
             }
         },
-        "/api/v1/project/risk/assessment/remark/control": {
-            "post": {
-                "tags": [
-                    "assessment-remark-controller"
-                ],
-                "summary": "createAssessmentRemarkControl",
-                "operationId": "createAssessmentRemarkControlUsingPOST",
-                "consumes": [
-                    "application/json"
-                ],
-                "produces": [
-                    "*/*"
-                ],
-                "parameters": [
-                    {
-                        "in": "body",
-                        "name": "assessmentRemarkControl",
-                        "description": "assessmentRemarkControl",
-                        "required": true,
-                        "schema": {
-                            "$ref": "#/definitions/AssessmentRemarkControl"
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "schema": {
-                            "$ref": "#/definitions/ApiResponse"
-                        }
-                    },
-                    "201": {
-                        "description": "Created"
-                    },
-                    "401": {
-                        "description": "Unauthorized"
-                    },
-                    "403": {
-                        "description": "Forbidden"
-                    },
-                    "404": {
-                        "description": "Not Found"
-                    }
-                },
-                "security": [
-                    {
-                        "apiKey": [
-                            "global"
-                        ]
-                    }
-                ],
-                "deprecated": false
-            },
-            "delete": {
-                "tags": [
-                    "assessment-remark-controller"
-                ],
-                "summary": "deleteAssessmentRemarkById",
-                "operationId": "deleteAssessmentRemarkByIdUsingDELETE",
-                "produces": [
-                    "*/*"
-                ],
-                "parameters": [
-                    {
-                        "name": "assessmentRemarkControlId",
-                        "in": "query",
-                        "description": "assessmentRemarkControlId",
-                        "required": true,
-                        "type": "integer",
-                        "format": "int64"
-                    },
-                    {
-                        "name": "projectId",
-                        "in": "query",
-                        "description": "projectId",
-                        "required": true,
-                        "type": "integer",
-                        "format": "int64"
-                    },
-                    {
-                        "name": "projectRiskId",
-                        "in": "query",
-                        "description": "projectRiskId",
-                        "required": true,
-                        "type": "integer",
-                        "format": "int64"
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "schema": {
-                            "$ref": "#/definitions/ApiResponse"
-                        }
-                    },
-                    "204": {
-                        "description": "No Content"
-                    },
-                    "401": {
-                        "description": "Unauthorized"
-                    },
-                    "403": {
-                        "description": "Forbidden"
-                    }
-                },
-                "security": [
-                    {
-                        "apiKey": [
-                            "global"
-                        ]
-                    }
-                ],
-                "deprecated": false
-            }
-        },
-        "/api/v1/project/risk/assessment/review": {
-            "get": {
-                "tags": [
-                    "assessment-review-controller"
-                ],
-                "summary": "getAssessmentReviewByReviewId",
-                "operationId": "getAssessmentReviewByReviewIdUsingGET",
-                "produces": [
-                    "*/*"
-                ],
-                "parameters": [
-                    {
-                        "name": "projectId",
-                        "in": "query",
-                        "description": "projectId",
-                        "required": true,
-                        "type": "integer",
-                        "format": "int64"
-                    },
-                    {
-                        "name": "projectRiskId",
-                        "in": "query",
-                        "description": "projectRiskId",
-                        "required": true,
-                        "type": "integer",
-                        "format": "int64"
-                    },
-                    {
-                        "name": "reviewId",
-                        "in": "query",
-                        "description": "reviewId",
-                        "required": true,
-                        "type": "integer",
-                        "format": "int64"
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "schema": {
-                            "$ref": "#/definitions/ApiResponse"
-                        }
-                    },
-                    "401": {
-                        "description": "Unauthorized"
-                    },
-                    "403": {
-                        "description": "Forbidden"
-                    },
-                    "404": {
-                        "description": "Not Found"
-                    }
-                },
-                "security": [
-                    {
-                        "apiKey": [
-                            "global"
-                        ]
-                    }
-                ],
-                "deprecated": false
-            },
-            "post": {
-                "tags": [
-                    "assessment-review-controller"
-                ],
-                "summary": "createOrUpdateAssessmentReview",
-                "operationId": "createOrUpdateAssessmentReviewUsingPOST",
-                "consumes": [
-                    "application/json"
-                ],
-                "produces": [
-                    "*/*"
-                ],
-                "parameters": [
-                    {
-                        "in": "body",
-                        "name": "assessmentReview",
-                        "description": "assessmentReview",
-                        "required": true,
-                        "schema": {
-                            "$ref": "#/definitions/AssessmentReview"
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "schema": {
-                            "$ref": "#/definitions/ApiResponse"
-                        }
-                    },
-                    "201": {
-                        "description": "Created"
-                    },
-                    "401": {
-                        "description": "Unauthorized"
-                    },
-                    "403": {
-                        "description": "Forbidden"
-                    },
-                    "404": {
-                        "description": "Not Found"
-                    }
-                },
-                "security": [
-                    {
-                        "apiKey": [
-                            "global"
-                        ]
-                    }
-                ],
-                "deprecated": false
-            }
-        },
-        "/api/v1/project/risk/assessment/review/control": {
-            "post": {
-                "tags": [
-                    "assessment-review-controller"
-                ],
-                "summary": "createAssessmentReviewControl",
-                "operationId": "createAssessmentReviewControlUsingPOST",
-                "consumes": [
-                    "application/json"
-                ],
-                "produces": [
-                    "*/*"
-                ],
-                "parameters": [
-                    {
-                        "in": "body",
-                        "name": "assessmentReviewControl",
-                        "description": "assessmentReviewControl",
-                        "required": true,
-                        "schema": {
-                            "$ref": "#/definitions/AssessmentReviewControl"
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "schema": {
-                            "$ref": "#/definitions/ApiResponse"
-                        }
-                    },
-                    "201": {
-                        "description": "Created"
-                    },
-                    "401": {
-                        "description": "Unauthorized"
-                    },
-                    "403": {
-                        "description": "Forbidden"
-                    },
-                    "404": {
-                        "description": "Not Found"
-                    }
-                },
-                "security": [
-                    {
-                        "apiKey": [
-                            "global"
-                        ]
-                    }
-                ],
-                "deprecated": false
-            },
-            "delete": {
-                "tags": [
-                    "assessment-review-controller"
-                ],
-                "summary": "deleteAssessmentReviewById",
-                "operationId": "deleteAssessmentReviewByIdUsingDELETE",
-                "produces": [
-                    "*/*"
-                ],
-                "parameters": [
-                    {
-                        "name": "assessmentReviewControlId",
-                        "in": "query",
-                        "description": "assessmentReviewControlId",
-                        "required": true,
-                        "type": "integer",
-                        "format": "int64"
-                    },
-                    {
-                        "name": "projectId",
-                        "in": "query",
-                        "description": "projectId",
-                        "required": true,
-                        "type": "integer",
-                        "format": "int64"
-                    },
-                    {
-                        "name": "projectRiskId",
-                        "in": "query",
-                        "description": "projectRiskId",
-                        "required": true,
-                        "type": "integer",
-                        "format": "int64"
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "schema": {
-                            "$ref": "#/definitions/ApiResponse"
-                        }
-                    },
-                    "204": {
-                        "description": "No Content"
-                    },
-                    "401": {
-                        "description": "Unauthorized"
-                    },
-                    "403": {
-                        "description": "Forbidden"
-                    }
-                },
-                "security": [
-                    {
-                        "apiKey": [
-                            "global"
-                        ]
-                    }
-                ],
-                "deprecated": false
-            }
-        },
-        "/api/v1/project/risk/assessment/review/latest": {
-            "get": {
-                "tags": [
-                    "assessment-review-controller"
-                ],
-                "summary": "getLatestAssessmentReview",
-                "operationId": "getLatestAssessmentReviewUsingGET",
-                "produces": [
-                    "*/*"
-                ],
-                "parameters": [
-                    {
-                        "name": "projectId",
-                        "in": "query",
-                        "description": "projectId",
-                        "required": true,
-                        "type": "integer",
-                        "format": "int64"
-                    },
-                    {
-                        "name": "projectRiskId",
-                        "in": "query",
-                        "description": "projectRiskId",
-                        "required": true,
-                        "type": "integer",
-                        "format": "int64"
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "schema": {
-                            "$ref": "#/definitions/ApiResponse"
-                        }
-                    },
-                    "401": {
-                        "description": "Unauthorized"
-                    },
-                    "403": {
-                        "description": "Forbidden"
-                    },
-                    "404": {
-                        "description": "Not Found"
-                    }
-                },
-                "security": [
-                    {
-                        "apiKey": [
-                            "global"
-                        ]
-                    }
-                ],
-                "deprecated": false
-            }
-        },
-        "/api/v1/project/risk/assessment/reviews": {
-            "get": {
-                "tags": [
-                    "assessment-review-controller"
-                ],
-                "summary": "getAssessmentReview",
-                "operationId": "getAssessmentReviewUsingGET",
-                "produces": [
-                    "*/*"
-                ],
-                "parameters": [
-                    {
-                        "name": "projectId",
-                        "in": "query",
-                        "description": "projectId",
-                        "required": true,
-                        "type": "integer",
-                        "format": "int64"
-                    },
-                    {
-                        "name": "projectRiskId",
-                        "in": "query",
-                        "description": "projectRiskId",
-                        "required": true,
-                        "type": "integer",
-                        "format": "int64"
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "schema": {
-                            "$ref": "#/definitions/ApiResponse"
-                        }
-                    },
-                    "401": {
-                        "description": "Unauthorized"
-                    },
-                    "403": {
-                        "description": "Forbidden"
-                    },
-                    "404": {
-                        "description": "Not Found"
-                    }
-                },
-                "security": [
-                    {
-                        "apiKey": [
-                            "global"
-                        ]
-                    }
-                ],
-                "deprecated": false
-            }
-        },
         "/api/v1/project/risk/assessment/status": {
             "put": {
                 "tags": [
                     "assessment-remark-controller"
                 ],
-                "summary": "updateProjectRiskAssessmentStatus",
-                "operationId": "updateProjectRiskAssessmentStatusUsingPUT",
+                "summary": "updateProjectRiskAssessmentStatusToCompleted",
+                "operationId": "updateProjectRiskAssessmentStatusToCompletedUsingPUT",
                 "consumes": [
                     "application/json"
                 ],
@@ -6301,121 +5436,6 @@
                     },
                     "404": {
                         "description": "Not Found"
-                    }
-                },
-                "security": [
-                    {
-                        "apiKey": [
-                            "global"
-                        ]
-                    }
-                ],
-                "deprecated": false
-            }
-        },
-        "/api/v1/project/risk/control": {
-            "post": {
-                "tags": [
-                    "project-risk-controller"
-                ],
-                "summary": "createProjectRiskControl",
-                "operationId": "createProjectRiskControlUsingPOST",
-                "consumes": [
-                    "application/json"
-                ],
-                "produces": [
-                    "*/*"
-                ],
-                "parameters": [
-                    {
-                        "in": "body",
-                        "name": "projectRiskControlDTO",
-                        "description": "projectRiskControlDTO",
-                        "required": true,
-                        "schema": {
-                            "$ref": "#/definitions/ProjectRiskControlDTO"
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "schema": {
-                            "$ref": "#/definitions/ApiResponse"
-                        }
-                    },
-                    "201": {
-                        "description": "Created"
-                    },
-                    "401": {
-                        "description": "Unauthorized"
-                    },
-                    "403": {
-                        "description": "Forbidden"
-                    },
-                    "404": {
-                        "description": "Not Found"
-                    }
-                },
-                "security": [
-                    {
-                        "apiKey": [
-                            "global"
-                        ]
-                    }
-                ],
-                "deprecated": false
-            },
-            "delete": {
-                "tags": [
-                    "project-risk-controller"
-                ],
-                "summary": "deleteProjectRiskControls",
-                "operationId": "deleteProjectRiskControlsUsingDELETE",
-                "produces": [
-                    "*/*"
-                ],
-                "parameters": [
-                    {
-                        "name": "projectId",
-                        "in": "query",
-                        "description": "projectId",
-                        "required": true,
-                        "type": "integer",
-                        "format": "int64"
-                    },
-                    {
-                        "name": "projectRiskControlId",
-                        "in": "query",
-                        "description": "projectRiskControlId",
-                        "required": true,
-                        "type": "integer",
-                        "format": "int64"
-                    },
-                    {
-                        "name": "projectRiskId",
-                        "in": "query",
-                        "description": "projectRiskId",
-                        "required": true,
-                        "type": "integer",
-                        "format": "int64"
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "schema": {
-                            "$ref": "#/definitions/ApiResponse"
-                        }
-                    },
-                    "204": {
-                        "description": "No Content"
-                    },
-                    "401": {
-                        "description": "Unauthorized"
-                    },
-                    "403": {
-                        "description": "Forbidden"
                     }
                 },
                 "security": [
@@ -6556,60 +5576,6 @@
                         "required": true,
                         "schema": {
                             "$ref": "#/definitions/ProjectRiskQuestionDTO"
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "schema": {
-                            "$ref": "#/definitions/ApiResponse"
-                        }
-                    },
-                    "201": {
-                        "description": "Created"
-                    },
-                    "401": {
-                        "description": "Unauthorized"
-                    },
-                    "403": {
-                        "description": "Forbidden"
-                    },
-                    "404": {
-                        "description": "Not Found"
-                    }
-                },
-                "security": [
-                    {
-                        "apiKey": [
-                            "global"
-                        ]
-                    }
-                ],
-                "deprecated": false
-            }
-        },
-        "/api/v1/project/risk/status": {
-            "put": {
-                "tags": [
-                    "project-risk-controller"
-                ],
-                "summary": "updateProjectRiskStatus",
-                "operationId": "updateProjectRiskStatusUsingPUT",
-                "consumes": [
-                    "application/json"
-                ],
-                "produces": [
-                    "*/*"
-                ],
-                "parameters": [
-                    {
-                        "in": "body",
-                        "name": "projectRiskStatusDTO",
-                        "description": "projectRiskStatusDTO",
-                        "required": true,
-                        "schema": {
-                            "$ref": "#/definitions/ProjectRiskStatusDTO"
                         }
                     }
                 ],
@@ -6825,68 +5791,6 @@
                         "required": true,
                         "schema": {
                             "$ref": "#/definitions/ProjectRiskStatusDTO"
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "schema": {
-                            "$ref": "#/definitions/ApiResponse"
-                        }
-                    },
-                    "201": {
-                        "description": "Created"
-                    },
-                    "401": {
-                        "description": "Unauthorized"
-                    },
-                    "403": {
-                        "description": "Forbidden"
-                    },
-                    "404": {
-                        "description": "Not Found"
-                    }
-                },
-                "security": [
-                    {
-                        "apiKey": [
-                            "global"
-                        ]
-                    }
-                ],
-                "deprecated": false
-            }
-        },
-        "/api/v1/project/{id}/risk": {
-            "post": {
-                "tags": [
-                    "project-risk-controller"
-                ],
-                "summary": "getProjectRisks",
-                "operationId": "getProjectRisksUsingPOST",
-                "consumes": [
-                    "application/json"
-                ],
-                "produces": [
-                    "*/*"
-                ],
-                "parameters": [
-                    {
-                        "name": "id",
-                        "in": "path",
-                        "description": "id",
-                        "required": true,
-                        "type": "integer",
-                        "format": "int64"
-                    },
-                    {
-                        "in": "body",
-                        "name": "paginationRequestDTO",
-                        "description": "paginationRequestDTO",
-                        "required": true,
-                        "schema": {
-                            "$ref": "#/definitions/PaginationRequestDTO"
                         }
                     }
                 ],
@@ -8230,161 +7134,6 @@
                 "deprecated": false
             }
         },
-        "/api/v1/risk": {
-            "post": {
-                "tags": [
-                    "risk-controller"
-                ],
-                "summary": "createOrUpdateRisk",
-                "operationId": "createOrUpdateRiskUsingPOST",
-                "consumes": [
-                    "application/json"
-                ],
-                "produces": [
-                    "*/*"
-                ],
-                "parameters": [
-                    {
-                        "in": "body",
-                        "name": "riskRequestDTO",
-                        "description": "riskRequestDTO",
-                        "required": true,
-                        "schema": {
-                            "$ref": "#/definitions/RiskRequestDTO"
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "schema": {
-                            "$ref": "#/definitions/ApiResponse"
-                        }
-                    },
-                    "201": {
-                        "description": "Created"
-                    },
-                    "401": {
-                        "description": "Unauthorized"
-                    },
-                    "403": {
-                        "description": "Forbidden"
-                    },
-                    "404": {
-                        "description": "Not Found"
-                    }
-                },
-                "security": [
-                    {
-                        "apiKey": [
-                            "global"
-                        ]
-                    }
-                ],
-                "deprecated": false
-            }
-        },
-        "/api/v1/risk/control": {
-            "post": {
-                "tags": [
-                    "risk-controller"
-                ],
-                "summary": "createOrUpdateRiskControl",
-                "operationId": "createOrUpdateRiskControlUsingPOST",
-                "consumes": [
-                    "application/json"
-                ],
-                "produces": [
-                    "*/*"
-                ],
-                "parameters": [
-                    {
-                        "in": "body",
-                        "name": "riskControlDTO",
-                        "description": "riskControlDTO",
-                        "required": true,
-                        "schema": {
-                            "$ref": "#/definitions/RiskControlDTO"
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "schema": {
-                            "$ref": "#/definitions/ApiResponse"
-                        }
-                    },
-                    "201": {
-                        "description": "Created"
-                    },
-                    "401": {
-                        "description": "Unauthorized"
-                    },
-                    "403": {
-                        "description": "Forbidden"
-                    },
-                    "404": {
-                        "description": "Not Found"
-                    }
-                },
-                "security": [
-                    {
-                        "apiKey": [
-                            "global"
-                        ]
-                    }
-                ],
-                "deprecated": false
-            }
-        },
-        "/api/v1/risk/control/{id}": {
-            "delete": {
-                "tags": [
-                    "risk-controller"
-                ],
-                "summary": "deleteRiskControlById",
-                "operationId": "deleteRiskControlByIdUsingDELETE",
-                "produces": [
-                    "*/*"
-                ],
-                "parameters": [
-                    {
-                        "name": "id",
-                        "in": "path",
-                        "description": "id",
-                        "required": true,
-                        "type": "integer",
-                        "format": "int64"
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "schema": {
-                            "$ref": "#/definitions/ApiResponse"
-                        }
-                    },
-                    "204": {
-                        "description": "No Content"
-                    },
-                    "401": {
-                        "description": "Unauthorized"
-                    },
-                    "403": {
-                        "description": "Forbidden"
-                    }
-                },
-                "security": [
-                    {
-                        "apiKey": [
-                            "global"
-                        ]
-                    }
-                ],
-                "deprecated": false
-            }
-        },
         "/api/v1/risk/dashboard": {
             "get": {
                 "tags": [
@@ -8419,231 +7168,6 @@
                     },
                     "404": {
                         "description": "Not Found"
-                    }
-                },
-                "security": [
-                    {
-                        "apiKey": [
-                            "global"
-                        ]
-                    }
-                ],
-                "deprecated": false
-            }
-        },
-        "/api/v1/risk/{id}": {
-            "get": {
-                "tags": [
-                    "risk-controller"
-                ],
-                "summary": "getRiskById",
-                "operationId": "getRiskByIdUsingGET",
-                "produces": [
-                    "*/*"
-                ],
-                "parameters": [
-                    {
-                        "name": "id",
-                        "in": "path",
-                        "description": "id",
-                        "required": true,
-                        "type": "integer",
-                        "format": "int64"
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "schema": {
-                            "$ref": "#/definitions/ApiResponse"
-                        }
-                    },
-                    "401": {
-                        "description": "Unauthorized"
-                    },
-                    "403": {
-                        "description": "Forbidden"
-                    },
-                    "404": {
-                        "description": "Not Found"
-                    }
-                },
-                "security": [
-                    {
-                        "apiKey": [
-                            "global"
-                        ]
-                    }
-                ],
-                "deprecated": false
-            },
-            "delete": {
-                "tags": [
-                    "risk-controller"
-                ],
-                "summary": "deleteRiskById",
-                "operationId": "deleteRiskByIdUsingDELETE",
-                "produces": [
-                    "*/*"
-                ],
-                "parameters": [
-                    {
-                        "name": "id",
-                        "in": "path",
-                        "description": "id",
-                        "required": true,
-                        "type": "integer",
-                        "format": "int64"
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "schema": {
-                            "$ref": "#/definitions/ApiResponse"
-                        }
-                    },
-                    "204": {
-                        "description": "No Content"
-                    },
-                    "401": {
-                        "description": "Unauthorized"
-                    },
-                    "403": {
-                        "description": "Forbidden"
-                    }
-                },
-                "security": [
-                    {
-                        "apiKey": [
-                            "global"
-                        ]
-                    }
-                ],
-                "deprecated": false
-            }
-        },
-        "/api/v1/risk/{riskId}/control/{controlTypeId}/question": {
-            "post": {
-                "tags": [
-                    "risk-questions-controller"
-                ],
-                "summary": "createOrUpdateRiskQuestion",
-                "operationId": "createOrUpdateRiskQuestionUsingPOST",
-                "consumes": [
-                    "application/json"
-                ],
-                "produces": [
-                    "*/*"
-                ],
-                "parameters": [
-                    {
-                        "name": "controlTypeId",
-                        "in": "path",
-                        "description": "controlTypeId",
-                        "required": true,
-                        "type": "integer",
-                        "format": "int64"
-                    },
-                    {
-                        "in": "body",
-                        "name": "questionDTO",
-                        "description": "questionDTO",
-                        "required": true,
-                        "schema": {
-                            "$ref": "#/definitions/QuestionDTO"
-                        }
-                    },
-                    {
-                        "name": "riskId",
-                        "in": "path",
-                        "description": "riskId",
-                        "required": true,
-                        "type": "integer",
-                        "format": "int64"
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "schema": {
-                            "$ref": "#/definitions/ApiResponse"
-                        }
-                    },
-                    "201": {
-                        "description": "Created"
-                    },
-                    "401": {
-                        "description": "Unauthorized"
-                    },
-                    "403": {
-                        "description": "Forbidden"
-                    },
-                    "404": {
-                        "description": "Not Found"
-                    }
-                },
-                "security": [
-                    {
-                        "apiKey": [
-                            "global"
-                        ]
-                    }
-                ],
-                "deprecated": false
-            }
-        },
-        "/api/v1/risk/{riskId}/control/{controlTypeId}/question/{id}": {
-            "delete": {
-                "tags": [
-                    "risk-questions-controller"
-                ],
-                "summary": "deleteRiskQuestion",
-                "operationId": "deleteRiskQuestionUsingDELETE",
-                "produces": [
-                    "*/*"
-                ],
-                "parameters": [
-                    {
-                        "name": "controlTypeId",
-                        "in": "path",
-                        "description": "controlTypeId",
-                        "required": true,
-                        "type": "integer",
-                        "format": "int64"
-                    },
-                    {
-                        "name": "id",
-                        "in": "path",
-                        "description": "id",
-                        "required": true,
-                        "type": "integer",
-                        "format": "int64"
-                    },
-                    {
-                        "name": "riskId",
-                        "in": "path",
-                        "description": "riskId",
-                        "required": true,
-                        "type": "integer",
-                        "format": "int64"
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "schema": {
-                            "$ref": "#/definitions/ApiResponse"
-                        }
-                    },
-                    "204": {
-                        "description": "No Content"
-                    },
-                    "401": {
-                        "description": "Unauthorized"
-                    },
-                    "403": {
-                        "description": "Forbidden"
                     }
                 },
                 "security": [
@@ -8790,60 +7314,6 @@
                         "schema": {
                             "$ref": "#/definitions/ApiResponse"
                         }
-                    },
-                    "401": {
-                        "description": "Unauthorized"
-                    },
-                    "403": {
-                        "description": "Forbidden"
-                    },
-                    "404": {
-                        "description": "Not Found"
-                    }
-                },
-                "security": [
-                    {
-                        "apiKey": [
-                            "global"
-                        ]
-                    }
-                ],
-                "deprecated": false
-            }
-        },
-        "/api/v1/risks": {
-            "post": {
-                "tags": [
-                    "risk-controller"
-                ],
-                "summary": "getRisks",
-                "operationId": "getRisksUsingPOST",
-                "consumes": [
-                    "application/json"
-                ],
-                "produces": [
-                    "*/*"
-                ],
-                "parameters": [
-                    {
-                        "in": "body",
-                        "name": "paginationRequestDTO",
-                        "description": "paginationRequestDTO",
-                        "required": true,
-                        "schema": {
-                            "$ref": "#/definitions/PaginationRequestDTO"
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "schema": {
-                            "$ref": "#/definitions/ApiResponse"
-                        }
-                    },
-                    "201": {
-                        "description": "Created"
                     },
                     "401": {
                         "description": "Unauthorized"
@@ -10830,6 +9300,66 @@
                     }
                 ],
                 "deprecated": false
+            },
+            "delete": {
+                "tags": [
+                    "authorization-controller"
+                ],
+                "summary": "deleteUserRoleByRoleId",
+                "operationId": "deleteUserRoleByRoleIdUsingDELETE",
+                "produces": [
+                    "*/*"
+                ],
+                "parameters": [
+                    {
+                        "name": "orgId",
+                        "in": "query",
+                        "description": "orgId",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "roleId",
+                        "in": "query",
+                        "description": "roleId",
+                        "required": true,
+                        "type": "integer",
+                        "format": "int64"
+                    },
+                    {
+                        "name": "userId",
+                        "in": "query",
+                        "description": "userId",
+                        "required": true,
+                        "type": "integer",
+                        "format": "int64"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/ApiResponse"
+                        }
+                    },
+                    "204": {
+                        "description": "No Content"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                },
+                "security": [
+                    {
+                        "apiKey": [
+                            "global"
+                        ]
+                    }
+                ],
+                "deprecated": false
             }
         }
     },
@@ -11028,192 +9558,6 @@
                 }
             },
             "title": "AssessmentRemark"
-        },
-        "AssessmentRemarkControl": {
-            "type": "object",
-            "properties": {
-                "controlTypeCode": {
-                    "type": "string"
-                },
-                "controlTypeId": {
-                    "type": "integer",
-                    "format": "int64"
-                },
-                "controlTypeName": {
-                    "type": "string"
-                },
-                "createdBy": {
-                    "type": "string"
-                },
-                "createdDate": {
-                    "type": "string",
-                    "format": "date-time"
-                },
-                "createdId": {
-                    "type": "integer",
-                    "format": "int64"
-                },
-                "createdOrgType": {
-                    "type": "string"
-                },
-                "id": {
-                    "type": "integer",
-                    "format": "int64"
-                },
-                "name": {
-                    "type": "string"
-                },
-                "projectId": {
-                    "type": "integer",
-                    "format": "int64"
-                },
-                "projectRiskId": {
-                    "type": "integer",
-                    "format": "int64"
-                },
-                "updatedDate": {
-                    "type": "string",
-                    "format": "date-time"
-                },
-                "updatedId": {
-                    "type": "integer",
-                    "format": "int64"
-                }
-            },
-            "title": "AssessmentRemarkControl"
-        },
-        "AssessmentReview": {
-            "type": "object",
-            "properties": {
-                "completedBy": {
-                    "type": "string"
-                },
-                "completedDate": {
-                    "type": "string",
-                    "format": "date-time"
-                },
-                "createdBy": {
-                    "type": "string"
-                },
-                "createdDate": {
-                    "type": "string",
-                    "format": "date-time"
-                },
-                "createdId": {
-                    "type": "integer",
-                    "format": "int64"
-                },
-                "createdOrgType": {
-                    "type": "string"
-                },
-                "id": {
-                    "type": "integer",
-                    "format": "int64"
-                },
-                "isReviewCompleted": {
-                    "type": "boolean"
-                },
-                "justification": {
-                    "type": "string"
-                },
-                "projectId": {
-                    "type": "integer",
-                    "format": "int64"
-                },
-                "projectRiskId": {
-                    "type": "integer",
-                    "format": "int64"
-                },
-                "residualImpactId": {
-                    "type": "integer",
-                    "format": "int64"
-                },
-                "residualLikelihoodId": {
-                    "type": "integer",
-                    "format": "int64"
-                },
-                "residualRisk": {
-                    "type": "integer",
-                    "format": "int64"
-                },
-                "reviewId": {
-                    "type": "integer",
-                    "format": "int64"
-                },
-                "treatment": {
-                    "type": "string"
-                },
-                "updatedDate": {
-                    "type": "string",
-                    "format": "date-time"
-                },
-                "updatedId": {
-                    "type": "integer",
-                    "format": "int64"
-                }
-            },
-            "title": "AssessmentReview"
-        },
-        "AssessmentReviewControl": {
-            "type": "object",
-            "properties": {
-                "completedDate": {
-                    "type": "string",
-                    "format": "date-time"
-                },
-                "controlTypeCode": {
-                    "type": "string"
-                },
-                "controlTypeId": {
-                    "type": "integer",
-                    "format": "int64"
-                },
-                "controlTypeName": {
-                    "type": "string"
-                },
-                "createdBy": {
-                    "type": "string"
-                },
-                "createdDate": {
-                    "type": "string",
-                    "format": "date-time"
-                },
-                "createdId": {
-                    "type": "integer",
-                    "format": "int64"
-                },
-                "createdOrgType": {
-                    "type": "string"
-                },
-                "id": {
-                    "type": "integer",
-                    "format": "int64"
-                },
-                "name": {
-                    "type": "string"
-                },
-                "projectId": {
-                    "type": "integer",
-                    "format": "int64"
-                },
-                "projectRiskId": {
-                    "type": "integer",
-                    "format": "int64"
-                },
-                "reviewId": {
-                    "type": "integer",
-                    "format": "int64"
-                },
-                "updatedDate": {
-                    "type": "string",
-                    "format": "date-time"
-                },
-                "updatedId": {
-                    "type": "integer",
-                    "format": "int64"
-                }
-            },
-            "title": "AssessmentReviewControl"
         },
         "AssessmentStatusDTO": {
             "type": "object",
@@ -12103,107 +10447,6 @@
             },
             "title": "ProjectQuestionDTO"
         },
-        "ProjectRiskControlDTO": {
-            "type": "object",
-            "properties": {
-                "controlTypeCode": {
-                    "type": "string"
-                },
-                "controlTypeId": {
-                    "type": "integer",
-                    "format": "int64"
-                },
-                "controlTypeName": {
-                    "type": "string"
-                },
-                "name": {
-                    "type": "string"
-                },
-                "projectId": {
-                    "type": "integer",
-                    "format": "int64"
-                },
-                "projectRiskControlId": {
-                    "type": "integer",
-                    "format": "int64"
-                },
-                "projectRiskId": {
-                    "type": "integer",
-                    "format": "int64"
-                }
-            },
-            "title": "ProjectRiskControlDTO"
-        },
-        "ProjectRiskDTO": {
-            "type": "object",
-            "properties": {
-                "description": {
-                    "type": "string"
-                },
-                "domainId": {
-                    "type": "integer",
-                    "format": "int64"
-                },
-                "freqRefId": {
-                    "type": "integer",
-                    "format": "int64"
-                },
-                "impactId": {
-                    "type": "integer",
-                    "format": "int64"
-                },
-                "likelihoodId": {
-                    "type": "integer",
-                    "format": "int64"
-                },
-                "name": {
-                    "type": "string"
-                },
-                "projectId": {
-                    "type": "integer",
-                    "format": "int64"
-                },
-                "projectRiskId": {
-                    "type": "integer",
-                    "format": "int64"
-                },
-                "riskStatement": {
-                    "type": "string"
-                },
-                "tags": {
-                    "type": "string"
-                }
-            },
-            "title": "ProjectRiskDTO"
-        },
-        "ProjectRiskImportDTO": {
-            "type": "object",
-            "properties": {
-                "projectId": {
-                    "type": "integer",
-                    "format": "int64"
-                },
-                "riskId": {
-                    "type": "integer",
-                    "format": "int64"
-                },
-                "riskIds": {
-                    "type": "array",
-                    "items": {
-                        "type": "integer",
-                        "format": "int64"
-                    }
-                },
-                "templateIds": {
-                    "type": "array",
-                    "items": {
-                        "type": "integer",
-                        "format": "int64"
-                    }
-                }
-            },
-            "title": "ProjectRiskImportDTO"
-        },
         "ProjectRiskLibraryRequestDTO": {
             "type": "object",
             "properties": {
@@ -12644,46 +10887,6 @@
             },
             "title": "RiskAndControlDTO"
         },
-        "RiskControlDTO": {
-            "type": "object",
-            "properties": {
-                "controlTypeCode": {
-                    "type": "string"
-                },
-                "controlTypeId": {
-                    "type": "integer",
-                    "format": "int64"
-                },
-                "controlTypeName": {
-                    "type": "string"
-                },
-                "id": {
-                    "type": "integer",
-                    "format": "int64"
-                },
-                "name": {
-                    "type": "string"
-                },
-                "riskId": {
-                    "type": "integer",
-                    "format": "int64"
-                }
-            },
-            "title": "RiskControlDTO"
-        },
-        "RiskImportDTO": {
-            "type": "object",
-            "properties": {
-                "riskIds": {
-                    "type": "array",
-                    "items": {
-                        "type": "integer",
-                        "format": "int64"
-                    }
-                }
-            },
-            "title": "RiskImportDTO"
-        },
         "RiskLibraryRequestDTO": {
             "type": "object",
             "properties": {
@@ -12717,44 +10920,6 @@
                 }
             },
             "title": "RiskLibraryRequestDTO"
-        },
-        "RiskRequestDTO": {
-            "type": "object",
-            "properties": {
-                "description": {
-                    "type": "string"
-                },
-                "domainId": {
-                    "type": "integer",
-                    "format": "int64"
-                },
-                "freqRefId": {
-                    "type": "integer",
-                    "format": "int64"
-                },
-                "id": {
-                    "type": "integer",
-                    "format": "int64"
-                },
-                "impactId": {
-                    "type": "integer",
-                    "format": "int64"
-                },
-                "likelihoodId": {
-                    "type": "integer",
-                    "format": "int64"
-                },
-                "name": {
-                    "type": "string"
-                },
-                "riskStatement": {
-                    "type": "string"
-                },
-                "tags": {
-                    "type": "string"
-                }
-            },
-            "title": "RiskRequestDTO"
         },
         "RoleDTO": {
             "type": "object",
@@ -12836,10 +11001,6 @@
         "StandardDTO": {
             "type": "object",
             "properties": {
-                "domainId": {
-                    "type": "integer",
-                    "format": "int64"
-                },
                 "id": {
                     "type": "integer",
                     "format": "int64"
@@ -12868,6 +11029,9 @@
                 "controlObjective": {
                     "type": "string"
                 },
+                "createdBy": {
+                    "type": "string"
+                },
                 "createdDate": {
                     "type": "string",
                     "format": "date-time"
@@ -12875,6 +11039,13 @@
                 "createdId": {
                     "type": "integer",
                     "format": "int64"
+                },
+                "domainId": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "domainName": {
+                    "type": "string"
                 },
                 "id": {
                     "type": "integer",
