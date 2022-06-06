@@ -708,6 +708,90 @@
                 "deprecated": false
             }
         },
+        "/api/v1/controls/count": {
+            "get": {
+                "tags": [
+                    "control-library-controller"
+                ],
+                "summary": "getAllControlsCount",
+                "operationId": "getAllControlsCountUsingGET",
+                "produces": [
+                    "*/*"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/ApiResponse"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                },
+                "security": [
+                    {
+                        "apiKey": [
+                            "global"
+                        ]
+                    }
+                ],
+                "deprecated": false
+            }
+        },
+        "/api/v1/controls/risk/{riskLibraryId}": {
+            "get": {
+                "tags": [
+                    "risk-library-controller"
+                ],
+                "summary": "getControlLibraryByRiskLibraryId",
+                "operationId": "getControlLibraryByRiskLibraryIdUsingGET",
+                "produces": [
+                    "*/*"
+                ],
+                "parameters": [
+                    {
+                        "name": "riskLibraryIdd",
+                        "in": "path",
+                        "description": "riskLibraryIdd",
+                        "required": true,
+                        "type": "integer",
+                        "format": "int64"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/ApiResponse"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                },
+                "security": [
+                    {
+                        "apiKey": [
+                            "global"
+                        ]
+                    }
+                ],
+                "deprecated": false
+            }
+        },
         "/api/v1/controls/{controlTypeId}": {
             "post": {
                 "tags": [
