@@ -101,6 +101,10 @@
             "description": "Project Risk Questions Controller"
         },
         {
+            "name": "project-template-risk-import-controller",
+            "description": "Project Template Risk Import Controller"
+        },
+        {
             "name": "report-document-controller",
             "description": "Report Document Controller"
         },
@@ -487,6 +491,60 @@
                 "deprecated": false
             }
         },
+        "/api/v1/assign/template/riskLibraries/project": {
+            "post": {
+                "tags": [
+                    "project-template-risk-import-controller"
+                ],
+                "summary": "assignTemplateRiskLibrariesToProject",
+                "operationId": "assignTemplateRiskLibrariesToProjectUsingPOST",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "*/*"
+                ],
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "importDTO",
+                        "description": "importDTO",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/ImportDTO"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/ApiResponse"
+                        }
+                    },
+                    "201": {
+                        "description": "Created"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                },
+                "security": [
+                    {
+                        "apiKey": [
+                            "global"
+                        ]
+                    }
+                ],
+                "deprecated": false
+            }
+        },
         "/api/v1/billing/current": {
             "get": {
                 "tags": [
@@ -696,6 +754,53 @@
                     },
                     "404": {
                         "description": "Not Found"
+                    }
+                },
+                "security": [
+                    {
+                        "apiKey": [
+                            "global"
+                        ]
+                    }
+                ],
+                "deprecated": false
+            }
+        },
+        "/api/v1/control/{controlLibraryId}": {
+            "delete": {
+                "tags": [
+                    "control-library-controller"
+                ],
+                "summary": "deleteControlLibrary",
+                "operationId": "deleteControlLibraryUsingDELETE",
+                "produces": [
+                    "*/*"
+                ],
+                "parameters": [
+                    {
+                        "name": "controlLibraryId",
+                        "in": "path",
+                        "description": "controlLibraryId",
+                        "required": true,
+                        "type": "integer",
+                        "format": "int64"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/ApiResponse"
+                        }
+                    },
+                    "204": {
+                        "description": "No Content"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
                     }
                 },
                 "security": [
@@ -7912,6 +8017,51 @@
                     }
                 ],
                 "deprecated": false
+            },
+            "delete": {
+                "tags": [
+                    "standard-library-controller"
+                ],
+                "summary": "getAllStandards",
+                "operationId": "getAllStandardsUsingDELETE",
+                "produces": [
+                    "*/*"
+                ],
+                "parameters": [
+                    {
+                        "name": "standardId",
+                        "in": "path",
+                        "description": "standardId",
+                        "required": true,
+                        "type": "integer",
+                        "format": "int64"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/ApiResponse"
+                        }
+                    },
+                    "204": {
+                        "description": "No Content"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                },
+                "security": [
+                    {
+                        "apiKey": [
+                            "global"
+                        ]
+                    }
+                ],
+                "deprecated": false
             }
         },
         "/api/v1/standards": {
@@ -9767,19 +9917,6 @@
             },
             "title": "DomainDTO"
         },
-        "DomainRiskDTO": {
-            "type": "object",
-            "properties": {
-                "domainName": {
-                    "type": "string"
-                },
-                "riskCount": {
-                    "type": "integer",
-                    "format": "int64"
-                }
-            },
-            "title": "DomainRiskDTO"
-        },
         "File": {
             "type": "object",
             "properties": {
@@ -10360,9 +10497,6 @@
         "ProjectDTO": {
             "type": "object",
             "properties": {
-                "approver": {
-                    "$ref": "#/definitions/ProjectUserDTO"
-                },
                 "approverId": {
                     "type": "integer",
                     "format": "int64"
@@ -10374,12 +10508,6 @@
                     "type": "integer",
                     "format": "int64"
                 },
-                "domainRiskDTOList": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/definitions/DomainRiskDTO"
-                    }
-                },
                 "endDate": {
                     "type": "string",
                     "format": "date-time"
@@ -10390,12 +10518,6 @@
                 "id": {
                     "type": "integer",
                     "format": "int64"
-                },
-                "isFinalReport": {
-                    "type": "boolean"
-                },
-                "manager": {
-                    "$ref": "#/definitions/ProjectUserDTO"
                 },
                 "managerId": {
                     "type": "integer",
@@ -10419,17 +10541,6 @@
                         "$ref": "#/definitions/Range"
                     }
                 },
-                "reportCreatedDate": {
-                    "type": "string",
-                    "format": "date-time"
-                },
-                "reportTemplateId": {
-                    "type": "integer",
-                    "format": "int64"
-                },
-                "reviewer": {
-                    "$ref": "#/definitions/ProjectUserDTO"
-                },
                 "reviewerId": {
                     "type": "integer",
                     "format": "int64"
@@ -10452,9 +10563,6 @@
                 "statusRefId": {
                     "type": "integer",
                     "format": "int64"
-                },
-                "subjectMatterExpert": {
-                    "$ref": "#/definitions/ProjectUserDTO"
                 },
                 "threshold": {
                     "type": "integer",
@@ -10558,28 +10666,6 @@
                 }
             },
             "title": "ProjectRiskStatusDTO"
-        },
-        "ProjectUserDTO": {
-            "type": "object",
-            "properties": {
-                "firstName": {
-                    "type": "string"
-                },
-                "lastName": {
-                    "type": "string"
-                },
-                "profilePic": {
-                    "type": "string"
-                },
-                "userId": {
-                    "type": "integer",
-                    "format": "int64"
-                },
-                "username": {
-                    "type": "string"
-                }
-            },
-            "title": "ProjectUserDTO"
         },
         "QuestionAndResponseDTO": {
             "type": "object",
