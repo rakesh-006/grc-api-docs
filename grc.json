@@ -89,20 +89,12 @@
             "description": "Project Risk Control Controller"
         },
         {
-            "name": "project-risk-control-question-controller",
-            "description": "Project Risk Control Question Controller"
-        },
-        {
             "name": "project-risk-library-controller",
             "description": "Project Risk Library Controller"
         },
         {
             "name": "project-risk-library-import-controller",
             "description": "Project Risk Library Import Controller"
-        },
-        {
-            "name": "project-risk-questions-controller",
-            "description": "Project Risk Questions Controller"
         },
         {
             "name": "project-template-risk-import-controller",
@@ -5594,167 +5586,6 @@
                 "deprecated": false
             }
         },
-        "/api/v1/project/risk/question/response": {
-            "put": {
-                "tags": [
-                    "project-risk-questions-controller"
-                ],
-                "summary": "updateProjectRiskQuestionResponse",
-                "operationId": "updateProjectRiskQuestionResponseUsingPUT",
-                "consumes": [
-                    "application/json"
-                ],
-                "produces": [
-                    "*/*"
-                ],
-                "parameters": [
-                    {
-                        "in": "body",
-                        "name": "questionResponse",
-                        "description": "questionResponse",
-                        "required": true,
-                        "schema": {
-                            "$ref": "#/definitions/QuestionResponseDTO"
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "schema": {
-                            "$ref": "#/definitions/ApiResponse"
-                        }
-                    },
-                    "201": {
-                        "description": "Created"
-                    },
-                    "401": {
-                        "description": "Unauthorized"
-                    },
-                    "403": {
-                        "description": "Forbidden"
-                    },
-                    "404": {
-                        "description": "Not Found"
-                    }
-                },
-                "security": [
-                    {
-                        "apiKey": [
-                            "global"
-                        ]
-                    }
-                ],
-                "deprecated": false
-            }
-        },
-        "/api/v1/project/risk/questions": {
-            "get": {
-                "tags": [
-                    "project-risk-control-question-controller"
-                ],
-                "summary": "getProjectRiskQuestions",
-                "operationId": "getProjectRiskQuestionsUsingGET",
-                "produces": [
-                    "*/*"
-                ],
-                "parameters": [
-                    {
-                        "name": "projectId",
-                        "in": "query",
-                        "description": "projectId",
-                        "required": true,
-                        "type": "integer",
-                        "format": "int64"
-                    },
-                    {
-                        "name": "projectRiskId",
-                        "in": "query",
-                        "description": "projectRiskId",
-                        "required": true,
-                        "type": "integer",
-                        "format": "int64"
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "schema": {
-                            "$ref": "#/definitions/ApiResponse"
-                        }
-                    },
-                    "401": {
-                        "description": "Unauthorized"
-                    },
-                    "403": {
-                        "description": "Forbidden"
-                    },
-                    "404": {
-                        "description": "Not Found"
-                    }
-                },
-                "security": [
-                    {
-                        "apiKey": [
-                            "global"
-                        ]
-                    }
-                ],
-                "deprecated": false
-            },
-            "post": {
-                "tags": [
-                    "project-risk-control-question-controller"
-                ],
-                "summary": "saveProjectRiskQuestionsAnswers",
-                "operationId": "saveProjectRiskQuestionsAnswersUsingPOST",
-                "consumes": [
-                    "application/json"
-                ],
-                "produces": [
-                    "*/*"
-                ],
-                "parameters": [
-                    {
-                        "in": "body",
-                        "name": "projectRiskQuestionDTO",
-                        "description": "projectRiskQuestionDTO",
-                        "required": true,
-                        "schema": {
-                            "$ref": "#/definitions/ProjectRiskQuestionDTO"
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "schema": {
-                            "$ref": "#/definitions/ApiResponse"
-                        }
-                    },
-                    "201": {
-                        "description": "Created"
-                    },
-                    "401": {
-                        "description": "Unauthorized"
-                    },
-                    "403": {
-                        "description": "Forbidden"
-                    },
-                    "404": {
-                        "description": "Not Found"
-                    }
-                },
-                "security": [
-                    {
-                        "apiKey": [
-                            "global"
-                        ]
-                    }
-                ],
-                "deprecated": false
-            }
-        },
         "/api/v1/project/riskLibraries": {
             "post": {
                 "tags": [
@@ -5974,8 +5805,62 @@
                 "tags": [
                     "project-risk-assessment-controller"
                 ],
-                "summary": "saveProjectRiskLibraryAssessmentQuestionsResponse",
-                "operationId": "saveProjectRiskLibraryAssessmentQuestionsResponseUsingPOST",
+                "summary": "saveProjectAssessmentQuestionsResponse",
+                "operationId": "saveProjectAssessmentQuestionsResponseUsingPOST",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "*/*"
+                ],
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "projectRiskAssessmentQuestionDTO",
+                        "description": "projectRiskAssessmentQuestionDTO",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/ProjectRiskAssessmentQuestionDTO"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/ApiResponse"
+                        }
+                    },
+                    "201": {
+                        "description": "Created"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                },
+                "security": [
+                    {
+                        "apiKey": [
+                            "global"
+                        ]
+                    }
+                ],
+                "deprecated": false
+            }
+        },
+        "/api/v1/project/riskLibrary/assessment/questions/responses": {
+            "put": {
+                "tags": [
+                    "project-risk-assessment-controller"
+                ],
+                "summary": "updateProjectAssessmentQuestionsResponse",
+                "operationId": "updateProjectAssessmentQuestionsResponseUsingPUT",
                 "consumes": [
                     "application/json"
                 ],
@@ -6414,155 +6299,6 @@
                     },
                     "404": {
                         "description": "Not Found"
-                    }
-                },
-                "security": [
-                    {
-                        "apiKey": [
-                            "global"
-                        ]
-                    }
-                ],
-                "deprecated": false
-            }
-        },
-        "/api/v1/project/{projectId}/risk/{projectRiskId}/control/{controlTypeId}/question": {
-            "post": {
-                "tags": [
-                    "project-risk-questions-controller"
-                ],
-                "summary": "createOrUpdateProjectRiskQuestion",
-                "operationId": "createOrUpdateProjectRiskQuestionUsingPOST",
-                "consumes": [
-                    "application/json"
-                ],
-                "produces": [
-                    "*/*"
-                ],
-                "parameters": [
-                    {
-                        "name": "controlTypeId",
-                        "in": "path",
-                        "description": "controlTypeId",
-                        "required": true,
-                        "type": "integer",
-                        "format": "int64"
-                    },
-                    {
-                        "name": "projectId",
-                        "in": "path",
-                        "description": "projectId",
-                        "required": true,
-                        "type": "integer",
-                        "format": "int64"
-                    },
-                    {
-                        "name": "projectRiskId",
-                        "in": "path",
-                        "description": "projectRiskId",
-                        "required": true,
-                        "type": "integer",
-                        "format": "int64"
-                    },
-                    {
-                        "in": "body",
-                        "name": "questionDTO",
-                        "description": "questionDTO",
-                        "required": true,
-                        "schema": {
-                            "$ref": "#/definitions/QuestionDTO"
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "schema": {
-                            "$ref": "#/definitions/ApiResponse"
-                        }
-                    },
-                    "201": {
-                        "description": "Created"
-                    },
-                    "401": {
-                        "description": "Unauthorized"
-                    },
-                    "403": {
-                        "description": "Forbidden"
-                    },
-                    "404": {
-                        "description": "Not Found"
-                    }
-                },
-                "security": [
-                    {
-                        "apiKey": [
-                            "global"
-                        ]
-                    }
-                ],
-                "deprecated": false
-            }
-        },
-        "/api/v1/project/{projectId}/risk/{projectRiskId}/control/{controlTypeId}/question/{id}": {
-            "delete": {
-                "tags": [
-                    "project-risk-questions-controller"
-                ],
-                "summary": "deleteProjectRiskQuestions",
-                "operationId": "deleteProjectRiskQuestionsUsingDELETE",
-                "produces": [
-                    "*/*"
-                ],
-                "parameters": [
-                    {
-                        "name": "controlTypeId",
-                        "in": "path",
-                        "description": "controlTypeId",
-                        "required": true,
-                        "type": "integer",
-                        "format": "int64"
-                    },
-                    {
-                        "name": "id",
-                        "in": "path",
-                        "description": "id",
-                        "required": true,
-                        "type": "integer",
-                        "format": "int64"
-                    },
-                    {
-                        "name": "projectId",
-                        "in": "path",
-                        "description": "projectId",
-                        "required": true,
-                        "type": "integer",
-                        "format": "int64"
-                    },
-                    {
-                        "name": "projectRiskId",
-                        "in": "path",
-                        "description": "projectRiskId",
-                        "required": true,
-                        "type": "integer",
-                        "format": "int64"
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "schema": {
-                            "$ref": "#/definitions/ApiResponse"
-                        }
-                    },
-                    "204": {
-                        "description": "No Content"
-                    },
-                    "401": {
-                        "description": "Unauthorized"
-                    },
-                    "403": {
-                        "description": "Forbidden"
                     }
                 },
                 "security": [
@@ -10690,19 +10426,6 @@
             },
             "title": "ProjectDTO"
         },
-        "ProjectQuestionDTO": {
-            "type": "object",
-            "properties": {
-                "answer": {
-                    "type": "string"
-                },
-                "questionId": {
-                    "type": "integer",
-                    "format": "int64"
-                }
-            },
-            "title": "ProjectQuestionDTO"
-        },
         "ProjectRiskAssessmentQuestionDTO": {
             "type": "object",
             "properties": {
@@ -10780,26 +10503,6 @@
             },
             "title": "ProjectRiskLibraryRequestDTO"
         },
-        "ProjectRiskQuestionDTO": {
-            "type": "object",
-            "properties": {
-                "projectId": {
-                    "type": "integer",
-                    "format": "int64"
-                },
-                "projectRiskId": {
-                    "type": "integer",
-                    "format": "int64"
-                },
-                "questions": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/definitions/ProjectQuestionDTO"
-                    }
-                }
-            },
-            "title": "ProjectRiskQuestionDTO"
-        },
         "ProjectRiskStatusDTO": {
             "type": "object",
             "properties": {
@@ -10816,80 +10519,6 @@
                 }
             },
             "title": "ProjectRiskStatusDTO"
-        },
-        "QuestionAndResponseDTO": {
-            "type": "object",
-            "properties": {
-                "questionId": {
-                    "type": "integer",
-                    "format": "int64"
-                },
-                "response": {
-                    "type": "string"
-                }
-            },
-            "title": "QuestionAndResponseDTO"
-        },
-        "QuestionDTO": {
-            "type": "object",
-            "properties": {
-                "controlTypeCode": {
-                    "type": "string"
-                },
-                "controlTypeName": {
-                    "type": "string"
-                },
-                "createdBy": {
-                    "type": "string"
-                },
-                "createdId": {
-                    "type": "integer",
-                    "format": "int64"
-                },
-                "id": {
-                    "type": "integer",
-                    "format": "int64"
-                },
-                "question": {
-                    "type": "string"
-                },
-                "questionControlTypeId": {
-                    "type": "integer",
-                    "format": "int64"
-                },
-                "riskId": {
-                    "type": "integer",
-                    "format": "int64"
-                },
-                "updatedBy": {
-                    "type": "string"
-                },
-                "updatedId": {
-                    "type": "integer",
-                    "format": "int64"
-                }
-            },
-            "title": "QuestionDTO"
-        },
-        "QuestionResponseDTO": {
-            "type": "object",
-            "properties": {
-                "projectId": {
-                    "type": "integer",
-                    "format": "int64"
-                },
-                "projectRiskId": {
-                    "type": "integer",
-                    "format": "int64"
-                },
-                "questionAndResponses": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/definitions/QuestionAndResponseDTO"
-                    }
-                }
-            },
-            "title": "QuestionResponseDTO"
         },
         "Range": {
             "type": "object",
