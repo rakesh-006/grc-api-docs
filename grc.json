@@ -13,6 +13,10 @@
             "description": "App Notification Controller"
         },
         {
+            "name": "assessment-remark-control-controller",
+            "description": "Assessment Remark Control Controller"
+        },
+        {
             "name": "assessment-remark-controller",
             "description": "Assessment Remark Controller"
         },
@@ -5532,6 +5536,121 @@
                 "deprecated": false
             }
         },
+        "/api/v1/project/risk/assessment/remark/control": {
+            "post": {
+                "tags": [
+                    "assessment-remark-control-controller"
+                ],
+                "summary": "createAssessmentRemarkControl",
+                "operationId": "createAssessmentRemarkControlUsingPOST",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "*/*"
+                ],
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "assessmentRemarkControl",
+                        "description": "assessmentRemarkControl",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/AssessmentRemarkControl"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/ApiResponse"
+                        }
+                    },
+                    "201": {
+                        "description": "Created"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                },
+                "security": [
+                    {
+                        "apiKey": [
+                            "global"
+                        ]
+                    }
+                ],
+                "deprecated": false
+            },
+            "delete": {
+                "tags": [
+                    "assessment-remark-control-controller"
+                ],
+                "summary": "deleteAssessmentRemarkById",
+                "operationId": "deleteAssessmentRemarkByIdUsingDELETE",
+                "produces": [
+                    "*/*"
+                ],
+                "parameters": [
+                    {
+                        "name": "assessmentRemarkControlId",
+                        "in": "query",
+                        "description": "assessmentRemarkControlId",
+                        "required": true,
+                        "type": "integer",
+                        "format": "int64"
+                    },
+                    {
+                        "name": "projectId",
+                        "in": "query",
+                        "description": "projectId",
+                        "required": true,
+                        "type": "integer",
+                        "format": "int64"
+                    },
+                    {
+                        "name": "projectRiskId",
+                        "in": "query",
+                        "description": "projectRiskId",
+                        "required": true,
+                        "type": "integer",
+                        "format": "int64"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/ApiResponse"
+                        }
+                    },
+                    "204": {
+                        "description": "No Content"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                },
+                "security": [
+                    {
+                        "apiKey": [
+                            "global"
+                        ]
+                    }
+                ],
+                "deprecated": false
+            }
+        },
         "/api/v1/project/risk/assessment/status": {
             "put": {
                 "tags": [
@@ -9646,6 +9765,59 @@
                 }
             },
             "title": "AssessmentRemark"
+        },
+        "AssessmentRemarkControl": {
+            "type": "object",
+            "properties": {
+                "controlTypeCode": {
+                    "type": "string"
+                },
+                "controlTypeId": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "controlTypeName": {
+                    "type": "string"
+                },
+                "createdBy": {
+                    "type": "string"
+                },
+                "createdDate": {
+                    "type": "string",
+                    "format": "date-time"
+                },
+                "createdId": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "createdOrgType": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "projectId": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "projectRiskId": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "updatedDate": {
+                    "type": "string",
+                    "format": "date-time"
+                },
+                "updatedId": {
+                    "type": "integer",
+                    "format": "int64"
+                }
+            },
+            "title": "AssessmentRemarkControl"
         },
         "AssessmentStatusDTO": {
             "type": "object",
