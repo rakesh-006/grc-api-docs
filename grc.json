@@ -7123,6 +7123,60 @@
                 "deprecated": false
             }
         },
+        "/api/v1/risk/controls": {
+            "post": {
+                "tags": [
+                    "risk-library-controller"
+                ],
+                "summary": "getControlsByRiskId",
+                "operationId": "getControlsByRiskIdUsingPOST",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "*/*"
+                ],
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "riskControlDTO",
+                        "description": "riskControlDTO",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/RiskControlDTO"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/ApiResponse"
+                        }
+                    },
+                    "201": {
+                        "description": "Created"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                },
+                "security": [
+                    {
+                        "apiKey": [
+                            "global"
+                        ]
+                    }
+                ],
+                "deprecated": false
+            }
+        },
         "/api/v1/risk/dashboard": {
             "get": {
                 "tags": [
@@ -10788,6 +10842,37 @@
                 }
             },
             "title": "RiskAndControlDTO"
+        },
+        "RiskControlDTO": {
+            "type": "object",
+            "properties": {
+                "controlTypeCode": {
+                    "type": "string"
+                },
+                "controlTypeId": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "controlTypeName": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "projectId": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "riskId": {
+                    "type": "integer",
+                    "format": "int64"
+                }
+            },
+            "title": "RiskControlDTO"
         },
         "RiskLibraryRequestDTO": {
             "type": "object",
