@@ -5170,8 +5170,8 @@
                 "tags": [
                     "project-control-review-controller"
                 ],
-                "summary": "saveControlReview",
-                "operationId": "saveControlReviewUsingPOST",
+                "summary": "saveOrUpdateControlReview",
+                "operationId": "saveOrUpdateControlReviewUsingPOST",
                 "consumes": [
                     "application/json"
                 ],
