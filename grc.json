@@ -45,10 +45,6 @@
             "description": "Control Library Import Controller"
         },
         {
-            "name": "control-review-controller",
-            "description": "Control Review Controller"
-        },
-        {
             "name": "department-controller",
             "description": "Department Controller"
         },
@@ -77,8 +73,16 @@
             "description": "Project Control Library Controller"
         },
         {
+            "name": "project-control-review-controller",
+            "description": "Project Control Review Controller"
+        },
+        {
             "name": "project-controller",
             "description": "Project Controller"
+        },
+        {
+            "name": "project-risk-assessment-controller",
+            "description": "Project Risk Assessment Controller"
         },
         {
             "name": "project-risk-control-controller",
@@ -5168,7 +5172,7 @@
         "/api/v1/project/control/review": {
             "post": {
                 "tags": [
-                    "control-review-controller"
+                    "project-control-review-controller"
                 ],
                 "summary": "saveControlReview",
                 "operationId": "saveControlReviewUsingPOST",
@@ -5222,7 +5226,7 @@
         "/api/v1/project/control/review/status": {
             "put": {
                 "tags": [
-                    "control-review-controller"
+                    "project-control-review-controller"
                 ],
                 "summary": "updateControlReviewStatus",
                 "operationId": "updateControlReviewStatusUsingPUT",
@@ -5276,7 +5280,7 @@
         "/api/v1/project/control/reviews": {
             "get": {
                 "tags": [
-                    "control-review-controller"
+                    "project-control-review-controller"
                 ],
                 "summary": "getProjectControlReviews",
                 "operationId": "getProjectControlReviewsUsingGET",
@@ -5912,6 +5916,113 @@
                 "deprecated": false
             }
         },
+        "/api/v1/project/riskLibrary/assessment/questions": {
+            "get": {
+                "tags": [
+                    "project-risk-assessment-controller"
+                ],
+                "summary": "getProjectRiskLibraryAssessmentQuestions",
+                "operationId": "getProjectRiskLibraryAssessmentQuestionsUsingGET",
+                "produces": [
+                    "*/*"
+                ],
+                "parameters": [
+                    {
+                        "name": "projectId",
+                        "in": "query",
+                        "description": "projectId",
+                        "required": true,
+                        "type": "integer",
+                        "format": "int64"
+                    },
+                    {
+                        "name": "projectRiskId",
+                        "in": "query",
+                        "description": "projectRiskId",
+                        "required": true,
+                        "type": "integer",
+                        "format": "int64"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/ApiResponse"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                },
+                "security": [
+                    {
+                        "apiKey": [
+                            "global"
+                        ]
+                    }
+                ],
+                "deprecated": false
+            },
+            "post": {
+                "tags": [
+                    "project-risk-assessment-controller"
+                ],
+                "summary": "saveProjectRiskLibraryAssessmentQuestionsResponse",
+                "operationId": "saveProjectRiskLibraryAssessmentQuestionsResponseUsingPOST",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "*/*"
+                ],
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "projectRiskAssessmentQuestionDTO",
+                        "description": "projectRiskAssessmentQuestionDTO",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/ProjectRiskAssessmentQuestionDTO"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/ApiResponse"
+                        }
+                    },
+                    "201": {
+                        "description": "Created"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                },
+                "security": [
+                    {
+                        "apiKey": [
+                            "global"
+                        ]
+                    }
+                ],
+                "deprecated": false
+            }
+        },
         "/api/v1/project/riskLibrary/status": {
             "put": {
                 "tags": [
@@ -6209,7 +6320,7 @@
         "/api/v1/project/{projectId}/review/controls": {
             "get": {
                 "tags": [
-                    "control-review-controller"
+                    "project-control-review-controller"
                 ],
                 "summary": "getProjectRiskControlForReview",
                 "operationId": "getProjectRiskControlForReviewUsingGET",
@@ -10591,6 +10702,45 @@
                 }
             },
             "title": "ProjectQuestionDTO"
+        },
+        "ProjectRiskAssessmentQuestionDTO": {
+            "type": "object",
+            "properties": {
+                "projectId": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "projectRiskLibraryId": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "questions": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/ProjectRiskAssessmentSubQuestionDTO"
+                    }
+                }
+            },
+            "title": "ProjectRiskAssessmentQuestionDTO"
+        },
+        "ProjectRiskAssessmentSubQuestionDTO": {
+            "type": "object",
+            "properties": {
+                "question": {
+                    "type": "string"
+                },
+                "questionComment": {
+                    "type": "string"
+                },
+                "questionId": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "questionResponse": {
+                    "type": "string"
+                }
+            },
+            "title": "ProjectRiskAssessmentSubQuestionDTO"
         },
         "ProjectRiskLibraryRequestDTO": {
             "type": "object",
