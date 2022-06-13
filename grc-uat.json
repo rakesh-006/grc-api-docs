@@ -5286,8 +5286,8 @@
                 "tags": [
                     "project-control-review-controller"
                 ],
-                "summary": "updateControlReviewStatus",
-                "operationId": "updateControlReviewStatusUsingPUT",
+                "summary": "updateControlReviewStatusToCompleted",
+                "operationId": "updateControlReviewStatusToCompletedUsingPUT",
                 "consumes": [
                     "application/json"
                 ],
@@ -7320,11 +7320,11 @@
                 "parameters": [
                     {
                         "in": "body",
-                        "name": "riskControlDTO",
-                        "description": "riskControlDTO",
+                        "name": "riskLinkControlDTO",
+                        "description": "riskLinkControlDTO",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/RiskControlDTO"
+                            "$ref": "#/definitions/RiskLinkControlDTO"
                         }
                     }
                 ],
@@ -8104,8 +8104,8 @@
                 "tags": [
                     "standard-library-controller"
                 ],
-                "summary": "getAllStandards",
-                "operationId": "getAllStandardsUsingDELETE",
+                "summary": "deleteStandards",
+                "operationId": "deleteStandardsUsingDELETE",
                 "produces": [
                     "*/*"
                 ],
@@ -8179,43 +8179,6 @@
                     },
                     "201": {
                         "description": "Created"
-                    },
-                    "401": {
-                        "description": "Unauthorized"
-                    },
-                    "403": {
-                        "description": "Forbidden"
-                    },
-                    "404": {
-                        "description": "Not Found"
-                    }
-                },
-                "security": [
-                    {
-                        "apiKey": [
-                            "global"
-                        ]
-                    }
-                ],
-                "deprecated": false
-            }
-        },
-        "/api/v1/stat": {
-            "get": {
-                "tags": [
-                    "common-controller"
-                ],
-                "summary": "listStat",
-                "operationId": "listStatUsingGET",
-                "produces": [
-                    "*/*"
-                ],
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "schema": {
-                            "$ref": "#/definitions/ApiResponse"
-                        }
                     },
                     "401": {
                         "description": "Unauthorized"
@@ -11101,37 +11064,6 @@
             },
             "title": "RiskAndControlDTO"
         },
-        "RiskControlDTO": {
-            "type": "object",
-            "properties": {
-                "controlTypeCode": {
-                    "type": "string"
-                },
-                "controlTypeId": {
-                    "type": "integer",
-                    "format": "int64"
-                },
-                "controlTypeName": {
-                    "type": "string"
-                },
-                "id": {
-                    "type": "integer",
-                    "format": "int64"
-                },
-                "name": {
-                    "type": "string"
-                },
-                "projectId": {
-                    "type": "integer",
-                    "format": "int64"
-                },
-                "riskId": {
-                    "type": "integer",
-                    "format": "int64"
-                }
-            },
-            "title": "RiskControlDTO"
-        },
         "RiskLibraryRequestDTO": {
             "type": "object",
             "properties": {
@@ -11165,6 +11097,32 @@
                 }
             },
             "title": "RiskLibraryRequestDTO"
+        },
+        "RiskLinkControlDTO": {
+            "type": "object",
+            "properties": {
+                "controlTypeId": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "id": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "projectId": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "projectRiskLibraryId": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "riskId": {
+                    "type": "integer",
+                    "format": "int64"
+                }
+            },
+            "title": "RiskLinkControlDTO"
         },
         "RoleDTO": {
             "type": "object",
@@ -11562,6 +11520,9 @@
                     "type": "string"
                 },
                 "phoneNumber": {
+                    "type": "string"
+                },
+                "phoneRefDesc": {
                     "type": "string"
                 },
                 "phoneRefId": {
