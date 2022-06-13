@@ -9829,6 +9829,9 @@
                     "type": "integer",
                     "format": "int64"
                 },
+                "isEffectiveness": {
+                    "type": "boolean"
+                },
                 "name": {
                     "type": "string"
                 },
