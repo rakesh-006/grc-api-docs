@@ -5,7 +5,7 @@
         "version": "v1",
         "title": "CyPRO"
     },
-    "host": "api.cyprodev.cyraacs.net",
+    "host": "api.cypro.cyraacs.net",
     "basePath": "/",
     "tags": [
         {
