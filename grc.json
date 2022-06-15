@@ -5,7 +5,7 @@
         "version": "v1",
         "title": "CyPRO"
     },
-    "host": "api.cypro.cyraacs.net",
+    "host": "api.cyprodev.cyraacs.net",
     "basePath": "/",
     "tags": [
         {
@@ -71,6 +71,14 @@
         {
             "name": "organization-controller",
             "description": "Organization Controller"
+        },
+        {
+            "name": "policy-library-controller",
+            "description": "Policy Library Controller"
+        },
+        {
+            "name": "policy-library-import-controller",
+            "description": "Policy Library Import Controller"
         },
         {
             "name": "project-control-library-controller",
@@ -2285,6 +2293,60 @@
                 ],
                 "summary": "importPlatformControlLibraries",
                 "operationId": "importPlatformControlLibrariesUsingPOST",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "*/*"
+                ],
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "importDTO",
+                        "description": "importDTO",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/ImportDTO"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/ApiResponse"
+                        }
+                    },
+                    "201": {
+                        "description": "Created"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                },
+                "security": [
+                    {
+                        "apiKey": [
+                            "global"
+                        ]
+                    }
+                ],
+                "deprecated": false
+            }
+        },
+        "/api/v1/import/platform/policies": {
+            "post": {
+                "tags": [
+                    "policy-library-import-controller"
+                ],
+                "summary": "importPlatformPolicies",
+                "operationId": "importPlatformPoliciesUsingPOST",
                 "consumes": [
                     "application/json"
                 ],
@@ -5020,6 +5082,161 @@
                 "deprecated": false
             }
         },
+        "/api/v1/policies": {
+            "post": {
+                "tags": [
+                    "policy-library-controller"
+                ],
+                "summary": "getAllPolicies",
+                "operationId": "getAllPoliciesUsingPOST",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "*/*"
+                ],
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "paginationRequestDTO",
+                        "description": "paginationRequestDTO",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/PaginationRequestDTO"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/ApiResponse"
+                        }
+                    },
+                    "201": {
+                        "description": "Created"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                },
+                "security": [
+                    {
+                        "apiKey": [
+                            "global"
+                        ]
+                    }
+                ],
+                "deprecated": false
+            }
+        },
+        "/api/v1/policy": {
+            "post": {
+                "tags": [
+                    "policy-library-controller"
+                ],
+                "summary": "createOrUpdatePolicy",
+                "operationId": "createOrUpdatePolicyUsingPOST",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "*/*"
+                ],
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "policyLibraryDTO",
+                        "description": "policyLibraryDTO",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/PolicyLibraryDTO"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/ApiResponse"
+                        }
+                    },
+                    "201": {
+                        "description": "Created"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                },
+                "security": [
+                    {
+                        "apiKey": [
+                            "global"
+                        ]
+                    }
+                ],
+                "deprecated": false
+            }
+        },
+        "/api/v1/policy/{policyLibraryId}": {
+            "get": {
+                "tags": [
+                    "policy-library-controller"
+                ],
+                "summary": "getPolicyById",
+                "operationId": "getPolicyByIdUsingGET",
+                "produces": [
+                    "*/*"
+                ],
+                "parameters": [
+                    {
+                        "name": "policyLibraryId",
+                        "in": "path",
+                        "description": "policyLibraryId",
+                        "required": true,
+                        "type": "integer",
+                        "format": "int64"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/ApiResponse"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                },
+                "security": [
+                    {
+                        "apiKey": [
+                            "global"
+                        ]
+                    }
+                ],
+                "deprecated": false
+            }
+        },
         "/api/v1/project": {
             "get": {
                 "tags": [
@@ -6327,6 +6544,68 @@
                         "name": "controlId",
                         "in": "path",
                         "description": "controlId",
+                        "required": true,
+                        "type": "integer",
+                        "format": "int64"
+                    },
+                    {
+                        "name": "projectId",
+                        "in": "path",
+                        "description": "projectId",
+                        "required": true,
+                        "type": "integer",
+                        "format": "int64"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/ApiResponse"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                },
+                "security": [
+                    {
+                        "apiKey": [
+                            "global"
+                        ]
+                    }
+                ],
+                "deprecated": false
+            }
+        },
+        "/api/v1/project/{projectId}/control/{projectControlId}/artefact": {
+            "get": {
+                "tags": [
+                    "risk-assessment-controller"
+                ],
+                "summary": "listArtefactForProjectControl",
+                "operationId": "listArtefactForProjectControlUsingGET",
+                "produces": [
+                    "*/*"
+                ],
+                "parameters": [
+                    {
+                        "name": "orgId",
+                        "in": "query",
+                        "description": "orgId",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "projectControlId",
+                        "in": "path",
+                        "description": "projectControlId",
                         "required": true,
                         "type": "integer",
                         "format": "int64"
@@ -8999,9 +9278,33 @@
                         "type": "string"
                     },
                     {
+                        "name": "projectControlId",
+                        "in": "query",
+                        "description": "projectControlId",
+                        "required": true,
+                        "type": "integer",
+                        "format": "int64"
+                    },
+                    {
                         "name": "projectId",
                         "in": "query",
                         "description": "projectId",
+                        "required": true,
+                        "type": "integer",
+                        "format": "int64"
+                    },
+                    {
+                        "name": "projectReviewId",
+                        "in": "query",
+                        "description": "projectReviewId",
+                        "required": true,
+                        "type": "integer",
+                        "format": "int64"
+                    },
+                    {
+                        "name": "projectRiskId",
+                        "in": "query",
+                        "description": "projectRiskId",
                         "required": true,
                         "type": "integer",
                         "format": "int64"
@@ -10543,6 +10846,10 @@
                     "type": "integer",
                     "format": "int64"
                 },
+                "projectTypeRefId": {
+                    "type": "integer",
+                    "format": "int64"
+                },
                 "search": {
                     "type": "string"
                 },
@@ -10601,6 +10908,65 @@
                 }
             },
             "title": "Phone"
+        },
+        "PolicyLibraryDTO": {
+            "type": "object",
+            "properties": {
+                "createdBy": {
+                    "type": "string"
+                },
+                "createdDate": {
+                    "type": "string",
+                    "format": "date-time"
+                },
+                "domainId": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "domainName": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "policyName": {
+                    "type": "string"
+                },
+                "policySectionDTOS": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/PolicySectionDTO"
+                    }
+                },
+                "sourceType": {
+                    "type": "string"
+                },
+                "updatedBy": {
+                    "type": "string"
+                },
+                "updatedDate": {
+                    "type": "string",
+                    "format": "date-time"
+                }
+            },
+            "title": "PolicyLibraryDTO"
+        },
+        "PolicySectionDTO": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "sectionDescription": {
+                    "type": "string"
+                },
+                "sectionName": {
+                    "type": "string"
+                }
+            },
+            "title": "PolicySectionDTO"
         },
         "ProjectControlQuestionResponseDTO": {
             "type": "object",
@@ -10666,6 +11032,10 @@
                 },
                 "projectStatusRefName": {
                     "type": "string"
+                },
+                "projectTypeRefId": {
+                    "type": "integer",
+                    "format": "int64"
                 },
                 "rangeList": {
                     "type": "array",
