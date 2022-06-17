@@ -81,6 +81,10 @@
             "description": "Policy Library Import Controller"
         },
         {
+            "name": "policy-section-control-controller",
+            "description": "Policy Section Control Controller"
+        },
+        {
             "name": "project-control-library-controller",
             "description": "Project Control Library Controller"
         },
@@ -5237,6 +5241,60 @@
                 "deprecated": false
             }
         },
+        "/api/v1/policySection/controls": {
+            "post": {
+                "tags": [
+                    "policy-section-control-controller"
+                ],
+                "summary": "linkingControlsToPolicySection",
+                "operationId": "linkingControlsToPolicySectionUsingPOST",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "*/*"
+                ],
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "policySectionControlDTO",
+                        "description": "policySectionControlDTO",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/PolicySectionControlDTO"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/ApiResponse"
+                        }
+                    },
+                    "201": {
+                        "description": "Created"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                },
+                "security": [
+                    {
+                        "apiKey": [
+                            "global"
+                        ]
+                    }
+                ],
+                "deprecated": false
+            }
+        },
         "/api/v1/project": {
             "get": {
                 "tags": [
@@ -6468,7 +6526,7 @@
                 "deprecated": false
             }
         },
-        "/api/v1/project/{projectId}/artefact/{artefactName}": {
+        "/api/v1/project/{projectId}/artefact/{artefactName}/document/{documentName}": {
             "delete": {
                 "tags": [
                     "risk-assessment-controller"
@@ -6483,6 +6541,13 @@
                         "name": "artefactName",
                         "in": "path",
                         "description": "artefactName",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "documentName",
+                        "in": "path",
+                        "description": "documentName",
                         "required": true,
                         "type": "string"
                     },
@@ -6584,13 +6649,13 @@
                 "deprecated": false
             }
         },
-        "/api/v1/project/{projectId}/control/{projectControlId}/artefact": {
+        "/api/v1/project/{projectId}/control/{projectControlId}/review/{reviewId}/artefact": {
             "get": {
                 "tags": [
                     "risk-assessment-controller"
                 ],
-                "summary": "listArtefactForProjectControl",
-                "operationId": "listArtefactForProjectControlUsingGET",
+                "summary": "listArtefactForProjectControlReview",
+                "operationId": "listArtefactForProjectControlReviewUsingGET",
                 "produces": [
                     "*/*"
                 ],
@@ -6614,6 +6679,14 @@
                         "name": "projectId",
                         "in": "path",
                         "description": "projectId",
+                        "required": true,
+                        "type": "integer",
+                        "format": "int64"
+                    },
+                    {
+                        "name": "projectReviewId",
+                        "in": "path",
+                        "description": "projectReviewId",
                         "required": true,
                         "type": "integer",
                         "format": "int64"
@@ -6723,6 +6796,68 @@
                 ],
                 "summary": "listArtefactForProjectRisk",
                 "operationId": "listArtefactForProjectRiskUsingGET",
+                "produces": [
+                    "*/*"
+                ],
+                "parameters": [
+                    {
+                        "name": "orgId",
+                        "in": "query",
+                        "description": "orgId",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "projectId",
+                        "in": "path",
+                        "description": "projectId",
+                        "required": true,
+                        "type": "integer",
+                        "format": "int64"
+                    },
+                    {
+                        "name": "projectRiskId",
+                        "in": "path",
+                        "description": "projectRiskId",
+                        "required": true,
+                        "type": "integer",
+                        "format": "int64"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/ApiResponse"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                },
+                "security": [
+                    {
+                        "apiKey": [
+                            "global"
+                        ]
+                    }
+                ],
+                "deprecated": false
+            }
+        },
+        "/api/v1/project/{projectId}/risk/{projectRiskId}/assessment/artefact": {
+            "get": {
+                "tags": [
+                    "risk-assessment-controller"
+                ],
+                "summary": "listArtefactForProjectControl",
+                "operationId": "listArtefactForProjectControlUsingGET",
                 "produces": [
                     "*/*"
                 ],
@@ -10029,6 +10164,51 @@
             },
             "title": "ApiResponse"
         },
+        "ArtefactResponseDTOs": {
+            "type": "object",
+            "properties": {
+                "artefactFreqRefId": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "artefactName": {
+                    "type": "string"
+                },
+                "artefactRefCode": {
+                    "type": "string"
+                },
+                "artefactRefCodeDescription": {
+                    "type": "string"
+                },
+                "createId": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "createdBy": {
+                    "type": "string"
+                },
+                "createdDate": {
+                    "type": "string",
+                    "format": "date-time"
+                },
+                "id": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "projectControlLibId": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "projectId": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "source": {
+                    "type": "string"
+                }
+            },
+            "title": "ArtefactResponseDTOs"
+        },
         "AssessmentRemark": {
             "type": "object",
             "properties": {
@@ -10192,6 +10372,108 @@
                 }
             },
             "title": "AuthenticationRequest"
+        },
+        "ControlDetailsResponse": {
+            "type": "object",
+            "properties": {
+                "artefactResponseDTOs": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/ArtefactResponseDTOs"
+                    }
+                },
+                "controlDescription": {
+                    "type": "string"
+                },
+                "controlName": {
+                    "type": "string"
+                },
+                "controlRefCode": {
+                    "type": "string"
+                },
+                "controlRefCodeDescription": {
+                    "type": "string"
+                },
+                "controlTypeId": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "createdBy": {
+                    "type": "string"
+                },
+                "createdDate": {
+                    "type": "string",
+                    "format": "date-time"
+                },
+                "createdId": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "domainId": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "domainName": {
+                    "type": "string"
+                },
+                "frequencyRefCode": {
+                    "type": "string"
+                },
+                "frequencyRefCodeDescription": {
+                    "type": "string"
+                },
+                "frequencyRefId": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "id": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "projectArtefactLibraries": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/ProjectArtefactLibrary"
+                    }
+                },
+                "projectId": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "projectQuestionLibraries": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/ProjectQuestionLibrary"
+                    }
+                },
+                "questionsLibraries": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/QuestionsLibrary"
+                    }
+                },
+                "source": {
+                    "type": "string"
+                },
+                "standardControlsResponseDTOS": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/StandardControlsResponseDTO"
+                    }
+                },
+                "updatedBy": {
+                    "type": "string"
+                },
+                "updatedDate": {
+                    "type": "string",
+                    "format": "date-time"
+                },
+                "updatedId": {
+                    "type": "integer",
+                    "format": "int64"
+                }
+            },
+            "title": "ControlDetailsResponse"
         },
         "ControlLibraryDTO": {
             "type": "object",
@@ -10939,6 +11221,10 @@
                         "$ref": "#/definitions/PolicySectionDTO"
                     }
                 },
+                "projectId": {
+                    "type": "integer",
+                    "format": "int64"
+                },
                 "sourceType": {
                     "type": "string"
                 },
@@ -10952,9 +11238,31 @@
             },
             "title": "PolicyLibraryDTO"
         },
+        "PolicySectionControlDTO": {
+            "type": "object",
+            "properties": {
+                "controlLibraryIds": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "policySectionId": {
+                    "type": "integer",
+                    "format": "int64"
+                }
+            },
+            "title": "PolicySectionControlDTO"
+        },
         "PolicySectionDTO": {
             "type": "object",
             "properties": {
+                "controlDetailsResponses": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/ControlDetailsResponse"
+                    }
+                },
                 "id": {
                     "type": "integer",
                     "format": "int64"
@@ -10967,6 +11275,60 @@
                 }
             },
             "title": "PolicySectionDTO"
+        },
+        "ProjectArtefactLibrary": {
+            "type": "object",
+            "properties": {
+                "artefactFrequencyRefId": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "artefactName": {
+                    "type": "string"
+                },
+                "controlLibraryId": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "createdDate": {
+                    "type": "string",
+                    "format": "date-time"
+                },
+                "createdId": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "id": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "projectId": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "source": {
+                    "type": "string"
+                },
+                "sourceCreatedBy": {
+                    "type": "string"
+                },
+                "sourceCreatedDate": {
+                    "type": "string",
+                    "format": "date-time"
+                },
+                "sourceReference": {
+                    "type": "string"
+                },
+                "updatedDate": {
+                    "type": "string",
+                    "format": "date-time"
+                },
+                "updatedId": {
+                    "type": "integer",
+                    "format": "int64"
+                }
+            },
+            "title": "ProjectArtefactLibrary"
         },
         "ProjectControlQuestionResponseDTO": {
             "type": "object",
@@ -11081,6 +11443,59 @@
             },
             "title": "ProjectDTO"
         },
+        "ProjectQuestionLibrary": {
+            "type": "object",
+            "properties": {
+                "answerType": {
+                    "type": "string"
+                },
+                "controlLibraryId": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "createdDate": {
+                    "type": "string",
+                    "format": "date-time"
+                },
+                "createdId": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "id": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "projectId": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "question": {
+                    "type": "string"
+                },
+                "source": {
+                    "type": "string"
+                },
+                "sourceCreatedBy": {
+                    "type": "string"
+                },
+                "sourceCreatedDate": {
+                    "type": "string",
+                    "format": "date-time"
+                },
+                "sourceReference": {
+                    "type": "string"
+                },
+                "updatedDate": {
+                    "type": "string",
+                    "format": "date-time"
+                },
+                "updatedId": {
+                    "type": "integer",
+                    "format": "int64"
+                }
+            },
+            "title": "ProjectQuestionLibrary"
+        },
         "ProjectRiskAssessmentQuestionDTO": {
             "type": "object",
             "properties": {
@@ -11174,6 +11589,51 @@
                 }
             },
             "title": "ProjectRiskStatusDTO"
+        },
+        "QuestionsLibrary": {
+            "type": "object",
+            "properties": {
+                "answerType": {
+                    "type": "string"
+                },
+                "createdDate": {
+                    "type": "string",
+                    "format": "date-time"
+                },
+                "createdId": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "id": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "question": {
+                    "type": "string"
+                },
+                "source": {
+                    "type": "string"
+                },
+                "sourceCreatedBy": {
+                    "type": "string"
+                },
+                "sourceCreatedDate": {
+                    "type": "string",
+                    "format": "date-time"
+                },
+                "sourceReference": {
+                    "type": "string"
+                },
+                "updatedDate": {
+                    "type": "string",
+                    "format": "date-time"
+                },
+                "updatedId": {
+                    "type": "integer",
+                    "format": "int64"
+                }
+            },
+            "title": "QuestionsLibrary"
         },
         "Range": {
             "type": "object",
@@ -11580,6 +12040,18 @@
                 }
             },
             "title": "StandardControlDTO"
+        },
+        "StandardControlsResponseDTO": {
+            "type": "object",
+            "properties": {
+                "standardLibraryControlDTO": {
+                    "$ref": "#/definitions/StandardLibraryControlDTO"
+                },
+                "standardName": {
+                    "type": "string"
+                }
+            },
+            "title": "StandardControlsResponseDTO"
         },
         "StandardDTO": {
             "type": "object",
