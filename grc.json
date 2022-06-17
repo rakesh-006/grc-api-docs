@@ -6684,9 +6684,9 @@
                         "format": "int64"
                     },
                     {
-                        "name": "projectReviewId",
+                        "name": "reviewId",
                         "in": "path",
-                        "description": "projectReviewId",
+                        "description": "reviewId",
                         "required": true,
                         "type": "integer",
                         "format": "int64"
@@ -6856,8 +6856,8 @@
                 "tags": [
                     "risk-assessment-controller"
                 ],
-                "summary": "listArtefactForProjectControl",
-                "operationId": "listArtefactForProjectControlUsingGET",
+                "summary": "listArtefactForProjectRiskAssessment",
+                "operationId": "listArtefactForProjectRiskAssessmentUsingGET",
                 "produces": [
                     "*/*"
                 ],
