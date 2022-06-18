@@ -97,6 +97,10 @@
             "description": "Project Controller"
         },
         {
+            "name": "project-policy-library-import-controller",
+            "description": "Project Policy Library Import Controller"
+        },
+        {
             "name": "project-risk-assessment-controller",
             "description": "Project Risk Assessment Controller"
         },
@@ -2513,6 +2517,60 @@
                 ],
                 "summary": "importControlLibrariesToProject",
                 "operationId": "importControlLibrariesToProjectUsingPOST",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "*/*"
+                ],
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "importDTO",
+                        "description": "importDTO",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/ImportDTO"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/ApiResponse"
+                        }
+                    },
+                    "201": {
+                        "description": "Created"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                },
+                "security": [
+                    {
+                        "apiKey": [
+                            "global"
+                        ]
+                    }
+                ],
+                "deprecated": false
+            }
+        },
+        "/api/v1/import/project/policyLibrary": {
+            "post": {
+                "tags": [
+                    "project-policy-library-import-controller"
+                ],
+                "summary": "importPolicyLibraryToProject",
+                "operationId": "importPolicyLibraryToProjectUsingPOST",
                 "consumes": [
                     "application/json"
                 ],
@@ -9558,6 +9616,49 @@
                         "type": "integer",
                         "format": "int64"
                     }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/ApiResponse"
+                        }
+                    },
+                    "201": {
+                        "description": "Created"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                },
+                "security": [
+                    {
+                        "apiKey": [
+                            "global"
+                        ]
+                    }
+                ],
+                "deprecated": false
+            }
+        },
+        "/api/v1/upload/policyLibraries": {
+            "post": {
+                "tags": [
+                    "policy-library-import-controller"
+                ],
+                "summary": "uploadPolicyLibraries",
+                "operationId": "uploadPolicyLibrariesUsingPOST",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "*/*"
                 ],
                 "responses": {
                     "200": {
