@@ -97,6 +97,10 @@
             "description": "Project Controller"
         },
         {
+            "name": "project-policy-library-controller",
+            "description": "Project Policy Library Controller"
+        },
+        {
             "name": "project-policy-library-import-controller",
             "description": "Project Policy Library Import Controller"
         },
@@ -5351,6 +5355,51 @@
                     }
                 ],
                 "deprecated": false
+            },
+            "delete": {
+                "tags": [
+                    "policy-library-controller"
+                ],
+                "summary": "deletePolicy",
+                "operationId": "deletePolicyUsingDELETE",
+                "produces": [
+                    "*/*"
+                ],
+                "parameters": [
+                    {
+                        "name": "policyLibraryId",
+                        "in": "path",
+                        "description": "policyLibraryId",
+                        "required": true,
+                        "type": "integer",
+                        "format": "int64"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/ApiResponse"
+                        }
+                    },
+                    "204": {
+                        "description": "No Content"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                },
+                "security": [
+                    {
+                        "apiKey": [
+                            "global"
+                        ]
+                    }
+                ],
+                "deprecated": false
             }
         },
         "/api/v1/policySection/controls": {
@@ -5812,6 +5861,114 @@
                     },
                     "403": {
                         "description": "Forbidden"
+                    }
+                },
+                "security": [
+                    {
+                        "apiKey": [
+                            "global"
+                        ]
+                    }
+                ],
+                "deprecated": false
+            }
+        },
+        "/api/v1/project/policies": {
+            "post": {
+                "tags": [
+                    "project-policy-library-controller"
+                ],
+                "summary": "getAllProjectPolicies",
+                "operationId": "getAllProjectPoliciesUsingPOST",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "*/*"
+                ],
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "paginationRequestDTO",
+                        "description": "paginationRequestDTO",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/PaginationRequestDTO"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/ApiResponse"
+                        }
+                    },
+                    "201": {
+                        "description": "Created"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                },
+                "security": [
+                    {
+                        "apiKey": [
+                            "global"
+                        ]
+                    }
+                ],
+                "deprecated": false
+            }
+        },
+        "/api/v1/project/policy": {
+            "post": {
+                "tags": [
+                    "project-policy-library-controller"
+                ],
+                "summary": "createOrUpdateProjectPolicy",
+                "operationId": "createOrUpdateProjectPolicyUsingPOST",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "*/*"
+                ],
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "policyLibraryDTO",
+                        "description": "policyLibraryDTO",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/PolicyLibraryDTO"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/ApiResponse"
+                        }
+                    },
+                    "201": {
+                        "description": "Created"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
                     }
                 },
                 "security": [
@@ -6880,6 +7037,61 @@
                     },
                     "201": {
                         "description": "Created"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                },
+                "security": [
+                    {
+                        "apiKey": [
+                            "global"
+                        ]
+                    }
+                ],
+                "deprecated": false
+            }
+        },
+        "/api/v1/project/{projectId}/policy/{policyId}": {
+            "get": {
+                "tags": [
+                    "project-policy-library-controller"
+                ],
+                "summary": "getProjectPolicyById",
+                "operationId": "getProjectPolicyByIdUsingGET",
+                "produces": [
+                    "*/*"
+                ],
+                "parameters": [
+                    {
+                        "name": "policyId",
+                        "in": "path",
+                        "description": "policyId",
+                        "required": true,
+                        "type": "integer",
+                        "format": "int64"
+                    },
+                    {
+                        "name": "projectId",
+                        "in": "path",
+                        "description": "projectId",
+                        "required": true,
+                        "type": "integer",
+                        "format": "int64"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/ApiResponse"
+                        }
                     },
                     "401": {
                         "description": "Unauthorized"
@@ -9647,49 +9859,6 @@
                 "deprecated": false
             }
         },
-        "/api/v1/upload/policyLibraries": {
-            "post": {
-                "tags": [
-                    "policy-library-import-controller"
-                ],
-                "summary": "uploadPolicyLibraries",
-                "operationId": "uploadPolicyLibrariesUsingPOST",
-                "consumes": [
-                    "application/json"
-                ],
-                "produces": [
-                    "*/*"
-                ],
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "schema": {
-                            "$ref": "#/definitions/ApiResponse"
-                        }
-                    },
-                    "201": {
-                        "description": "Created"
-                    },
-                    "401": {
-                        "description": "Unauthorized"
-                    },
-                    "403": {
-                        "description": "Forbidden"
-                    },
-                    "404": {
-                        "description": "Not Found"
-                    }
-                },
-                "security": [
-                    {
-                        "apiKey": [
-                            "global"
-                        ]
-                    }
-                ],
-                "deprecated": false
-            }
-        },
         "/api/v1/upload/risk": {
             "post": {
                 "tags": [
@@ -11380,6 +11549,9 @@
                     "type": "integer",
                     "format": "int64"
                 },
+                "projectName": {
+                    "type": "string"
+                },
                 "sourceType": {
                     "type": "string"
                 },
@@ -11419,6 +11591,10 @@
                     }
                 },
                 "id": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "projectId": {
                     "type": "integer",
                     "format": "int64"
                 },
