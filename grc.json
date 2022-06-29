@@ -49,6 +49,10 @@
             "description": "Control Library Import Controller"
         },
         {
+            "name": "dashboard-controller",
+            "description": "Dashboard Controller"
+        },
+        {
             "name": "department-controller",
             "description": "Department Controller"
         },
@@ -139,6 +143,10 @@
         {
             "name": "project-vulnerability-controller",
             "description": "Project Vulnerability Controller"
+        },
+        {
+            "name": "question-library-controller",
+            "description": "Question Library Controller"
         },
         {
             "name": "report-document-controller",
@@ -1022,6 +1030,43 @@
                 "deprecated": false
             }
         },
+        "/api/v1/dashboard": {
+            "get": {
+                "tags": [
+                    "dashboard-controller"
+                ],
+                "summary": "getDashboardDetails",
+                "operationId": "getDashboardDetailsUsingGET",
+                "produces": [
+                    "*/*"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/ApiResponse"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                },
+                "security": [
+                    {
+                        "apiKey": [
+                            "global"
+                        ]
+                    }
+                ],
+                "deprecated": false
+            }
+        },
         "/api/v1/delete/scoringModel/{id}": {
             "delete": {
                 "tags": [
@@ -1419,6 +1464,61 @@
                     },
                     "403": {
                         "description": "Forbidden"
+                    }
+                },
+                "security": [
+                    {
+                        "apiKey": [
+                            "global"
+                        ]
+                    }
+                ],
+                "deprecated": false
+            }
+        },
+        "/api/v1/domain/{domainId}/standard/{standardId}/standardControls": {
+            "get": {
+                "tags": [
+                    "standard-library-controller"
+                ],
+                "summary": "getStandardControlsByIds",
+                "operationId": "getStandardControlsByIdsUsingGET",
+                "produces": [
+                    "*/*"
+                ],
+                "parameters": [
+                    {
+                        "name": "domainId",
+                        "in": "path",
+                        "description": "domainId",
+                        "required": true,
+                        "type": "integer",
+                        "format": "int64"
+                    },
+                    {
+                        "name": "standardId",
+                        "in": "path",
+                        "description": "standardId",
+                        "required": true,
+                        "type": "integer",
+                        "format": "int64"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/ApiResponse"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
                     }
                 },
                 "security": [
@@ -2896,8 +2996,8 @@
                 "tags": [
                     "issue-framework-controller"
                 ],
-                "summary": "deleteIssueAttachment",
-                "operationId": "deleteIssueAttachmentUsingDELETE",
+                "summary": "deleteIssueFramework",
+                "operationId": "deleteIssueFrameworkUsingDELETE",
                 "produces": [
                     "*/*"
                 ],
@@ -2909,13 +3009,6 @@
                         "required": true,
                         "type": "integer",
                         "format": "int64"
-                    },
-                    {
-                        "name": "orgId",
-                        "in": "query",
-                        "description": "orgId",
-                        "required": true,
-                        "type": "string"
                     }
                 ],
                 "responses": {
@@ -3226,7 +3319,7 @@
                     "issue-management-controller"
                 ],
                 "summary": "deleteIssueAttachment",
-                "operationId": "deleteIssueAttachmentUsingDELETE_1",
+                "operationId": "deleteIssueAttachmentUsingDELETE",
                 "produces": [
                     "*/*"
                 ],
@@ -8115,6 +8208,60 @@
                 "deprecated": false
             }
         },
+        "/api/v1/questionLibrary": {
+            "post": {
+                "tags": [
+                    "question-library-controller"
+                ],
+                "summary": "createOrUpdateQuestionLibrary",
+                "operationId": "createOrUpdateQuestionLibraryUsingPOST",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "*/*"
+                ],
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "questionDTO",
+                        "description": "questionDTO",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/QuestionDTO"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/ApiResponse"
+                        }
+                    },
+                    "201": {
+                        "description": "Created"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                },
+                "security": [
+                    {
+                        "apiKey": [
+                            "global"
+                        ]
+                    }
+                ],
+                "deprecated": false
+            }
+        },
         "/api/v1/referenceLibrary": {
             "get": {
                 "tags": [
@@ -11352,6 +11499,23 @@
             },
             "title": "ApiResponse"
         },
+        "ArtefactDTO": {
+            "type": "object",
+            "properties": {
+                "artefactFreqRefId": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "artefactName": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "integer",
+                    "format": "int64"
+                }
+            },
+            "title": "ArtefactDTO"
+        },
         "ArtefactResponseDTOs": {
             "type": "object",
             "properties": {
@@ -11649,6 +11813,9 @@
                         "$ref": "#/definitions/StandardControlsResponseDTO"
                     }
                 },
+                "standardLibraryName": {
+                    "type": "string"
+                },
                 "updatedBy": {
                     "type": "string"
                 },
@@ -11669,7 +11836,7 @@
                 "artefacts": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/definitions/ControlSubRequestDTO"
+                        "$ref": "#/definitions/ArtefactDTO"
                     }
                 },
                 "controlDescription": {
@@ -11698,11 +11865,15 @@
                     "type": "integer",
                     "format": "int64"
                 },
-                "questions": {
+                "standardControlIds": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/definitions/ControlSubRequestDTO"
+                        "type": "string"
                     }
+                },
+                "standardLibraryId": {
+                    "type": "integer",
+                    "format": "int64"
                 }
             },
             "title": "ControlLibraryDTO"
@@ -11741,26 +11912,6 @@
                 }
             },
             "title": "ControlReviewRequestDTO"
-        },
-        "ControlSubRequestDTO": {
-            "type": "object",
-            "properties": {
-                "artefactFreqRefId": {
-                    "type": "integer",
-                    "format": "int64"
-                },
-                "artefactName": {
-                    "type": "string"
-                },
-                "id": {
-                    "type": "integer",
-                    "format": "int64"
-                },
-                "question": {
-                    "type": "string"
-                }
-            },
-            "title": "ControlSubRequestDTO"
         },
         "DepartmentDTO": {
             "type": "object",
@@ -13054,10 +13205,38 @@
             },
             "title": "ProjectRiskStatusDTO"
         },
+        "QuestionDTO": {
+            "type": "object",
+            "properties": {
+                "controlLibraryId": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "id": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "questions": {
+                    "$ref": "#/definitions/QuestionsLibrary"
+                }
+            },
+            "title": "QuestionDTO"
+        },
         "QuestionsLibrary": {
             "type": "object",
             "properties": {
-                "answerType": {
+                "conditionalQuestionId": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "conditionalQuestionResponse": {
+                    "type": "string"
+                },
+                "controlLibraryId": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "createdBy": {
                     "type": "string"
                 },
                 "createdDate": {
@@ -13068,11 +13247,33 @@
                     "type": "integer",
                     "format": "int64"
                 },
+                "effectiveAnswer": {
+                    "type": "string"
+                },
+                "effectiveness": {
+                    "type": "string"
+                },
+                "gap": {
+                    "type": "string"
+                },
+                "gapAnswer": {
+                    "type": "string"
+                },
                 "id": {
                     "type": "integer",
                     "format": "int64"
                 },
                 "question": {
+                    "type": "string"
+                },
+                "questionResponses": {
+                    "type": "string"
+                },
+                "questionTypeRefId": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "recommendation": {
                     "type": "string"
                 },
                 "source": {
@@ -13086,6 +13287,9 @@
                     "format": "date-time"
                 },
                 "sourceReference": {
+                    "type": "string"
+                },
+                "updatedBy": {
                     "type": "string"
                 },
                 "updatedDate": {
