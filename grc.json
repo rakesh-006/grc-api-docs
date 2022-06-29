@@ -3009,6 +3009,13 @@
                         "required": true,
                         "type": "integer",
                         "format": "int64"
+                    },
+                    {
+                        "name": "tenantOrgId",
+                        "in": "query",
+                        "description": "tenantOrgId",
+                        "required": true,
+                        "type": "string"
                     }
                 ],
                 "responses": {
