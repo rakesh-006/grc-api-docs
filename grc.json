@@ -8608,6 +8608,108 @@
                 "deprecated": false
             }
         },
+        "/api/v1/project/{projectId}/riskLibrary/{projectRiskId}/questions": {
+            "get": {
+                "tags": [
+                    "project-risk-library-controller"
+                ],
+                "summary": "getAllProjectQuestionsByProjectRiskId",
+                "operationId": "getAllProjectQuestionsByProjectRiskIdUsingGET",
+                "produces": [
+                    "*/*"
+                ],
+                "parameters": [
+                    {
+                        "name": "projectId",
+                        "in": "path",
+                        "description": "projectId",
+                        "required": true,
+                        "type": "integer",
+                        "format": "int64"
+                    },
+                    {
+                        "name": "projectRiskId",
+                        "in": "path",
+                        "description": "projectRiskId",
+                        "required": true,
+                        "type": "integer",
+                        "format": "int64"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/ApiResponse"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                },
+                "security": [
+                    {
+                        "apiKey": [
+                            "global"
+                        ]
+                    }
+                ],
+                "deprecated": false
+            }
+        },
+        "/api/v1/project/{projectId}/standards": {
+            "get": {
+                "tags": [
+                    "project-standard-library-controller"
+                ],
+                "summary": "getStandardByProjectById",
+                "operationId": "getStandardByProjectByIdUsingGET",
+                "produces": [
+                    "*/*"
+                ],
+                "parameters": [
+                    {
+                        "name": "projectId",
+                        "in": "path",
+                        "description": "projectId",
+                        "required": true,
+                        "type": "integer",
+                        "format": "int64"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/ApiResponse"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                },
+                "security": [
+                    {
+                        "apiKey": [
+                            "global"
+                        ]
+                    }
+                ],
+                "deprecated": false
+            }
+        },
         "/api/v1/projects": {
             "post": {
                 "tags": [
@@ -13603,6 +13705,10 @@
                 "conditionalQuestionResponse": {
                     "type": "string"
                 },
+                "controlLibraryId": {
+                    "type": "integer",
+                    "format": "int64"
+                },
                 "controlLibraryName": {
                     "type": "string"
                 },
@@ -13634,6 +13740,16 @@
                     "format": "int64"
                 },
                 "projectControlLibraryId": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "projectControlTypeRefCode": {
+                    "type": "string"
+                },
+                "projectControlTypeRefDesc": {
+                    "type": "string"
+                },
+                "projectControlTypeRefId": {
                     "type": "integer",
                     "format": "int64"
                 },
@@ -13674,6 +13790,19 @@
                     "format": "date-time"
                 },
                 "sourceReference": {
+                    "type": "string"
+                },
+                "standardControlsResponseDTOS": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/StandardControlsResponseDTO"
+                    }
+                },
+                "standardId": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "standardName": {
                     "type": "string"
                 },
                 "updatedBy": {
