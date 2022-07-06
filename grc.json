@@ -6290,6 +6290,61 @@
                 "deprecated": false
             }
         },
+        "/api/v1/project/control/questions/reviews": {
+            "get": {
+                "tags": [
+                    "project-control-review-controller"
+                ],
+                "summary": "getProjectControlReviews",
+                "operationId": "getProjectControlReviewsUsingGET",
+                "produces": [
+                    "*/*"
+                ],
+                "parameters": [
+                    {
+                        "name": "controlId",
+                        "in": "query",
+                        "description": "controlId",
+                        "required": true,
+                        "type": "integer",
+                        "format": "int64"
+                    },
+                    {
+                        "name": "projectId",
+                        "in": "query",
+                        "description": "projectId",
+                        "required": true,
+                        "type": "integer",
+                        "format": "int64"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/ApiResponse"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                },
+                "security": [
+                    {
+                        "apiKey": [
+                            "global"
+                        ]
+                    }
+                ],
+                "deprecated": false
+            }
+        },
         "/api/v1/project/control/review": {
             "post": {
                 "tags": [
@@ -6306,11 +6361,11 @@
                 "parameters": [
                     {
                         "in": "body",
-                        "name": "controlReviewRequestDTO",
-                        "description": "controlReviewRequestDTO",
+                        "name": "projectRiskAssessmentQuestionDTO",
+                        "description": "projectRiskAssessmentQuestionDTO",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/ControlReviewRequestDTO"
+                            "$ref": "#/definitions/ProjectRiskAssessmentQuestionDTO"
                         }
                     }
                 ],
@@ -6431,61 +6486,6 @@
                     },
                     "201": {
                         "description": "Created"
-                    },
-                    "401": {
-                        "description": "Unauthorized"
-                    },
-                    "403": {
-                        "description": "Forbidden"
-                    },
-                    "404": {
-                        "description": "Not Found"
-                    }
-                },
-                "security": [
-                    {
-                        "apiKey": [
-                            "global"
-                        ]
-                    }
-                ],
-                "deprecated": false
-            }
-        },
-        "/api/v1/project/control/reviews": {
-            "get": {
-                "tags": [
-                    "project-control-review-controller"
-                ],
-                "summary": "getProjectControlReviews",
-                "operationId": "getProjectControlReviewsUsingGET",
-                "produces": [
-                    "*/*"
-                ],
-                "parameters": [
-                    {
-                        "name": "controlId",
-                        "in": "query",
-                        "description": "controlId",
-                        "required": true,
-                        "type": "integer",
-                        "format": "int64"
-                    },
-                    {
-                        "name": "projectId",
-                        "in": "query",
-                        "description": "projectId",
-                        "required": true,
-                        "type": "integer",
-                        "format": "int64"
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "schema": {
-                            "$ref": "#/definitions/ApiResponse"
-                        }
                     },
                     "401": {
                         "description": "Unauthorized"
@@ -13786,6 +13786,9 @@
                 "recommendation": {
                     "type": "string"
                 },
+                "responseDTOS": {
+                    "$ref": "#/definitions/ResponseDTO"
+                },
                 "source": {
                     "type": "string"
                 },
@@ -13829,6 +13832,14 @@
         "ProjectRiskAssessmentQuestionDTO": {
             "type": "object",
             "properties": {
+                "projectControlLibId": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "projectControlReviewId": {
+                    "type": "integer",
+                    "format": "int64"
+                },
                 "projectId": {
                     "type": "integer",
                     "format": "int64"
@@ -14159,6 +14170,21 @@
                 }
             },
             "title": "Resource"
+        },
+        "ResponseDTO": {
+            "type": "object",
+            "properties": {
+                "gapAndEffectiveness": {
+                    "type": "string"
+                },
+                "questionResponse": {
+                    "type": "string"
+                },
+                "recommendation": {
+                    "type": "string"
+                }
+            },
+            "title": "ResponseDTO"
         },
         "ResponseEntity": {
             "type": "object",
