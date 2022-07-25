@@ -4962,7 +4962,7 @@
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/ResponseEntity"
+                            "$ref": "#/definitions/ApiResponse"
                         }
                     },
                     "401": {
@@ -7560,6 +7560,60 @@
                         "description": "projectRiskLibraryRequestDTO",
                         "required": true,
                         "schema": {
+                            "$ref": "#/definitions/ProjectRiskLibraryAssessmentRequestDTO"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/ApiResponse"
+                        }
+                    },
+                    "201": {
+                        "description": "Created"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                },
+                "security": [
+                    {
+                        "apiKey": [
+                            "global"
+                        ]
+                    }
+                ],
+                "deprecated": false
+            }
+        },
+        "/api/v1/project/riskLibrary/assessment": {
+            "post": {
+                "tags": [
+                    "project-risk-library-controller"
+                ],
+                "summary": "createRiskAssessment",
+                "operationId": "createRiskAssessmentUsingPOST",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "*/*"
+                ],
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "projectRiskLibraryRequestDTO",
+                        "description": "projectRiskLibraryRequestDTO",
+                        "required": true,
+                        "schema": {
                             "$ref": "#/definitions/ProjectRiskLibraryRequestDTO"
                         }
                     }
@@ -9076,6 +9130,114 @@
                     },
                     "404": {
                         "description": "Not Found"
+                    }
+                },
+                "security": [
+                    {
+                        "apiKey": [
+                            "global"
+                        ]
+                    }
+                ],
+                "deprecated": false
+            }
+        },
+        "/api/v1/project/{projectId}/standard/controls": {
+            "get": {
+                "tags": [
+                    "project-standard-library-controller"
+                ],
+                "summary": "getProjectStandardControlsWithQuestions",
+                "operationId": "getProjectStandardControlsWithQuestionsUsingGET",
+                "produces": [
+                    "*/*"
+                ],
+                "parameters": [
+                    {
+                        "name": "projectId",
+                        "in": "path",
+                        "description": "projectId",
+                        "required": true,
+                        "type": "integer",
+                        "format": "int64"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/ApiResponse"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                },
+                "security": [
+                    {
+                        "apiKey": [
+                            "global"
+                        ]
+                    }
+                ],
+                "deprecated": false
+            }
+        },
+        "/api/v1/project/{projectId}/standard/{standardName}": {
+            "delete": {
+                "tags": [
+                    "project-standard-library-controller"
+                ],
+                "summary": "deleteProjectStandardDomains",
+                "operationId": "deleteProjectStandardDomainsUsingDELETE",
+                "produces": [
+                    "*/*"
+                ],
+                "parameters": [
+                    {
+                        "name": "domainName",
+                        "in": "query",
+                        "description": "domainName",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "projectId",
+                        "in": "path",
+                        "description": "projectId",
+                        "required": true,
+                        "type": "integer",
+                        "format": "int64"
+                    },
+                    {
+                        "name": "standardName",
+                        "in": "path",
+                        "description": "standardName",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/ApiResponse"
+                        }
+                    },
+                    "204": {
+                        "description": "No Content"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
                     }
                 },
                 "security": [
@@ -13312,6 +13474,10 @@
                     "type": "integer",
                     "format": "int64"
                 },
+                "projectControlReviewId": {
+                    "type": "integer",
+                    "format": "int64"
+                },
                 "projectId": {
                     "type": "integer",
                     "format": "int64"
@@ -13879,10 +14045,6 @@
                 "artefactName": {
                     "type": "string"
                 },
-                "controlLibraryId": {
-                    "type": "integer",
-                    "format": "int64"
-                },
                 "createdBy": {
                     "type": "string"
                 },
@@ -14429,6 +14591,44 @@
             },
             "title": "ProjectRiskAssessmentSubQuestionDTO"
         },
+        "ProjectRiskLibraryAssessmentRequestDTO": {
+            "type": "object",
+            "properties": {
+                "description": {
+                    "type": "string"
+                },
+                "domainId": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "id": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "impactId": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "likelihoodId": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "projectId": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "riskStatement": {
+                    "type": "string"
+                },
+                "tags": {
+                    "type": "string"
+                }
+            },
+            "title": "ProjectRiskLibraryAssessmentRequestDTO"
+        },
         "ProjectRiskLibraryRequestDTO": {
             "type": "object",
             "properties": {
@@ -14487,11 +14687,14 @@
         "ProjectStandardDomainsRequestDTO": {
             "type": "object",
             "properties": {
-                "standardDomainsToAdd": {
+                "domainNames": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/definitions/StandardDomains"
+                        "type": "string"
                     }
+                },
+                "standardName": {
+                    "type": "string"
                 }
             },
             "title": "ProjectStandardDomainsRequestDTO"
@@ -15113,23 +15316,6 @@
                 }
             },
             "title": "StandardDTO"
-        },
-        "StandardDomains": {
-            "type": "object",
-            "properties": {
-                "domainIds": {
-                    "type": "array",
-                    "items": {
-                        "type": "integer",
-                        "format": "int64"
-                    }
-                },
-                "standardId": {
-                    "type": "integer",
-                    "format": "int64"
-                }
-            },
-            "title": "StandardDomains"
         },
         "StandardLibraryControlDTO": {
             "type": "object",
