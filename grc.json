@@ -7648,61 +7648,6 @@
                 "deprecated": false
             }
         },
-        "/api/v1/project/riskLibrary/assessment/questions": {
-            "get": {
-                "tags": [
-                    "project-risk-assessment-controller"
-                ],
-                "summary": "getProjectRiskLibraryAssessmentQuestions",
-                "operationId": "getProjectRiskLibraryAssessmentQuestionsUsingGET",
-                "produces": [
-                    "*/*"
-                ],
-                "parameters": [
-                    {
-                        "name": "projectId",
-                        "in": "query",
-                        "description": "projectId",
-                        "required": true,
-                        "type": "integer",
-                        "format": "int64"
-                    },
-                    {
-                        "name": "projectRiskId",
-                        "in": "query",
-                        "description": "projectRiskId",
-                        "required": true,
-                        "type": "integer",
-                        "format": "int64"
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "schema": {
-                            "$ref": "#/definitions/ApiResponse"
-                        }
-                    },
-                    "401": {
-                        "description": "Unauthorized"
-                    },
-                    "403": {
-                        "description": "Forbidden"
-                    },
-                    "404": {
-                        "description": "Not Found"
-                    }
-                },
-                "security": [
-                    {
-                        "apiKey": [
-                            "global"
-                        ]
-                    }
-                ],
-                "deprecated": false
-            }
-        },
         "/api/v1/project/riskLibrary/assessment/questions/responses": {
             "post": {
                 "tags": [
@@ -7778,6 +7723,60 @@
                         "required": true,
                         "schema": {
                             "$ref": "#/definitions/ProjectRiskStatusDTO"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/ApiResponse"
+                        }
+                    },
+                    "201": {
+                        "description": "Created"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                },
+                "security": [
+                    {
+                        "apiKey": [
+                            "global"
+                        ]
+                    }
+                ],
+                "deprecated": false
+            }
+        },
+        "/api/v1/project/standard/assessment/questions": {
+            "post": {
+                "tags": [
+                    "project-standard-library-controller"
+                ],
+                "summary": "createOrUpdateStandardAssessmentQuestionResponse",
+                "operationId": "createOrUpdateStandardAssessmentQuestionResponseUsingPOST",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "*/*"
+                ],
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "projectRiskAssessmentQuestionDTO",
+                        "description": "projectRiskAssessmentQuestionDTO",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/ProjectRiskAssessmentQuestionDTO"
                         }
                     }
                 ],
@@ -8105,6 +8104,53 @@
                 "deprecated": false
             }
         },
+        "/api/v1/project/{projectId}/artefacts": {
+            "get": {
+                "tags": [
+                    "project-standard-library-controller"
+                ],
+                "summary": "getProjectArtefacts",
+                "operationId": "getProjectArtefactsUsingGET",
+                "produces": [
+                    "*/*"
+                ],
+                "parameters": [
+                    {
+                        "name": "projectId",
+                        "in": "path",
+                        "description": "projectId",
+                        "required": true,
+                        "type": "integer",
+                        "format": "int64"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/ApiResponse"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                },
+                "security": [
+                    {
+                        "apiKey": [
+                            "global"
+                        ]
+                    }
+                ],
+                "deprecated": false
+            }
+        },
         "/api/v1/project/{projectId}/control/{controlId}": {
             "get": {
                 "tags": [
@@ -8213,6 +8259,124 @@
                 "deprecated": false
             }
         },
+        "/api/v1/project/{projectId}/control/{controlId}/artefacts": {
+            "get": {
+                "tags": [
+                    "project-standard-library-controller"
+                ],
+                "summary": "getProjectControlArtefactsWithoutFiles",
+                "operationId": "getProjectControlArtefactsWithoutFilesUsingGET",
+                "produces": [
+                    "*/*"
+                ],
+                "parameters": [
+                    {
+                        "name": "controlId",
+                        "in": "path",
+                        "description": "controlId",
+                        "required": true,
+                        "type": "integer",
+                        "format": "int64"
+                    },
+                    {
+                        "name": "projectId",
+                        "in": "path",
+                        "description": "projectId",
+                        "required": true,
+                        "type": "integer",
+                        "format": "int64"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/ApiResponse"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                },
+                "security": [
+                    {
+                        "apiKey": [
+                            "global"
+                        ]
+                    }
+                ],
+                "deprecated": false
+            }
+        },
+        "/api/v1/project/{projectId}/control/{controlId}/domain/{domainId}/questions": {
+            "get": {
+                "tags": [
+                    "project-question-library-controller"
+                ],
+                "summary": "getAllQuestionsForControlsWithResponses",
+                "operationId": "getAllQuestionsForControlsWithResponsesUsingGET",
+                "produces": [
+                    "*/*"
+                ],
+                "parameters": [
+                    {
+                        "name": "controlId",
+                        "in": "path",
+                        "description": "controlId",
+                        "required": true,
+                        "type": "integer",
+                        "format": "int64"
+                    },
+                    {
+                        "name": "domainId",
+                        "in": "path",
+                        "description": "domainId",
+                        "required": true,
+                        "type": "integer",
+                        "format": "int64"
+                    },
+                    {
+                        "name": "projectId",
+                        "in": "path",
+                        "description": "projectId",
+                        "required": true,
+                        "type": "integer",
+                        "format": "int64"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/ApiResponse"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                },
+                "security": [
+                    {
+                        "apiKey": [
+                            "global"
+                        ]
+                    }
+                ],
+                "deprecated": false
+            }
+        },
         "/api/v1/project/{projectId}/control/{projectControlId}/review/{reviewId}/artefact": {
             "get": {
                 "tags": [
@@ -8299,6 +8463,61 @@
                         "in": "path",
                         "description": "projectControlLibId",
                         "required": true,
+                        "type": "integer",
+                        "format": "int64"
+                    },
+                    {
+                        "name": "projectId",
+                        "in": "path",
+                        "description": "projectId",
+                        "required": true,
+                        "type": "integer",
+                        "format": "int64"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/ApiResponse"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                },
+                "security": [
+                    {
+                        "apiKey": [
+                            "global"
+                        ]
+                    }
+                ],
+                "deprecated": false
+            }
+        },
+        "/api/v1/project/{projectId}/controls": {
+            "get": {
+                "tags": [
+                    "project-standard-library-controller"
+                ],
+                "summary": "getProjectStandardControlsWithQuestions",
+                "operationId": "getProjectStandardControlsWithQuestionsUsingGET",
+                "produces": [
+                    "*/*"
+                ],
+                "parameters": [
+                    {
+                        "name": "domainId",
+                        "in": "query",
+                        "description": "domainId",
+                        "required": false,
                         "type": "integer",
                         "format": "int64"
                     },
@@ -8439,6 +8658,53 @@
                         "name": "standardId",
                         "in": "path",
                         "description": "standardId",
+                        "required": true,
+                        "type": "integer",
+                        "format": "int64"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/ApiResponse"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                },
+                "security": [
+                    {
+                        "apiKey": [
+                            "global"
+                        ]
+                    }
+                ],
+                "deprecated": false
+            }
+        },
+        "/api/v1/project/{projectId}/domains": {
+            "get": {
+                "tags": [
+                    "project-control-library-controller"
+                ],
+                "summary": "getAllProjectDomains",
+                "operationId": "getAllProjectDomainsUsingGET",
+                "produces": [
+                    "*/*"
+                ],
+                "parameters": [
+                    {
+                        "name": "projectId",
+                        "in": "path",
+                        "description": "projectId",
                         "required": true,
                         "type": "integer",
                         "format": "int64"
@@ -9142,53 +9408,6 @@
                 "deprecated": false
             }
         },
-        "/api/v1/project/{projectId}/standard/controls": {
-            "get": {
-                "tags": [
-                    "project-standard-library-controller"
-                ],
-                "summary": "getProjectStandardControlsWithQuestions",
-                "operationId": "getProjectStandardControlsWithQuestionsUsingGET",
-                "produces": [
-                    "*/*"
-                ],
-                "parameters": [
-                    {
-                        "name": "projectId",
-                        "in": "path",
-                        "description": "projectId",
-                        "required": true,
-                        "type": "integer",
-                        "format": "int64"
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "schema": {
-                            "$ref": "#/definitions/ApiResponse"
-                        }
-                    },
-                    "401": {
-                        "description": "Unauthorized"
-                    },
-                    "403": {
-                        "description": "Forbidden"
-                    },
-                    "404": {
-                        "description": "Not Found"
-                    }
-                },
-                "security": [
-                    {
-                        "apiKey": [
-                            "global"
-                        ]
-                    }
-                ],
-                "deprecated": false
-            }
-        },
         "/api/v1/project/{projectId}/standard/{standardId}": {
             "delete": {
                 "tags": [
@@ -9240,6 +9459,116 @@
                     },
                     "403": {
                         "description": "Forbidden"
+                    }
+                },
+                "security": [
+                    {
+                        "apiKey": [
+                            "global"
+                        ]
+                    }
+                ],
+                "deprecated": false
+            }
+        },
+        "/api/v1/project/{projectId}/standard/{standardId}/artefacts": {
+            "get": {
+                "tags": [
+                    "project-standard-library-controller"
+                ],
+                "summary": "getProjectStandardArtefacts",
+                "operationId": "getProjectStandardArtefactsUsingGET",
+                "produces": [
+                    "*/*"
+                ],
+                "parameters": [
+                    {
+                        "name": "projectId",
+                        "in": "path",
+                        "description": "projectId",
+                        "required": true,
+                        "type": "integer",
+                        "format": "int64"
+                    },
+                    {
+                        "name": "standardId",
+                        "in": "path",
+                        "description": "standardId",
+                        "required": true,
+                        "type": "integer",
+                        "format": "int64"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/ApiResponse"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                },
+                "security": [
+                    {
+                        "apiKey": [
+                            "global"
+                        ]
+                    }
+                ],
+                "deprecated": false
+            }
+        },
+        "/api/v1/project/{projectId}/standard/{standardId}/controls": {
+            "get": {
+                "tags": [
+                    "project-standard-library-controller"
+                ],
+                "summary": "getProjectStandardControlDomains",
+                "operationId": "getProjectStandardControlDomainsUsingGET",
+                "produces": [
+                    "*/*"
+                ],
+                "parameters": [
+                    {
+                        "name": "projectId",
+                        "in": "path",
+                        "description": "projectId",
+                        "required": true,
+                        "type": "integer",
+                        "format": "int64"
+                    },
+                    {
+                        "name": "standardId",
+                        "in": "path",
+                        "description": "standardId",
+                        "required": true,
+                        "type": "integer",
+                        "format": "int64"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/ApiResponse"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
                     }
                 },
                 "security": [
@@ -11875,6 +12204,112 @@
                 "deprecated": false
             }
         },
+        "/api/v1/uplaod/artefactAssessment": {
+            "post": {
+                "tags": [
+                    "risk-assessment-controller"
+                ],
+                "summary": "uploadArtefactAssessment",
+                "operationId": "uploadArtefactAssessmentUsingPOST",
+                "consumes": [
+                    "multipart/form-data"
+                ],
+                "produces": [
+                    "*/*"
+                ],
+                "parameters": [
+                    {
+                        "name": "artefactFile",
+                        "in": "formData",
+                        "description": "artefactFile",
+                        "required": true,
+                        "type": "file"
+                    },
+                    {
+                        "name": "artefactId",
+                        "in": "query",
+                        "description": "artefactId",
+                        "required": true,
+                        "type": "integer",
+                        "format": "int64"
+                    },
+                    {
+                        "name": "artefactName",
+                        "in": "query",
+                        "description": "artefactName",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "id",
+                        "in": "query",
+                        "description": "id",
+                        "required": true,
+                        "type": "integer",
+                        "format": "int64"
+                    },
+                    {
+                        "name": "orgId",
+                        "in": "query",
+                        "description": "orgId",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "projectControlId",
+                        "in": "query",
+                        "description": "projectControlId",
+                        "required": true,
+                        "type": "integer",
+                        "format": "int64"
+                    },
+                    {
+                        "name": "projectId",
+                        "in": "query",
+                        "description": "projectId",
+                        "required": true,
+                        "type": "integer",
+                        "format": "int64"
+                    },
+                    {
+                        "name": "projectStandardId",
+                        "in": "query",
+                        "description": "projectStandardId",
+                        "required": true,
+                        "type": "integer",
+                        "format": "int64"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/ApiResponse"
+                        }
+                    },
+                    "201": {
+                        "description": "Created"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                },
+                "security": [
+                    {
+                        "apiKey": [
+                            "global"
+                        ]
+                    }
+                ],
+                "deprecated": false
+            }
+        },
         "/api/v1/upload/artefact": {
             "post": {
                 "tags": [
@@ -11946,6 +12381,128 @@
                         "name": "projectRiskId",
                         "in": "query",
                         "description": "projectRiskId",
+                        "required": true,
+                        "type": "integer",
+                        "format": "int64"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/ApiResponse"
+                        }
+                    },
+                    "201": {
+                        "description": "Created"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                },
+                "security": [
+                    {
+                        "apiKey": [
+                            "global"
+                        ]
+                    }
+                ],
+                "deprecated": false
+            }
+        },
+        "/api/v1/upload/artefactReview": {
+            "post": {
+                "tags": [
+                    "risk-assessment-controller"
+                ],
+                "summary": "uploadArtefactReview",
+                "operationId": "uploadArtefactReviewUsingPOST",
+                "consumes": [
+                    "multipart/form-data"
+                ],
+                "produces": [
+                    "*/*"
+                ],
+                "parameters": [
+                    {
+                        "name": "artefactFile",
+                        "in": "formData",
+                        "description": "artefactFile",
+                        "required": true,
+                        "type": "file"
+                    },
+                    {
+                        "name": "artefactId",
+                        "in": "query",
+                        "description": "artefactId",
+                        "required": true,
+                        "type": "integer",
+                        "format": "int64"
+                    },
+                    {
+                        "name": "artefactName",
+                        "in": "query",
+                        "description": "artefactName",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "id",
+                        "in": "query",
+                        "description": "id",
+                        "required": true,
+                        "type": "integer",
+                        "format": "int64"
+                    },
+                    {
+                        "name": "orgId",
+                        "in": "query",
+                        "description": "orgId",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "projectControlId",
+                        "in": "query",
+                        "description": "projectControlId",
+                        "required": true,
+                        "type": "integer",
+                        "format": "int64"
+                    },
+                    {
+                        "name": "projectId",
+                        "in": "query",
+                        "description": "projectId",
+                        "required": true,
+                        "type": "integer",
+                        "format": "int64"
+                    },
+                    {
+                        "name": "projectReviewId",
+                        "in": "query",
+                        "description": "projectReviewId",
+                        "required": true,
+                        "type": "integer",
+                        "format": "int64"
+                    },
+                    {
+                        "name": "projectRiskId",
+                        "in": "query",
+                        "description": "projectRiskId",
+                        "required": true,
+                        "type": "integer",
+                        "format": "int64"
+                    },
+                    {
+                        "name": "projectStandardId",
+                        "in": "query",
+                        "description": "projectStandardId",
                         "required": true,
                         "type": "integer",
                         "format": "int64"
@@ -14553,6 +15110,10 @@
                     "type": "integer",
                     "format": "int64"
                 },
+                "projectQuestionLibraryId": {
+                    "type": "integer",
+                    "format": "int64"
+                },
                 "projectRiskLibraryId": {
                     "type": "integer",
                     "format": "int64"
@@ -14562,6 +15123,9 @@
                     "items": {
                         "$ref": "#/definitions/ProjectRiskAssessmentSubQuestionDTO"
                     }
+                },
+                "responses": {
+                    "$ref": "#/definitions/ProjectRiskAssessmentSubQuestionDTO"
                 }
             },
             "title": "ProjectRiskAssessmentQuestionDTO"
