@@ -8372,7 +8372,7 @@
                 "deprecated": false
             }
         },
-        "/api/v1/project/{projectId}/control/{controlId}/domain/{domainId}/questions": {
+        "/api/v1/project/{projectId}/control/{controlId}/questions": {
             "get": {
                 "tags": [
                     "project-question-library-controller"
@@ -8387,14 +8387,6 @@
                         "name": "controlId",
                         "in": "path",
                         "description": "controlId",
-                        "required": true,
-                        "type": "integer",
-                        "format": "int64"
-                    },
-                    {
-                        "name": "domainId",
-                        "in": "path",
-                        "description": "domainId",
                         "required": true,
                         "type": "integer",
                         "format": "int64"
@@ -13501,6 +13493,10 @@
                     "type": "integer",
                     "format": "int64"
                 },
+                "projectStandardLibraryId": {
+                    "type": "integer",
+                    "format": "int64"
+                },
                 "residualImpactId": {
                     "type": "integer",
                     "format": "int64"
@@ -13602,6 +13598,10 @@
                     "format": "int64"
                 },
                 "projectRiskId": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "projectStandardLibraryId": {
                     "type": "integer",
                     "format": "int64"
                 }
@@ -15206,6 +15206,10 @@
                     "format": "int64"
                 },
                 "projectRiskLibraryId": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "projectStandardLibraryId": {
                     "type": "integer",
                     "format": "int64"
                 },
