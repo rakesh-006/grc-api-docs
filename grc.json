@@ -823,53 +823,6 @@
                 "deprecated": false
             }
         },
-        "/api/v1/control/{controlLibraryId}": {
-            "delete": {
-                "tags": [
-                    "control-library-controller"
-                ],
-                "summary": "deleteControlLibrary",
-                "operationId": "deleteControlLibraryUsingDELETE",
-                "produces": [
-                    "*/*"
-                ],
-                "parameters": [
-                    {
-                        "name": "controlLibraryId",
-                        "in": "path",
-                        "description": "controlLibraryId",
-                        "required": true,
-                        "type": "integer",
-                        "format": "int64"
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "schema": {
-                            "$ref": "#/definitions/ApiResponse"
-                        }
-                    },
-                    "204": {
-                        "description": "No Content"
-                    },
-                    "401": {
-                        "description": "Unauthorized"
-                    },
-                    "403": {
-                        "description": "Forbidden"
-                    }
-                },
-                "security": [
-                    {
-                        "apiKey": [
-                            "global"
-                        ]
-                    }
-                ],
-                "deprecated": false
-            }
-        },
         "/api/v1/control/{controlLibraryId}/levelOne/questions": {
             "get": {
                 "tags": [
@@ -1266,6 +1219,54 @@
                 "deprecated": false
             }
         },
+        "/api/v1/delete/control": {
+            "delete": {
+                "tags": [
+                    "control-library-controller"
+                ],
+                "summary": "deleteControlLibrary",
+                "operationId": "deleteControlLibraryUsingDELETE",
+                "produces": [
+                    "*/*"
+                ],
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "importDTO",
+                        "description": "importDTO",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/ImportDTO"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/ApiResponse"
+                        }
+                    },
+                    "204": {
+                        "description": "No Content"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                },
+                "security": [
+                    {
+                        "apiKey": [
+                            "global"
+                        ]
+                    }
+                ],
+                "deprecated": false
+            }
+        },
         "/api/v1/delete/scoringModel/{id}": {
             "delete": {
                 "tags": [
@@ -1284,6 +1285,54 @@
                         "required": true,
                         "type": "integer",
                         "format": "int64"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/ApiResponse"
+                        }
+                    },
+                    "204": {
+                        "description": "No Content"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                },
+                "security": [
+                    {
+                        "apiKey": [
+                            "global"
+                        ]
+                    }
+                ],
+                "deprecated": false
+            }
+        },
+        "/api/v1/delete/standard": {
+            "delete": {
+                "tags": [
+                    "standard-library-controller"
+                ],
+                "summary": "deleteStandards",
+                "operationId": "deleteStandardsUsingDELETE",
+                "produces": [
+                    "*/*"
+                ],
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "importDTO",
+                        "description": "importDTO",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/ImportDTO"
+                        }
                     }
                 ],
                 "responses": {
@@ -6939,6 +6988,54 @@
                 "deprecated": false
             }
         },
+        "/api/v1/project/delete/control": {
+            "delete": {
+                "tags": [
+                    "project-control-library-controller"
+                ],
+                "summary": "deleteProjectControl",
+                "operationId": "deleteProjectControlUsingDELETE",
+                "produces": [
+                    "*/*"
+                ],
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "importDTO",
+                        "description": "importDTO",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/ImportDTO"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/ApiResponse"
+                        }
+                    },
+                    "204": {
+                        "description": "No Content"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                },
+                "security": [
+                    {
+                        "apiKey": [
+                            "global"
+                        ]
+                    }
+                ],
+                "deprecated": false
+            }
+        },
         "/api/v1/project/policies": {
             "post": {
                 "tags": [
@@ -8419,13 +8516,15 @@
                     }
                 ],
                 "deprecated": false
-            },
-            "delete": {
+            }
+        },
+        "/api/v1/project/{projectId}/control/{controlId}/questions": {
+            "get": {
                 "tags": [
-                    "project-control-library-controller"
+                    "project-question-library-controller"
                 ],
-                "summary": "deleteProjectControl",
-                "operationId": "deleteProjectControlUsingDELETE",
+                "summary": "getAllQuestionsForControlsWithResponses",
+                "operationId": "getAllQuestionsForControlsWithResponsesUsingGET",
                 "produces": [
                     "*/*"
                 ],
@@ -8454,14 +8553,14 @@
                             "$ref": "#/definitions/ApiResponse"
                         }
                     },
-                    "204": {
-                        "description": "No Content"
-                    },
                     "401": {
                         "description": "Unauthorized"
                     },
                     "403": {
                         "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
                     }
                 },
                 "security": [
@@ -8474,13 +8573,13 @@
                 "deprecated": false
             }
         },
-        "/api/v1/project/{projectId}/control/{controlId}/questions": {
+        "/api/v1/project/{projectId}/control/{controlId}/review/{reviewId}/artefacts-files": {
             "get": {
                 "tags": [
-                    "project-question-library-controller"
+                    "project-standard-library-controller"
                 ],
-                "summary": "getAllQuestionsForControlsWithResponses",
-                "operationId": "getAllQuestionsForControlsWithResponsesUsingGET",
+                "summary": "getProjectControlReviewArtefactsWithFiles",
+                "operationId": "getProjectControlReviewArtefactsWithFilesUsingGET",
                 "produces": [
                     "*/*"
                 ],
@@ -8497,6 +8596,14 @@
                         "name": "projectId",
                         "in": "path",
                         "description": "projectId",
+                        "required": true,
+                        "type": "integer",
+                        "format": "int64"
+                    },
+                    {
+                        "name": "reviewId",
+                        "in": "path",
+                        "description": "reviewId",
                         "required": true,
                         "type": "integer",
                         "format": "int64"
@@ -11607,51 +11714,6 @@
                     },
                     "404": {
                         "description": "Not Found"
-                    }
-                },
-                "security": [
-                    {
-                        "apiKey": [
-                            "global"
-                        ]
-                    }
-                ],
-                "deprecated": false
-            },
-            "delete": {
-                "tags": [
-                    "standard-library-controller"
-                ],
-                "summary": "deleteStandards",
-                "operationId": "deleteStandardsUsingDELETE",
-                "produces": [
-                    "*/*"
-                ],
-                "parameters": [
-                    {
-                        "name": "standardId",
-                        "in": "path",
-                        "description": "standardId",
-                        "required": true,
-                        "type": "integer",
-                        "format": "int64"
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "schema": {
-                            "$ref": "#/definitions/ApiResponse"
-                        }
-                    },
-                    "204": {
-                        "description": "No Content"
-                    },
-                    "401": {
-                        "description": "Unauthorized"
-                    },
-                    "403": {
-                        "description": "Forbidden"
                     }
                 },
                 "security": [
