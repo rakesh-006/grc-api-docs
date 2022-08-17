@@ -1566,24 +1566,28 @@
                 "deprecated": false
             }
         },
-        "/api/v1/dlink/control/{controlLibraryId}": {
-            "get": {
+        "/api/v1/dlink/control": {
+            "post": {
                 "tags": [
                     "control-library-controller"
                 ],
                 "summary": "dlinkControlLibrary",
-                "operationId": "dlinkControlLibraryUsingGET",
+                "operationId": "dlinkControlLibraryUsingPOST",
+                "consumes": [
+                    "application/json"
+                ],
                 "produces": [
                     "*/*"
                 ],
                 "parameters": [
                     {
-                        "name": "controlLibraryId",
-                        "in": "path",
-                        "description": "controlLibraryId",
+                        "in": "body",
+                        "name": "dlinkDTO",
+                        "description": "dlinkDTO",
                         "required": true,
-                        "type": "integer",
-                        "format": "int64"
+                        "schema": {
+                            "$ref": "#/definitions/DlinkDTO"
+                        }
                     }
                 ],
                 "responses": {
@@ -1592,6 +1596,9 @@
                         "schema": {
                             "$ref": "#/definitions/ApiResponse"
                         }
+                    },
+                    "201": {
+                        "description": "Created"
                     },
                     "401": {
                         "description": "Unauthorized"
@@ -1613,32 +1620,28 @@
                 "deprecated": false
             }
         },
-        "/api/v1/dlink/project/{projectId}/control/{controlId}": {
-            "get": {
+        "/api/v1/dlink/project/control": {
+            "post": {
                 "tags": [
                     "project-control-library-controller"
                 ],
                 "summary": "dlinkProjectControl",
-                "operationId": "dlinkProjectControlUsingGET",
+                "operationId": "dlinkProjectControlUsingPOST",
+                "consumes": [
+                    "application/json"
+                ],
                 "produces": [
                     "*/*"
                 ],
                 "parameters": [
                     {
-                        "name": "controlId",
-                        "in": "path",
-                        "description": "controlId",
+                        "in": "body",
+                        "name": "dlinkDTO",
+                        "description": "dlinkDTO",
                         "required": true,
-                        "type": "integer",
-                        "format": "int64"
-                    },
-                    {
-                        "name": "projectId",
-                        "in": "path",
-                        "description": "projectId",
-                        "required": true,
-                        "type": "integer",
-                        "format": "int64"
+                        "schema": {
+                            "$ref": "#/definitions/DlinkDTO"
+                        }
                     }
                 ],
                 "responses": {
@@ -1647,6 +1650,9 @@
                         "schema": {
                             "$ref": "#/definitions/ApiResponse"
                         }
+                    },
+                    "201": {
+                        "description": "Created"
                     },
                     "401": {
                         "description": "Unauthorized"
@@ -2157,6 +2163,68 @@
                         "description": "tenantOrgId",
                         "required": true,
                         "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/Resource"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                },
+                "security": [
+                    {
+                        "apiKey": [
+                            "global"
+                        ]
+                    }
+                ],
+                "deprecated": false
+            }
+        },
+        "/api/v1/downloadFile/jobFailure": {
+            "get": {
+                "tags": [
+                    "job-controller"
+                ],
+                "summary": "downloadJobFailureDocument",
+                "operationId": "downloadJobFailureDocumentUsingGET",
+                "produces": [
+                    "*/*"
+                ],
+                "parameters": [
+                    {
+                        "name": "jobId",
+                        "in": "query",
+                        "description": "jobId",
+                        "required": true,
+                        "type": "integer",
+                        "format": "int64"
+                    },
+                    {
+                        "name": "orgId",
+                        "in": "query",
+                        "description": "orgId",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "typeRefId",
+                        "in": "query",
+                        "description": "typeRefId",
+                        "required": true,
+                        "type": "integer",
+                        "format": "int64"
                     }
                 ],
                 "responses": {
@@ -12575,105 +12643,6 @@
                 "deprecated": false
             }
         },
-        "/api/v1/uplaod/artefactAssessment": {
-            "post": {
-                "tags": [
-                    "risk-assessment-controller"
-                ],
-                "summary": "uploadArtefactAssessment",
-                "operationId": "uploadArtefactAssessmentUsingPOST",
-                "consumes": [
-                    "multipart/form-data"
-                ],
-                "produces": [
-                    "*/*"
-                ],
-                "parameters": [
-                    {
-                        "name": "artefactFile",
-                        "in": "formData",
-                        "description": "artefactFile",
-                        "required": true,
-                        "type": "file"
-                    },
-                    {
-                        "name": "artefactId",
-                        "in": "query",
-                        "description": "artefactId",
-                        "required": true,
-                        "type": "integer",
-                        "format": "int64"
-                    },
-                    {
-                        "name": "id",
-                        "in": "query",
-                        "description": "id",
-                        "required": true,
-                        "type": "integer",
-                        "format": "int64"
-                    },
-                    {
-                        "name": "orgId",
-                        "in": "query",
-                        "description": "orgId",
-                        "required": true,
-                        "type": "string"
-                    },
-                    {
-                        "name": "projectControlId",
-                        "in": "query",
-                        "description": "projectControlId",
-                        "required": true,
-                        "type": "integer",
-                        "format": "int64"
-                    },
-                    {
-                        "name": "projectId",
-                        "in": "query",
-                        "description": "projectId",
-                        "required": true,
-                        "type": "integer",
-                        "format": "int64"
-                    },
-                    {
-                        "name": "projectStandardId",
-                        "in": "query",
-                        "description": "projectStandardId",
-                        "required": true,
-                        "type": "integer",
-                        "format": "int64"
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "schema": {
-                            "$ref": "#/definitions/ApiResponse"
-                        }
-                    },
-                    "201": {
-                        "description": "Created"
-                    },
-                    "401": {
-                        "description": "Unauthorized"
-                    },
-                    "403": {
-                        "description": "Forbidden"
-                    },
-                    "404": {
-                        "description": "Not Found"
-                    }
-                },
-                "security": [
-                    {
-                        "apiKey": [
-                            "global"
-                        ]
-                    }
-                ],
-                "deprecated": false
-            }
-        },
         "/api/v1/upload/artefact": {
             "post": {
                 "tags": [
@@ -12745,6 +12714,105 @@
                         "name": "projectRiskId",
                         "in": "query",
                         "description": "projectRiskId",
+                        "required": true,
+                        "type": "integer",
+                        "format": "int64"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/ApiResponse"
+                        }
+                    },
+                    "201": {
+                        "description": "Created"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                },
+                "security": [
+                    {
+                        "apiKey": [
+                            "global"
+                        ]
+                    }
+                ],
+                "deprecated": false
+            }
+        },
+        "/api/v1/upload/artefactAssessment": {
+            "post": {
+                "tags": [
+                    "risk-assessment-controller"
+                ],
+                "summary": "uploadArtefactAssessment",
+                "operationId": "uploadArtefactAssessmentUsingPOST",
+                "consumes": [
+                    "multipart/form-data"
+                ],
+                "produces": [
+                    "*/*"
+                ],
+                "parameters": [
+                    {
+                        "name": "artefactFile",
+                        "in": "formData",
+                        "description": "artefactFile",
+                        "required": true,
+                        "type": "file"
+                    },
+                    {
+                        "name": "artefactId",
+                        "in": "query",
+                        "description": "artefactId",
+                        "required": true,
+                        "type": "integer",
+                        "format": "int64"
+                    },
+                    {
+                        "name": "id",
+                        "in": "query",
+                        "description": "id",
+                        "required": true,
+                        "type": "integer",
+                        "format": "int64"
+                    },
+                    {
+                        "name": "orgId",
+                        "in": "query",
+                        "description": "orgId",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "projectControlId",
+                        "in": "query",
+                        "description": "projectControlId",
+                        "required": true,
+                        "type": "integer",
+                        "format": "int64"
+                    },
+                    {
+                        "name": "projectId",
+                        "in": "query",
+                        "description": "projectId",
+                        "required": true,
+                        "type": "integer",
+                        "format": "int64"
+                    },
+                    {
+                        "name": "projectStandardId",
+                        "in": "query",
+                        "description": "projectStandardId",
                         "required": true,
                         "type": "integer",
                         "format": "int64"
@@ -14081,6 +14149,23 @@
             },
             "title": "ControlReviewRequestDTO"
         },
+        "DLinkControlRiskIdDTO": {
+            "type": "object",
+            "properties": {
+                "controlId": {
+                    "type": "array",
+                    "items": {
+                        "type": "integer",
+                        "format": "int64"
+                    }
+                },
+                "riskId": {
+                    "type": "integer",
+                    "format": "int64"
+                }
+            },
+            "title": "DLinkControlRiskIdDTO"
+        },
         "DepartmentDTO": {
             "type": "object",
             "properties": {
@@ -14102,6 +14187,22 @@
                 }
             },
             "title": "DepartmentDTO"
+        },
+        "DlinkDTO": {
+            "type": "object",
+            "properties": {
+                "dlinkRCIds": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/DLinkControlRiskIdDTO"
+                    }
+                },
+                "projectId": {
+                    "type": "integer",
+                    "format": "int64"
+                }
+            },
+            "title": "DlinkDTO"
         },
         "DomainDTO": {
             "type": "object",
