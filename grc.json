@@ -1790,12 +1790,13 @@
                 ],
                 "parameters": [
                     {
-                        "name": "domainId",
-                        "in": "query",
-                        "description": "domainId",
+                        "in": "body",
+                        "name": "domainIds",
+                        "description": "domainIds",
                         "required": true,
-                        "type": "integer",
-                        "format": "int64"
+                        "schema": {
+                            "$ref": "#/definitions/DomainDeleteDTO"
+                        }
                     },
                     {
                         "name": "orgId",
@@ -14152,7 +14153,7 @@
         "DLinkControlRiskIdDTO": {
             "type": "object",
             "properties": {
-                "controlId": {
+                "controlIds": {
                     "type": "array",
                     "items": {
                         "type": "integer",
@@ -14221,6 +14222,19 @@
                 }
             },
             "title": "DomainDTO"
+        },
+        "DomainDeleteDTO": {
+            "type": "object",
+            "properties": {
+                "domainIds": {
+                    "type": "array",
+                    "items": {
+                        "type": "integer",
+                        "format": "int64"
+                    }
+                }
+            },
+            "title": "DomainDeleteDTO"
         },
         "File": {
             "type": "object",
