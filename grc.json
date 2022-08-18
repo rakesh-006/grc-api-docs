@@ -7429,6 +7429,54 @@
                 "deprecated": false
             }
         },
+        "/api/v1/project/risk": {
+            "delete": {
+                "tags": [
+                    "project-risk-library-controller"
+                ],
+                "summary": "deleteProjectRiskLibrary",
+                "operationId": "deleteProjectRiskLibraryUsingDELETE",
+                "produces": [
+                    "*/*"
+                ],
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "deleteRiskRequestDTO",
+                        "description": "deleteRiskRequestDTO",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/DeleteRiskRequestDTO"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/ApiResponse"
+                        }
+                    },
+                    "204": {
+                        "description": "No Content"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                },
+                "security": [
+                    {
+                        "apiKey": [
+                            "global"
+                        ]
+                    }
+                ],
+                "deprecated": false
+            }
+        },
         "/api/v1/project/risk/assessment/remark": {
             "get": {
                 "tags": [
@@ -9477,54 +9525,6 @@
                     },
                     "404": {
                         "description": "Not Found"
-                    }
-                },
-                "security": [
-                    {
-                        "apiKey": [
-                            "global"
-                        ]
-                    }
-                ],
-                "deprecated": false
-            }
-        },
-        "/api/v1/project/{projectId}/risk": {
-            "delete": {
-                "tags": [
-                    "project-risk-library-controller"
-                ],
-                "summary": "deleteProjectRiskLibrary",
-                "operationId": "deleteProjectRiskLibraryUsingDELETE",
-                "produces": [
-                    "*/*"
-                ],
-                "parameters": [
-                    {
-                        "in": "body",
-                        "name": "deleteRiskRequestDTO",
-                        "description": "deleteRiskRequestDTO",
-                        "required": true,
-                        "schema": {
-                            "$ref": "#/definitions/DeleteRiskRequestDTO"
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "schema": {
-                            "$ref": "#/definitions/ApiResponse"
-                        }
-                    },
-                    "204": {
-                        "description": "No Content"
-                    },
-                    "401": {
-                        "description": "Unauthorized"
-                    },
-                    "403": {
-                        "description": "Forbidden"
                     }
                 },
                 "security": [
