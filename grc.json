@@ -1370,7 +1370,7 @@
                 "deprecated": false
             }
         },
-        "/api/v1/delink/orgType/{userOrgTypeRefId}/projectType/{projectTypeRefId}/project/{projectId}/userType/{userTypeRefId}/user/{userId}": {
+        "/api/v1/delink/orgType/{userOrgId}/projectType/{projectTypeRefId}/project/{projectId}/userType/{userTypeRefId}/user/{userId}": {
             "delete": {
                 "tags": [
                     "project-user-controller"
@@ -1406,9 +1406,9 @@
                         "format": "int64"
                     },
                     {
-                        "name": "userOrgTypeRefId",
+                        "name": "userOrgId",
                         "in": "path",
-                        "description": "userOrgTypeRefId",
+                        "description": "userOrgId",
                         "required": true,
                         "type": "string"
                     },
@@ -15692,6 +15692,16 @@
         "ProjectDTO": {
             "type": "object",
             "properties": {
+                "createdBy": {
+                    "type": "string"
+                },
+                "createdDate": {
+                    "type": "string",
+                    "format": "date-time"
+                },
+                "customerLogo": {
+                    "type": "string"
+                },
                 "description": {
                     "type": "string"
                 },
@@ -15719,9 +15729,21 @@
                 "orgName": {
                     "type": "string"
                 },
+                "projectManagerFirstName": {
+                    "type": "string"
+                },
                 "projectManagerId": {
                     "type": "integer",
                     "format": "int64"
+                },
+                "projectManagerLastName": {
+                    "type": "string"
+                },
+                "projectManagerMiddleName": {
+                    "type": "string"
+                },
+                "projectManagerUserName": {
+                    "type": "string"
                 },
                 "projectStatusRefCode": {
                     "type": "string"
@@ -16283,6 +16305,10 @@
                     "format": "int64"
                 },
                 "projectId": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "projectRiskId": {
                     "type": "integer",
                     "format": "int64"
                 },
