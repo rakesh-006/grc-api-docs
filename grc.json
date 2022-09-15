@@ -6771,6 +6771,60 @@
                 "deprecated": false
             }
         },
+        "/api/v1/project/approvalTime": {
+            "post": {
+                "tags": [
+                    "project-controller"
+                ],
+                "summary": "addApprovalTimeForProject",
+                "operationId": "addApprovalTimeForProjectUsingPOST",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "*/*"
+                ],
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "projectUserDTO",
+                        "description": "projectUserDTO",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/ProjectUserDTO"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/ApiResponse"
+                        }
+                    },
+                    "201": {
+                        "description": "Created"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                },
+                "security": [
+                    {
+                        "apiKey": [
+                            "global"
+                        ]
+                    }
+                ],
+                "deprecated": false
+            }
+        },
         "/api/v1/project/control": {
             "post": {
                 "tags": [
@@ -16300,6 +16354,10 @@
         "ProjectUserDTO": {
             "type": "object",
             "properties": {
+                "approveTime": {
+                    "type": "integer",
+                    "format": "int64"
+                },
                 "id": {
                     "type": "integer",
                     "format": "int64"
