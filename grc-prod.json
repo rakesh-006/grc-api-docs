@@ -8081,8 +8081,8 @@
                 "tags": [
                     "project-standard-library-controller"
                 ],
-                "summary": "createOrUpdateStandardAssessmentQuestionResponse",
-                "operationId": "createOrUpdateStandardAssessmentQuestionResponseUsingPOST",
+                "summary": "createOrUpdateStandardAssessmentEachQuestionResponse",
+                "operationId": "createOrUpdateStandardAssessmentEachQuestionResponseUsingPOST",
                 "consumes": [
                     "application/json"
                 ],
@@ -8097,6 +8097,63 @@
                         "required": true,
                         "schema": {
                             "$ref": "#/definitions/ProjectRiskAssessmentQuestionDTO"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/ApiResponse"
+                        }
+                    },
+                    "201": {
+                        "description": "Created"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                },
+                "security": [
+                    {
+                        "apiKey": [
+                            "global"
+                        ]
+                    }
+                ],
+                "deprecated": false
+            }
+        },
+        "/api/v1/project/standard/assessment/questions/responses": {
+            "post": {
+                "tags": [
+                    "project-standard-library-controller"
+                ],
+                "summary": "createOrUpdateStandardAssessmentAllQuestionResponse",
+                "operationId": "createOrUpdateStandardAssessmentAllQuestionResponseUsingPOST",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "*/*"
+                ],
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "projectRiskAssessmentQuestionDTO",
+                        "description": "projectRiskAssessmentQuestionDTO",
+                        "required": true,
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/ProjectRiskAssessmentQuestionDTO"
+                            }
                         }
                     }
                 ],
