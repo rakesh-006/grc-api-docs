@@ -5,7 +5,7 @@
         "version": "v1",
         "title": "CyPRO"
     },
-    "host": "api.cypro.cyraacs.net",
+    "host": "api.cyprodev.cyraacs.net",
     "basePath": "/",
     "tags": [
         {
@@ -109,10 +109,6 @@
             "description": "Project Controller"
         },
         {
-            "name": "project-mapping-controller",
-            "description": "Project Mapping Controller"
-        },
-        {
             "name": "project-policy-library-controller",
             "description": "Project Policy Library Controller"
         },
@@ -151,10 +147,6 @@
         {
             "name": "project-template-risk-import-controller",
             "description": "Project Template Risk Import Controller"
-        },
-        {
-            "name": "project-user-controller",
-            "description": "Project User Controller"
         },
         {
             "name": "project-vulnerability-controller",
@@ -1341,84 +1333,6 @@
                         "schema": {
                             "$ref": "#/definitions/ImportDTO"
                         }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "schema": {
-                            "$ref": "#/definitions/ApiResponse"
-                        }
-                    },
-                    "204": {
-                        "description": "No Content"
-                    },
-                    "401": {
-                        "description": "Unauthorized"
-                    },
-                    "403": {
-                        "description": "Forbidden"
-                    }
-                },
-                "security": [
-                    {
-                        "apiKey": [
-                            "global"
-                        ]
-                    }
-                ],
-                "deprecated": false
-            }
-        },
-        "/api/v1/delink/orgType/{userOrgId}/projectType/{projectTypeRefId}/project/{projectId}/userType/{userTypeRefId}/user/{userId}": {
-            "delete": {
-                "tags": [
-                    "project-user-controller"
-                ],
-                "summary": "deLinkUsersForProject",
-                "operationId": "deLinkUsersForProjectUsingDELETE",
-                "produces": [
-                    "*/*"
-                ],
-                "parameters": [
-                    {
-                        "name": "projectId",
-                        "in": "path",
-                        "description": "projectId",
-                        "required": true,
-                        "type": "integer",
-                        "format": "int64"
-                    },
-                    {
-                        "name": "projectTypeRefId",
-                        "in": "path",
-                        "description": "projectTypeRefId",
-                        "required": true,
-                        "type": "integer",
-                        "format": "int64"
-                    },
-                    {
-                        "name": "userId",
-                        "in": "path",
-                        "description": "userId",
-                        "required": true,
-                        "type": "integer",
-                        "format": "int64"
-                    },
-                    {
-                        "name": "userOrgId",
-                        "in": "path",
-                        "description": "userOrgId",
-                        "required": true,
-                        "type": "string"
-                    },
-                    {
-                        "name": "userTypeRefId",
-                        "in": "path",
-                        "description": "userTypeRefId",
-                        "required": true,
-                        "type": "integer",
-                        "format": "int64"
                     }
                 ],
                 "responses": {
@@ -6771,60 +6685,6 @@
                 "deprecated": false
             }
         },
-        "/api/v1/project/approvalTime": {
-            "post": {
-                "tags": [
-                    "project-controller"
-                ],
-                "summary": "addApprovalTimeForProject",
-                "operationId": "addApprovalTimeForProjectUsingPOST",
-                "consumes": [
-                    "application/json"
-                ],
-                "produces": [
-                    "*/*"
-                ],
-                "parameters": [
-                    {
-                        "in": "body",
-                        "name": "projectUserDTO",
-                        "description": "projectUserDTO",
-                        "required": true,
-                        "schema": {
-                            "$ref": "#/definitions/ProjectUserDTO"
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "schema": {
-                            "$ref": "#/definitions/ApiResponse"
-                        }
-                    },
-                    "201": {
-                        "description": "Created"
-                    },
-                    "401": {
-                        "description": "Unauthorized"
-                    },
-                    "403": {
-                        "description": "Forbidden"
-                    },
-                    "404": {
-                        "description": "Not Found"
-                    }
-                },
-                "security": [
-                    {
-                        "apiKey": [
-                            "global"
-                        ]
-                    }
-                ],
-                "deprecated": false
-            }
-        },
         "/api/v1/project/control": {
             "post": {
                 "tags": [
@@ -7482,6 +7342,60 @@
                         "required": true,
                         "schema": {
                             "$ref": "#/definitions/ReportDocumentDTO"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/ApiResponse"
+                        }
+                    },
+                    "201": {
+                        "description": "Created"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                },
+                "security": [
+                    {
+                        "apiKey": [
+                            "global"
+                        ]
+                    }
+                ],
+                "deprecated": false
+            }
+        },
+        "/api/v1/project/review/controls": {
+            "post": {
+                "tags": [
+                    "project-control-review-controller"
+                ],
+                "summary": "getProjectRiskControlForReview",
+                "operationId": "getProjectRiskControlForReviewUsingPOST",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "*/*"
+                ],
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "paginationRequestDTO",
+                        "description": "paginationRequestDTO",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/PaginationRequestDTO"
                         }
                     }
                 ],
@@ -8294,114 +8208,6 @@
                         "required": true,
                         "schema": {
                             "$ref": "#/definitions/AssessmentStatusDTO"
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "schema": {
-                            "$ref": "#/definitions/ApiResponse"
-                        }
-                    },
-                    "201": {
-                        "description": "Created"
-                    },
-                    "401": {
-                        "description": "Unauthorized"
-                    },
-                    "403": {
-                        "description": "Forbidden"
-                    },
-                    "404": {
-                        "description": "Not Found"
-                    }
-                },
-                "security": [
-                    {
-                        "apiKey": [
-                            "global"
-                        ]
-                    }
-                ],
-                "deprecated": false
-            }
-        },
-        "/api/v1/project/user": {
-            "post": {
-                "tags": [
-                    "project-user-controller"
-                ],
-                "summary": "saveUsersForProject",
-                "operationId": "saveUsersForProjectUsingPOST",
-                "consumes": [
-                    "application/json"
-                ],
-                "produces": [
-                    "*/*"
-                ],
-                "parameters": [
-                    {
-                        "in": "body",
-                        "name": "projectUserDTO",
-                        "description": "projectUserDTO",
-                        "required": true,
-                        "schema": {
-                            "$ref": "#/definitions/ProjectUserDTO"
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "schema": {
-                            "$ref": "#/definitions/ApiResponse"
-                        }
-                    },
-                    "201": {
-                        "description": "Created"
-                    },
-                    "401": {
-                        "description": "Unauthorized"
-                    },
-                    "403": {
-                        "description": "Forbidden"
-                    },
-                    "404": {
-                        "description": "Not Found"
-                    }
-                },
-                "security": [
-                    {
-                        "apiKey": [
-                            "global"
-                        ]
-                    }
-                ],
-                "deprecated": false
-            }
-        },
-        "/api/v1/project/users": {
-            "post": {
-                "tags": [
-                    "project-user-controller"
-                ],
-                "summary": "getUsersForProject",
-                "operationId": "getUsersForProjectUsingPOST",
-                "consumes": [
-                    "application/json"
-                ],
-                "produces": [
-                    "*/*"
-                ],
-                "parameters": [
-                    {
-                        "in": "body",
-                        "name": "projectUserDTO",
-                        "description": "projectUserDTO",
-                        "required": true,
-                        "schema": {
-                            "$ref": "#/definitions/ProjectUserDTO"
                         }
                     }
                 ],
@@ -9301,62 +9107,6 @@
                 "deprecated": false
             }
         },
-        "/api/v1/project/{projectId}/delete": {
-            "delete": {
-                "tags": [
-                    "project-mapping-controller"
-                ],
-                "summary": "deleteSmeOrReviewer",
-                "operationId": "deleteSmeOrReviewerUsingDELETE",
-                "produces": [
-                    "*/*"
-                ],
-                "parameters": [
-                    {
-                        "name": "projectId",
-                        "in": "path",
-                        "description": "projectId",
-                        "required": true,
-                        "type": "integer",
-                        "format": "int64"
-                    },
-                    {
-                        "in": "body",
-                        "name": "projectMappingDeleteDTO",
-                        "description": "projectMappingDeleteDTO",
-                        "required": true,
-                        "schema": {
-                            "$ref": "#/definitions/ProjectMappingDeleteDTO"
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "schema": {
-                            "$ref": "#/definitions/ApiResponse"
-                        }
-                    },
-                    "204": {
-                        "description": "No Content"
-                    },
-                    "401": {
-                        "description": "Unauthorized"
-                    },
-                    "403": {
-                        "description": "Forbidden"
-                    }
-                },
-                "security": [
-                    {
-                        "apiKey": [
-                            "global"
-                        ]
-                    }
-                ],
-                "deprecated": false
-            }
-        },
         "/api/v1/project/{projectId}/domain/{domainId}/standard/{standardId}/standardControls": {
             "get": {
                 "tags": [
@@ -9540,130 +9290,6 @@
                         "schema": {
                             "$ref": "#/definitions/ApiResponse"
                         }
-                    },
-                    "401": {
-                        "description": "Unauthorized"
-                    },
-                    "403": {
-                        "description": "Forbidden"
-                    },
-                    "404": {
-                        "description": "Not Found"
-                    }
-                },
-                "security": [
-                    {
-                        "apiKey": [
-                            "global"
-                        ]
-                    }
-                ],
-                "deprecated": false
-            }
-        },
-        "/api/v1/project/{projectId}/map-user": {
-            "post": {
-                "tags": [
-                    "project-mapping-controller"
-                ],
-                "summary": "createMappingsForProject",
-                "operationId": "createMappingsForProjectUsingPOST",
-                "consumes": [
-                    "application/json"
-                ],
-                "produces": [
-                    "*/*"
-                ],
-                "parameters": [
-                    {
-                        "name": "projectId",
-                        "in": "path",
-                        "description": "projectId",
-                        "required": true,
-                        "type": "integer",
-                        "format": "int64"
-                    },
-                    {
-                        "in": "body",
-                        "name": "projectMappingRequest",
-                        "description": "projectMappingRequest",
-                        "required": true,
-                        "schema": {
-                            "$ref": "#/definitions/ProjectMappingRequest"
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "schema": {
-                            "$ref": "#/definitions/ApiResponse"
-                        }
-                    },
-                    "201": {
-                        "description": "Created"
-                    },
-                    "401": {
-                        "description": "Unauthorized"
-                    },
-                    "403": {
-                        "description": "Forbidden"
-                    },
-                    "404": {
-                        "description": "Not Found"
-                    }
-                },
-                "security": [
-                    {
-                        "apiKey": [
-                            "global"
-                        ]
-                    }
-                ],
-                "deprecated": false
-            }
-        },
-        "/api/v1/project/{projectId}/mapped-user": {
-            "post": {
-                "tags": [
-                    "project-mapping-controller"
-                ],
-                "summary": "getMappedUserForControl",
-                "operationId": "getMappedUserForControlUsingPOST",
-                "consumes": [
-                    "application/json"
-                ],
-                "produces": [
-                    "*/*"
-                ],
-                "parameters": [
-                    {
-                        "in": "body",
-                        "name": "getMappedUserForControlRequest",
-                        "description": "getMappedUserForControlRequest",
-                        "required": true,
-                        "schema": {
-                            "$ref": "#/definitions/GetMappedUserForControlRequest"
-                        }
-                    },
-                    {
-                        "name": "projectId",
-                        "in": "path",
-                        "description": "projectId",
-                        "required": true,
-                        "type": "integer",
-                        "format": "int64"
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "schema": {
-                            "$ref": "#/definitions/ApiResponse"
-                        }
-                    },
-                    "201": {
-                        "description": "Created"
                     },
                     "401": {
                         "description": "Unauthorized"
@@ -9889,69 +9515,6 @@
                         "name": "projectId",
                         "in": "path",
                         "description": "projectId",
-                        "required": true,
-                        "type": "integer",
-                        "format": "int64"
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "schema": {
-                            "$ref": "#/definitions/ApiResponse"
-                        }
-                    },
-                    "401": {
-                        "description": "Unauthorized"
-                    },
-                    "403": {
-                        "description": "Forbidden"
-                    },
-                    "404": {
-                        "description": "Not Found"
-                    }
-                },
-                "security": [
-                    {
-                        "apiKey": [
-                            "global"
-                        ]
-                    }
-                ],
-                "deprecated": false
-            }
-        },
-        "/api/v1/project/{projectId}/projectTypeId/{projectTypeRefId}/users/{userTypeRefId}": {
-            "get": {
-                "tags": [
-                    "project-user-controller"
-                ],
-                "summary": "getAssignedUsersForProject",
-                "operationId": "getAssignedUsersForProjectUsingGET",
-                "produces": [
-                    "*/*"
-                ],
-                "parameters": [
-                    {
-                        "name": "projectId",
-                        "in": "path",
-                        "description": "projectId",
-                        "required": true,
-                        "type": "integer",
-                        "format": "int64"
-                    },
-                    {
-                        "name": "projectTypeRefId",
-                        "in": "path",
-                        "description": "projectTypeRefId",
-                        "required": true,
-                        "type": "integer",
-                        "format": "int64"
-                    },
-                    {
-                        "name": "userTypeRefId",
-                        "in": "path",
-                        "description": "userTypeRefId",
                         "required": true,
                         "type": "integer",
                         "format": "int64"
@@ -14810,28 +14373,6 @@
             },
             "title": "FollowerDTO"
         },
-        "GetMappedUserForControlRequest": {
-            "type": "object",
-            "properties": {
-                "projectControlLibraryId": {
-                    "type": "integer",
-                    "format": "int64"
-                },
-                "projectId": {
-                    "type": "integer",
-                    "format": "int64"
-                },
-                "projectTypeRefId": {
-                    "type": "integer",
-                    "format": "int64"
-                },
-                "projectUserTypeRefId": {
-                    "type": "integer",
-                    "format": "int64"
-                }
-            },
-            "title": "GetMappedUserForControlRequest"
-        },
         "Impact": {
             "type": "object",
             "properties": {
@@ -15746,15 +15287,9 @@
         "ProjectDTO": {
             "type": "object",
             "properties": {
-                "createdBy": {
-                    "type": "string"
-                },
-                "createdDate": {
-                    "type": "string",
-                    "format": "date-time"
-                },
-                "customerLogo": {
-                    "type": "string"
+                "approverId": {
+                    "type": "integer",
+                    "format": "int64"
                 },
                 "description": {
                     "type": "string"
@@ -15774,6 +15309,10 @@
                     "type": "integer",
                     "format": "int64"
                 },
+                "managerId": {
+                    "type": "integer",
+                    "format": "int64"
+                },
                 "name": {
                     "type": "string"
                 },
@@ -15781,22 +15320,6 @@
                     "type": "string"
                 },
                 "orgName": {
-                    "type": "string"
-                },
-                "projectManagerFirstName": {
-                    "type": "string"
-                },
-                "projectManagerId": {
-                    "type": "integer",
-                    "format": "int64"
-                },
-                "projectManagerLastName": {
-                    "type": "string"
-                },
-                "projectManagerMiddleName": {
-                    "type": "string"
-                },
-                "projectManagerUserName": {
                     "type": "string"
                 },
                 "projectStatusRefCode": {
@@ -15815,12 +15338,20 @@
                         "$ref": "#/definitions/ScoringRange"
                     }
                 },
+                "reviewerId": {
+                    "type": "integer",
+                    "format": "int64"
+                },
                 "scoringModelId": {
                     "type": "integer",
                     "format": "int64"
                 },
                 "scoringModelName": {
                     "type": "string"
+                },
+                "smeId": {
+                    "type": "integer",
+                    "format": "int64"
                 },
                 "startDate": {
                     "type": "string",
@@ -15847,10 +15378,6 @@
                     "format": "int64"
                 },
                 "totalVulnerabilityCount": {
-                    "type": "integer",
-                    "format": "int64"
-                },
-                "userTypeRefId": {
                     "type": "integer",
                     "format": "int64"
                 }
@@ -15960,64 +15487,6 @@
                 }
             },
             "title": "ProjectLikelyhood"
-        },
-        "ProjectMappingDeleteDTO": {
-            "type": "object",
-            "properties": {
-                "projectControlLibraryId": {
-                    "type": "integer",
-                    "format": "int64"
-                },
-                "projectId": {
-                    "type": "integer",
-                    "format": "int64"
-                },
-                "projectRiskLibraryId": {
-                    "type": "integer",
-                    "format": "int64"
-                },
-                "projectTypeRefId": {
-                    "type": "integer",
-                    "format": "int64"
-                },
-                "userId": {
-                    "type": "integer",
-                    "format": "int64"
-                },
-                "userOrgId": {
-                    "type": "string"
-                },
-                "userTypeRefId": {
-                    "type": "integer",
-                    "format": "int64"
-                }
-            },
-            "title": "ProjectMappingDeleteDTO"
-        },
-        "ProjectMappingRequest": {
-            "type": "object",
-            "properties": {
-                "projectControlLibraryId": {
-                    "type": "integer",
-                    "format": "int64"
-                },
-                "projectId": {
-                    "type": "integer",
-                    "format": "int64"
-                },
-                "projectTypeRefId": {
-                    "type": "integer",
-                    "format": "int64"
-                },
-                "projectUserTypeRefId": {
-                    "type": "integer",
-                    "format": "int64"
-                },
-                "userInfo": {
-                    "$ref": "#/definitions/UserInfo"
-                }
-            },
-            "title": "ProjectMappingRequest"
         },
         "ProjectPolicyDraftDTO": {
             "type": "object",
@@ -16350,49 +15819,6 @@
                 }
             },
             "title": "ProjectStandardDomainsRequestDTO"
-        },
-        "ProjectUserDTO": {
-            "type": "object",
-            "properties": {
-                "approveTime": {
-                    "type": "integer",
-                    "format": "int64"
-                },
-                "id": {
-                    "type": "integer",
-                    "format": "int64"
-                },
-                "projectId": {
-                    "type": "integer",
-                    "format": "int64"
-                },
-                "projectRiskId": {
-                    "type": "integer",
-                    "format": "int64"
-                },
-                "projectTypeRefId": {
-                    "type": "integer",
-                    "format": "int64"
-                },
-                "search": {
-                    "type": "string"
-                },
-                "userId": {
-                    "type": "integer",
-                    "format": "int64"
-                },
-                "userOrgId": {
-                    "type": "string"
-                },
-                "userOrgTypeId": {
-                    "type": "string"
-                },
-                "userTypeRefId": {
-                    "type": "integer",
-                    "format": "int64"
-                }
-            },
-            "title": "ProjectUserDTO"
         },
         "QuestionDTO": {
             "type": "object",
@@ -17298,16 +16724,6 @@
                         "$ref": "#/definitions/UserPhone"
                     }
                 },
-                "userTypeRefCode": {
-                    "type": "string"
-                },
-                "userTypeRefDesc": {
-                    "type": "string"
-                },
-                "userTypeRefId": {
-                    "type": "integer",
-                    "format": "int64"
-                },
                 "username": {
                     "type": "string"
                 }
@@ -17330,19 +16746,6 @@
                 }
             },
             "title": "UserDepartmentDTO"
-        },
-        "UserInfo": {
-            "type": "object",
-            "properties": {
-                "userId": {
-                    "type": "integer",
-                    "format": "int64"
-                },
-                "userOrgId": {
-                    "type": "string"
-                }
-            },
-            "title": "UserInfo"
         },
         "UserPhone": {
             "type": "object",
