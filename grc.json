@@ -7046,6 +7046,60 @@
                 "deprecated": false
             }
         },
+        "/api/v1/project/control/review/reject": {
+            "post": {
+                "tags": [
+                    "project-control-library-controller"
+                ],
+                "summary": "saveCommentsForControlReviewReject",
+                "operationId": "saveCommentsForControlReviewRejectUsingPOST",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "*/*"
+                ],
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "commentDTO",
+                        "description": "commentDTO",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/CommentDTO"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/ApiResponse"
+                        }
+                    },
+                    "201": {
+                        "description": "Created"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                },
+                "security": [
+                    {
+                        "apiKey": [
+                            "global"
+                        ]
+                    }
+                ],
+                "deprecated": false
+            }
+        },
         "/api/v1/project/control/review/status": {
             "put": {
                 "tags": [
@@ -9995,6 +10049,69 @@
                 "deprecated": false
             }
         },
+        "/api/v1/project/{projectId}/projectType/{projectTypeRefId}/control/{controlId}/rule-engine/possible-next-state": {
+            "get": {
+                "tags": [
+                    "project-control-library-controller"
+                ],
+                "summary": "getNextStateForLoggedInUser",
+                "operationId": "getNextStateForLoggedInUserUsingGET",
+                "produces": [
+                    "*/*"
+                ],
+                "parameters": [
+                    {
+                        "name": "controlId",
+                        "in": "path",
+                        "description": "controlId",
+                        "required": true,
+                        "type": "integer",
+                        "format": "int64"
+                    },
+                    {
+                        "name": "projectId",
+                        "in": "path",
+                        "description": "projectId",
+                        "required": true,
+                        "type": "integer",
+                        "format": "int64"
+                    },
+                    {
+                        "name": "projectTypeRefId",
+                        "in": "path",
+                        "description": "projectTypeRefId",
+                        "required": true,
+                        "type": "integer",
+                        "format": "int64"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/ApiResponse"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                },
+                "security": [
+                    {
+                        "apiKey": [
+                            "global"
+                        ]
+                    }
+                ],
+                "deprecated": false
+            }
+        },
         "/api/v1/project/{projectId}/projectTypeId/{projectTypeRefId}/users/{userTypeRefId}": {
             "get": {
                 "tags": [
@@ -10642,6 +10759,77 @@
                         "name": "projectId",
                         "in": "path",
                         "description": "projectId",
+                        "required": true,
+                        "type": "integer",
+                        "format": "int64"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/ApiResponse"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                },
+                "security": [
+                    {
+                        "apiKey": [
+                            "global"
+                        ]
+                    }
+                ],
+                "deprecated": false
+            }
+        },
+        "/api/v1/projectType/{projectTypeRefId}/project/{projectId}/control/{controlId}/questionId/{questionId}/comment": {
+            "get": {
+                "tags": [
+                    "project-control-library-controller"
+                ],
+                "summary": "getCommentsForProjectControl",
+                "operationId": "getCommentsForProjectControlUsingGET",
+                "produces": [
+                    "*/*"
+                ],
+                "parameters": [
+                    {
+                        "name": "controlId",
+                        "in": "path",
+                        "description": "controlId",
+                        "required": true,
+                        "type": "integer",
+                        "format": "int64"
+                    },
+                    {
+                        "name": "projectId",
+                        "in": "path",
+                        "description": "projectId",
+                        "required": true,
+                        "type": "integer",
+                        "format": "int64"
+                    },
+                    {
+                        "name": "projectTypeRefId",
+                        "in": "path",
+                        "description": "projectTypeRefId",
+                        "required": true,
+                        "type": "integer",
+                        "format": "int64"
+                    },
+                    {
+                        "name": "questionId",
+                        "in": "path",
+                        "description": "questionId",
                         "required": true,
                         "type": "integer",
                         "format": "int64"
@@ -14692,6 +14880,51 @@
             },
             "title": "AuthenticationRequest"
         },
+        "CommentDTO": {
+            "type": "object",
+            "properties": {
+                "comment": {
+                    "type": "string"
+                },
+                "commentAddedBy": {
+                    "type": "string"
+                },
+                "commentAddedDate": {
+                    "type": "string",
+                    "format": "date-time"
+                },
+                "commentAddedUserTypeId": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "nextState": {
+                    "type": "string"
+                },
+                "projectControlLibraryId": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "projectControlName": {
+                    "type": "string"
+                },
+                "projectId": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "projectTypeRefId": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "questions": {
+                    "type": "array",
+                    "items": {
+                        "type": "integer",
+                        "format": "int64"
+                    }
+                }
+            },
+            "title": "CommentDTO"
+        },
         "ControlDetailsResponse": {
             "type": "object",
             "properties": {
@@ -16020,6 +16253,14 @@
                     "type": "integer",
                     "format": "int64"
                 },
+                "impactCount": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "likelihoodCount": {
+                    "type": "integer",
+                    "format": "int64"
+                },
                 "name": {
                     "type": "string"
                 },
@@ -16292,6 +16533,10 @@
         "ProjectQuestionLibrary": {
             "type": "object",
             "properties": {
+                "afRejectedBy": {
+                    "type": "integer",
+                    "format": "int64"
+                },
                 "conditionalQuestion": {
                     "type": "string"
                 },
@@ -17308,9 +17553,6 @@
                 "controlId": {
                     "type": "integer",
                     "format": "int64"
-                },
-                "currentState": {
-                    "type": "string"
                 },
                 "projectId": {
                     "type": "integer",
