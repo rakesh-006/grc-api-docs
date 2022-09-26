@@ -1374,7 +1374,7 @@
                 "deprecated": false
             }
         },
-        "/api/v1/delink/orgType/{userOrgId}/projectType/{projectTypeRefId}/project/{projectId}/userType/{userTypeRefId}/user/{userId}": {
+        "/api/v1/delink": {
             "delete": {
                 "tags": [
                     "project-user-controller"
@@ -1386,43 +1386,13 @@
                 ],
                 "parameters": [
                     {
-                        "name": "projectId",
-                        "in": "path",
-                        "description": "projectId",
+                        "in": "body",
+                        "name": "projectMappingdeLinkDTO",
+                        "description": "projectMappingdeLinkDTO",
                         "required": true,
-                        "type": "integer",
-                        "format": "int64"
-                    },
-                    {
-                        "name": "projectTypeRefId",
-                        "in": "path",
-                        "description": "projectTypeRefId",
-                        "required": true,
-                        "type": "integer",
-                        "format": "int64"
-                    },
-                    {
-                        "name": "userId",
-                        "in": "path",
-                        "description": "userId",
-                        "required": true,
-                        "type": "integer",
-                        "format": "int64"
-                    },
-                    {
-                        "name": "userOrgId",
-                        "in": "path",
-                        "description": "userOrgId",
-                        "required": true,
-                        "type": "string"
-                    },
-                    {
-                        "name": "userTypeRefId",
-                        "in": "path",
-                        "description": "userTypeRefId",
-                        "required": true,
-                        "type": "integer",
-                        "format": "int64"
+                        "schema": {
+                            "$ref": "#/definitions/ProjectMappingdeLinkDTO"
+                        }
                     }
                 ],
                 "responses": {
@@ -16492,6 +16462,10 @@
                     "type": "integer",
                     "format": "int64"
                 },
+                "projectRiskLibraryId": {
+                    "type": "integer",
+                    "format": "int64"
+                },
                 "projectTypeRefId": {
                     "type": "integer",
                     "format": "int64"
@@ -16505,6 +16479,35 @@
                 }
             },
             "title": "ProjectMappingRequest"
+        },
+        "ProjectMappingdeLinkDTO": {
+            "type": "object",
+            "properties": {
+                "projectId": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "projectRiskLibraryId": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "projectTypeRefId": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "userId": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "userOrgId": {
+                    "type": "string"
+                },
+                "userTypeRefId": {
+                    "type": "integer",
+                    "format": "int64"
+                }
+            },
+            "title": "ProjectMappingdeLinkDTO"
         },
         "ProjectPolicyDraftDTO": {
             "type": "object",
